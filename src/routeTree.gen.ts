@@ -10,33 +10,128 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutHdpRouteImport } from './routes/about-hdp'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as HyperloopRouteImport } from './routes/hyperloop'
+import { Route as PartnersRouteImport } from './routes/partners'
+import { Route as TestingInfrastructureRouteImport } from './routes/testing-infrastructure'
+import { Route as NewsIndexRouteImport } from './routes/news.index'
+import { Route as NewsSlugRouteImport } from './routes/news.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutHdpRoute = AboutHdpRouteImport.update({
+  id: '/about-hdp',
+  path: '/about-hdp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HyperloopRoute = HyperloopRouteImport.update({
+  id: '/hyperloop',
+  path: '/hyperloop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersRoute = PartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TestingInfrastructureRoute = TestingInfrastructureRouteImport.update({
+  id: '/testing-infrastructure',
+  path: '/testing-infrastructure',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsIndexRoute = NewsIndexRouteImport.update({
+  id: '/news/',
+  path: '/news/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsSlugRoute = NewsSlugRouteImport.update({
+  id: '/news/$slug',
+  path: '/news/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about-hdp': typeof AboutHdpRoute
+  '/contact': typeof ContactRoute
+  '/hyperloop': typeof HyperloopRoute
+  '/partners': typeof PartnersRoute
+  '/testing-infrastructure': typeof TestingInfrastructureRoute
+  '/news/$slug': typeof NewsSlugRoute
+  '/news/': typeof NewsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about-hdp': typeof AboutHdpRoute
+  '/contact': typeof ContactRoute
+  '/hyperloop': typeof HyperloopRoute
+  '/partners': typeof PartnersRoute
+  '/testing-infrastructure': typeof TestingInfrastructureRoute
+  '/news/$slug': typeof NewsSlugRoute
+  '/news': typeof NewsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about-hdp': typeof AboutHdpRoute
+  '/contact': typeof ContactRoute
+  '/hyperloop': typeof HyperloopRoute
+  '/partners': typeof PartnersRoute
+  '/testing-infrastructure': typeof TestingInfrastructureRoute
+  '/news/$slug': typeof NewsSlugRoute
+  '/news/': typeof NewsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about-hdp'
+    | '/contact'
+    | '/hyperloop'
+    | '/partners'
+    | '/testing-infrastructure'
+    | '/news/$slug'
+    | '/news/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about-hdp'
+    | '/contact'
+    | '/hyperloop'
+    | '/partners'
+    | '/testing-infrastructure'
+    | '/news/$slug'
+    | '/news'
+  id:
+    | '__root__'
+    | '/'
+    | '/about-hdp'
+    | '/contact'
+    | '/hyperloop'
+    | '/partners'
+    | '/testing-infrastructure'
+    | '/news/$slug'
+    | '/news/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutHdpRoute: typeof AboutHdpRoute
+  ContactRoute: typeof ContactRoute
+  HyperloopRoute: typeof HyperloopRoute
+  PartnersRoute: typeof PartnersRoute
+  TestingInfrastructureRoute: typeof TestingInfrastructureRoute
+  NewsSlugRoute: typeof NewsSlugRoute
+  NewsIndexRoute: typeof NewsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +143,68 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about-hdp': {
+      id: '/about-hdp'
+      path: '/about-hdp'
+      fullPath: '/about-hdp'
+      preLoaderRoute: typeof AboutHdpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hyperloop': {
+      id: '/hyperloop'
+      path: '/hyperloop'
+      fullPath: '/hyperloop'
+      preLoaderRoute: typeof HyperloopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners': {
+      id: '/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/testing-infrastructure': {
+      id: '/testing-infrastructure'
+      path: '/testing-infrastructure'
+      fullPath: '/testing-infrastructure'
+      preLoaderRoute: typeof TestingInfrastructureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news/': {
+      id: '/news/'
+      path: '/news'
+      fullPath: '/news/'
+      preLoaderRoute: typeof NewsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news/$slug': {
+      id: '/news/$slug'
+      path: '/news/$slug'
+      fullPath: '/news/$slug'
+      preLoaderRoute: typeof NewsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutHdpRoute: AboutHdpRoute,
+  ContactRoute: ContactRoute,
+  HyperloopRoute: HyperloopRoute,
+  PartnersRoute: PartnersRoute,
+  TestingInfrastructureRoute: TestingInfrastructureRoute,
+  NewsSlugRoute: NewsSlugRoute,
+  NewsIndexRoute: NewsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
