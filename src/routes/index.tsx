@@ -8,6 +8,7 @@ import ecosystemNetwork from "../assets/ecosystem-network.jpg";
 import { Reveal } from "../components/Reveal";
 import { StatCounter } from "../components/StatCounter";
 import { NewsCard } from "../components/NewsCard";
+import { TunnelCanvas } from "../components/TunnelCanvas";
 import { ArrowLink, CtaButton, SectionHeading } from "../components/ui-kit";
 import { facilities, news } from "../data/site";
 
