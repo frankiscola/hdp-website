@@ -171,6 +171,58 @@
   color: var(--color-primary-glow);
 }
 
+/* Custom cursor */
+.cursor-none-root,
+.cursor-none-root a,
+.cursor-none-root button,
+.cursor-none-root label,
+.cursor-none-root [role="button"] {
+  cursor: none;
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  pointer-events: none;
+  background-color: var(--color-primary-glow);
+  box-shadow: 0 0 18px oklch(0.66 0.19 279 / 0.8);
+  transition:
+    width 0.18s ease,
+    height 0.18s ease;
+}
+
+.cursor-dot.is-hover {
+  width: 14px;
+  height: 14px;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9998;
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  pointer-events: none;
+  border: 1.5px solid oklch(0.66 0.19 279 / 0.5);
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.cursor-ring.is-hover {
+  width: 58px;
+  height: 58px;
+  border-color: oklch(0.66 0.19 279 / 0.25);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
