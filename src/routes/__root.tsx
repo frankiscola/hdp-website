@@ -132,6 +132,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <CustomCursor />
       <SiteHeader />
       <main>
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}

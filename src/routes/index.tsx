@@ -53,6 +53,7 @@ function Home() {
           style={reduce ? {} : { y: imageY, scale: imageScale }}
           className="absolute inset-0 h-full w-full object-cover"
         />
+        <TunnelCanvas className="pointer-events-none absolute inset-0 h-full w-full opacity-70 mix-blend-screen" />
         <div className="veil absolute inset-0" />
         <motion.div
           style={reduce ? {} : { opacity: contentOpacity }}
