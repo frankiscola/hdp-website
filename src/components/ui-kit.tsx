@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import type { ReactNode } from "react";
 import { cn } from "../lib/utils";
+import { useMagnetic } from "../hooks/use-magnetic";
 
 export function ArrowLink({
   to,
@@ -12,11 +13,14 @@ export function ArrowLink({
   children: ReactNode;
   className?: string;
 }) {
+  const magneticRef = useMagnetic<HTMLAnchorElement>(0.18, 8);
+
   return (
     <Link
+      ref={magneticRef}
       to={to}
       className={cn(
-        "group inline-flex items-center gap-2 text-sm font-semibold text-primary-glow transition-colors hover:text-foreground",
+        "group inline-flex items-center gap-2 text-sm font-semibold text-primary-glow transition-colors will-change-transform hover:text-foreground",
         className,
       )}
     >
@@ -35,20 +39,26 @@ export function CtaButton({
   children: ReactNode;
   variant?: "solid" | "ghost";
 }) {
+  const magneticRef = useMagnetic<HTMLAnchorElement>(0.3, 14);
+
   return (
-    <Link
-      to={to}
-      className={cn(
-        "inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5",
-        variant === "solid"
-          ? "bg-primary text-primary-foreground hover:glow-ring hover:bg-primary-glow"
-          : "surface-glass text-foreground hover:bg-secondary",
-      )}
-    >
-      {children}
-    </Link>
+    <span className="inline-block">
+      <Link
+        ref={magneticRef}
+        to={to}
+        className={cn(
+          "inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-semibold transition-[background-color,color,box-shadow] duration-300 will-change-transform",
+          variant === "solid"
+            ? "bg-primary text-primary-foreground hover:glow-ring hover:bg-primary-glow"
+            : "surface-glass text-foreground hover:bg-secondary",
+        )}
+      >
+        {children}
+      </Link>
+    </span>
   );
 }
+
 
 export function SectionHeading({
   eyebrow,
