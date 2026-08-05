@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
 import ecosystemNetwork from "../assets/ecosystem-network.jpg";
+import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { CtaButton, SectionHeading } from "../components/ui-kit";
@@ -65,19 +66,20 @@ function Partners() {
           <Reveal delay={0.1}>
             <div className="mt-12 flex flex-wrap gap-3">
               {filters.map((f) => (
-                <button
-                  key={f}
-                  type="button"
-                  onClick={() => setFilter(f)}
-                  className={cn(
-                    "rounded-full border px-5 py-2.5 text-sm font-medium transition-all duration-300",
-                    filter === f
-                      ? "border-transparent bg-primary text-primary-foreground"
-                      : "border-border text-muted-foreground hover:border-primary/50 hover:text-foreground",
-                  )}
-                >
-                  {f}
-                </button>
+                <Magnetic key={f} as="span" strength={0.25} max={8}>
+                  <button
+                    type="button"
+                    onClick={() => setFilter(f)}
+                    className={cn(
+                      "rounded-full border px-5 py-2.5 text-sm font-medium transition-all duration-300",
+                      filter === f
+                        ? "border-transparent bg-primary text-primary-foreground"
+                        : "border-border text-muted-foreground hover:border-primary/50 hover:text-foreground",
+                    )}
+                  >
+                    {f}
+                  </button>
+                </Magnetic>
               ))}
             </div>
           </Reveal>
@@ -92,16 +94,20 @@ function Partners() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  className="rounded-2xl border border-border bg-surface/50 p-6 transition-colors duration-300 hover:border-primary/50"
                 >
-                  <p className="text-lg font-semibold">{partner.name}</p>
-                  <p className="mt-2 text-xs tracking-[0.16em] text-muted-foreground uppercase">
-                    {partner.country} · {partner.category}
-                  </p>
+                  <Magnetic strength={0.12} max={8}>
+                    <div className="h-full rounded-2xl border border-border bg-surface/50 p-6 transition-colors duration-300 hover:border-primary/50">
+                      <p className="text-lg font-semibold">{partner.name}</p>
+                      <p className="mt-2 text-xs tracking-[0.16em] text-muted-foreground uppercase">
+                        {partner.country} · {partner.category}
+                      </p>
+                    </div>
+                  </Magnetic>
                 </motion.div>
               ))}
             </AnimatePresence>
           </motion.div>
+
         </div>
       </section>
 

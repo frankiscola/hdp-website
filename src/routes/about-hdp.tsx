@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import tubeLandscape from "../assets/tube-landscape.jpg";
+import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { StatCounter } from "../components/StatCounter";
@@ -91,13 +92,16 @@ function AboutHdp() {
           <div className="mt-16 grid gap-6 md:grid-cols-2">
             {pillars.map((pillar, i) => (
               <Reveal key={pillar.title} delay={i * 0.08}>
-                <div className="h-full rounded-3xl border border-border bg-background/60 p-8 transition-all duration-500 hover:-translate-y-1 hover:border-primary/50">
-                  <span className="font-display text-sm text-primary-glow">0{i + 1}</span>
-                  <h3 className="mt-6 text-xl font-semibold">{pillar.title}</h3>
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{pillar.text}</p>
-                </div>
+                <Magnetic>
+                  <div className="h-full rounded-3xl border border-border bg-background/60 p-8 transition-all duration-500 hover:border-primary/50">
+                    <span className="font-display text-sm text-primary-glow">0{i + 1}</span>
+                    <h3 className="mt-6 text-xl font-semibold">{pillar.title}</h3>
+                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{pillar.text}</p>
+                  </div>
+                </Magnetic>
               </Reveal>
             ))}
+
           </div>
         </div>
       </section>

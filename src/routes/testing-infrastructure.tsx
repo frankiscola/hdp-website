@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import testCenter from "../assets/test-center.jpg";
+import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { CtaButton, SectionHeading } from "../components/ui-kit";
@@ -53,6 +54,7 @@ function TestingInfrastructure() {
           <div className="mt-16 space-y-6">
             {facilities.map((facility, i) => (
               <Reveal key={facility.name} delay={i * 0.1}>
+                <Magnetic strength={0.06} max={8}>
                 <article className="rounded-[2rem] border border-border bg-surface/50 p-8 transition-all duration-500 hover:border-primary/50 lg:p-12">
                   <div className="flex flex-wrap items-start justify-between gap-6">
                     <div>
@@ -85,6 +87,7 @@ function TestingInfrastructure() {
                     ))}
                   </ul>
                 </article>
+                </Magnetic>
               </Reveal>
             ))}
           </div>

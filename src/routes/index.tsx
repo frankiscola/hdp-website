@@ -5,6 +5,7 @@ import heroVehicle from "../assets/hero-vehicle.jpg";
 import tubeLandscape from "../assets/tube-landscape.jpg";
 import testCenter from "../assets/test-center.jpg";
 import ecosystemNetwork from "../assets/ecosystem-network.jpg";
+import { Magnetic } from "../components/Magnetic";
 import { Reveal } from "../components/Reveal";
 import { StatCounter } from "../components/StatCounter";
 import { NewsCard } from "../components/NewsCard";
@@ -178,12 +179,15 @@ function Home() {
               },
             ].map((card, i) => (
               <Reveal key={card.title} delay={i * 0.1}>
-                <div className="h-full rounded-3xl border border-border bg-background/60 p-8 transition-all duration-500 hover:-translate-y-1 hover:border-primary/50">
-                  <span className="font-display text-sm text-primary-glow">0{i + 1}</span>
-                  <h3 className="mt-6 text-xl font-semibold">{card.title}</h3>
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{card.text}</p>
-                </div>
+                <Magnetic>
+                  <div className="h-full rounded-3xl border border-border bg-background/60 p-8 transition-all duration-500 hover:border-primary/50">
+                    <span className="font-display text-sm text-primary-glow">0{i + 1}</span>
+                    <h3 className="mt-6 text-xl font-semibold">{card.title}</h3>
+                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{card.text}</p>
+                  </div>
+                </Magnetic>
               </Reveal>
+
             ))}
           </div>
           <Reveal delay={0.2}>
