@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion } from "motion/react";
 import { Mail, MapPin } from "lucide-react";
+import { Magnetic } from "../components/Magnetic";
 import { Reveal } from "../components/Reveal";
 import { SectionHeading } from "../components/ui-kit";
 
@@ -130,12 +131,14 @@ function Contact() {
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary-glow"
-                >
-                  Send message
-                </button>
+                <Magnetic className="w-full" strength={0.2} max={10}>
+                  <button
+                    type="submit"
+                    className="w-full rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground transition-colors duration-300 hover:bg-primary-glow"
+                  >
+                    Send message
+                  </button>
+                </Magnetic>
               </form>
             )}
           </div>
