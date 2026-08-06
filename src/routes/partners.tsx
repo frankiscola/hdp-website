@@ -84,7 +84,7 @@ function Partners() {
             </div>
           </Reveal>
 
-          <motion.div layout className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <motion.div layout className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <AnimatePresence mode="popLayout">
               {visible.map((partner) => (
                 <motion.div
@@ -96,17 +96,28 @@ function Partners() {
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <Magnetic strength={0.12} max={8}>
-                    <div className="h-full rounded-2xl border border-border bg-surface/50 p-6 transition-colors duration-300 hover:border-primary/50">
-                      <p className="text-lg font-semibold">{partner.name}</p>
-                      <p className="mt-2 text-xs tracking-[0.16em] text-muted-foreground uppercase">
-                        {partner.country} · {partner.category}
-                      </p>
+                    <div className="group flex h-full flex-col gap-4 rounded-2xl border border-border bg-surface/50 p-5 transition-colors duration-300 hover:border-primary/50">
+                      <div className="logo-tile flex h-28 items-center justify-center rounded-xl px-6">
+                        <img
+                          src={partner.logo}
+                          alt={`${partner.name} logo`}
+                          loading="lazy"
+                          className="max-h-16 w-auto max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.04]"
+                        />
+                      </div>
+                      <div>
+                        <p className="text-sm leading-snug font-semibold">{partner.name}</p>
+                        <p className="mt-1.5 text-xs tracking-[0.16em] text-muted-foreground uppercase">
+                          {partner.category}
+                        </p>
+                      </div>
                     </div>
                   </Magnetic>
                 </motion.div>
               ))}
             </AnimatePresence>
           </motion.div>
+
 
         </div>
       </section>
