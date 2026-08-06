@@ -268,6 +268,11 @@ function Home() {
               align="center"
             />
           </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-16">
+              <LogoMarquee />
+            </div>
+          </Reveal>
           <Reveal delay={0.15}>
             <div className="mt-12 flex justify-center">
               <CtaButton to="/partners">Meet the partners</CtaButton>
@@ -275,6 +280,7 @@ function Home() {
           </Reveal>
         </div>
       </section>
+
 
       {/* News */}
       <section>
