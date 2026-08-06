@@ -5,7 +5,9 @@ import heroVehicle from "../assets/hero-vehicle.jpg";
 import tubeLandscape from "../assets/tube-landscape.jpg";
 import testCenter from "../assets/test-center.jpg";
 import ecosystemNetwork from "../assets/ecosystem-network.jpg";
+import { LogoMarquee } from "../components/LogoMarquee";
 import { Magnetic } from "../components/Magnetic";
+
 import { Reveal } from "../components/Reveal";
 import { StatCounter } from "../components/StatCounter";
 import { NewsCard } from "../components/NewsCard";
@@ -268,6 +270,11 @@ function Home() {
               align="center"
             />
           </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-16">
+              <LogoMarquee />
+            </div>
+          </Reveal>
           <Reveal delay={0.15}>
             <div className="mt-12 flex justify-center">
               <CtaButton to="/partners">Meet the partners</CtaButton>
@@ -275,6 +282,7 @@ function Home() {
           </Reveal>
         </div>
       </section>
+
 
       {/* News */}
       <section>
