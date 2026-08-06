@@ -1,4 +1,7 @@
+import { logos } from "./logos";
+
 export type NavItem = { label: string; to: string };
+
 
 export const navItems: NavItem[] = [
   { label: "About HDP", to: "/about-hdp" },
