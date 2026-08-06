@@ -9,40 +9,58 @@ export const navItems: NavItem[] = [
   { label: "Contact", to: "/contact" },
 ];
 
+export type PartnerCategory = "Industry" | "Research" | "Infrastructure" | "Public";
+
 export type Partner = {
   name: string;
-  country: string;
-  category: "Industry" | "Research" | "Infrastructure" | "Public";
+  category: PartnerCategory;
+  logo: string;
 };
 
 export const partners: Partner[] = [
-  { name: "Hardt Hyperloop", country: "Netherlands", category: "Industry" },
-  { name: "Zeleros", country: "Spain", category: "Industry" },
-  { name: "Nevomo", country: "Poland", category: "Industry" },
-  { name: "Swisspod", country: "Switzerland", category: "Industry" },
-  { name: "Tata Steel", country: "Netherlands", category: "Industry" },
-  { name: "POSCO", country: "South Korea", category: "Industry" },
-  { name: "Continental", country: "Germany", category: "Industry" },
-  { name: "Royal BAM Group", country: "Netherlands", category: "Industry" },
-  { name: "TNO", country: "Netherlands", category: "Research" },
-  { name: "TU Delft", country: "Netherlands", category: "Research" },
-  { name: "RWTH Aachen", country: "Germany", category: "Research" },
-  { name: "Politecnico di Milano", country: "Italy", category: "Research" },
-  { name: "EPFL", country: "Switzerland", category: "Research" },
-  { name: "Fraunhofer IVI", country: "Germany", category: "Research" },
-  { name: "University of Twente", country: "Netherlands", category: "Research" },
-  { name: "KU Leuven", country: "Belgium", category: "Research" },
-  { name: "European Hyperloop Center", country: "Netherlands", category: "Infrastructure" },
-  { name: "EuroTube Foundation", country: "Switzerland", category: "Infrastructure" },
-  { name: "Institute of Hyperloop Technology", country: "Germany", category: "Infrastructure" },
-  { name: "Port of Rotterdam", country: "Netherlands", category: "Infrastructure" },
-  { name: "Schiphol Group", country: "Netherlands", category: "Infrastructure" },
-  { name: "ProRail", country: "Netherlands", category: "Infrastructure" },
-  { name: "Province of Groningen", country: "Netherlands", category: "Public" },
-  { name: "Ministry of Infrastructure", country: "Netherlands", category: "Public" },
-  { name: "Region of Veneto", country: "Italy", category: "Public" },
-  { name: "Regional Development Agency", country: "Germany", category: "Public" },
+  { name: "Hardt Hyperloop", category: "Industry", logo: logos.hardt },
+  { name: "Zeleros", category: "Industry", logo: logos.zeleros },
+  { name: "Nevomo", category: "Industry", logo: logos.nevomo },
+  { name: "TSB Transport System Bögl", category: "Industry", logo: logos.tsb },
+  { name: "Tata Steel", category: "Industry", logo: logos.tataSteel },
+  { name: "POSCO", category: "Industry", logo: logos.posco },
+  { name: "Busch Vacuum Solutions", category: "Industry", logo: logos.busch },
+  { name: "Denys", category: "Industry", logo: logos.denys },
+  { name: "Mercon", category: "Industry", logo: logos.mercon },
+  { name: "Erciyas", category: "Industry", logo: logos.erciyas },
+  { name: "INTIS", category: "Industry", logo: logos.intis },
+  { name: "Utilities Valves", category: "Industry", logo: logos.utilitiesValves },
+  { name: "PROSE", category: "Industry", logo: logos.prose },
+  { name: "Neoways", category: "Industry", logo: logos.neoways },
+  { name: "Vattenfall", category: "Industry", logo: logos.vattenfall },
+  { name: "KLM", category: "Industry", logo: logos.klm },
+  { name: "Schweizer Design Consulting", category: "Industry", logo: logos.schweizer },
+  { name: "TÜV Rheinland", category: "Industry", logo: logos.tuvRheinland },
+  { name: "GESTE", category: "Industry", logo: logos.geste },
+  { name: "TUM Hyperloop", category: "Research", logo: logos.tumHyperloop },
+  { name: "Delft Hyperloop", category: "Research", logo: logos.delftHyperloop },
+  { name: "European Hyperloop Center", category: "Infrastructure", logo: logos.europeanHyperloopCenter },
+  { name: "EuroTube Foundation", category: "Infrastructure", logo: logos.eurotube },
+  {
+    name: "Institute of Hyperloop Technology",
+    category: "Infrastructure",
+    logo: logos.iht,
+  },
+  { name: "Nederlandse Spoorwegen", category: "Infrastructure", logo: logos.ns },
+  { name: "Deutsche Rail", category: "Infrastructure", logo: logos.deutscheRail },
+  {
+    name: "Ministerie van Infrastructuur en Waterstaat",
+    category: "Public",
+    logo: logos.ministerie,
+  },
+  { name: "Provincie Groningen", category: "Public", logo: logos.provincieGroningen },
+  {
+    name: "Niedersächsisches Ministerium für Wissenschaft und Kultur",
+    category: "Public",
+    logo: logos.niedersachsisches,
+  },
 ];
+
 
 export type Facility = {
   name: string;
