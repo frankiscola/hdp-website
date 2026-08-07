@@ -37,13 +37,13 @@ type Filter = (typeof filters)[number];
 const tiers = [
   {
     tier: "Core" as const,
-    title: "Core Partners",
+    title: "Core Members",
     intro:
       "Organizations that actively develop hyperloop technology, operate test infrastructure or fund the programme's roadmap.",
   },
   {
     tier: "Associate" as const,
-    title: "Associate Partners",
+    title: "Associate Members",
     intro:
       "Contributors bringing specialist expertise, components, research and public support to the programme.",
   },
@@ -96,8 +96,8 @@ function Partners() {
           <Reveal>
             <SectionHeading
               eyebrow="Partners"
-              title="Core and Associate Partners across Europe."
-              intro="Core Partners drive the technology and infrastructure roadmap. Associate Partners contribute specialist capabilities, research and public support."
+              title="Core and Associate Members across Europe."
+              intro="Core Members drive the technology and infrastructure roadmap. Associate Members contribute specialist capabilities, research and public support."
             />
           </Reveal>
 
