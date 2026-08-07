@@ -23,37 +23,7 @@ export type Partner = {
 };
 
 export const partners: Partner[] = [
-  { name: "Hardt Hyperloop", category: "Industry", tier: "Core", logo: logos.hardt },
-  { name: "Zeleros", category: "Industry", tier: "Core", logo: logos.zeleros },
-  { name: "Nevomo", category: "Industry", tier: "Core", logo: logos.nevomo },
-  { name: "TSB Transport System Bögl", category: "Industry", tier: "Core", logo: logos.tsb },
-  { name: "Tata Steel", category: "Industry", tier: "Core", logo: logos.tataSteel },
-  { name: "POSCO", category: "Industry", tier: "Core", logo: logos.posco },
-  { name: "Busch Vacuum Solutions", category: "Industry", tier: "Core", logo: logos.busch },
-  { name: "Denys", category: "Industry", tier: "Core", logo: logos.denys },
-  { name: "Mercon", category: "Industry", tier: "Associate", logo: logos.mercon },
-  { name: "Erciyas", category: "Industry", tier: "Associate", logo: logos.erciyas },
-  { name: "INTIS", category: "Industry", tier: "Associate", logo: logos.intis },
-  {
-    name: "Utilities Valves",
-    category: "Industry",
-    tier: "Associate",
-    logo: logos.utilitiesValves,
-  },
-  { name: "PROSE", category: "Industry", tier: "Associate", logo: logos.prose },
-  { name: "Neoways", category: "Industry", tier: "Associate", logo: logos.neoways },
-  { name: "Vattenfall", category: "Industry", tier: "Associate", logo: logos.vattenfall },
-  { name: "KLM", category: "Industry", tier: "Associate", logo: logos.klm },
-  {
-    name: "Schweizer Design Consulting",
-    category: "Industry",
-    tier: "Associate",
-    logo: logos.schweizer,
-  },
-  { name: "TÜV Rheinland", category: "Industry", tier: "Associate", logo: logos.tuvRheinland },
-  { name: "GESTE", category: "Industry", tier: "Associate", logo: logos.geste },
-  { name: "TUM Hyperloop", category: "Research", tier: "Associate", logo: logos.tumHyperloop },
-  { name: "Delft Hyperloop", category: "Research", tier: "Associate", logo: logos.delftHyperloop },
+  // Core Members
   {
     name: "European Hyperloop Center",
     category: "Infrastructure",
@@ -61,43 +31,57 @@ export const partners: Partner[] = [
     logo: logos.europeanHyperloopCenter,
   },
   { name: "EuroTube Foundation", category: "Infrastructure", tier: "Core", logo: logos.eurotube },
+  { name: "Hardt Hyperloop", category: "Industry", tier: "Core", logo: logos.hardt },
+  { name: "Zeleros", category: "Industry", tier: "Core", logo: logos.zeleros },
+  { name: "Denys", category: "Industry", tier: "Core", logo: logos.denys },
+  { name: "POSCO", category: "Industry", tier: "Core", logo: logos.posco },
+  { name: "Tata Steel", category: "Industry", tier: "Core", logo: logos.tataSteel },
+
+  // Associate Members
+  { name: "Delft Hyperloop", category: "Research", tier: "Associate", logo: logos.delftHyperloop },
+  { name: "TUM Hyperloop", category: "Research", tier: "Associate", logo: logos.tumHyperloop },
+  { name: "ADSE", category: "Industry", tier: "Associate", logo: logos.adse },
+  { name: "Berenschot", category: "Industry", tier: "Associate", logo: logos.berenschot },
   {
-    name: "Institute of Hyperloop Technology",
-    category: "Infrastructure",
-    tier: "Core",
-    logo: logos.iht,
+    name: "Dutch Boosting Group",
+    category: "Industry",
+    tier: "Associate",
+    logo: logos.dutchBoostingGroup,
   },
+  { name: "Erciyas", category: "Industry", tier: "Associate", logo: logos.erciyas },
+  { name: "GESTE", category: "Industry", tier: "Associate", logo: logos.geste },
+  { name: "The Hague", category: "Public", tier: "Associate", logo: logos.hague },
+  {
+    name: "Hochschule Emden/Leer",
+    category: "Research",
+    tier: "Associate",
+    logo: logos.hochschuleEmdenLeer,
+  },
+  { name: "Royal IHC", category: "Industry", tier: "Associate", logo: logos.ihc },
+  { name: "INTIS", category: "Industry", tier: "Associate", logo: logos.intis },
+  { name: "Mercon", category: "Industry", tier: "Associate", logo: logos.mercon },
   {
     name: "Nederlandse Spoorwegen",
     category: "Infrastructure",
     tier: "Associate",
     logo: logos.ns,
   },
+  { name: "Nevomo", category: "Industry", tier: "Associate", logo: logos.nevomo },
   {
-    name: "Deutsche Rail",
-    category: "Infrastructure",
+    name: "Schweizer Design Consulting",
+    category: "Industry",
     tier: "Associate",
-    logo: logos.deutscheRail,
+    logo: logos.schweizer,
   },
   {
-    name: "Ministerie van Infrastructuur en Waterstaat",
-    category: "Public",
-    tier: "Core",
-    logo: logos.ministerie,
-  },
-  {
-    name: "Provincie Groningen",
-    category: "Public",
-    tier: "Core",
-    logo: logos.provincieGroningen,
-  },
-  {
-    name: "Niedersächsisches Ministerium für Wissenschaft und Kultur",
-    category: "Public",
+    name: "Utilities Valves",
+    category: "Industry",
     tier: "Associate",
-    logo: logos.niedersachsisches,
+    logo: logos.utilitiesValves,
   },
+  { name: "Vattenfall", category: "Industry", tier: "Associate", logo: logos.vattenfall },
 ];
+
 
 
 
