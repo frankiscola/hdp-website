@@ -16,8 +16,9 @@ export function LogoMarquee() {
               src={partner.logo}
               alt={`${partner.name} logo`}
               loading="lazy"
-              className="max-h-12 w-auto max-w-full object-contain"
+              className="logo-mono max-h-12 w-auto max-w-full object-contain"
             />
+
           </div>
         ))}
       </div>

@@ -163,9 +163,23 @@
 }
 
 @utility logo-tile {
-  background-color: oklch(1 0 0 / 0.94);
-  border: 1px solid oklch(1 0 0 / 0.08);
+  background-color: transparent;
+  border: 1px solid transparent;
 }
+
+/* Renders any logo as a single light-indigo mark on a transparent background. */
+@utility logo-mono {
+  filter: brightness(0) invert(1) sepia(1) saturate(4) hue-rotate(215deg) brightness(1.35)
+    opacity(0.78);
+  transition: filter 0.4s ease;
+}
+
+.group:hover .logo-mono,
+.logo-marquee:hover .logo-mono {
+  filter: brightness(0) invert(1) sepia(1) saturate(4) hue-rotate(215deg) brightness(1.7)
+    opacity(1);
+}
+
 
 .logo-marquee::before,
 .logo-marquee::after {
