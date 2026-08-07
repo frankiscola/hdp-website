@@ -34,6 +34,44 @@ export const Route = createFileRoute("/partners")({
 const filters = ["All", "Industry", "Research", "Infrastructure", "Public"] as const;
 type Filter = (typeof filters)[number];
 
+const tiers = [
+  {
+    tier: "Core" as const,
+    title: "Core Partners",
+    intro:
+      "Organizations that actively develop hyperloop technology, operate test infrastructure or fund the programme's roadmap.",
+  },
+  {
+    tier: "Associate" as const,
+    title: "Associate Partners",
+    intro:
+      "Contributors bringing specialist expertise, components, research and public support to the programme.",
+  },
+];
+
+function PartnerCard({ partner }: { partner: Partner }) {
+  return (
+    <Magnetic strength={0.12} max={8}>
+      <div className="group flex h-full flex-col gap-4 rounded-2xl border border-border bg-surface/50 p-5 transition-colors duration-300 hover:border-primary/50">
+        <div className="logo-tile flex h-28 items-center justify-center rounded-xl px-6">
+          <img
+            src={partner.logo}
+            alt={`${partner.name} logo`}
+            loading="lazy"
+            className="logo-mono max-h-16 w-auto max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.04]"
+          />
+        </div>
+        <div>
+          <p className="text-sm leading-snug font-semibold">{partner.name}</p>
+          <p className="mt-1.5 text-xs tracking-[0.16em] text-muted-foreground uppercase">
+            {partner.category}
+          </p>
+        </div>
+      </div>
+    </Magnetic>
+  );
+}
+
 function Partners() {
   const [filter, setFilter] = useState<Filter>("All");
 
@@ -58,8 +96,8 @@ function Partners() {
           <Reveal>
             <SectionHeading
               eyebrow="Partners"
-              title="More than 25 organizations across Europe."
-              intro="Industry parties, research institutions, infrastructure operators and public bodies each bring a distinct capability to the programme."
+              title="Core and Associate Partners across Europe."
+              intro="Core Partners drive the technology and infrastructure roadmap. Associate Partners contribute specialist capabilities, research and public support."
             />
           </Reveal>
 
@@ -84,43 +122,48 @@ function Partners() {
             </div>
           </Reveal>
 
-          <motion.div layout className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <AnimatePresence mode="popLayout">
-              {visible.map((partner) => (
-                <motion.div
-                  key={partner.name}
-                  layout
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <Magnetic strength={0.12} max={8}>
-                    <div className="group flex h-full flex-col gap-4 rounded-2xl border border-border bg-surface/50 p-5 transition-colors duration-300 hover:border-primary/50">
-                      <div className="logo-tile flex h-28 items-center justify-center rounded-xl px-6">
-                        <img
-                          src={partner.logo}
-                          alt={`${partner.name} logo`}
-                          loading="lazy"
-                          className="max-h-16 w-auto max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.04]"
-                        />
-                      </div>
-                      <div>
-                        <p className="text-sm leading-snug font-semibold">{partner.name}</p>
-                        <p className="mt-1.5 text-xs tracking-[0.16em] text-muted-foreground uppercase">
-                          {partner.category}
-                        </p>
-                      </div>
+          {tiers.map((group) => {
+            const items = visible.filter((p) => p.tier === group.tier);
+            if (items.length === 0) return null;
+
+            return (
+              <div key={group.tier} className="mt-20 first:mt-16">
+                <Reveal>
+                  <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-6">
+                    <div className="max-w-2xl">
+                      <h2 className="text-2xl font-semibold sm:text-3xl">{group.title}</h2>
+                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                        {group.intro}
+                      </p>
                     </div>
-                  </Magnetic>
+                    <span className="eyebrow">
+                      {items.length} {items.length === 1 ? "organization" : "organizations"}
+                    </span>
+                  </div>
+                </Reveal>
+
+                <motion.div layout className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                  <AnimatePresence mode="popLayout">
+                    {items.map((partner) => (
+                      <motion.div
+                        key={partner.name}
+                        layout
+                        initial={{ opacity: 0, scale: 0.96 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.96 }}
+                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                      >
+                        <PartnerCard partner={partner} />
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
                 </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-
-
+              </div>
+            );
+          })}
         </div>
       </section>
+
 
       <section className="border-t border-border bg-surface/40">
         <div className="mx-auto max-w-[1400px] px-6 py-28 text-center lg:px-10 lg:py-36">
