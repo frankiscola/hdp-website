@@ -13,6 +13,7 @@ import { NewsCard } from "../components/NewsCard";
 import { TunnelCanvas } from "../components/TunnelCanvas";
 import { ArrowLink, CtaButton, SectionHeading } from "../components/ui-kit";
 import { facilities, news, partners, type Partner } from "../data/site";
+import { cn } from "../lib/utils";
 
 export const Route = createFileRoute("/")({
   head: () => ({
