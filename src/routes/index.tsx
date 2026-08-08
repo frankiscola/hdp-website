@@ -5,7 +5,6 @@ import heroVehicle from "../assets/hero-vehicle.jpg";
 import tubeLandscape from "../assets/tube-landscape.jpg";
 import testCenter from "../assets/test-center.jpg";
 import ecosystemNetwork from "../assets/ecosystem-network.jpg";
-import { LogoMarquee } from "../components/LogoMarquee";
 import { Magnetic } from "../components/Magnetic";
 import { Reveal } from "../components/Reveal";
 import { StatCounter } from "../components/StatCounter";
