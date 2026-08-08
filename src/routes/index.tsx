@@ -7,13 +7,12 @@ import testCenter from "../assets/test-center.jpg";
 import ecosystemNetwork from "../assets/ecosystem-network.jpg";
 import { LogoMarquee } from "../components/LogoMarquee";
 import { Magnetic } from "../components/Magnetic";
-
 import { Reveal } from "../components/Reveal";
 import { StatCounter } from "../components/StatCounter";
 import { NewsCard } from "../components/NewsCard";
 import { TunnelCanvas } from "../components/TunnelCanvas";
 import { ArrowLink, CtaButton, SectionHeading } from "../components/ui-kit";
-import { facilities, news } from "../data/site";
+import { facilities, news, partners, type Partner } from "../data/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
