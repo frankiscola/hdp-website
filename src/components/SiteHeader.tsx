@@ -33,10 +33,11 @@ export function SiteHeader() {
           <img
             src={logoHdpUrl}
             alt="Hyperloop Development Program"
-            className="h-8 w-auto transition-transform duration-500 group-hover:scale-[1.02] md:h-9"
+            className="h-10 w-auto brightness-110 contrast-110 drop-shadow-[0_0_12px_rgba(255,255,255,0.15)] transition-transform duration-500 group-hover:scale-[1.02] md:h-12"
             width={1500}
             height={512}
           />
+
         </Link>
 
 
