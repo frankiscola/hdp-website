@@ -300,12 +300,41 @@ function Home() {
             />
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="mt-16">
-              <LogoMarquee />
+            <div className="mt-20">
+              <div className="mb-6 flex items-center justify-center gap-3">
+                <span className="h-px w-10 bg-primary/60" />
+                <span className="text-xs tracking-[0.2em] text-primary-glow uppercase">Core Members</span>
+                <span className="h-px w-10 bg-primary/60" />
+              </div>
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:gap-6">
+                {partners
+                  .filter((p) => p.tier === "Core")
+                  .map((partner) => (
+                    <PartnerLogoTile key={partner.name} partner={partner} size="lg" />
+                  ))}
+              </div>
             </div>
           </Reveal>
-          <Reveal delay={0.15}>
-            <div className="mt-12 flex justify-center">
+
+          <Reveal delay={0.2}>
+            <div className="mt-20">
+              <div className="mb-6 flex items-center justify-center gap-3">
+                <span className="h-px w-10 bg-border" />
+                <span className="text-xs tracking-[0.2em] text-muted-foreground uppercase">Associate Members</span>
+                <span className="h-px w-10 bg-border" />
+              </div>
+              <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 lg:gap-4">
+                {partners
+                  .filter((p) => p.tier === "Associate")
+                  .map((partner) => (
+                    <PartnerLogoTile key={partner.name} partner={partner} size="md" />
+                  ))}
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.3}>
+            <div className="mt-14 flex justify-center">
               <CtaButton to="/partners">Meet the partners</CtaButton>
             </div>
           </Reveal>
