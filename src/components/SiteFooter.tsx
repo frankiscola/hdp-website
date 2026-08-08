@@ -1,15 +1,23 @@
 import { Link } from "@tanstack/react-router";
 import { navItems } from "../data/site";
+import { logoHdpUrl } from "../data/logo";
+
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-surface/40">
       <div className="mx-auto grid max-w-[1400px] gap-12 px-6 py-16 lg:grid-cols-[1.4fr_1fr_1fr] lg:px-10">
         <div>
-          <p className="font-display text-2xl font-semibold tracking-tight">
-            Hyperloop Development Program
-          </p>
+          <img
+            src={logoHdpUrl}
+            alt="Hyperloop Development Program"
+            className="h-10 w-auto md:h-12"
+            width={1500}
+            height={512}
+            loading="lazy"
+          />
           <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
+
             A public-private partnership of more than 25 organizations across Europe, developing
             hyperloop as a safe, energy-efficient and commercially viable mode of high-speed
             transportation.

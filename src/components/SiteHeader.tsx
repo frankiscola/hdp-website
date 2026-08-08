@@ -3,6 +3,8 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { navItems } from "../data/site";
+import { logoHdpUrl } from "../data/logo";
+
 import { cn } from "../lib/utils";
 
 export function SiteHeader() {
@@ -24,20 +26,19 @@ export function SiteHeader() {
       >
         <Link
           to="/"
-          className="group flex items-center gap-3"
+          className="group flex items-center"
           onClick={() => setOpen(false)}
           aria-label="Hyperloop Development Program — home"
         >
-          <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-primary/20">
-            <span className="h-2.5 w-2.5 rounded-full bg-primary-glow transition-transform duration-500 group-hover:scale-150" />
-          </span>
-          <span className="font-display text-sm leading-tight font-semibold tracking-tight">
-            Hyperloop
-            <span className="block text-[0.68rem] font-medium tracking-[0.2em] text-muted-foreground uppercase">
-              Development Program
-            </span>
-          </span>
+          <img
+            src={logoHdpUrl}
+            alt="Hyperloop Development Program"
+            className="h-8 w-auto transition-transform duration-500 group-hover:scale-[1.02] md:h-9"
+            width={1500}
+            height={512}
+          />
         </Link>
+
 
         <nav className="hidden items-center gap-1 lg:flex">
           <div
