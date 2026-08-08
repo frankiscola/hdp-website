@@ -33,10 +33,12 @@ export function SiteHeader() {
           <img
             src={logoHdpUrl}
             alt="Hyperloop Development Program"
-            className="h-10 w-auto invert transition-transform duration-500 group-hover:scale-[1.02] md:h-12"
+            className="h-10 w-auto transition-transform duration-500 group-hover:scale-[1.02] md:h-12"
+            style={{ filter: "invert(1) brightness(1.5)" }}
             width={1500}
             height={512}
           />
+
 
 
         </Link>
