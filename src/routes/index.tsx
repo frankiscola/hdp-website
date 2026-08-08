@@ -36,6 +36,35 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+function PartnerLogoTile({ partner, size = "md" }: { partner: Partner; size?: "lg" | "md" }) {
+  const isLg = size === "lg";
+  return (
+    <Magnetic strength={isLg ? 0.18 : 0.12} max={isLg ? 10 : 6}>
+      <div className="group flex flex-col items-center gap-3 rounded-2xl border border-border/60 bg-surface/40 p-4 backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:bg-surface/70">
+        <div className={cn("flex items-center justify-center", isLg ? "h-24" : "h-16")}>
+          <img
+            src={partner.logo}
+            alt={`${partner.name} logo`}
+            loading="lazy"
+            className={cn(
+              "logo-mono w-auto object-contain transition-transform duration-500 group-hover:scale-[1.05]",
+              isLg ? "max-h-14 max-w-[9rem]" : "max-h-10 max-w-[6.5rem]"
+            )}
+          />
+        </div>
+        <p
+          className={cn(
+            "text-center font-medium leading-tight text-foreground/90",
+            isLg ? "text-sm" : "text-xs"
+          )}
+        >
+          {partner.name}
+        </p>
+      </div>
+    </Magnetic>
+  );
+}
+
 function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
