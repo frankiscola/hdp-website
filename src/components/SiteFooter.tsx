@@ -11,11 +11,12 @@ export function SiteFooter() {
           <img
             src={logoHdpUrl}
             alt="Hyperloop Development Program"
-            className="h-12 w-auto brightness-110 contrast-110 drop-shadow-[0_0_14px_rgba(255,255,255,0.12)] md:h-14"
+            className="h-12 w-auto invert md:h-14"
             width={1500}
             height={512}
             loading="lazy"
           />
+
 
           <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
 
