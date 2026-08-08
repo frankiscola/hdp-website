@@ -34,7 +34,7 @@ export function SiteHeader() {
             src={logoHdpUrl}
             alt="Hyperloop Development Program"
             className="h-10 w-auto transition-transform duration-500 group-hover:scale-[1.02] md:h-12"
-            style={{ filter: "invert(1) brightness(1.5)" }}
+            style={{ filter: "brightness(0) invert(1)" }}
             width={1500}
             height={512}
           />
