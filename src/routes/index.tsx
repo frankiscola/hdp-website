@@ -5,15 +5,14 @@ import heroVehicle from "../assets/hero-vehicle.jpg";
 import tubeLandscape from "../assets/tube-landscape.jpg";
 import testCenter from "../assets/test-center.jpg";
 import ecosystemNetwork from "../assets/ecosystem-network.jpg";
-import { LogoMarquee } from "../components/LogoMarquee";
 import { Magnetic } from "../components/Magnetic";
-
 import { Reveal } from "../components/Reveal";
 import { StatCounter } from "../components/StatCounter";
 import { NewsCard } from "../components/NewsCard";
 import { TunnelCanvas } from "../components/TunnelCanvas";
 import { ArrowLink, CtaButton, SectionHeading } from "../components/ui-kit";
-import { facilities, news } from "../data/site";
+import { facilities, news, partners, type Partner } from "../data/site";
+import { cn } from "../lib/utils";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -36,6 +35,35 @@ export const Route = createFileRoute("/")({
   }),
   component: Home,
 });
+
+function PartnerLogoTile({ partner, size = "md" }: { partner: Partner; size?: "lg" | "md" }) {
+  const isLg = size === "lg";
+  return (
+    <Magnetic strength={isLg ? 0.18 : 0.12} max={isLg ? 10 : 6}>
+      <div className="group flex flex-col items-center gap-3 rounded-2xl border border-border/60 bg-surface/40 p-4 backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:bg-surface/70">
+        <div className={cn("flex items-center justify-center", isLg ? "h-24" : "h-16")}>
+          <img
+            src={partner.logo}
+            alt={`${partner.name} logo`}
+            loading="lazy"
+            className={cn(
+              "logo-mono w-auto object-contain transition-transform duration-500 group-hover:scale-[1.05]",
+              isLg ? "max-h-14 max-w-[9rem]" : "max-h-10 max-w-[6.5rem]"
+            )}
+          />
+        </div>
+        <p
+          className={cn(
+            "text-center font-medium leading-tight text-foreground/90",
+            isLg ? "text-sm" : "text-xs"
+          )}
+        >
+          {partner.name}
+        </p>
+      </div>
+    </Magnetic>
+  );
+}
 
 function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -271,12 +299,41 @@ function Home() {
             />
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="mt-16">
-              <LogoMarquee />
+            <div className="mt-20">
+              <div className="mb-6 flex items-center justify-center gap-3">
+                <span className="h-px w-10 bg-primary/60" />
+                <span className="text-xs tracking-[0.2em] text-primary-glow uppercase">Core Members</span>
+                <span className="h-px w-10 bg-primary/60" />
+              </div>
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:gap-6">
+                {partners
+                  .filter((p) => p.tier === "Core")
+                  .map((partner) => (
+                    <PartnerLogoTile key={partner.name} partner={partner} size="lg" />
+                  ))}
+              </div>
             </div>
           </Reveal>
-          <Reveal delay={0.15}>
-            <div className="mt-12 flex justify-center">
+
+          <Reveal delay={0.2}>
+            <div className="mt-20">
+              <div className="mb-6 flex items-center justify-center gap-3">
+                <span className="h-px w-10 bg-border" />
+                <span className="text-xs tracking-[0.2em] text-muted-foreground uppercase">Associate Members</span>
+                <span className="h-px w-10 bg-border" />
+              </div>
+              <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 lg:gap-4">
+                {partners
+                  .filter((p) => p.tier === "Associate")
+                  .map((partner) => (
+                    <PartnerLogoTile key={partner.name} partner={partner} size="md" />
+                  ))}
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.3}>
+            <div className="mt-14 flex justify-center">
               <CtaButton to="/partners">Meet the partners</CtaButton>
             </div>
           </Reveal>
