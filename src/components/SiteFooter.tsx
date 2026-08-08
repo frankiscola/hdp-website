@@ -11,11 +11,13 @@ export function SiteFooter() {
           <img
             src={logoHdpUrl}
             alt="Hyperloop Development Program"
-            className="h-12 w-auto invert md:h-14"
+            className="h-12 w-auto md:h-14"
+            style={{ filter: "brightness(0) invert(1)" }}
             width={1500}
             height={512}
             loading="lazy"
           />
+
 
 
           <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
