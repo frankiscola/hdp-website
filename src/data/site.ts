@@ -5,6 +5,7 @@ export type NavItem = { label: string; to: string };
 
 export const navItems: NavItem[] = [
   { label: "About HDP", to: "/about-hdp" },
+  { label: "The Challenge", to: "/thechallenge-hdp" },
   { label: "Hyperloop", to: "/hyperloop" },
   { label: "Testing Infrastructure", to: "/testing-infrastructure" },
   { label: "Partners", to: "/partners" },
