@@ -13,13 +13,13 @@ export const Route = createFileRoute("/news/$slug")({
   head: ({ loaderData, params }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "Not found — HDP" }, { name: "robots", content: "noindex" }],
+        meta: [{ title: "Not found – HDP" }, { name: "robots", content: "noindex" }],
       };
     }
     const { item } = loaderData;
     return {
       meta: [
-        { title: `${item.title} — HDP` },
+        { title: `${item.title} – HDP` },
         { name: "description", content: item.excerpt },
         { property: "og:title", content: item.title },
         { property: "og:description", content: item.excerpt },

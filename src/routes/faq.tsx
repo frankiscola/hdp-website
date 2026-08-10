@@ -13,7 +13,7 @@ import {
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "FAQ — Frequently Asked Questions | HDP" },
+      { title: "FAQ – Frequently Asked Questions | HDP" },
       {
         name: "description",
         content:
@@ -49,11 +49,11 @@ const categories: Category[] = [
       },
       {
         q: "How did this program come about?",
-        a: "It grew out of conversations between early hyperloop industry partners and the Dutch ministries on how to approach hyperloop development holistically. Building hyperloop is about far more than the vehicle technology — safety, standards, integration, public adoption, socio-economic impact and the wider ecosystem all need dedicated attention from an early stage, which is why many different public and private parties are involved.",
+        a: "It grew out of conversations between early hyperloop industry partners and the Dutch ministries on how to approach hyperloop development holistically. Building hyperloop is about far more than the vehicle technology – safety, standards, integration, public adoption, socio-economic impact and the wider ecosystem all need dedicated attention from an early stage, which is why many different public and private parties are involved.",
       },
       {
         q: "Can new parties still join the ecosystem?",
-        a: "Yes. HDP is an open ecosystem — any organization that can contribute value and is willing to invest is welcome to join and participate on equal footing with existing partners.",
+        a: "Yes. HDP is an open ecosystem – any organization that can contribute value and is willing to invest is welcome to join and participate on equal footing with existing partners.",
       },
       {
         q: "How does HDP relate to the European Hyperloop Center?",
@@ -70,7 +70,7 @@ const categories: Category[] = [
       },
       {
         q: "How does hyperloop capacity compare to rail?",
-        a: "Because vehicles are autonomous and can switch lanes, a hyperloop network can behave more like a highway than a fixed railway — vehicles merge and depart independently at short intervals. This gives it a capacity comparable to, or higher than, high-speed rail, potentially exceeding 20,000 passengers per direction per hour, and capacity can scale further by coupling vehicles together.",
+        a: "Because vehicles are autonomous and can switch lanes, a hyperloop network can behave more like a highway than a fixed railway – vehicles merge and depart independently at short intervals. This gives it a capacity comparable to, or higher than, high-speed rail, potentially exceeding 20,000 passengers per direction per hour, and capacity can scale further by coupling vehicles together.",
       },
       {
         q: "How many passengers can a vehicle carry?",
@@ -82,7 +82,7 @@ const categories: Category[] = [
       },
       {
         q: "Where will the first hyperloop route be built?",
-        a: "A first route is meant as the seed of a larger network — hyperloop already makes sense from distances as short as 50 km, but its real strength is longer routes and network effects, for example linking Amsterdam and Eindhoven and later extending toward Germany's Ruhr area.",
+        a: "A first route is meant as the seed of a larger network – hyperloop already makes sense from distances as short as 50 km, but its real strength is longer routes and network effects, for example linking Amsterdam and Eindhoven and later extending toward Germany's Ruhr area.",
       },
       {
         q: "When will hyperloop travel be possible?",
@@ -90,7 +90,7 @@ const categories: Category[] = [
       },
       {
         q: "What problems does hyperloop solve?",
-        a: "Global demand for passenger and freight transport is expected to triple by 2050. Meeting that growth sustainably requires smarter, more flexible infrastructure — and hyperloop's low implementation and operating costs, zero direct emissions, compact footprint and high capacity make it a strong candidate.",
+        a: "Global demand for passenger and freight transport is expected to triple by 2050. Meeting that growth sustainably requires smarter, more flexible infrastructure – and hyperloop's low implementation and operating costs, zero direct emissions, compact footprint and high capacity make it a strong candidate.",
       },
       {
         q: "How fast is hyperloop?",
@@ -98,7 +98,7 @@ const categories: Category[] = [
       },
       {
         q: "Who is hyperloop for?",
-        a: "Hyperloop is being designed to be broadly accessible, with ticket pricing competitive with existing modes — for commuting, visiting family, or leisure travel.",
+        a: "Hyperloop is being designed to be broadly accessible, with ticket pricing competitive with existing modes – for commuting, visiting family, or leisure travel.",
       },
     ],
   },
@@ -111,11 +111,11 @@ const categories: Category[] = [
       },
       {
         q: "How low is the pressure inside the tube?",
-        a: "Current studies target around 1 millibar — about 0.1% of atmospheric pressure. That's the balance point between minimizing drag and keeping the energy cost of the vacuum pumps low.",
+        a: "Current studies target around 1 millibar – about 0.1% of atmospheric pressure. That's the balance point between minimizing drag and keeping the energy cost of the vacuum pumps low.",
       },
       {
         q: "Can hyperloop vehicles take turns at high speed?",
-        a: "Yes — for example, a 400 km/h turn can have a radius of around 2.5 km, since the vehicle can bank steeply as it levitates toward the upper track.",
+        a: "Yes – for example, a 400 km/h turn can have a radius of around 2.5 km, since the vehicle can bank steeply as it levitates toward the upper track.",
       },
       {
         q: "How does a vehicle accelerate?",
@@ -123,7 +123,7 @@ const categories: Category[] = [
       },
       {
         q: "How does the levitation system work?",
-        a: "Magnets on top of the vehicle levitate it toward electrical-steel tracks, while onboard lasers continuously measure and correct the gap over a thousand times per second — giving a smoother ride than trains or turbulence-prone flights.",
+        a: "Magnets on top of the vehicle levitate it toward electrical-steel tracks, while onboard lasers continuously measure and correct the gap over a thousand times per second – giving a smoother ride than trains or turbulence-prone flights.",
       },
     ],
   },
@@ -146,7 +146,7 @@ const categories: Category[] = [
       },
       {
         q: "What happens if there's a leak or breach in the tube?",
-        a: "Small leaks are compensated automatically by the vacuum pumps — a well-understood challenge given Europe's extensive experience with pressurized oil and gas pipeline networks. In the rare case of a substantial breach, the affected tube segment is sealed off, vehicles brake jointly, and the resulting air resistance helps slow them gradually.",
+        a: "Small leaks are compensated automatically by the vacuum pumps – a well-understood challenge given Europe's extensive experience with pressurized oil and gas pipeline networks. In the rare case of a substantial breach, the affected tube segment is sealed off, vehicles brake jointly, and the resulting air resistance helps slow them gradually.",
       },
       {
         q: "Could the low pressure cause the tube to implode?",
@@ -158,7 +158,7 @@ const categories: Category[] = [
       },
       {
         q: "Can the magnetic fields harm passengers?",
-        a: "No — the fields passengers are exposed to are far weaker than those of an ordinary fridge magnet, since the magnets are oriented toward the steel tracks and away from the cabin.",
+        a: "No – the fields passengers are exposed to are far weaker than those of an ordinary fridge magnet, since the magnets are oriented toward the steel tracks and away from the cabin.",
       },
       {
         q: "How are passengers evacuated in an emergency?",
@@ -166,7 +166,7 @@ const categories: Category[] = [
       },
       {
         q: "What happens if there's a power failure?",
-        a: "Vehicles run on onboard batteries topped up by inductive charging from the infrastructure — each system backs up the other, so a failure on either side still allows the vehicle to complete its trip safely.",
+        a: "Vehicles run on onboard batteries topped up by inductive charging from the infrastructure – each system backs up the other, so a failure on either side still allows the vehicle to complete its trip safely.",
       },
     ],
   },
@@ -177,11 +177,11 @@ const categories: Category[] = [
     items: [
       {
         q: "How much will a hyperloop ticket cost?",
-        a: "Hyperloop is designed as mass transit with competitive pricing — comparable to a typical commute for shorter distances, and to regular rail or air fares for longer ones.",
+        a: "Hyperloop is designed as mass transit with competitive pricing – comparable to a typical commute for shorter distances, and to regular rail or air fares for longer ones.",
       },
       {
         q: "How much does it cost to build a hyperloop system?",
-        a: "Implementation costs are expected to be in the same range as high-speed rail (roughly €25–40M per km), though likely lower — a hyperloop tunnel is only about 3.5 m in diameter versus roughly 13 m for two-way rail tunnels, and up to 70% of the route can integrate with existing infrastructure and hubs.",
+        a: "Implementation costs are expected to be in the same range as high-speed rail (roughly €25–40M per km), though likely lower – a hyperloop tunnel is only about 3.5 m in diameter versus roughly 13 m for two-way rail tunnels, and up to 70% of the route can integrate with existing infrastructure and hubs.",
       },
       {
         q: "How do maintenance costs compare to other modes?",
@@ -198,7 +198,7 @@ const categories: Category[] = [
       },
       {
         q: "How much noise does hyperloop make?",
-        a: "Magnetic levitation removes wheel-rail contact noise, and the near-vacuum tube removes aerodynamic noise — the main remaining source is the vacuum pumps, which can be placed below the surface to further reduce emitted sound.",
+        a: "Magnetic levitation removes wheel-rail contact noise, and the near-vacuum tube removes aerodynamic noise – the main remaining source is the vacuum pumps, which can be placed below the surface to further reduce emitted sound.",
       },
     ],
   },
@@ -207,11 +207,11 @@ const categories: Category[] = [
     items: [
       {
         q: "Would a sustainable aviation industry make hyperloop redundant?",
-        a: "Even if aviation fully switches to sustainable fuels, hyperloop's overall energy use would remain roughly an order of magnitude lower, since energy efficiency — not just emissions — is the deciding factor.",
+        a: "Even if aviation fully switches to sustainable fuels, hyperloop's overall energy use would remain roughly an order of magnitude lower, since energy efficiency – not just emissions – is the deciding factor.",
       },
       {
         q: "How much energy does hyperloop use?",
-        a: "Estimated at around 40 Wh per passenger-kilometer — roughly an order of magnitude below aviation and comparable to high-speed rail. Losses from magnetic and aerodynamic drag are small, and much of the propulsion energy is recovered during braking.",
+        a: "Estimated at around 40 Wh per passenger-kilometer – roughly an order of magnitude below aviation and comparable to high-speed rail. Losses from magnetic and aerodynamic drag are small, and much of the propulsion energy is recovered during braking.",
       },
       {
         q: "How much CO2 does hyperloop emit during operation?",
@@ -227,7 +227,7 @@ function Faq() {
       <PageHero
         eyebrow="Resources"
         title="Frequently Asked Questions."
-        intro="Everything you want to know about the Hyperloop Development Program and hyperloop technology — from safety and travel experience to costs and environmental impact."
+        intro="Everything you want to know about the Hyperloop Development Program and hyperloop technology – from safety and travel experience to costs and environmental impact."
         image={tubeLandscape}
         imageAlt="Hyperloop tube stretching across a landscape"
         priority

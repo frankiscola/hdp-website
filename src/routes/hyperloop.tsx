@@ -7,11 +7,12 @@ import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { StatCounter } from "../components/StatCounter";
 import { CtaButton, SectionHeading } from "../components/ui-kit";
+import { VideoFacade } from "../components/VideoFacade";
 
 export const Route = createFileRoute("/hyperloop")({
   head: () => ({
     meta: [
-      { title: "Hyperloop technology — how it works | HDP" },
+      { title: "Hyperloop technology – how it works | HDP" },
       {
         name: "description",
         content:
@@ -21,7 +22,7 @@ export const Route = createFileRoute("/hyperloop")({
       {
         property: "og:description",
         content:
-          "Levitation, low-pressure tubes and network switching — the technology behind energy-efficient high-speed transport.",
+          "Levitation, low-pressure tubes and network switching – the technology behind energy-efficient high-speed transport.",
       },
       { property: "og:url", content: "/hyperloop" },
     ],
@@ -45,7 +46,7 @@ const principles = [
   },
   {
     title: "Lane switching",
-    text: "Vehicles change lanes electromagnetically, without moving track — the prerequisite for a real network.",
+    text: "Vehicles change lanes electromagnetically, without moving track – the prerequisite for a real network.",
   },
 ];
 
@@ -85,23 +86,23 @@ function Hyperloop() {
 
       <section>
         <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
-          <Reveal>
-            <SectionHeading eyebrow="Watch" title="What is hyperloop?" />
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div className="mt-12 overflow-hidden rounded-3xl border border-border bg-surface/50">
-              <div className="aspect-video w-full">
-                <iframe
-                  className="h-full w-full"
-                  src="https://www.youtube.com/embed/FfZWaVHRtw0"
-                  title="What is hyperloop?"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                />
-              </div>
-            </div>
-          </Reveal>
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+            <Reveal>
+              <SectionHeading
+                eyebrow="Watch"
+                title="What is hyperloop?"
+                intro="A short explainer on how vehicles levitate, accelerate and switch lanes inside a low-pressure tube – and why that combination changes the economics of high-speed transport."
+                align="left"
+              />
+            </Reveal>
+            <Reveal delay={0.1}>
+              <VideoFacade
+                youtubeId="FfZWaVHRtw0"
+                title="What is hyperloop?"
+                className="shadow-xl shadow-black/10"
+              />
+            </Reveal>
+          </div>
         </div>
       </section>
 

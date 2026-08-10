@@ -18,7 +18,7 @@ import { CtaButton, SectionHeading } from "../components/ui-kit";
 export const Route = createFileRoute("/about-hdp")({
   head: () => ({
     meta: [
-      { title: "About HDP — Hyperloop Development Program" },
+      { title: "About HDP – Hyperloop Development Program" },
       {
         name: "description",
         content:

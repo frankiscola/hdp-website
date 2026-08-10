@@ -17,7 +17,7 @@ import { cn } from "../lib/utils";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Hyperloop Development Program — Europe's hyperloop platform" },
+      { title: "Hyperloop Development Program – Europe's hyperloop platform" },
       {
         name: "description",
         content:
@@ -143,7 +143,7 @@ function Home() {
           </Reveal>
           <Reveal delay={0.15}>
             <p className="mt-10 text-sm text-muted-foreground">
-              <span className="text-foreground">Jeroen in 't Veld</span> — Chairman of the Hyperloop
+              <span className="text-foreground">Jeroen in 't Veld</span> – Chairman of the Hyperloop
               Development Program
             </p>
           </Reveal>
@@ -294,7 +294,7 @@ function Home() {
             <SectionHeading
               eyebrow="The ecosystem"
               title="An inclusive ecosystem, accelerating together."
-              intro="The HDP is an inclusive ecosystem where organizations collaborate to accelerate the development of hyperloop — industry, research, infrastructure operators and public bodies working from one shared roadmap."
+              intro="The HDP is an inclusive ecosystem where organizations collaborate to accelerate the development of hyperloop – industry, research, infrastructure operators and public bodies working from one shared roadmap."
               align="center"
             />
           </Reveal>

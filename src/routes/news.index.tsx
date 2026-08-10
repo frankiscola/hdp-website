@@ -7,7 +7,7 @@ import { news } from "../data/site";
 export const Route = createFileRoute("/news/")({
   head: () => ({
     meta: [
-      { title: "News — Hyperloop Development Program" },
+      { title: "News – Hyperloop Development Program" },
       {
         name: "description",
         content:

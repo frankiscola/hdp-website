@@ -10,7 +10,7 @@ import { facilities } from "../data/site";
 export const Route = createFileRoute("/testing-infrastructure")({
   head: () => ({
     meta: [
-      { title: "EU Testing Infrastructure — hyperloop test cluster | HDP" },
+      { title: "EU Testing Infrastructure – hyperloop test cluster | HDP" },
       {
         name: "description",
         content:

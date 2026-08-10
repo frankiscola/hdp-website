@@ -110,7 +110,7 @@ export const facilities: Facility[] = [
     capabilities: ["Linear propulsion", "High-speed runs", "Tube structural research", "Academic access"],
   },
   {
-    name: "goTube — Institute of Hyperloop Technology",
+    name: "goTube – Institute of Hyperloop Technology",
     location: "Emden, Germany",
     href: "https://iht-emden.de/",
     focus: "Vacuum systems, suspension and component qualification.",

@@ -12,7 +12,7 @@ import { cn } from "../lib/utils";
 export const Route = createFileRoute("/partners")({
   head: () => ({
     meta: [
-      { title: "Partners — the HDP ecosystem | Hyperloop Development Program" },
+      { title: "Partners – the HDP ecosystem | Hyperloop Development Program" },
       {
         name: "description",
         content:

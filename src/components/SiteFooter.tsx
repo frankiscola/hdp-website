@@ -74,7 +74,7 @@ export function SiteFooter() {
                 rel="noreferrer"
                 className="transition-colors hover:text-foreground"
               >
-                goTube — IHT Emden
+                goTube – IHT Emden
               </a>
             </li>
           </ul>
