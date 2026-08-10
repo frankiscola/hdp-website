@@ -7,6 +7,10 @@ type VideoFacadeProps = {
   className?: string;
 };
 
+// Not every YouTube video has a maxresdefault thumbnail. Fall back through
+// progressively smaller (but always-present) sizes if a request 404s.
+const THUMBNAIL_FALLBACKS = ["maxresdefault", "sddefault", "hqdefault", "mqdefault"] as const;
+
 /**
  * Shows a styled thumbnail with a custom play button. The real YouTube
  * iframe (with autoplay) is only mounted after the user clicks, so the
@@ -14,6 +18,11 @@ type VideoFacadeProps = {
  */
 export function VideoFacade({ youtubeId, title, className = "" }: VideoFacadeProps) {
   const [playing, setPlaying] = useState(false);
+  const [thumbIndex, setThumbIndex] = useState(0);
+
+  const handleThumbnailError = () => {
+    setThumbIndex((i) => Math.min(i + 1, THUMBNAIL_FALLBACKS.length - 1));
+  };
 
   return (
     <div
@@ -35,7 +44,8 @@ export function VideoFacade({ youtubeId, title, className = "" }: VideoFacadePro
           aria-label={`Play video: ${title}`}
         >
           <img
-            src={`https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`}
+            src={`https://i.ytimg.com/vi/${youtubeId}/${THUMBNAIL_FALLBACKS[thumbIndex]}.jpg`}
+            onError={handleThumbnailError}
             alt=""
             loading="lazy"
             className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
@@ -54,3 +64,4 @@ export function VideoFacade({ youtubeId, title, className = "" }: VideoFacadePro
     </div>
   );
 }
+
