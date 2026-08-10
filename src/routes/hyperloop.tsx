@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import heroVehicle from "../assets/hero-vehicle.jpg";
 import hyperloopTubeDiagram from "../assets/hyperloop-tube-diagram.png";
+import hyperloopVideoThumbnail from "../assets/hyperloop-video-thumbnail.png";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
@@ -99,6 +100,8 @@ function Hyperloop() {
               <VideoFacade
                 youtubeId="FfZWaVHRtw0"
                 title="What is hyperloop?"
+                thumbnailSrc={hyperloopVideoThumbnail}
+                showPlayBadge={false}
                 className="shadow-xl shadow-black/10"
               />
             </Reveal>
