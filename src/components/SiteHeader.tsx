@@ -26,7 +26,10 @@ export function SiteHeader() {
       >
         <Link
           to="/"
-          className="group flex items-center"
+          className={cn(
+            "group flex items-center rounded-full transition-all duration-500",
+            condensed ? "surface-glass px-4 py-2" : "px-0 py-0",
+          )}
           onClick={() => setOpen(false)}
           aria-label="Hyperloop Development Program — home"
         >
@@ -38,9 +41,6 @@ export function SiteHeader() {
             width={1500}
             height={512}
           />
-
-
-
         </Link>
 
 
