@@ -1,5 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowUpRight } from "lucide-react";
 import heroVehicle from "../assets/hero-vehicle.jpg";
+import hyperloopTubeDiagram from "../assets/hyperloop-tube-diagram.png";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
@@ -84,6 +86,50 @@ function Hyperloop() {
       <section>
         <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
           <Reveal>
+            <SectionHeading eyebrow="Watch" title="What is hyperloop?" />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-12 overflow-hidden rounded-3xl border border-border bg-surface/50">
+              <div className="aspect-video w-full">
+                <iframe
+                  className="h-full w-full"
+                  src="https://www.youtube.com/embed/FfZWaVHRtw0"
+                  title="What is hyperloop?"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="border-y border-border bg-surface/30">
+        <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Inside the tube"
+              title="How a hyperloop vehicle actually moves."
+              intro="Levitation, propulsion and lane switching, in a single cross-section."
+            />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-12 overflow-hidden rounded-3xl border border-border bg-background p-4 sm:p-8">
+              <img
+                src={hyperloopTubeDiagram}
+                alt="Cutaway diagram of a hyperloop tube showing the low-pressure tube, top tracks for lane switching, the linear motor and the levitation magnets"
+                className="mx-auto w-full max-w-4xl"
+                loading="lazy"
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section>
+        <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
+          <Reveal>
             <SectionHeading
               eyebrow="Principles"
               title="Four systems working as one."
@@ -153,6 +199,26 @@ function Hyperloop() {
             <div className="mt-12">
               <CtaButton to="/testing-infrastructure">Where it is tested</CtaButton>
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="border-t border-border bg-surface/30">
+        <div className="mx-auto max-w-[1400px] px-6 py-20 text-center lg:px-10">
+          <Reveal>
+            <h2 className="font-display text-2xl font-semibold sm:text-3xl">
+              Frequently Asked Questions
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              If you want to learn more about hyperloop,{" "}
+              <Link
+                to="/faq"
+                className="inline-flex items-center gap-1 font-medium text-primary-glow underline underline-offset-4 hover:text-primary"
+              >
+                check out the FAQ page
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </p>
           </Reveal>
         </div>
       </section>
