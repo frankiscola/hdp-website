@@ -1,3 +1,3 @@
-import logoHdp from "../assets/logo-hdp.png.asset.json";
+import logoHdp from "../assets/logo-hdp.png";
 
-export const logoHdpUrl = logoHdp.url;
+export const logoHdpUrl = logoHdp;
