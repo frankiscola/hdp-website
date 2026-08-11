@@ -5,6 +5,7 @@ import { Mail, MapPin } from "lucide-react";
 import { Magnetic } from "../components/Magnetic";
 import { Reveal } from "../components/Reveal";
 import { SectionHeading } from "../components/ui-kit";
+import { sendContactMessage } from "../lib/contact.server";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -31,7 +32,9 @@ const topics = ["Partnership", "Test infrastructure", "Research", "Press"];
 
 function Contact() {
   const [sent, setSent] = useState(false);
-  const [topic, setTopic] = useState(topics[0]);
+  const [topic, setTopic] = useState<string>(topics[0] ?? "Partnership");
+  const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   return (
     <section>
@@ -81,9 +84,33 @@ function Contact() {
               </motion.div>
             ) : (
               <form
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault();
-                  setSent(true);
+                  setErrorMessage(null);
+                  setStatus("submitting");
+
+                  const formData = new FormData(e.currentTarget);
+                  const organization = String(formData.get("organization") ?? "");
+                  const payload = {
+                    name: String(formData.get("name") ?? ""),
+                    email: String(formData.get("email") ?? ""),
+                    topic,
+                    message: String(formData.get("message") ?? ""),
+                    ...(organization ? { organization } : {}),
+                  };
+
+                  try {
+                    await sendContactMessage({ data: payload });
+                    setStatus("idle");
+                    setSent(true);
+                  } catch (error) {
+                    setStatus("error");
+                    setErrorMessage(
+                      error instanceof Error
+                        ? error.message
+                        : "Something went wrong. Please try again.",
+                    );
+                  }
                 }}
                 className="space-y-6"
               >
@@ -134,11 +161,18 @@ function Contact() {
                 <Magnetic className="w-full" strength={0.2} max={10}>
                   <button
                     type="submit"
-                    className="w-full rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground transition-colors duration-300 hover:bg-primary-glow"
+                    disabled={status === "submitting"}
+                    className="w-full rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground transition-colors duration-300 hover:bg-primary-glow disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    Send message
+                    {status === "submitting" ? "Sending…" : "Send message"}
                   </button>
                 </Magnetic>
+
+                {status === "error" && errorMessage ? (
+                  <p className="text-sm text-destructive" role="alert">
+                    {errorMessage}
+                  </p>
+                ) : null}
               </form>
             )}
           </div>
