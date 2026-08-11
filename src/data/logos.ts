@@ -1,5 +1,5 @@
 import adse from "../assets/logos/adse.png";
-import berenschot from "../assets/logos/berenschot.png.asset.json";
+import berenschot from "../assets/logos/berenschot.png";
 import delftHyperloop from "../assets/logos/delft-hyperloop.png";
 import denys from "../assets/logos/denys.png";
 import dutchBoostingGroup from "../assets/logos/dutch-boosting-group.png";
@@ -9,7 +9,7 @@ import eurotube from "../assets/logos/eurotube.png";
 import geste from "../assets/logos/geste.png";
 import hague from "../assets/logos/hague.png";
 import hardt from "../assets/logos/hardt-hyperloop.png";
-import hochschuleEmdenLeer from "../assets/logos/hochschule-emden-leer.png.asset.json";
+import hochschuleEmdenLeer from "../assets/logos/hochschule-emden-leer.png";
 import ihc from "../assets/logos/ihc.png";
 import intis from "../assets/logos/intis.png";
 import mercon from "../assets/logos/mercon.png";
@@ -19,13 +19,13 @@ import posco from "../assets/logos/posco.png";
 import schweizer from "../assets/logos/schweizer-design-consulting.png";
 import tataSteel from "../assets/logos/tata-steel.png";
 import tumHyperloop from "../assets/logos/tum-hyperloop.png";
-import utilitiesValves from "../assets/logos/utilities-valves.png.asset.json";
-import vattenfall from "../assets/logos/vattenfall.png.asset.json";
-import zeleros from "../assets/logos/zeleros.png.asset.json";
+import utilitiesValves from "../assets/logos/utilities-valves.png";
+import vattenfall from "../assets/logos/vattenfall.png";
+import zeleros from "../assets/logos/zeleros.png";
 
 export const logos = {
   adse: adse,
-  berenschot: berenschot.url,
+  berenschot: berenschot,
   delftHyperloop: delftHyperloop,
   denys: denys,
   dutchBoostingGroup: dutchBoostingGroup,
@@ -35,7 +35,7 @@ export const logos = {
   geste: geste,
   hague: hague,
   hardt: hardt,
-  hochschuleEmdenLeer: hochschuleEmdenLeer.url,
+  hochschuleEmdenLeer: hochschuleEmdenLeer,
   ihc: ihc,
   intis: intis,
   mercon: mercon,
@@ -45,7 +45,7 @@ export const logos = {
   schweizer: schweizer,
   tataSteel: tataSteel,
   tumHyperloop: tumHyperloop,
-  utilitiesValves: utilitiesValves.url,
-  vattenfall: vattenfall.url,
-  zeleros: zeleros.url,
+  utilitiesValves: utilitiesValves,
+  vattenfall: vattenfall,
+  zeleros: zeleros,
 } as const;
