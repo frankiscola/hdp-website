@@ -19,7 +19,12 @@ export function SiteHeader() {
   });
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+        condensed && "border-b border-border bg-background/80 backdrop-blur-xl",
+      )}
+    >
       <div
         className={cn(
           "mx-auto flex max-w-[1400px] items-center justify-between px-6 transition-all duration-500 lg:px-10",
