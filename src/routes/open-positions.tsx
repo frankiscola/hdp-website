@@ -1,10 +1,10 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Globe2, Megaphone, Wallet, Wrench } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import { ArrowUpRight, Download, Linkedin, Mail } from "lucide-react";
 import tubeLandscape from "../assets/tube-landscape.jpg";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
-import { CtaButton, SectionHeading } from "../components/ui-kit";
+import { SectionHeading } from "../components/ui-kit";
 
 export const Route = createFileRoute("/open-positions")({
   head: () => ({
@@ -13,12 +13,12 @@ export const Route = createFileRoute("/open-positions")({
       {
         name: "description",
         content:
-          "The HDP foundation is expanding its team. Explore open roles across EU research collaboration, communication, funding and operations & finance.",
+          "The Hyperloop Development Program Foundation is expanding its team. Explore current open positions and get in touch about future opportunities.",
       },
       { property: "og:title", content: "Open Positions – Hyperloop Development Program" },
       {
         property: "og:description",
-        content: "The HDP foundation is expanding its team — explore current open roles.",
+        content: "The HDP foundation is expanding its team — explore current open positions.",
       },
       { property: "og:url", content: "/open-positions" },
     ],
@@ -27,30 +27,11 @@ export const Route = createFileRoute("/open-positions")({
   component: OpenPositions,
 });
 
-const positions = [
+const openRoles = [
   {
-    icon: Globe2,
-    role: "EU Research Collaboration",
-    type: "Full-time",
-    text: "Deepen joint research across institutions and programmes, coordinating work packages between HDP partners and European research bodies.",
-  },
-  {
-    icon: Megaphone,
-    role: "Communication",
-    type: "Full-time",
-    text: "Make hyperloop progress legible to industry, policy makers and the public — from press materials to the content on this website.",
-  },
-  {
-    icon: Wallet,
-    role: "Funding",
-    type: "Full-time",
-    text: "Secure new public and private funding instruments to sustain the programme's long-horizon development and infrastructure investment.",
-  },
-  {
-    icon: Wrench,
-    role: "Operations & Finance",
-    type: "Full-time",
-    text: "Strengthen the foundation that carries the programme — from day-to-day operations to financial planning and reporting.",
+    title: "Operations & Finance Manager",
+    type: "Part-time",
+    pdfUrl: "https://www.hyperloopdevelopmentprogram.com/s/Operations-Finance-Manager.pdf",
   },
 ];
 
@@ -59,62 +40,92 @@ function OpenPositions() {
     <>
       <PageHero
         eyebrow="About us"
-        title="Help build the case for hyperloop."
-        intro="The Stichting Hyperloop Development Program foundation is currently expanding its team across four strategic roles. Join a small, mission-driven team working at the intersection of policy, industry and research."
+        title="Open Positions."
+        intro="The Hyperloop Development Program Foundation (HDP) is expanding its team. As Europe's coordinating platform for hyperloop development, HDP seeks to fill open positions to strengthen its foundation and accelerate collaboration, innovation and visibility across the continent."
         image={tubeLandscape}
         imageAlt="Hyperloop tube stretching across a landscape"
         priority
       />
 
       <section>
-        <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
+        <div className="mx-auto max-w-[1000px] px-6 py-28 lg:px-10 lg:py-36">
           <Reveal>
-            <SectionHeading
-              eyebrow="Current openings"
-              title="Four roles, one shared mission."
-            />
+            <p className="text-lg leading-relaxed text-muted-foreground">
+              The team carries out HDP's mission, focusing on deepening EU research
+              collaboration, enhancing external communication, securing new funding, and
+              operations & finance.
+            </p>
           </Reveal>
-          <div className="mt-16 grid gap-6 md:grid-cols-2">
-            {positions.map((position, i) => {
-              const Icon = position.icon;
-              return (
-                <Reveal key={position.role} delay={i * 0.08}>
-                  <Magnetic>
-                    <div className="h-full rounded-3xl border border-border bg-surface/50 p-8 transition-all duration-500 hover:border-primary/50">
-                      <div className="flex items-center justify-between">
-                        <Icon className="h-6 w-6 text-primary-glow" />
-                        <span className="text-xs font-semibold tracking-[0.16em] text-muted-foreground uppercase">
-                          {position.type}
-                        </span>
-                      </div>
-                      <h3 className="mt-5 text-xl font-semibold">{position.role}</h3>
-                      <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                        {position.text}
-                      </p>
-                      <Link
-                        to="/contact"
-                        className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary-glow underline underline-offset-4 hover:text-primary"
-                      >
-                        Express your interest
-                        <ArrowUpRight className="h-4 w-4" />
-                      </Link>
+
+          <Reveal delay={0.06}>
+            <div className="mt-16">
+              <SectionHeading eyebrow="Current openings" title="Open positions" align="left" />
+            </div>
+          </Reveal>
+
+          <div className="mt-10 space-y-4">
+            {openRoles.map((role, i) => (
+              <Reveal key={role.title} delay={0.08 + i * 0.06}>
+                <Magnetic>
+                  <a
+                    href={role.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex flex-col gap-4 rounded-3xl border border-border bg-surface/50 p-8 transition-all duration-500 hover:border-primary/50 sm:flex-row sm:items-center sm:justify-between"
+                  >
+                    <div>
+                      <span className="text-xs font-semibold tracking-[0.16em] text-primary-glow uppercase">
+                        {role.type}
+                      </span>
+                      <h3 className="mt-2 text-xl font-semibold">{role.title}</h3>
                     </div>
-                  </Magnetic>
-                </Reveal>
-              );
-            })}
+                    <span className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors group-hover:border-primary/50">
+                      <Download className="h-4 w-4" />
+                      Download job description
+                    </span>
+                  </a>
+                </Magnetic>
+              </Reveal>
+            ))}
           </div>
 
-          <Reveal delay={0.15}>
-            <div className="mt-16 rounded-3xl border border-border bg-surface/30 p-8 text-center sm:p-12">
-              <h3 className="text-xl font-semibold">Don't see the right fit?</h3>
-              <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
-                HDP is an open, growing ecosystem. If you believe you can contribute value to the
-                programme in another way, we would still like to hear from you.
+          <Reveal delay={0.16}>
+            <div className="mt-16 rounded-3xl border border-border bg-surface/30 p-8 sm:p-12">
+              <h3 className="text-xl font-semibold">Questions about a role?</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                In case of interest or any inquiries about the roles, reach out directly:
               </p>
-              <div className="mt-8 flex justify-center">
-                <CtaButton to="/contact">Get in touch</CtaButton>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href="mailto:klaus@hyperloopdevelopmentprogram.com"
+                  className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-primary/50"
+                >
+                  <Mail className="h-4 w-4" />
+                  klaus@hyperloopdevelopmentprogram.com
+                </a>
+                <a
+                  href="mailto:general@hyperloopdevelopmentprogram.com"
+                  className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-primary/50"
+                >
+                  <Mail className="h-4 w-4" />
+                  general@hyperloopdevelopmentprogram.com
+                </a>
               </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.2}>
+            <div className="mt-10 flex items-center gap-2 text-sm text-muted-foreground">
+              <Linkedin className="h-4 w-4" />
+              <a
+                href="https://www.linkedin.com/company/european-hyperloop-center/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 font-medium text-foreground underline underline-offset-4 hover:text-primary-glow"
+              >
+                Follow the European Hyperloop Center on LinkedIn
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </a>
             </div>
           </Reveal>
         </div>
