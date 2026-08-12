@@ -1,9 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
+import { useState } from "react";
 import type { NewsItem } from "../data/site";
 import { Magnetic } from "./Magnetic";
 
 export function NewsCard({ item }: { item: NewsItem }) {
+  const [loaded, setLoaded] = useState(false);
+
   return (
     <Magnetic>
       <Link
@@ -13,12 +16,18 @@ export function NewsCard({ item }: { item: NewsItem }) {
       >
         <div>
           {item.image ? (
-            <div className="aspect-[16/10] w-full overflow-hidden bg-surface">
+            <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface">
+              {!loaded && (
+                <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-surface via-border/40 to-surface bg-[length:200%_200%]" />
+              )}
               <img
                 src={item.image}
                 alt={item.title}
                 loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                onLoad={() => setLoaded(true)}
+                className={`h-full w-full object-cover transition-all duration-700 group-hover:scale-105 ${
+                  loaded ? "opacity-100" : "opacity-0"
+                }`}
               />
             </div>
           ) : null}
