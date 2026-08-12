@@ -59,6 +59,13 @@ function NewsArticle() {
             </div>
             <h1 className="mt-6 text-4xl leading-[1.08] font-semibold lg:text-6xl">{item.title}</h1>
           </Reveal>
+          {item.image ? (
+            <Reveal delay={0.08}>
+              <div className="mt-10 aspect-[16/9] w-full overflow-hidden rounded-3xl border border-border bg-surface">
+                <img src={item.image} alt={item.title} className="h-full w-full object-cover" />
+              </div>
+            </Reveal>
+          ) : null}
           <Reveal delay={0.12}>
             <div className="mt-12 space-y-6 text-lg leading-relaxed text-muted-foreground">
               {item.body.map((paragraph: string) => (
