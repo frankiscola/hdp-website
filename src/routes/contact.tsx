@@ -5,12 +5,11 @@ import { Mail, MapPin } from "lucide-react";
 import { Magnetic } from "../components/Magnetic";
 import { Reveal } from "../components/Reveal";
 import { SectionHeading } from "../components/ui-kit";
-import { sendContactMessage } from "../lib/contact.server";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact – Hyperloop Development Program" },
+      { title: "Contact — Hyperloop Development Program" },
       {
         name: "description",
         content:
@@ -30,11 +29,39 @@ export const Route = createFileRoute("/contact")({
 
 const topics = ["Partnership", "Test infrastructure", "Research", "Press"];
 
+// Delivers the form via FormSubmit (https://formsubmit.co) — no backend or API key required.
+// NOTE: the first submission to a new address triggers a one-time confirmation email from
+// FormSubmit that must be approved before messages start arriving in the inbox.
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/info@hyperloopdevelopmentprogram.com";
+
 function Contact() {
   const [sent, setSent] = useState(false);
-  const [topic, setTopic] = useState<string>(topics[0] ?? "Partnership");
+  const [topic, setTopic] = useState(topics[0]);
   const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    // Honeypot: bots fill every field, humans never see this one.
+    if (data.get("_honey")) return;
+
+    setStatus("submitting");
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: data,
+      });
+      if (!res.ok) throw new Error("Request failed");
+      setSent(true);
+      setStatus("idle");
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    }
+  }
 
   return (
     <section>
@@ -70,7 +97,7 @@ function Contact() {
                 transition={{ duration: 0.5 }}
                 className="py-14 text-center"
               >
-                <h3 className="text-2xl font-semibold">Thank you – message received.</h3>
+                <h3 className="text-2xl font-semibold">Thank you — message received.</h3>
                 <p className="mt-4 text-sm text-muted-foreground">
                   We will come back to you shortly.
                 </p>
@@ -83,37 +110,22 @@ function Contact() {
                 </button>
               </motion.div>
             ) : (
-              <form
-                onSubmit={async (e) => {
-                  e.preventDefault();
-                  setErrorMessage(null);
-                  setStatus("submitting");
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot field — hidden from real visitors, catches simple bots */}
+                <input
+                  type="text"
+                  name="_honey"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  className="hidden"
+                  aria-hidden="true"
+                />
+                {/* FormSubmit configuration */}
+                <input type="hidden" name="_subject" value={`New enquiry — ${topic}`} />
+                <input type="hidden" name="topic" value={topic} />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_template" value="table" />
 
-                  const formData = new FormData(e.currentTarget);
-                  const organization = String(formData.get("organization") ?? "");
-                  const payload = {
-                    name: String(formData.get("name") ?? ""),
-                    email: String(formData.get("email") ?? ""),
-                    topic,
-                    message: String(formData.get("message") ?? ""),
-                    ...(organization ? { organization } : {}),
-                  };
-
-                  try {
-                    await sendContactMessage({ data: payload });
-                    setStatus("idle");
-                    setSent(true);
-                  } catch (error) {
-                    setStatus("error");
-                    setErrorMessage(
-                      error instanceof Error
-                        ? error.message
-                        : "Something went wrong. Please try again.",
-                    );
-                  }
-                }}
-                className="space-y-6"
-              >
                 <div className="grid gap-6 sm:grid-cols-2">
                   <Field label="Name" name="name" />
                   <Field label="Organization" name="organization" required={false} />
@@ -158,6 +170,13 @@ function Contact() {
                   />
                 </div>
 
+                {status === "error" && (
+                  <p className="text-sm text-destructive" role="alert">
+                    Something went wrong sending your message. Please try again, or email us
+                    directly at info@hyperloopdevelopmentprogram.com.
+                  </p>
+                )}
+
                 <Magnetic className="w-full" strength={0.2} max={10}>
                   <button
                     type="submit"
@@ -167,12 +186,6 @@ function Contact() {
                     {status === "submitting" ? "Sending…" : "Send message"}
                   </button>
                 </Magnetic>
-
-                {status === "error" && errorMessage ? (
-                  <p className="text-sm text-destructive" role="alert">
-                    {errorMessage}
-                  </p>
-                ) : null}
               </form>
             )}
           </div>

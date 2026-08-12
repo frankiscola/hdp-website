@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { Linkedin } from "lucide-react";
 import { navItems } from "../data/site";
 import { logoHdpUrl } from "../data/logo";
 
@@ -26,6 +27,15 @@ export function SiteFooter() {
             hyperloop as a safe, energy-efficient and commercially viable mode of high-speed
             transportation.
           </p>
+          <a
+            href="https://www.linkedin.com/company/hyperloop-development-program"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Hyperloop Development Program on LinkedIn"
+            className="mt-6 inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/60 hover:text-foreground"
+          >
+            <Linkedin className="h-4 w-4" />
+          </a>
         </div>
 
         <div>
@@ -74,16 +84,21 @@ export function SiteFooter() {
                 rel="noreferrer"
                 className="transition-colors hover:text-foreground"
               >
-                goTube – IHT Emden
+                goTube — IHT Emden
               </a>
             </li>
           </ul>
         </div>
       </div>
 
-      <div className="mx-auto flex max-w-[1400px] flex-col gap-2 border-t border-border px-6 py-8 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between lg:px-10">
+      <div className="mx-auto flex max-w-[1400px] flex-col gap-3 border-t border-border px-6 py-8 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between lg:px-10">
         <p>© {new Date().getFullYear()} Hyperloop Development Program Foundation</p>
-        <p>Veendam · Rotterdam · Europe</p>
+        <div className="flex items-center gap-6">
+          <Link to="/privacy" className="transition-colors hover:text-foreground">
+            Privacy policy
+          </Link>
+          <p>Veendam · Rotterdam · Europe</p>
+        </div>
       </div>
     </footer>
   );

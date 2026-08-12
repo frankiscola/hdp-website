@@ -9,7 +9,6 @@ export const navItems: NavItem[] = [
   { label: "Testing Infrastructure", to: "/testing-infrastructure" },
   { label: "Partners", to: "/partners" },
   { label: "News", to: "/news" },
-  { label: "FAQ", to: "/faq" },
   { label: "Contact", to: "/contact" },
 ];
 
@@ -110,7 +109,7 @@ export const facilities: Facility[] = [
     capabilities: ["Linear propulsion", "High-speed runs", "Tube structural research", "Academic access"],
   },
   {
-    name: "goTube – Institute of Hyperloop Technology",
+    name: "goTube — Institute of Hyperloop Technology",
     location: "Emden, Germany",
     href: "https://iht-emden.de/",
     focus: "Vacuum systems, suspension and component qualification.",
@@ -137,60 +136,69 @@ export const news: NewsItem[] = [
       "As Europe's coordinating platform for hyperloop development, HDP is introducing four positions to accelerate collaboration, innovation and visibility across the continent.",
     body: [
       "The Hyperloop Development Program Foundation is expanding its team. As Europe's coordinating platform for hyperloop development, HDP is introducing four positions to strengthen its foundation and accelerate collaboration, innovation and visibility across the continent.",
-      "These four new roles will support HDP's mission with a focus on deepening EU research collaboration, enhancing external communication, securing new funding, and strengthening operations and finance.",
-      "Together they form the backbone of a programme that connects more than 25 industry parties, research institutions and public bodies working towards a safe, energy-efficient and commercially viable mode of high-speed transport.",
+      "The new roles cover four areas: turning early-stage ideas from the partner network into funded projects, coordinating the growing European research infrastructure cluster, leading communication and public affairs, and running the Foundation's operations and finance.",
+      "Together they form the backbone of a programme that connects more than 25 industry parties, research institutions and public bodies working towards a safe, energy-efficient and commercially viable mode of high-speed transport. Interested candidates can reach out via general@hyperloopdevelopmentprogram.com.",
     ],
   },
   {
-    slug: "european-testing-cluster-takes-shape",
-    title: "European hyperloop testing cluster takes shape",
-    date: "12 June 2025",
-    category: "Infrastructure",
+    slug: "hyperloop-key-reports-2025",
+    title: "HDP publishes its 2024 review and a vision paper for 2025",
+    date: "January 2025",
+    category: "Publication",
     excerpt:
-      "Three leading European test sites join forces to align capabilities, standards and research roadmaps for the coming decade.",
+      "Two new publications set out what the programme achieved in 2024 and the direction it is taking next: a year-in-review report and a vision paper for Europe's sustainable transport goals.",
     body: [
-      "The Hyperloop Testing Infrastructure Cluster brings together leading test facilities in Europe, coordinated by the Hyperloop Development Program.",
-      "It includes the European Hyperloop Center, EuroTube's DemoTube facility and the goTube of the Institute of Hyperloop Technology. Each site contributes unique capabilities, ranging from propulsion and suspension systems to vacuum infrastructure and switching mechanisms.",
-      "The cluster aims to accelerate innovation, improve coordination and lay the foundation for a pan-European approach to hyperloop development.",
+      "HDP has released two documents that together summarise its progress and set out its direction: a 2024 review report and a vision paper on accelerating toward Europe's sustainable transport goals.",
+      "The review covers the year's milestones across technology, infrastructure and policy, from progress at the test facilities to advances in lane-switching and regulatory developments.",
+      "The vision paper builds on discussions held at the 2024 Partners Day in Dübendorf and lays out the strategic direction for the programme, including alignment with EU policy, a roadmap toward commercialisation, and the sustainability case for hyperloop.",
     ],
   },
   {
-    slug: "lane-switch-milestone-veendam",
-    title: "Lane switch milestone reached at the European Hyperloop Center",
-    date: "3 April 2025",
-    category: "Technology",
-    excerpt:
-      "The first full-scale demonstration of vehicle-to-vehicle lane switching marks a decisive step towards network-scale hyperloop operations.",
-    body: [
-      "Lane switching is what turns a single tube into a network. At the European Hyperloop Center in Veendam, a full-scale demonstration confirmed that a vehicle can change lanes inside a vacuum environment without mechanical track movement.",
-      "The result validates years of joint engineering between industry partners and research institutions within the programme, and forms a key input for European standardisation work.",
-      "Next steps focus on repeatability at higher speeds and on integrating the switch with vehicle control systems.",
-    ],
-  },
-  {
-    slug: "hyperloop-in-eu-transport-policy",
-    title: "Hyperloop enters the European transport policy conversation",
-    date: "18 January 2025",
-    category: "Policy",
-    excerpt:
-      "Public and private parties align on the regulatory groundwork needed before hyperloop corridors can be planned across borders.",
-    body: [
-      "A global infrastructure project such as hyperloop can only be achieved when public and private parties cooperate in complementary ways.",
-      "Throughout 2024 the programme contributed to European working groups on safety, interoperability and certification, translating engineering evidence from the test cluster into policy-ready material.",
-      "The ambition is a shared European framework so that corridors can be designed once and deployed across multiple member states.",
-    ],
-  },
-  {
-    slug: "freight-first-corridors-study",
-    title: "New study explores freight-first hyperloop corridors",
-    date: "9 October 2024",
+    slug: "hyper4rail-kickoff",
+    title: "Hyper4Rail research project kicks off",
+    date: "5 December 2024",
     category: "Research",
     excerpt:
-      "Cargo may be the fastest route to commercial viability. A joint study maps the most promising European corridors.",
+      "A new European project dedicated to advancing hyperloop technology has officially started.",
     body: [
-      "Freight operations impose fewer certification requirements than passenger services while still demanding the same core technology.",
-      "The study, carried out with partners from ports, logistics and academia, evaluates corridor demand, energy use and construction cost across Northwest Europe.",
-      "Early findings suggest that port-to-hinterland connections offer the strongest business case for a first commercial deployment.",
+      "Hyper4Rail, a European research project focused on advancing hyperloop technology, has officially kicked off with partners from across the programme's ecosystem.",
+      "The project adds to a growing portfolio of EU-funded research that HDP partners are contributing to as part of the broader push to move hyperloop from testing toward deployment.",
+    ],
+  },
+  {
+    slug: "testing-cluster-expands",
+    title: "The European hyperloop testing cluster expands",
+    date: "9 October 2024",
+    category: "Infrastructure",
+    excerpt:
+      "Partner organisations have signed a Letter of Intent to deepen collaboration across Europe's hyperloop test sites.",
+    body: [
+      "The Hyperloop Testing Infrastructure Cluster is growing. Partner organisations have signed a Letter of Intent to intensify collaboration across the various test sites coordinated by HDP.",
+      "The cluster brings together the European Hyperloop Center, EuroTube's DemoTube and the goTube of the Institute of Hyperloop Technology, each contributing distinct capabilities to the programme's shared research agenda.",
+    ],
+  },
+  {
+    slug: "hdp-partners-day-2024",
+    title: "Hyperloop ecosystem gathers in Switzerland for the annual Partners Day",
+    date: "24 July 2024",
+    category: "Organisation",
+    excerpt:
+      "Over 35 participants from HDP partner organisations met in Dübendorf for a day of discussion, knowledge exchange and strategic planning.",
+    body: [
+      "On 18 July, EuroTube hosted the annual HDP Partners Day in Dübendorf, Switzerland. The meeting brought together more than 35 participants from partner organisations and other stakeholders for a day of discussion, knowledge exchange and strategic planning.",
+      "HDP's Director General at the time, Klaus Rudischhauser, spoke about the importance of cooperation among partners and the programme's role as an intermediary with the public sector, as well as the ongoing European Commission impact assessment on hyperloop regulation.",
+    ],
+  },
+  {
+    slug: "ten-t-regulation-revision",
+    title: "The EU recognises hyperloop in its transport network policy",
+    date: "14 June 2024",
+    category: "Policy",
+    excerpt:
+      "The revised TEN-T regulation names hyperloop among the emerging technologies the trans-European transport network should encourage.",
+    body: [
+      "The EU's revised TEN-T regulation now explicitly encourages projects that promote and deploy sustainable emerging transport technologies — naming hyperloop as one of the new railway technologies member states should consider.",
+      "HDP welcomed the recognition and reaffirmed its intention to work with EU member states, the European Parliament and the European Commission to help turn hyperloop from a research effort into part of a seamless, multimodal European transport network.",
     ],
   },
 ];
