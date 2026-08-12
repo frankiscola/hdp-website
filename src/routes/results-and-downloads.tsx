@@ -1,10 +1,11 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, FileText, Newspaper, Presentation } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import { ArrowUpRight, FileDown } from "lucide-react";
 import tubeLandscape from "../assets/tube-landscape.jpg";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
-import { CtaButton, SectionHeading } from "../components/ui-kit";
+import { SectionHeading } from "../components/ui-kit";
+import { downloadDocuments, resultDocuments, type DocumentLink } from "../data/documents";
 
 export const Route = createFileRoute("/results-and-downloads")({
   head: () => ({
@@ -13,7 +14,7 @@ export const Route = createFileRoute("/results-and-downloads")({
       {
         name: "description",
         content:
-          "Technical reports, feasibility studies and press materials from the Hyperloop Development Program, published here as they become available.",
+          "Reports, position papers and feasibility studies published by the Hyperloop Development Program and its partners since 2020.",
       },
       {
         property: "og:title",
@@ -21,7 +22,8 @@ export const Route = createFileRoute("/results-and-downloads")({
       },
       {
         property: "og:description",
-        content: "Technical reports, studies and press materials from the programme.",
+        content:
+          "Reports, position papers and feasibility studies published by the Hyperloop Development Program since 2020.",
       },
       { property: "og:url", content: "/results-and-downloads" },
     ],
@@ -30,23 +32,35 @@ export const Route = createFileRoute("/results-and-downloads")({
   component: ResultsAndDownloads,
 });
 
-const categories = [
-  {
-    icon: FileText,
-    title: "Technical reports & studies",
-    text: "Feasibility studies, safety research and engineering findings from work carried out across the programme's Work Groups.",
-  },
-  {
-    icon: Presentation,
-    title: "Press kit",
-    text: "Logos, imagery and boilerplate copy for journalists and partners covering the Hyperloop Development Program.",
-  },
-  {
-    icon: Newspaper,
-    title: "Partner publications",
-    text: "Reports and publications co-authored with HDP partners, research institutions and public bodies.",
-  },
-];
+function DocumentList({ documents }: { documents: DocumentLink[] }) {
+  return (
+    <ul className="divide-y divide-border overflow-hidden rounded-3xl border border-border bg-surface/50">
+      {documents.map((doc) => (
+        <li key={doc.href}>
+          <a
+            href={doc.href}
+            target="_blank"
+            rel="noreferrer"
+            className="group flex items-center justify-between gap-6 px-6 py-5 transition-colors duration-300 hover:bg-surface sm:px-8"
+          >
+            <span className="flex items-center gap-4">
+              <FileDown className="h-5 w-5 shrink-0 text-primary-glow" />
+              <span className="text-sm leading-snug font-medium text-foreground sm:text-base">
+                {doc.title}
+              </span>
+            </span>
+            <span className="flex shrink-0 items-center gap-3">
+              <span className="text-xs tracking-[0.15em] text-muted-foreground uppercase">
+                {doc.year}
+              </span>
+              <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 function ResultsAndDownloads() {
   return (
@@ -54,56 +68,43 @@ function ResultsAndDownloads() {
       <PageHero
         eyebrow="Resources"
         title="Results and Downloads."
-        intro="As studies and full-scale tests at the European Hyperloop Center produce results, reports and downloadable materials will be published here."
+        intro="Reports, position papers and feasibility studies published by the HDP and its partners, from the programme's first studies in 2020 to today."
         image={tubeLandscape}
         imageAlt="Hyperloop tube stretching across a landscape"
         priority
       />
 
       <section>
-        <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
+        <div className="mx-auto max-w-[1000px] px-6 py-28 lg:px-10 lg:py-36">
           <Reveal>
-            <SectionHeading eyebrow="What to expect" title="What will be published here." />
+            <SectionHeading
+              eyebrow="Downloads"
+              title="Position papers and reports."
+              intro="An overview of documents, including research results and position papers, published by the HDP and its partners."
+            />
           </Reveal>
-          <div className="mt-16 grid gap-6 md:grid-cols-3">
-            {categories.map((category, i) => {
-              const Icon = category.icon;
-              return (
-                <Reveal key={category.title} delay={i * 0.08}>
-                  <Magnetic>
-                    <div className="h-full rounded-3xl border border-border bg-surface/50 p-8 transition-all duration-500 hover:border-primary/50">
-                      <Icon className="h-6 w-6 text-primary-glow" />
-                      <h3 className="mt-5 text-lg font-semibold">{category.title}</h3>
-                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                        {category.text}
-                      </p>
-                    </div>
-                  </Magnetic>
-                </Reveal>
-              );
-            })}
+          <div className="mt-12">
+            <Magnetic strength={0.02} max={4}>
+              <DocumentList documents={downloadDocuments} />
+            </Magnetic>
           </div>
+        </div>
+      </section>
 
-          <Reveal delay={0.15}>
-            <div className="mt-16 rounded-3xl border border-border bg-surface/30 p-8 text-center sm:p-12">
-              <h3 className="text-xl font-semibold">Nothing published yet</h3>
-              <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
-                The programme's first results are still in progress. In the meantime, follow the
-                latest developments on the news page, or get in touch to request specific
-                information.
-              </p>
-              <div className="mt-8 flex flex-wrap justify-center gap-3">
-                <CtaButton to="/news">Read the latest news</CtaButton>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-1 rounded-full border border-border px-6 py-3 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
-                >
-                  Contact the team
-                  <ArrowUpRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
+      <section className="border-t border-border bg-surface/40">
+        <div className="mx-auto max-w-[1000px] px-6 py-28 lg:px-10 lg:py-36">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Results and reports"
+              title="Public results, 2020–2024."
+              intro="Public results produced by HDP under the grant provided by the Dutch Ministry of Economic Affairs over the period 2020–2024."
+            />
           </Reveal>
+          <div className="mt-12">
+            <Magnetic strength={0.02} max={4}>
+              <DocumentList documents={resultDocuments} />
+            </Magnetic>
+          </div>
         </div>
       </section>
     </>
