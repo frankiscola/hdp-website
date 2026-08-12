@@ -1,22 +1,36 @@
 import { logos } from "./logos";
 
 export type NavItem =
-  | { label: string; to: string; children?: undefined }
-  | { label: string; to?: undefined; children: { label: string; to: string }[] };
+  | { label: string; to: string; hash?: string; children?: undefined }
+  | { label: string; to?: undefined; children: { label: string; to: string; hash?: string }[] };
 
 export const navItems: NavItem[] = [
   {
-    label: "About",
+    label: "Program",
     children: [
-      { label: "About HDP", to: "/about-hdp" },
-      { label: "Team and Board", to: "/team-and-board" },
+      { label: "The HDP", to: "/about-hdp" },
+      { label: "Research", to: "/about-hdp", hash: "research-aspects" },
+      { label: "The Challenge", to: "/thechallenge-hdp" },
     ],
   },
   { label: "Hyperloop", to: "/hyperloop" },
   { label: "Testing Infrastructure", to: "/testing-infrastructure" },
   { label: "Partners", to: "/partners" },
-  { label: "News", to: "/news" },
-  { label: "FAQ", to: "/faq" },
+  {
+    label: "Resources",
+    children: [
+      { label: "News", to: "/news" },
+      { label: "Results and Downloads", to: "/results-and-downloads" },
+      { label: "FAQ", to: "/faq" },
+    ],
+  },
+  {
+    label: "About us",
+    children: [
+      { label: "Team and Board", to: "/team-and-board" },
+      { label: "Open Positions", to: "/open-positions" },
+    ],
+  },
   { label: "Contact", to: "/contact" },
 ];
 
