@@ -5,6 +5,7 @@ import { Mail, MapPin } from "lucide-react";
 import { Magnetic } from "../components/Magnetic";
 import { Reveal } from "../components/Reveal";
 import { SectionHeading } from "../components/ui-kit";
+import { sendContactMessage } from "../lib/contact.server";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -29,15 +30,11 @@ export const Route = createFileRoute("/contact")({
 
 const topics = ["Partnership", "Test infrastructure", "Research", "Press"];
 
-// Delivers the form via FormSubmit (https://formsubmit.co) — no backend or API key required.
-// NOTE: the first submission to a new address triggers a one-time confirmation email from
-// FormSubmit that must be approved before messages start arriving in the inbox.
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/info@hyperloopdevelopmentprogram.com";
-
 function Contact() {
   const [sent, setSent] = useState(false);
   const [topic, setTopic] = useState(topics[0]);
   const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -48,17 +45,25 @@ function Contact() {
     if (data.get("_honey")) return;
 
     setStatus("submitting");
+    setErrorMessage(null);
+    const organization = String(data.get("organization") ?? "").trim();
+
     try {
-      const res = await fetch(FORM_ENDPOINT, {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        body: data,
+      await sendContactMessage({
+        data: {
+          name: String(data.get("name") ?? ""),
+          email: String(data.get("email") ?? ""),
+          topic: topic ?? topics[0] ?? "General",
+          message: String(data.get("message") ?? ""),
+          ...(organization ? { organization } : {}),
+        },
       });
-      if (!res.ok) throw new Error("Request failed");
       setSent(true);
       setStatus("idle");
+      form.reset();
     } catch (err) {
       console.error(err);
+      setErrorMessage(err instanceof Error ? err.message : null);
       setStatus("error");
     }
   }
@@ -120,12 +125,6 @@ function Contact() {
                   className="hidden"
                   aria-hidden="true"
                 />
-                {/* FormSubmit configuration */}
-                <input type="hidden" name="_subject" value={`New enquiry — ${topic}`} />
-                <input type="hidden" name="topic" value={topic} />
-                <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_template" value="table" />
-
                 <div className="grid gap-6 sm:grid-cols-2">
                   <Field label="Name" name="name" />
                   <Field label="Organization" name="organization" required={false} />
@@ -172,8 +171,8 @@ function Contact() {
 
                 {status === "error" && (
                   <p className="text-sm text-destructive" role="alert">
-                    Something went wrong sending your message. Please try again, or email us
-                    directly at info@hyperloopdevelopmentprogram.com.
+                    {errorMessage ??
+                      "Something went wrong sending your message. Please try again, or email us directly at info@hyperloopdevelopmentprogram.com."}
                   </p>
                 )}
 
