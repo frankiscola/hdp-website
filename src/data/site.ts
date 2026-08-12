@@ -1,16 +1,38 @@
 import { logos } from "./logos";
 
-export type NavItem = { label: string; to: string };
-
+export type NavItem =
+  | { label: string; to: string; children?: undefined }
+  | { label: string; to?: undefined; children: { label: string; to: string }[] };
 
 export const navItems: NavItem[] = [
-  { label: "About HDP", to: "/about-hdp" },
+  {
+    label: "About",
+    children: [
+      { label: "About HDP", to: "/about-hdp" },
+      { label: "Team and Board", to: "/team-and-board" },
+    ],
+  },
   { label: "Hyperloop", to: "/hyperloop" },
   { label: "Testing Infrastructure", to: "/testing-infrastructure" },
   { label: "Partners", to: "/partners" },
   { label: "News", to: "/news" },
   { label: "FAQ", to: "/faq" },
   { label: "Contact", to: "/contact" },
+];
+
+export type BoardMember = { name: string; role: string };
+
+export const executiveBoard: BoardMember[] = [
+  { name: "Klaus Rudischhauser", role: "Director General" },
+  { name: "Algara Castle", role: "Public Affairs & Communications Lead" },
+  { name: "Carlos Villalba", role: "Project Developer" },
+  { name: "Matteo Dragoni", role: "Research Infrastructure Cluster Manager" },
+];
+
+export const supervisoryBoard: BoardMember[] = [
+  { name: "Jeroen in 't Veld", role: "Chair" },
+  { name: "Antoine Juge", role: "On behalf of the EuroTube Foundation" },
+  { name: "Maarten Vanneste", role: "On behalf of Denys" },
 ];
 
 export type PartnerCategory = "Industry" | "Research" | "Infrastructure" | "Public";

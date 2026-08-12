@@ -1,6 +1,6 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { navItems } from "../data/site";
 import { logoHdpUrl } from "../data/logo";
@@ -10,7 +10,9 @@ import { cn } from "../lib/utils";
 export function SiteHeader() {
   const [condensed, setCondensed] = useState(false);
   const [open, setOpen] = useState(false);
+  const [mobileGroupOpen, setMobileGroupOpen] = useState<string | null>(null);
   const { scrollY } = useScroll();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setCondensed(latest > 24);
@@ -51,16 +53,46 @@ export function SiteHeader() {
               condensed ? "surface-glass" : "bg-transparent",
             )}
           >
-            {navItems.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                className="rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                activeProps={{ className: "text-foreground bg-secondary/70" }}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) =>
+              item.children ? (
+                <div key={item.label} className="group/nav relative">
+                  <button
+                    type="button"
+                    className={cn(
+                      "flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
+                      item.children.some((c) => c.to === pathname) &&
+                        "bg-secondary/70 text-foreground",
+                    )}
+                  >
+                    {item.label}
+                    <ChevronDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover/nav:rotate-180" />
+                  </button>
+                  <div className="invisible absolute top-full left-0 pt-2 opacity-0 transition-all duration-200 group-hover/nav:visible group-hover/nav:opacity-100">
+                    <div className="surface-glass min-w-[220px] rounded-2xl border border-border p-2 shadow-xl">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.to}
+                          to={child.to}
+                          className="block rounded-xl px-4 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary/70 hover:text-foreground"
+                          activeProps={{ className: "text-foreground bg-secondary/70" }}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  className="rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  activeProps={{ className: "text-foreground bg-secondary/70" }}
+                >
+                  {item.label}
+                </Link>
+              ),
+            )}
           </div>
         </nav>
 
@@ -82,24 +114,73 @@ export function SiteHeader() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 top-0 z-40 flex flex-col justify-center gap-2 bg-background/95 px-8 backdrop-blur-xl lg:hidden"
+            className="fixed inset-0 top-0 z-40 flex flex-col justify-center gap-2 overflow-y-auto bg-background/95 px-8 py-24 backdrop-blur-xl lg:hidden"
           >
-            {navItems.map((item, i) => (
-              <motion.div
-                key={item.to}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.06 * i, duration: 0.4 }}
-              >
-                <Link
-                  to={item.to}
-                  onClick={() => setOpen(false)}
-                  className="font-display block border-b border-border py-4 text-2xl font-semibold"
+            {navItems.map((item, i) =>
+              item.children ? (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.06 * i, duration: 0.4 }}
+                  className="border-b border-border"
                 >
-                  {item.label}
-                </Link>
-              </motion.div>
-            ))}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setMobileGroupOpen((v) => (v === item.label ? null : item.label))
+                    }
+                    className="font-display flex w-full items-center justify-between py-4 text-2xl font-semibold"
+                  >
+                    {item.label}
+                    <ChevronDown
+                      className={cn(
+                        "h-5 w-5 transition-transform duration-300",
+                        mobileGroupOpen === item.label && "rotate-180",
+                      )}
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {mobileGroupOpen === item.label && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="flex flex-col gap-1 pb-4 pl-4">
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.to}
+                              to={child.to}
+                              onClick={() => setOpen(false)}
+                              className="py-2 text-lg text-muted-foreground transition-colors hover:text-foreground"
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key={item.to}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.06 * i, duration: 0.4 }}
+                >
+                  <Link
+                    to={item.to}
+                    onClick={() => setOpen(false)}
+                    className="font-display block border-b border-border py-4 text-2xl font-semibold"
+                  >
+                    {item.label}
+                  </Link>
+                </motion.div>
+              ),
+            )}
           </motion.div>
         )}
       </AnimatePresence>
