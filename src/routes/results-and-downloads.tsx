@@ -96,8 +96,10 @@ function ResultsAndDownloads() {
           <Reveal>
             <SectionHeading
               eyebrow="Results and reports"
-              title="Public results, 2020–2024."
-              intro="Public results produced by HDP under the grant provided by the Dutch Ministry of Economic Affairs over the period 2020–2024."
+              title={"Public results, 2020\u20112024."}
+              intro={
+                "Public results produced by HDP under the grant provided by the Dutch Ministry of Economic Affairs over the period 2020\u20112024."
+              }
             />
           </Reveal>
           <div className="mt-12">
