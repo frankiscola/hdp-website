@@ -9,6 +9,7 @@ import { Magnetic } from "../components/Magnetic";
 import { Reveal } from "../components/Reveal";
 import { StatCounter } from "../components/StatCounter";
 import { NewsCard } from "../components/NewsCard";
+import { LiveNewsBar } from "../components/LiveNewsBar";
 import { TunnelCanvas } from "../components/TunnelCanvas";
 import { ArrowLink, CtaButton, SectionHeading } from "../components/ui-kit";
 import { facilities, news, partners, type Partner } from "../data/site";
@@ -130,6 +131,8 @@ function Home() {
             </CtaButton>
           </motion.div>
         </motion.div>
+
+        <LiveNewsBar items={news.slice(0, 3)} />
       </section>
 
       {/* Chairman quote */}
