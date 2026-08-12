@@ -60,9 +60,70 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/*
+ * HDP design system — "Midnight Indigo"
+ * Deep navy surfaces with electric indigo accents (dark theme, default feel),
+ * remapped to a crisp indigo-on-white palette for light theme.
+ * All color values use oklch, same hue family (277–280) in both themes.
+ * Never hardcode colors in components — use the tokens below.
+ */
+
 :root {
   --radius: 1rem;
 
+  /* Light theme (default) */
+  --background: oklch(0.985 0.004 280);
+  --foreground: oklch(0.19 0.045 280);
+  --surface: oklch(0.965 0.008 280);
+  --surface-elevated: oklch(0.93 0.016 280);
+  --card: oklch(0.995 0.003 280);
+  --card-foreground: oklch(0.19 0.045 280);
+  --popover: oklch(0.995 0.003 280);
+  --popover-foreground: oklch(0.19 0.045 280);
+  --primary: oklch(0.5 0.22 277);
+  --primary-foreground: oklch(0.99 0.005 280);
+  --primary-glow: oklch(0.53 0.21 279);
+  --secondary: oklch(0.94 0.014 280);
+  --secondary-foreground: oklch(0.19 0.045 280);
+  --muted: oklch(0.955 0.01 280);
+  --muted-foreground: oklch(0.42 0.035 280);
+  --accent: oklch(0.9 0.035 278);
+  --accent-foreground: oklch(0.19 0.045 280);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.99 0.005 280);
+  --border: oklch(0.19 0.045 280 / 10%);
+  --input: oklch(0.19 0.045 280 / 14%);
+  --ring: oklch(0.5 0.22 277);
+
+  --chart-1: oklch(0.5 0.22 277);
+  --chart-2: oklch(0.53 0.21 279);
+  --chart-3: oklch(0.62 0.13 220);
+  --chart-4: oklch(0.5 0.17 300);
+  --chart-5: oklch(0.65 0.11 200);
+
+  --sidebar: oklch(0.995 0.003 280);
+  --sidebar-foreground: oklch(0.19 0.045 280);
+  --sidebar-primary: oklch(0.5 0.22 277);
+  --sidebar-primary-foreground: oklch(0.99 0.005 280);
+  --sidebar-accent: oklch(0.94 0.014 280);
+  --sidebar-accent-foreground: oklch(0.19 0.045 280);
+  --sidebar-border: oklch(0.19 0.045 280 / 10%);
+  --sidebar-ring: oklch(0.5 0.22 277);
+
+  --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-glow));
+  /* Derived from the live background, so it fades correctly in either theme. */
+  --gradient-veil: linear-gradient(
+    to bottom,
+    color-mix(in oklch, var(--background) 15%, transparent),
+    color-mix(in oklch, var(--background) 75%, transparent) 55%,
+    var(--background) 100%
+  );
+  --shadow-glow: 0 24px 80px -24px color-mix(in oklch, var(--primary) 55%, transparent);
+  --shadow-elevated: 0 30px 90px -40px oklch(0.19 0.045 280 / 0.18);
+}
+
+.dark {
+  /* Dark theme — original "Midnight Indigo" values */
   --background: oklch(0.13 0.031 279);
   --foreground: oklch(0.97 0.006 280);
   --surface: oklch(0.2 0.049 280);
@@ -101,14 +162,6 @@
   --sidebar-border: oklch(0.98 0.01 280 / 12%);
   --sidebar-ring: oklch(0.62 0.2 278);
 
-  --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-glow));
-  --gradient-veil: linear-gradient(
-    to bottom,
-    oklch(0.13 0.031 279 / 0.15),
-    oklch(0.13 0.031 279 / 0.75) 55%,
-    oklch(0.13 0.031 279) 100%
-  );
-  --shadow-glow: 0 24px 80px -24px oklch(0.52 0.226 277 / 0.55);
   --shadow-elevated: 0 30px 90px -40px oklch(0.05 0.02 280 / 0.9);
 }
 
@@ -137,7 +190,7 @@
   }
 
   ::selection {
-    background-color: oklch(0.52 0.226 277 / 0.4);
+    background-color: color-mix(in oklch, var(--color-primary) 40%, transparent);
   }
 }
 
@@ -149,7 +202,7 @@
 }
 
 @utility surface-glass {
-  background-color: oklch(0.2 0.049 280 / 0.55);
+  background-color: color-mix(in oklch, var(--color-surface) 55%, transparent);
   backdrop-filter: blur(18px);
   border: 1px solid var(--color-border);
 }
@@ -167,15 +220,26 @@
   border: 1px solid transparent;
 }
 
-/* Renders any logo as a single light-indigo mark on a transparent background. */
-@utility logo-mono {
-  filter: brightness(0) invert(1) sepia(1) saturate(6) hue-rotate(200deg) brightness(1.1)
-    opacity(0.8);
+/* Renders any logo as a single-tone mark on a transparent background. */
+/* Light theme: a dark charcoal-navy mark, for contrast on light surfaces. */
+.logo-mono {
+  filter: brightness(0) opacity(0.62);
   transition: filter 0.4s ease;
 }
 
 .group:hover .logo-mono,
 .logo-marquee:hover .logo-mono {
+  filter: brightness(0) opacity(1);
+}
+
+/* Dark theme: a light indigo mark, for contrast on dark surfaces. */
+.dark .logo-mono {
+  filter: brightness(0) invert(1) sepia(1) saturate(6) hue-rotate(200deg) brightness(1.1)
+    opacity(0.8);
+}
+
+.dark .group:hover .logo-mono,
+.dark .logo-marquee:hover .logo-mono {
   filter: brightness(0) invert(1) sepia(1) saturate(6) hue-rotate(200deg) brightness(1.45)
     opacity(1);
 }
@@ -251,7 +315,7 @@
   border-radius: 9999px;
   pointer-events: none;
   background-color: var(--color-primary-glow);
-  box-shadow: 0 0 18px oklch(0.66 0.19 279 / 0.8);
+  box-shadow: 0 0 18px color-mix(in oklch, var(--color-primary-glow) 80%, transparent);
   transition:
     width 0.18s ease,
     height 0.18s ease;
@@ -271,7 +335,7 @@
   height: 36px;
   border-radius: 9999px;
   pointer-events: none;
-  border: 1.5px solid oklch(0.66 0.19 279 / 0.5);
+  border: 1.5px solid color-mix(in oklch, var(--color-primary-glow) 50%, transparent);
   transition:
     width 0.25s ease,
     height 0.25s ease,
@@ -281,7 +345,7 @@
 .cursor-ring.is-hover {
   width: 58px;
   height: 58px;
-  border-color: oklch(0.66 0.19 279 / 0.25);
+  border-color: color-mix(in oklch, var(--color-primary-glow) 25%, transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {

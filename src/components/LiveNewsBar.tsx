@@ -22,7 +22,7 @@ export function LiveNewsBar({ items }: { items: NewsItem[] }) {
   const active = items[index];
 
   return (
-    <div className="surface-glass absolute inset-x-4 bottom-6 z-10 mx-auto flex max-w-3xl items-center gap-3 rounded-full py-2 pr-5 pl-2 sm:inset-x-0 sm:bottom-10 sm:gap-4">
+    <div className="surface-glass dark absolute inset-x-4 bottom-6 z-10 mx-auto flex max-w-3xl items-center gap-3 rounded-full py-2 pr-5 pl-2 sm:inset-x-0 sm:bottom-10 sm:gap-4">
       <Link
         to="/news/$slug"
         params={{ slug: active.slug }}

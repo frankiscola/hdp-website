@@ -27,7 +27,7 @@ export function PageHero({ eyebrow, title, intro, image, imageAlt, priority }: P
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="veil absolute inset-0" />
-      <div className="relative mx-auto w-full max-w-[1400px] px-6 pb-20 lg:px-10 lg:pb-28">
+      <div className="dark relative mx-auto w-full max-w-[1400px] px-6 pb-20 lg:px-10 lg:pb-28">
         <motion.p
           className="eyebrow"
           initial={{ opacity: 0, y: 16 }}

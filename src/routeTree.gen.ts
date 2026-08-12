@@ -12,9 +12,15 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutHdpRouteImport } from './routes/about-hdp'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as HyperloopRouteImport } from './routes/hyperloop'
+import { Route as OpenPositionsRouteImport } from './routes/open-positions'
 import { Route as PartnersRouteImport } from './routes/partners'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as ResultsAndDownloadsRouteImport } from './routes/results-and-downloads'
+import { Route as TeamAndBoardRouteImport } from './routes/team-and-board'
 import { Route as TestingInfrastructureRouteImport } from './routes/testing-infrastructure'
+import { Route as ThechallengeHdpRouteImport } from './routes/thechallenge-hdp'
 import { Route as NewsIndexRouteImport } from './routes/news.index'
 import { Route as NewsSlugRouteImport } from './routes/news.$slug'
 
@@ -33,9 +39,19 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HyperloopRoute = HyperloopRouteImport.update({
   id: '/hyperloop',
   path: '/hyperloop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OpenPositionsRoute = OpenPositionsRouteImport.update({
+  id: '/open-positions',
+  path: '/open-positions',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PartnersRoute = PartnersRouteImport.update({
@@ -43,9 +59,29 @@ const PartnersRoute = PartnersRouteImport.update({
   path: '/partners',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResultsAndDownloadsRoute = ResultsAndDownloadsRouteImport.update({
+  id: '/results-and-downloads',
+  path: '/results-and-downloads',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeamAndBoardRoute = TeamAndBoardRouteImport.update({
+  id: '/team-and-board',
+  path: '/team-and-board',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TestingInfrastructureRoute = TestingInfrastructureRouteImport.update({
   id: '/testing-infrastructure',
   path: '/testing-infrastructure',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThechallengeHdpRoute = ThechallengeHdpRouteImport.update({
+  id: '/thechallenge-hdp',
+  path: '/thechallenge-hdp',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewsIndexRoute = NewsIndexRouteImport.update({
@@ -63,9 +99,15 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-hdp': typeof AboutHdpRoute
   '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
   '/hyperloop': typeof HyperloopRoute
+  '/open-positions': typeof OpenPositionsRoute
   '/partners': typeof PartnersRoute
+  '/privacy': typeof PrivacyRoute
+  '/results-and-downloads': typeof ResultsAndDownloadsRoute
+  '/team-and-board': typeof TeamAndBoardRoute
   '/testing-infrastructure': typeof TestingInfrastructureRoute
+  '/thechallenge-hdp': typeof ThechallengeHdpRoute
   '/news/$slug': typeof NewsSlugRoute
   '/news/': typeof NewsIndexRoute
 }
@@ -73,9 +115,15 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-hdp': typeof AboutHdpRoute
   '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
   '/hyperloop': typeof HyperloopRoute
+  '/open-positions': typeof OpenPositionsRoute
   '/partners': typeof PartnersRoute
+  '/privacy': typeof PrivacyRoute
+  '/results-and-downloads': typeof ResultsAndDownloadsRoute
+  '/team-and-board': typeof TeamAndBoardRoute
   '/testing-infrastructure': typeof TestingInfrastructureRoute
+  '/thechallenge-hdp': typeof ThechallengeHdpRoute
   '/news/$slug': typeof NewsSlugRoute
   '/news': typeof NewsIndexRoute
 }
@@ -84,9 +132,15 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about-hdp': typeof AboutHdpRoute
   '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
   '/hyperloop': typeof HyperloopRoute
+  '/open-positions': typeof OpenPositionsRoute
   '/partners': typeof PartnersRoute
+  '/privacy': typeof PrivacyRoute
+  '/results-and-downloads': typeof ResultsAndDownloadsRoute
+  '/team-and-board': typeof TeamAndBoardRoute
   '/testing-infrastructure': typeof TestingInfrastructureRoute
+  '/thechallenge-hdp': typeof ThechallengeHdpRoute
   '/news/$slug': typeof NewsSlugRoute
   '/news/': typeof NewsIndexRoute
 }
@@ -96,9 +150,15 @@ export interface FileRouteTypes {
     | '/'
     | '/about-hdp'
     | '/contact'
+    | '/faq'
     | '/hyperloop'
+    | '/open-positions'
     | '/partners'
+    | '/privacy'
+    | '/results-and-downloads'
+    | '/team-and-board'
     | '/testing-infrastructure'
+    | '/thechallenge-hdp'
     | '/news/$slug'
     | '/news/'
   fileRoutesByTo: FileRoutesByTo
@@ -106,9 +166,15 @@ export interface FileRouteTypes {
     | '/'
     | '/about-hdp'
     | '/contact'
+    | '/faq'
     | '/hyperloop'
+    | '/open-positions'
     | '/partners'
+    | '/privacy'
+    | '/results-and-downloads'
+    | '/team-and-board'
     | '/testing-infrastructure'
+    | '/thechallenge-hdp'
     | '/news/$slug'
     | '/news'
   id:
@@ -116,9 +182,15 @@ export interface FileRouteTypes {
     | '/'
     | '/about-hdp'
     | '/contact'
+    | '/faq'
     | '/hyperloop'
+    | '/open-positions'
     | '/partners'
+    | '/privacy'
+    | '/results-and-downloads'
+    | '/team-and-board'
     | '/testing-infrastructure'
+    | '/thechallenge-hdp'
     | '/news/$slug'
     | '/news/'
   fileRoutesById: FileRoutesById
@@ -127,9 +199,15 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutHdpRoute: typeof AboutHdpRoute
   ContactRoute: typeof ContactRoute
+  FaqRoute: typeof FaqRoute
   HyperloopRoute: typeof HyperloopRoute
+  OpenPositionsRoute: typeof OpenPositionsRoute
   PartnersRoute: typeof PartnersRoute
+  PrivacyRoute: typeof PrivacyRoute
+  ResultsAndDownloadsRoute: typeof ResultsAndDownloadsRoute
+  TeamAndBoardRoute: typeof TeamAndBoardRoute
   TestingInfrastructureRoute: typeof TestingInfrastructureRoute
+  ThechallengeHdpRoute: typeof ThechallengeHdpRoute
   NewsSlugRoute: typeof NewsSlugRoute
   NewsIndexRoute: typeof NewsIndexRoute
 }
@@ -157,11 +235,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/hyperloop': {
       id: '/hyperloop'
       path: '/hyperloop'
       fullPath: '/hyperloop'
       preLoaderRoute: typeof HyperloopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/open-positions': {
+      id: '/open-positions'
+      path: '/open-positions'
+      fullPath: '/open-positions'
+      preLoaderRoute: typeof OpenPositionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/partners': {
@@ -171,11 +263,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PartnersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/results-and-downloads': {
+      id: '/results-and-downloads'
+      path: '/results-and-downloads'
+      fullPath: '/results-and-downloads'
+      preLoaderRoute: typeof ResultsAndDownloadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/team-and-board': {
+      id: '/team-and-board'
+      path: '/team-and-board'
+      fullPath: '/team-and-board'
+      preLoaderRoute: typeof TeamAndBoardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/testing-infrastructure': {
       id: '/testing-infrastructure'
       path: '/testing-infrastructure'
       fullPath: '/testing-infrastructure'
       preLoaderRoute: typeof TestingInfrastructureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/thechallenge-hdp': {
+      id: '/thechallenge-hdp'
+      path: '/thechallenge-hdp'
+      fullPath: '/thechallenge-hdp'
+      preLoaderRoute: typeof ThechallengeHdpRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/news/': {
@@ -199,12 +319,28 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutHdpRoute: AboutHdpRoute,
   ContactRoute: ContactRoute,
+  FaqRoute: FaqRoute,
   HyperloopRoute: HyperloopRoute,
+  OpenPositionsRoute: OpenPositionsRoute,
   PartnersRoute: PartnersRoute,
+  PrivacyRoute: PrivacyRoute,
+  ResultsAndDownloadsRoute: ResultsAndDownloadsRoute,
+  TeamAndBoardRoute: TeamAndBoardRoute,
   TestingInfrastructureRoute: TestingInfrastructureRoute,
+  ThechallengeHdpRoute: ThechallengeHdpRoute,
   NewsSlugRoute: NewsSlugRoute,
   NewsIndexRoute: NewsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
