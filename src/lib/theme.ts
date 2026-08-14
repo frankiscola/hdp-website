@@ -6,28 +6,30 @@ export const THEME_STORAGE_KEY = "hdp-theme";
  * Runs synchronously in <head>, before first paint, so the correct theme
  * class is already on <html> when the page renders — no light/dark flash.
  * Keep this in perfect sync with getPreferredTheme() below.
+ *
+ * Light is always the default on a first visit — deliberately ignoring the
+ * OS/browser's prefers-color-scheme, since the site's default identity is
+ * the light theme. Dark only applies once the person explicitly picks it
+ * with the toggle (and it's then remembered via localStorage).
  */
 export const noFlashThemeScript = `
 (function () {
   try {
     var stored = localStorage.getItem("${THEME_STORAGE_KEY}");
-    var theme = stored === "light" || stored === "dark"
-      ? stored
-      : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    if (theme === "dark") document.documentElement.classList.add("dark");
+    if (stored === "dark") document.documentElement.classList.add("dark");
   } catch (e) {}
 })();
 `;
 
 export function getPreferredTheme(): Theme {
-  if (typeof window === "undefined") return "dark";
+  if (typeof window === "undefined") return "light";
   try {
     const stored = localStorage.getItem(THEME_STORAGE_KEY);
     if (stored === "light" || stored === "dark") return stored;
   } catch {
-    // localStorage unavailable (private mode, etc.) — fall through to system preference.
+    // localStorage unavailable (private mode, etc.) — fall through to the default.
   }
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  return "light";
 }
 
 export function applyTheme(theme: Theme) {
