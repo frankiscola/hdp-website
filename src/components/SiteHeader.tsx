@@ -8,6 +8,11 @@ import { ThemeToggle } from "./ThemeToggle";
 
 import { cn } from "../lib/utils";
 
+// Pages without a photographic hero at the top — the header sits directly
+// on the real page background here, so it should follow the live theme
+// immediately, even before the user scrolls.
+const PAGES_WITHOUT_PHOTO_HERO = new Set(["/contact", "/privacy"]);
+
 export function SiteHeader() {
   const [condensed, setCondensed] = useState(false);
   const [open, setOpen] = useState(false);
@@ -19,6 +24,11 @@ export function SiteHeader() {
     setCondensed(latest > 24);
   });
 
+  // While transparent (not yet scrolled), the header floats over that
+  // page's dark hero photo, so it needs to stay in the dark-scoped
+  // palette regardless of the site's theme — same reasoning as PageHero.
+  const overPhotoHero = !condensed && !PAGES_WITHOUT_PHOTO_HERO.has(pathname);
+
   return (
     <header
       className={cn(
@@ -29,6 +39,7 @@ export function SiteHeader() {
       <div
         className={cn(
           "mx-auto flex max-w-[1400px] items-center justify-between px-6 transition-all duration-500 lg:px-10",
+          overPhotoHero && "dark",
           condensed ? "py-3" : "py-6",
         )}
       >
