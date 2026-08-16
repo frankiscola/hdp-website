@@ -344,15 +344,15 @@ function Home() {
                 </span>
                 <span className="h-px w-10 bg-border" />
               </div>
-              <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
+              <div className="flex flex-wrap items-center justify-center gap-4">
                 {supportingGovernments.map((gov) => (
                   <Magnetic key={gov.name} strength={0.12} max={8}>
-                    <div className="flex h-14 items-center justify-center px-2">
+                    <div className="flex h-16 items-center justify-center rounded-xl bg-foreground px-5 py-2.5 shadow-lg shadow-black/20">
                       <img
                         src={gov.logo}
                         alt={`${gov.name} logo`}
                         loading="lazy"
-                        className="max-h-14 w-auto max-w-[180px] object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
+                        className="max-h-11 w-auto max-w-[160px] object-contain"
                       />
                     </div>
                   </Magnetic>
