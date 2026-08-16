@@ -12,7 +12,7 @@ import { NewsCard } from "../components/NewsCard";
 import { LiveNewsBar } from "../components/LiveNewsBar";
 import { TunnelCanvas } from "../components/TunnelCanvas";
 import { ArrowLink, CtaButton, SectionHeading } from "../components/ui-kit";
-import { facilities, news, partners, type Partner } from "../data/site";
+import { facilities, news, partners, supportingGovernments, type Partner } from "../data/site";
 import { cn } from "../lib/utils";
 
 export const Route = createFileRoute("/")({
@@ -336,6 +336,32 @@ function Home() {
           </Reveal>
 
           <Reveal delay={0.3}>
+            <div className="mt-20">
+              <div className="mb-6 flex items-center justify-center gap-3">
+                <span className="h-px w-10 bg-border" />
+                <span className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
+                  Supporting Governments
+                </span>
+                <span className="h-px w-10 bg-border" />
+              </div>
+              <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
+                {supportingGovernments.map((gov) => (
+                  <Magnetic key={gov.name} strength={0.12} max={8}>
+                    <div className="flex h-14 items-center justify-center px-2">
+                      <img
+                        src={gov.logo}
+                        alt={`${gov.name} logo`}
+                        loading="lazy"
+                        className="max-h-14 w-auto max-w-[180px] object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
+                      />
+                    </div>
+                  </Magnetic>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.4}>
             <div className="mt-14 flex justify-center">
               <CtaButton to="/partners">Meet the partners</CtaButton>
             </div>

@@ -181,12 +181,12 @@ function Partners() {
             <div className="mx-auto mt-14 flex max-w-4xl flex-wrap items-center justify-center gap-x-16 gap-y-10">
               {supportingGovernments.map((gov) => (
                 <Magnetic key={gov.name} strength={0.12} max={8}>
-                  <div className="logo-tile flex h-16 items-center justify-center px-4">
+                  <div className="flex h-16 items-center justify-center px-4">
                     <img
                       src={gov.logo}
                       alt={`${gov.name} logo`}
                       loading="lazy"
-                      className="logo-mono max-h-16 w-auto max-w-[220px] object-contain transition-transform duration-500 hover:scale-[1.04]"
+                      className="max-h-16 w-auto max-w-[220px] object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
                     />
                   </div>
                 </Magnetic>
