@@ -4,6 +4,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { navItems } from "../data/site";
 import { logoHdpUrl } from "../data/logo";
+import { ThemeToggle } from "./ThemeToggle";
 
 import { cn } from "../lib/utils";
 
@@ -40,8 +41,16 @@ export function SiteHeader() {
           <img
             src={logoHdpUrl}
             alt="Hyperloop Development Program"
-            className="h-10 w-auto transition-transform duration-500 group-hover:scale-[1.02] md:h-12"
-            style={{ filter: "brightness(0) invert(1)" }}
+            className={cn(
+              "h-10 w-auto transition-[filter,transform] duration-500 group-hover:scale-[1.02] md:h-12",
+              // Not condensed: header floats transparently over the permanently-dark
+              // hero photo, so the logo must stay white no matter the site theme.
+              // Condensed: header sits on the theme-aware background, so the logo
+              // switches to its native navy/indigo mark in light mode and stays
+              // white in dark mode for reliable contrast either way.
+              !condensed && "brightness-0 invert",
+              condensed && "dark:brightness-0 dark:invert",
+            )}
             width={1500}
             height={512}
           />
@@ -102,15 +111,24 @@ export function SiteHeader() {
           </div>
         </nav>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="surface-glass flex h-10 w-10 items-center justify-center rounded-full lg:hidden"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-2">
+          <ThemeToggle
+            className={cn(
+              "hidden h-10 w-10 items-center justify-center rounded-full text-muted-foreground transition-colors duration-300 hover:text-foreground lg:flex",
+              condensed ? "surface-glass" : "hover:bg-foreground/10",
+            )}
+          />
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="surface-glass flex h-10 w-10 items-center justify-center rounded-full lg:hidden"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -188,6 +206,16 @@ export function SiteHeader() {
                 </motion.div>
               ),
             )}
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.06 * navItems.length, duration: 0.4 }}
+              className="flex items-center justify-between pt-6"
+            >
+              <span className="text-sm font-medium text-muted-foreground">Appearance</span>
+              <ThemeToggle className="surface-glass flex h-11 w-11 items-center justify-center rounded-full text-foreground" />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
