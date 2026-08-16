@@ -11,7 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { noFlashThemeScript } from "../lib/theme";
+import { noFlashThemeScript, THEME_COLOR } from "../lib/theme";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { CustomCursor } from "../components/CustomCursor";
@@ -84,6 +84,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "Hyperloop Development Program" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      // Matches the browser chrome (mobile status bar / PWA title bar) to the
+      // active theme. Defaults to light (the site's default theme on first
+      // visit — see theme.ts); noFlashThemeScript corrects this to dark
+      // before first paint for returning visitors, same as the html class.
+      { name: "theme-color", content: THEME_COLOR.light },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

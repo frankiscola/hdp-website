@@ -254,6 +254,31 @@
     font-family: var(--font-sans);
   }
 
+  /*
+   * Theme-switch crossfade. Only color-ish properties, so layout and hover
+   * interactions stay instant — this is purely for the light/dark toggle to
+   * feel like a fade rather than a hard cut. Every surface reads these same
+   * custom properties, so one rule covers the whole page.
+   */
+  html,
+  body,
+  * {
+    transition:
+      background-color 0.35s ease,
+      border-color 0.35s ease,
+      color 0.35s ease,
+      fill 0.35s ease,
+      stroke 0.35s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html,
+    body,
+    * {
+      transition: none;
+    }
+  }
+
   h1,
   h2,
   h3,
