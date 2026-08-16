@@ -4,14 +4,8 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { navItems } from "../data/site";
 import { logoHdpUrl } from "../data/logo";
-import { ThemeToggle } from "./ThemeToggle";
 
 import { cn } from "../lib/utils";
-
-// Pages without a photographic hero at the top — the header sits directly
-// on the real page background here, so it should follow the live theme
-// immediately, even before the user scrolls.
-const PAGES_WITHOUT_PHOTO_HERO = new Set(["/contact", "/privacy"]);
 
 export function SiteHeader() {
   const [condensed, setCondensed] = useState(false);
@@ -24,11 +18,6 @@ export function SiteHeader() {
     setCondensed(latest > 24);
   });
 
-  // While transparent (not yet scrolled), the header floats over that
-  // page's dark hero photo, so it needs to stay in the dark-scoped
-  // palette regardless of the site's theme — same reasoning as PageHero.
-  const overPhotoHero = !condensed && !PAGES_WITHOUT_PHOTO_HERO.has(pathname);
-
   return (
     <header
       className={cn(
@@ -39,7 +28,6 @@ export function SiteHeader() {
       <div
         className={cn(
           "mx-auto flex max-w-[1400px] items-center justify-between px-6 transition-all duration-500 lg:px-10",
-          overPhotoHero && "dark",
           condensed ? "py-3" : "py-6",
         )}
       >
@@ -52,7 +40,8 @@ export function SiteHeader() {
           <img
             src={logoHdpUrl}
             alt="Hyperloop Development Program"
-            className="h-10 w-auto transition-transform duration-500 group-hover:scale-[1.02] md:h-12 dark:brightness-0 dark:invert"
+            className="h-10 w-auto transition-transform duration-500 group-hover:scale-[1.02] md:h-12"
+            style={{ filter: "brightness(0) invert(1)" }}
             width={1500}
             height={512}
           />
@@ -62,70 +51,66 @@ export function SiteHeader() {
         </Link>
 
 
-        <div className="flex items-center gap-2">
-          <nav className="hidden items-center gap-1 lg:flex">
-            <div
-              className={cn(
-                "flex items-center gap-1 rounded-full px-2 py-1.5 transition-all duration-500",
-                condensed ? "surface-glass" : "bg-transparent",
-              )}
-            >
-              {navItems.map((item) =>
-                item.children ? (
-                  <div key={item.label} className="group/nav relative">
-                    <button
-                      type="button"
-                      className={cn(
-                        "flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
-                        item.children.some((c) => c.to === pathname) &&
-                          "bg-secondary/70 text-foreground",
-                      )}
-                    >
-                      {item.label}
-                      <ChevronDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover/nav:rotate-180" />
-                    </button>
-                    <div className="invisible absolute top-full left-0 pt-2 opacity-0 transition-all duration-200 group-hover/nav:visible group-hover/nav:opacity-100">
-                      <div className="surface-glass min-w-[220px] rounded-2xl border border-border p-2 shadow-xl">
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.to + (child.hash ?? "")}
-                            to={child.to}
-                            {...(child.hash ? { hash: child.hash } : {})}
-                            className="block rounded-xl px-4 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary/70 hover:text-foreground"
-                            activeProps={{ className: "text-foreground bg-secondary/70" }}
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <Link
-                    key={item.to}
-                    to={item.to}
-                    className="rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                    activeProps={{ className: "text-foreground bg-secondary/70" }}
+        <nav className="hidden items-center gap-1 lg:flex">
+          <div
+            className={cn(
+              "flex items-center gap-1 rounded-full px-2 py-1.5 transition-all duration-500",
+              condensed ? "surface-glass" : "bg-transparent",
+            )}
+          >
+            {navItems.map((item) =>
+              item.children ? (
+                <div key={item.label} className="group/nav relative">
+                  <button
+                    type="button"
+                    className={cn(
+                      "flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
+                      item.children.some((c) => c.to === pathname) &&
+                        "bg-secondary/70 text-foreground",
+                    )}
                   >
                     {item.label}
-                  </Link>
-                ),
-              )}
-            </div>
-          </nav>
+                    <ChevronDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover/nav:rotate-180" />
+                  </button>
+                  <div className="invisible absolute top-full left-0 pt-2 opacity-0 transition-all duration-200 group-hover/nav:visible group-hover/nav:opacity-100">
+                    <div className="surface-glass min-w-[220px] rounded-2xl border border-border p-2 shadow-xl">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.to + (child.hash ?? "")}
+                          to={child.to}
+                          {...(child.hash ? { hash: child.hash } : {})}
+                          className="block rounded-xl px-4 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary/70 hover:text-foreground"
+                          activeProps={{ className: "text-foreground bg-secondary/70" }}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  className="rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  activeProps={{ className: "text-foreground bg-secondary/70" }}
+                >
+                  {item.label}
+                </Link>
+              ),
+            )}
+          </div>
+        </nav>
 
-          <ThemeToggle className="surface-glass flex h-10 w-10 items-center justify-center rounded-full text-foreground transition-colors hover:text-primary-glow" />
-
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            className="surface-glass flex h-10 w-10 items-center justify-center rounded-full lg:hidden"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          className="surface-glass flex h-10 w-10 items-center justify-center rounded-full lg:hidden"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </div>
 
       <AnimatePresence>
@@ -203,16 +188,6 @@ export function SiteHeader() {
                 </motion.div>
               ),
             )}
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.06 * navItems.length, duration: 0.4 }}
-              className="flex items-center gap-3 pt-6"
-            >
-              <ThemeToggle className="surface-glass flex h-10 w-10 items-center justify-center rounded-full text-foreground" />
-              <span className="text-sm text-muted-foreground">Light / dark mode</span>
-            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

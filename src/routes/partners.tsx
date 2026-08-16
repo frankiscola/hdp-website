@@ -6,7 +6,7 @@ import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { CtaButton, SectionHeading } from "../components/ui-kit";
-import { partners, type Partner } from "../data/site";
+import { partners, supportingGovernments, type Partner } from "../data/site";
 import { cn } from "../lib/utils";
 
 export const Route = createFileRoute("/partners")({
@@ -164,8 +164,39 @@ function Partners() {
         </div>
       </section>
 
-
       <section className="border-t border-border bg-surface/40">
+        <div className="mx-auto max-w-[1400px] px-6 py-20 lg:px-10 lg:py-28">
+          <Reveal>
+            <p className="eyebrow text-center">Public support</p>
+            <h2 className="mx-auto mt-4 max-w-2xl text-center text-2xl font-semibold sm:text-3xl">
+              Supporting Governments
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-center text-sm leading-relaxed text-muted-foreground">
+              National, regional and state authorities backing hyperloop development across
+              Europe.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <div className="mx-auto mt-14 flex max-w-4xl flex-wrap items-center justify-center gap-x-16 gap-y-10">
+              {supportingGovernments.map((gov) => (
+                <Magnetic key={gov.name} strength={0.12} max={8}>
+                  <div className="logo-tile flex h-16 items-center justify-center px-4">
+                    <img
+                      src={gov.logo}
+                      alt={`${gov.name} logo`}
+                      loading="lazy"
+                      className="logo-mono max-h-16 w-auto max-w-[220px] object-contain transition-transform duration-500 hover:scale-[1.04]"
+                    />
+                  </div>
+                </Magnetic>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 py-28 text-center lg:px-10 lg:py-36">
           <Reveal>
             <h2 className="mx-auto max-w-3xl text-4xl leading-[1.05] font-semibold sm:text-5xl">

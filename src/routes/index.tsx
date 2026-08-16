@@ -90,7 +90,7 @@ function Home() {
         <div className="veil absolute inset-0" />
         <motion.div
           style={reduce ? {} : { opacity: contentOpacity }}
-          className="dark relative mx-auto w-full max-w-[1400px] px-6 pt-32 pb-24 text-foreground lg:px-10"
+          className="relative mx-auto w-full max-w-[1400px] px-6 pt-32 pb-24 lg:px-10"
         >
           <motion.p
             className="eyebrow"
@@ -292,7 +292,7 @@ function Home() {
           className="absolute inset-0 h-full w-full object-cover opacity-60"
         />
         <div className="veil absolute inset-0" />
-        <div className="dark relative mx-auto max-w-[1400px] px-6 py-32 text-foreground lg:px-10 lg:py-44">
+        <div className="relative mx-auto max-w-[1400px] px-6 py-32 lg:px-10 lg:py-44">
           <Reveal>
             <SectionHeading
               eyebrow="The ecosystem"

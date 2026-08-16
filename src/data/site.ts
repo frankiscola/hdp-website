@@ -119,6 +119,23 @@ export const partners: Partner[] = [
   { name: "Vattenfall", category: "Industry", tier: "Associate", logo: logos.vattenfall },
 ];
 
+export type SupportingGovernment = {
+  name: string;
+  logo: string;
+};
+
+export const supportingGovernments: SupportingGovernment[] = [
+  {
+    name: "Ministerie van Infrastructuur en Waterstaat",
+    logo: logos.ministerieInfrastructuurWaterstaat,
+  },
+  { name: "Provincie Groningen", logo: logos.provincieGroningen },
+  {
+    name: "Niedersächsisches Ministerium für Wissenschaft und Kultur",
+    logo: logos.niedersachsischesMinisterium,
+  },
+];
+
 
 
 

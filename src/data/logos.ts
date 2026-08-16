@@ -13,9 +13,12 @@ import hochschuleEmdenLeer from "../assets/logos/hochschule-emden-leer.png";
 import ihc from "../assets/logos/ihc.png";
 import intis from "../assets/logos/intis.png";
 import mercon from "../assets/logos/mercon.png";
+import ministerieInfrastructuurWaterstaat from "../assets/logos/ministerie-infrastructuur-waterstaat.png";
 import nevomo from "../assets/logos/nevomo.png";
+import niedersachsischesMinisterium from "../assets/logos/niedersachsisches-ministerium.png";
 import ns from "../assets/logos/ns.png";
 import posco from "../assets/logos/posco.png";
+import provincieGroningen from "../assets/logos/provincie-groningen.png";
 import schweizer from "../assets/logos/schweizer-design-consulting.png";
 import tataSteel from "../assets/logos/tata-steel.png";
 import tumHyperloop from "../assets/logos/tum-hyperloop.png";
@@ -39,9 +42,12 @@ export const logos = {
   ihc: ihc,
   intis: intis,
   mercon: mercon,
+  ministerieInfrastructuurWaterstaat: ministerieInfrastructuurWaterstaat,
   nevomo: nevomo,
+  niedersachsischesMinisterium: niedersachsischesMinisterium,
   ns: ns,
   posco: posco,
+  provincieGroningen: provincieGroningen,
   schweizer: schweizer,
   tataSteel: tataSteel,
   tumHyperloop: tumHyperloop,
