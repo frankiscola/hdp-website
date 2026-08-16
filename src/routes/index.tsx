@@ -49,14 +49,14 @@ function PartnerLogoTile({ partner, size = "md" }: { partner: Partner; size?: "l
             loading="lazy"
             className={cn(
               "logo-mono w-auto object-contain transition-transform duration-500 group-hover:scale-[1.05]",
-              isLg ? "max-h-14 max-w-[9rem]" : "max-h-10 max-w-[6.5rem]"
+              isLg ? "max-h-14 max-w-[9rem]" : "max-h-10 max-w-[6.5rem]",
             )}
           />
         </div>
         <p
           className={cn(
             "text-center font-medium leading-tight text-foreground/90",
-            isLg ? "text-sm" : "text-xs"
+            isLg ? "text-sm" : "text-xs",
           )}
         >
           {partner.name}
@@ -88,9 +88,14 @@ function Home() {
         />
         <TunnelCanvas className="pointer-events-none absolute inset-0 h-full w-full opacity-70 mix-blend-screen" />
         <div className="veil absolute inset-0" />
+        {/* This band always sits on a permanently-dark photo (see the veil
+            comment in styles.css: lightening it in light theme would wash
+            out the image), so its text is forced to the dark-theme palette
+            for reliable contrast regardless of the site theme — same
+            pattern PageHero.tsx uses on every other route. */}
         <motion.div
           style={reduce ? {} : { opacity: contentOpacity }}
-          className="relative mx-auto w-full max-w-[1400px] px-6 pt-32 pb-24 lg:px-10"
+          className="dark relative mx-auto w-full max-w-[1400px] px-6 pt-32 pb-24 lg:px-10"
         >
           <motion.p
             className="eyebrow"
@@ -216,11 +221,12 @@ function Home() {
                   <div className="h-full rounded-3xl border border-border bg-background/60 p-8 transition-all duration-500 hover:border-primary/50">
                     <span className="font-display text-sm text-primary-glow">0{i + 1}</span>
                     <h3 className="mt-6 text-xl font-semibold">{card.title}</h3>
-                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{card.text}</p>
+                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                      {card.text}
+                    </p>
                   </div>
                 </Magnetic>
               </Reveal>
-
             ))}
           </div>
           <Reveal delay={0.2}>
@@ -292,7 +298,10 @@ function Home() {
           className="absolute inset-0 h-full w-full object-cover opacity-60"
         />
         <div className="veil absolute inset-0" />
-        <div className="relative mx-auto max-w-[1400px] px-6 py-32 lg:px-10 lg:py-44">
+        {/* Same rationale as the hero above: permanently-dark photo backdrop,
+            so this content is forced to the dark-theme palette regardless of
+            the site theme. */}
+        <div className="dark relative mx-auto max-w-[1400px] px-6 py-32 lg:px-10 lg:py-44">
           <Reveal>
             <SectionHeading
               eyebrow="The ecosystem"
@@ -305,7 +314,9 @@ function Home() {
             <div className="mt-20">
               <div className="mb-6 flex items-center justify-center gap-3">
                 <span className="h-px w-10 bg-primary/60" />
-                <span className="text-xs tracking-[0.2em] text-primary-glow uppercase">Core Members</span>
+                <span className="text-xs tracking-[0.2em] text-primary-glow uppercase">
+                  Core Members
+                </span>
                 <span className="h-px w-10 bg-primary/60" />
               </div>
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:gap-6">
@@ -322,7 +333,9 @@ function Home() {
             <div className="mt-20">
               <div className="mb-6 flex items-center justify-center gap-3">
                 <span className="h-px w-10 bg-border" />
-                <span className="text-xs tracking-[0.2em] text-muted-foreground uppercase">Associate Members</span>
+                <span className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
+                  Associate Members
+                </span>
                 <span className="h-px w-10 bg-border" />
               </div>
               <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 lg:gap-4">
@@ -368,7 +381,6 @@ function Home() {
           </Reveal>
         </div>
       </section>
-
 
       {/* News */}
       <section>

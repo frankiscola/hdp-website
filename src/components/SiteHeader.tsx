@@ -54,81 +54,77 @@ export function SiteHeader() {
             width={1500}
             height={512}
           />
-
-
-
         </Link>
 
-
-        <nav className="hidden items-center gap-1 lg:flex">
-          <div
-            className={cn(
-              "flex items-center gap-1 rounded-full px-2 py-1.5 transition-all duration-500",
-              condensed ? "surface-glass" : "bg-transparent",
-            )}
-          >
-            {navItems.map((item) =>
-              item.children ? (
-                <div key={item.label} className="group/nav relative">
-                  <button
-                    type="button"
-                    className={cn(
-                      "flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
-                      item.children.some((c) => c.to === pathname) &&
-                        "bg-secondary/70 text-foreground",
-                    )}
-                  >
-                    {item.label}
-                    <ChevronDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover/nav:rotate-180" />
-                  </button>
-                  <div className="invisible absolute top-full left-0 pt-2 opacity-0 transition-all duration-200 group-hover/nav:visible group-hover/nav:opacity-100">
-                    <div className="surface-glass min-w-[220px] rounded-2xl border border-border p-2 shadow-xl">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.to + (child.hash ?? "")}
-                          to={child.to}
-                          {...(child.hash ? { hash: child.hash } : {})}
-                          className="block rounded-xl px-4 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary/70 hover:text-foreground"
-                          activeProps={{ className: "text-foreground bg-secondary/70" }}
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
+        <div className="hidden items-center gap-3 lg:flex">
+          <nav className="flex items-center gap-1">
+            <div
+              className={cn(
+                "flex items-center gap-1 rounded-full px-2 py-1.5 transition-all duration-500",
+                condensed ? "surface-glass" : "bg-transparent",
+              )}
+            >
+              {navItems.map((item) =>
+                item.children ? (
+                  <div key={item.label} className="group/nav relative">
+                    <button
+                      type="button"
+                      className={cn(
+                        "flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
+                        item.children.some((c) => c.to === pathname) &&
+                          "bg-secondary/70 text-foreground",
+                      )}
+                    >
+                      {item.label}
+                      <ChevronDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover/nav:rotate-180" />
+                    </button>
+                    <div className="invisible absolute top-full left-0 pt-2 opacity-0 transition-all duration-200 group-hover/nav:visible group-hover/nav:opacity-100">
+                      <div className="surface-glass min-w-[220px] rounded-2xl border border-border p-2 shadow-xl">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.to + (child.hash ?? "")}
+                            to={child.to}
+                            {...(child.hash ? { hash: child.hash } : {})}
+                            className="block rounded-xl px-4 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary/70 hover:text-foreground"
+                            activeProps={{ className: "text-foreground bg-secondary/70" }}
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ) : (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  className="rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                  activeProps={{ className: "text-foreground bg-secondary/70" }}
-                >
-                  {item.label}
-                </Link>
-              ),
-            )}
-          </div>
-        </nav>
+                ) : (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    className="rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                    activeProps={{ className: "text-foreground bg-secondary/70" }}
+                  >
+                    {item.label}
+                  </Link>
+                ),
+              )}
+            </div>
+          </nav>
 
-        <div className="flex items-center gap-2">
           <ThemeToggle
             className={cn(
-              "hidden h-10 w-10 items-center justify-center rounded-full text-muted-foreground transition-colors duration-300 hover:text-foreground lg:flex",
+              "flex h-10 w-10 items-center justify-center rounded-full text-muted-foreground transition-colors duration-300 hover:text-foreground",
               condensed ? "surface-glass" : "hover:bg-foreground/10",
             )}
           />
-
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            className="surface-glass flex h-10 w-10 items-center justify-center rounded-full lg:hidden"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
         </div>
+
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          className="surface-glass flex h-10 w-10 items-center justify-center rounded-full lg:hidden"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </div>
 
       <AnimatePresence>
