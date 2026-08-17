@@ -156,6 +156,17 @@
     oklch(0.13 0.031 279 / 0.75) 55%,
     oklch(0.13 0.031 279) 100%
   );
+  /* Light-theme counterpart of the veil above, for the light-mode hero
+     photos: a soft wash of the light background color, strongest where the
+     heading/paragraph/buttons sit (left side, bottom-heavy) so text stays
+     crisp no matter which part of the photo it lands on. */
+  --gradient-veil-light: linear-gradient(
+    115deg,
+    oklch(0.985 0.004 280 / 0.94) 0%,
+    oklch(0.985 0.004 280 / 0.55) 32%,
+    oklch(0.985 0.004 280 / 0.12) 55%,
+    oklch(0.985 0.004 280 / 0) 72%
+  );
   --shadow-glow: 0 24px 80px -24px color-mix(in oklch, var(--primary) 55%, transparent);
   --shadow-elevated: 0 30px 90px -40px oklch(0.19 0.045 280 / 0.18);
 }
@@ -311,6 +322,10 @@
 
 @utility veil {
   background-image: var(--gradient-veil);
+}
+
+@utility veil-light {
+  background-image: var(--gradient-veil-light);
 }
 
 @utility logo-tile {

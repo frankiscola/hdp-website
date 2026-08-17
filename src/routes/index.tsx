@@ -2,9 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import heroVehicle from "../assets/hero-vehicle.jpg";
+import heroVehicleLight from "../assets/hero-vehicle-light.jpg";
 import tubeLandscape from "../assets/tube-landscape.jpg";
 import testCenter from "../assets/test-center.jpg";
 import ecosystemNetwork from "../assets/ecosystem-network.jpg";
+import ecosystemNetworkLight from "../assets/ecosystem-network-light.jpg";
 import { Magnetic } from "../components/Magnetic";
 import { Reveal } from "../components/Reveal";
 import { StatCounter } from "../components/StatCounter";
@@ -79,14 +81,13 @@ function Home() {
       {/* Hero */}
       <section ref={heroRef} className="relative flex min-h-screen items-center overflow-hidden">
         {/*
-         * The tunnel photo is a night-tube CGI render — glowing light strips
-         * on near-black. Brightening it with a filter just turns it into a
-         * washed-out grey smear, it doesn't read as "light mode". So instead
-         * of forcing one image to serve both themes, each theme gets its own
-         * treatment: the photo + dark veil for dark mode, a clean on-brand
-         * gradient for light mode. Text below uses the normal theme tokens
-         * (no forced palette needed) because the backdrop itself now matches
-         * the active theme.
+         * Each theme gets its own photo rather than one image filtered two
+         * ways — a night-tube render doesn't "lighten" into a convincing day
+         * shot, it just goes grey. hero-vehicle-light.jpg is a separate
+         * bright render made for this exact spot, not a filtered version of
+         * the dark one. Text below uses the normal theme tokens (no forced
+         * palette needed) because the backdrop itself now matches the
+         * active theme.
          */}
         <div className="absolute inset-0 hidden dark:block">
           <motion.img
@@ -100,18 +101,17 @@ function Home() {
           <TunnelCanvas className="pointer-events-none absolute inset-0 h-full w-full opacity-70 mix-blend-screen" />
           <div className="veil absolute inset-0" />
         </div>
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 block dark:hidden"
-          style={{
-            background:
-              "radial-gradient(1200px 640px at 15% -12%, color-mix(in oklch, var(--color-primary) 20%, transparent), transparent 62%)," +
-              "radial-gradient(900px 720px at 92% 6%, color-mix(in oklch, var(--color-primary-glow) 16%, transparent), transparent 60%)," +
-              "radial-gradient(1000px 600px at 50% 118%, color-mix(in oklch, var(--color-primary) 10%, transparent), transparent 65%)," +
-              "var(--color-background)",
-          }}
-        >
-          <TunnelCanvas className="pointer-events-none absolute inset-0 h-full w-full opacity-40 mix-blend-multiply" />
+        <div className="absolute inset-0 block dark:hidden">
+          <motion.img
+            src={heroVehicleLight}
+            alt="Hyperloop vehicle inside a bright, daylit vacuum tube"
+            width={1920}
+            height={1088}
+            style={reduce ? {} : { y: imageY, scale: imageScale }}
+            className="h-full w-full object-cover"
+          />
+          <TunnelCanvas className="pointer-events-none absolute inset-0 h-full w-full opacity-35 mix-blend-multiply" />
+          <div className="veil-light absolute inset-0" />
         </div>
         <motion.div
           style={reduce ? {} : { opacity: contentOpacity }}
@@ -318,16 +318,15 @@ function Home() {
           className="absolute inset-0 hidden h-full w-full object-cover opacity-60 dark:block"
         />
         <div className="veil absolute inset-0 hidden dark:block" />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 block dark:hidden"
-          style={{
-            background:
-              "radial-gradient(1000px 560px at 85% -10%, color-mix(in oklch, var(--color-primary) 16%, transparent), transparent 60%)," +
-              "radial-gradient(900px 640px at 8% 110%, color-mix(in oklch, var(--color-primary-glow) 14%, transparent), transparent 62%)," +
-              "var(--color-background)",
-          }}
+        <img
+          src={ecosystemNetworkLight}
+          alt="Abstract map of Europe with glowing connected nodes, light rendition"
+          loading="lazy"
+          width={1600}
+          height={1008}
+          className="absolute inset-0 block h-full w-full object-cover dark:hidden"
         />
+        <div className="veil-light absolute inset-0 block dark:hidden" />
         <div className="relative mx-auto max-w-[1400px] px-6 py-32 lg:px-10 lg:py-44">
           <Reveal>
             <SectionHeading
