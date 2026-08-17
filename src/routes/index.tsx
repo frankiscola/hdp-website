@@ -78,24 +78,44 @@ function Home() {
     <>
       {/* Hero */}
       <section ref={heroRef} className="relative flex min-h-screen items-center overflow-hidden">
-        <motion.img
-          src={heroVehicle}
-          alt="Hyperloop vehicle inside a vacuum tube lit by indigo light strips"
-          width={1920}
-          height={1088}
-          style={reduce ? {} : { y: imageY, scale: imageScale }}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <TunnelCanvas className="pointer-events-none absolute inset-0 h-full w-full opacity-70 mix-blend-screen" />
-        <div className="veil absolute inset-0" />
-        {/* This band always sits on a permanently-dark photo (see the veil
-            comment in styles.css: lightening it in light theme would wash
-            out the image), so its text is forced to the dark-theme palette
-            for reliable contrast regardless of the site theme — same
-            pattern PageHero.tsx uses on every other route. */}
+        {/*
+         * The tunnel photo is a night-tube CGI render — glowing light strips
+         * on near-black. Brightening it with a filter just turns it into a
+         * washed-out grey smear, it doesn't read as "light mode". So instead
+         * of forcing one image to serve both themes, each theme gets its own
+         * treatment: the photo + dark veil for dark mode, a clean on-brand
+         * gradient for light mode. Text below uses the normal theme tokens
+         * (no forced palette needed) because the backdrop itself now matches
+         * the active theme.
+         */}
+        <div className="absolute inset-0 hidden dark:block">
+          <motion.img
+            src={heroVehicle}
+            alt="Hyperloop vehicle inside a vacuum tube lit by indigo light strips"
+            width={1920}
+            height={1088}
+            style={reduce ? {} : { y: imageY, scale: imageScale }}
+            className="h-full w-full object-cover"
+          />
+          <TunnelCanvas className="pointer-events-none absolute inset-0 h-full w-full opacity-70 mix-blend-screen" />
+          <div className="veil absolute inset-0" />
+        </div>
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 block dark:hidden"
+          style={{
+            background:
+              "radial-gradient(1200px 640px at 15% -12%, color-mix(in oklch, var(--color-primary) 20%, transparent), transparent 62%)," +
+              "radial-gradient(900px 720px at 92% 6%, color-mix(in oklch, var(--color-primary-glow) 16%, transparent), transparent 60%)," +
+              "radial-gradient(1000px 600px at 50% 118%, color-mix(in oklch, var(--color-primary) 10%, transparent), transparent 65%)," +
+              "var(--color-background)",
+          }}
+        >
+          <TunnelCanvas className="pointer-events-none absolute inset-0 h-full w-full opacity-40 mix-blend-multiply" />
+        </div>
         <motion.div
           style={reduce ? {} : { opacity: contentOpacity }}
-          className="dark relative mx-auto w-full max-w-[1400px] px-6 pt-32 pb-24 lg:px-10"
+          className="relative mx-auto w-full max-w-[1400px] px-6 pt-32 pb-24 lg:px-10"
         >
           <motion.p
             className="eyebrow"
@@ -295,13 +315,20 @@ function Home() {
           loading="lazy"
           width={1600}
           height={1008}
-          className="absolute inset-0 h-full w-full object-cover opacity-60"
+          className="absolute inset-0 hidden h-full w-full object-cover opacity-60 dark:block"
         />
-        <div className="veil absolute inset-0" />
-        {/* Same rationale as the hero above: permanently-dark photo backdrop,
-            so this content is forced to the dark-theme palette regardless of
-            the site theme. */}
-        <div className="dark relative mx-auto max-w-[1400px] px-6 py-32 lg:px-10 lg:py-44">
+        <div className="veil absolute inset-0 hidden dark:block" />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 block dark:hidden"
+          style={{
+            background:
+              "radial-gradient(1000px 560px at 85% -10%, color-mix(in oklch, var(--color-primary) 16%, transparent), transparent 60%)," +
+              "radial-gradient(900px 640px at 8% 110%, color-mix(in oklch, var(--color-primary-glow) 14%, transparent), transparent 62%)," +
+              "var(--color-background)",
+          }}
+        />
+        <div className="relative mx-auto max-w-[1400px] px-6 py-32 lg:px-10 lg:py-44">
           <Reveal>
             <SectionHeading
               eyebrow="The ecosystem"
