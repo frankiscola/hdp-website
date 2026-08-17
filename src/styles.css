@@ -431,14 +431,23 @@
   pointer-events: none;
   background-color: var(--color-primary-glow);
   box-shadow: 0 0 18px color-mix(in oklch, var(--color-primary-glow) 80%, transparent);
-  transition:
-    width 0.18s ease,
-    height 0.18s ease;
+  /* The dot's position updates every animation frame via JS (see
+     CustomCursor.tsx), so its blurred box-shadow would otherwise have to be
+     re-rasterized on every single frame just because the element moved —
+     the classic "glow following the cursor" jank. will-change promotes it
+     to its own compositor layer up front: the shadow is painted once, and
+     from then on the browser just moves the whole layer, which is free. */
+  will-change: transform;
 }
 
 .cursor-dot.is-hover {
-  width: 14px;
-  height: 14px;
+  /* Position/scale come from CustomCursor.tsx's own transform string, baked
+     in alongside translate3d every frame — a CSS rule for those would just
+     be overwritten. This class only carries the one-off, infrequent glow
+     bump below, which is cheap to transition since it only fires on
+     hover enter/exit, not every frame. */
+  box-shadow: 0 0 24px color-mix(in oklch, var(--color-primary-glow) 95%, transparent);
+  transition: box-shadow 0.18s ease;
 }
 
 .cursor-ring {
@@ -451,15 +460,11 @@
   border-radius: 9999px;
   pointer-events: none;
   border: 1.5px solid color-mix(in oklch, var(--color-primary-glow) 50%, transparent);
-  transition:
-    width 0.25s ease,
-    height 0.25s ease,
-    border-color 0.25s ease;
+  transition: border-color 0.25s ease;
+  will-change: transform;
 }
 
 .cursor-ring.is-hover {
-  width: 58px;
-  height: 58px;
   border-color: color-mix(in oklch, var(--color-primary-glow) 25%, transparent);
 }
 

@@ -18,6 +18,8 @@ export function CustomCursor() {
     const target = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     const ring = { ...target };
     let hovering = false;
+    let dotScale = 1;
+    let ringScale = 1;
     let raf = 0;
 
     const onMove = (e: MouseEvent) => {
@@ -35,11 +37,18 @@ export function CustomCursor() {
     const loop = () => {
       ring.x += (target.x - ring.x) * 0.16;
       ring.y += (target.y - ring.y) * 0.16;
+      // Baked into the same transform string as the position (see below)
+      // rather than left to a CSS `transition: width/height`, so the hover
+      // grow is a plain scale() — compositor-only, no layout/repaint either.
+      const dotTarget = hovering ? 1.75 : 1;
+      const ringTarget = hovering ? 1.611 : 1;
+      dotScale += (dotTarget - dotScale) * 0.22;
+      ringScale += (ringTarget - ringScale) * 0.22;
       if (dotRef.current) {
-        dotRef.current.style.transform = `translate3d(${target.x}px, ${target.y}px, 0) translate(-50%, -50%)`;
+        dotRef.current.style.transform = `translate3d(${target.x}px, ${target.y}px, 0) translate(-50%, -50%) scale(${dotScale})`;
       }
       if (ringRef.current) {
-        ringRef.current.style.transform = `translate3d(${ring.x}px, ${ring.y}px, 0) translate(-50%, -50%)`;
+        ringRef.current.style.transform = `translate3d(${ring.x}px, ${ring.y}px, 0) translate(-50%, -50%) scale(${ringScale})`;
       }
       raf = requestAnimationFrame(loop);
     };
