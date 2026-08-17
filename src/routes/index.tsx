@@ -386,7 +386,11 @@ function Home() {
               <div className="flex flex-wrap items-center justify-center gap-4">
                 {supportingGovernments.map((gov) => (
                   <Magnetic key={gov.name} strength={0.12} max={8}>
-                    <div className="flex h-16 items-center justify-center rounded-xl bg-foreground px-5 py-2.5 shadow-lg shadow-black/20">
+                    {/* These three government crests are dark navy/red artwork
+                        made for a white backing (see the source PNGs) — not
+                        light logos needing a dark chip — so the tile stays
+                        white regardless of the site theme. */}
+                    <div className="flex h-16 items-center justify-center rounded-xl border border-black/5 bg-white px-5 py-2.5 shadow-lg shadow-black/20">
                       <img
                         src={gov.logo}
                         alt={`${gov.name} logo`}
