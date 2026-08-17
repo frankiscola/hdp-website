@@ -26,6 +26,22 @@ export function TunnelCanvas({ className }: { className?: string }) {
     const pointer = { x: 0, y: 0 };
     const eased = { x: 0, y: 0 };
 
+    // The hero renders both a dark-theme and a light-theme copy of this
+    // canvas at once (CSS just toggles which is `display: none`), so the
+    // theme switch is instant with no flash. But that means two full
+    // particle simulations would otherwise run forever, one of them for a
+    // canvas nobody can see. `offsetParent === null` is a cheap way to
+    // detect "this canvas (or an ancestor) is display:none right now" —
+    // skip the simulation entirely while that's true. Combined with an
+    // IntersectionObserver for "scrolled out of view", the inactive/
+    // off-screen copy does effectively nothing instead of burning a full
+    // animation frame budget in the background.
+    let inViewport = true;
+    const io = new IntersectionObserver(([entry]) => {
+      inViewport = entry?.isIntersecting ?? true;
+    });
+    io.observe(canvas);
+
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
       w = rect.width;
@@ -47,6 +63,13 @@ export function TunnelCanvas({ className }: { className?: string }) {
     };
 
     const draw = () => {
+      if (canvas.offsetParent === null || !inViewport) {
+        // Hidden (wrong theme) or scrolled away — stay idle, just keep
+        // polling cheaply so it resumes instantly when shown again.
+        raf = requestAnimationFrame(draw);
+        return;
+      }
+
       eased.x += (pointer.x - eased.x) * 0.04;
       eased.y += (pointer.y - eased.y) * 0.04;
 
@@ -96,6 +119,7 @@ export function TunnelCanvas({ className }: { className?: string }) {
 
     return () => {
       cancelAnimationFrame(raf);
+      io.disconnect();
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMove);
     };

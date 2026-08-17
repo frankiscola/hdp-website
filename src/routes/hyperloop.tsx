@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import heroVehicle from "../assets/hero-vehicle.jpg";
-import hyperloopTubeDiagram from "../assets/hyperloop-tube-diagram.png";
-import hyperloopVideoThumbnail from "../assets/hyperloop-video-thumbnail.png";
+import hyperloopTubeDiagram from "../assets/hyperloop-tube-diagram.jpg";
+import hyperloopVideoThumbnail from "../assets/hyperloop-video-thumbnail.jpg";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";

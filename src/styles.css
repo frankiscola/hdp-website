@@ -269,7 +269,11 @@
    * Theme-switch crossfade. Only color-ish properties, so layout and hover
    * interactions stay instant — this is purely for the light/dark toggle to
    * feel like a fade rather than a hard cut. Every surface reads these same
-   * custom properties, so one rule covers the whole page.
+   * custom properties, so one rule covers the whole page. (fill/stroke are
+   * deliberately not listed: every icon in this codebase uses `currentColor`,
+   * which already rides along with the `color` transition below — adding
+   * them again per-element would just be extra bookkeeping for the browser
+   * with no visible difference.)
    */
   html,
   body,
@@ -277,9 +281,7 @@
     transition:
       background-color 0.35s ease,
       border-color 0.35s ease,
-      color 0.35s ease,
-      fill 0.35s ease,
-      stroke 0.35s ease;
+      color 0.35s ease;
   }
 
   @media (prefers-reduced-motion: reduce) {
