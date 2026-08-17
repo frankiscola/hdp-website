@@ -340,7 +340,7 @@ function Home() {
             <div className="mt-20">
               <div className="mb-6 flex items-center justify-center gap-3">
                 <span className="h-px w-10 bg-primary/60" />
-                <span className="text-xs tracking-[0.2em] text-primary-glow uppercase">
+                <span className="surface-glass rounded-full px-4 py-1.5 text-xs tracking-[0.2em] text-primary-glow uppercase">
                   Core Members
                 </span>
                 <span className="h-px w-10 bg-primary/60" />
@@ -359,7 +359,7 @@ function Home() {
             <div className="mt-20">
               <div className="mb-6 flex items-center justify-center gap-3">
                 <span className="h-px w-10 bg-border" />
-                <span className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
+                <span className="surface-glass rounded-full px-4 py-1.5 text-xs tracking-[0.2em] text-foreground uppercase">
                   Associate Members
                 </span>
                 <span className="h-px w-10 bg-border" />
@@ -378,7 +378,7 @@ function Home() {
             <div className="mt-20">
               <div className="mb-6 flex items-center justify-center gap-3">
                 <span className="h-px w-10 bg-border" />
-                <span className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
+                <span className="surface-glass rounded-full px-4 py-1.5 text-xs tracking-[0.2em] text-foreground uppercase">
                   Supporting Governments
                 </span>
                 <span className="h-px w-10 bg-border" />
