@@ -1,14 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  BadgeCheck,
-  Cpu,
-  Globe2,
-  Layers,
-  ShieldCheck,
-  TrendingUp,
-  Users,
-} from "lucide-react";
+import { BadgeCheck, Cpu, Globe2, Layers, ShieldCheck, TrendingUp, Users } from "lucide-react";
 import tubeLandscape from "../assets/tube-landscape.jpg";
+import tubeLandscapeLight from "../assets/tube-landscape-light.jpg";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
@@ -114,10 +107,19 @@ const researchAspects = [
 ];
 
 const roles = [
-  { role: "EU research collaboration", detail: "Deepening joint research across institutions and programmes." },
-  { role: "Communication", detail: "Making hyperloop progress legible to industry, policy and the public." },
+  {
+    role: "EU research collaboration",
+    detail: "Deepening joint research across institutions and programmes.",
+  },
+  {
+    role: "Communication",
+    detail: "Making hyperloop progress legible to industry, policy and the public.",
+  },
   { role: "Funding", detail: "Securing new instruments to sustain long-horizon development." },
-  { role: "Operations & finance", detail: "Strengthening the foundation that carries the programme." },
+  {
+    role: "Operations & finance",
+    detail: "Strengthening the foundation that carries the programme.",
+  },
 ];
 
 function AboutHdp() {
@@ -128,7 +130,8 @@ function AboutHdp() {
         title="Europe's coordinating platform for hyperloop."
         intro="The Hyperloop Development Program Foundation brings public and private parties into one structure, so that a technology of this scale can actually be built."
         image={tubeLandscape}
-        imageAlt="Hyperloop tube crossing open landscape at dusk"
+        imageLight={tubeLandscapeLight}
+        imageAlt="Hyperloop tube crossing open landscape"
         priority
       />
 
@@ -181,7 +184,9 @@ function AboutHdp() {
                       {group.type}
                     </span>
                     <h3 className="mt-4 text-xl font-semibold">{group.name}</h3>
-                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{group.text}</p>
+                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                      {group.text}
+                    </p>
                   </div>
                 </Magnetic>
               </Reveal>
@@ -209,7 +214,9 @@ function AboutHdp() {
                     <div className="h-full rounded-3xl border border-border bg-background/60 p-8 transition-all duration-500 hover:border-primary/50">
                       <Icon className="h-6 w-6 text-primary-glow" />
                       <h3 className="mt-5 text-lg font-semibold">{aspect.title}</h3>
-                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{aspect.text}</p>
+                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                        {aspect.text}
+                      </p>
                     </div>
                   </Magnetic>
                 </Reveal>

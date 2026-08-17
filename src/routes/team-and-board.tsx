@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Landmark, ScrollText, Handshake, Building2 } from "lucide-react";
 import tubeLandscape from "../assets/tube-landscape.jpg";
+import tubeLandscapeLight from "../assets/tube-landscape-light.jpg";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
@@ -60,7 +61,8 @@ function TeamAndBoard() {
         title="Governance for a technology built to last."
         intro="The Hyperloop Development Program is governed through the Stichting Hyperloop Development Program, acting as quartermaster and lead partner of the consortium."
         image={tubeLandscape}
-        imageAlt="Hyperloop tube crossing open landscape at dusk"
+        imageLight={tubeLandscapeLight}
+        imageAlt="Hyperloop tube crossing open landscape"
         priority
       />
 

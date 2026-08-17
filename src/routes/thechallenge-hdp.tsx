@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Coins, Gauge, Leaf, MapPinned, Users } from "lucide-react";
 import ecosystemNetwork from "../assets/ecosystem-network.jpg";
+import ecosystemNetworkLight from "../assets/ecosystem-network-light.jpg";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
@@ -84,6 +85,7 @@ function TheChallenge() {
         title="A capacity problem, and a climate deadline."
         intro="European transport demand keeps growing while the room to build more roads and rail keeps shrinking. Hyperloop exists to close that gap without the environmental cost of the alternatives."
         image={ecosystemNetwork}
+        imageLight={ecosystemNetworkLight}
         imageAlt="Abstract map of Europe with glowing connected transport corridors"
         priority
       />

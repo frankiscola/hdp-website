@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Download, Linkedin, Mail } from "lucide-react";
 import tubeLandscape from "../assets/tube-landscape.jpg";
+import tubeLandscapeLight from "../assets/tube-landscape-light.jpg";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
@@ -43,6 +44,7 @@ function OpenPositions() {
         title="Open Positions."
         intro="The Hyperloop Development Program Foundation (HDP) is expanding its team. As Europe's coordinating platform for hyperloop development, HDP seeks to fill open positions to strengthen its foundation and accelerate collaboration, innovation and visibility across the continent."
         image={tubeLandscape}
+        imageLight={tubeLandscapeLight}
         imageAlt="Hyperloop tube stretching across a landscape"
         priority
       />
@@ -51,9 +53,8 @@ function OpenPositions() {
         <div className="mx-auto max-w-[1000px] px-6 py-28 lg:px-10 lg:py-36">
           <Reveal>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              The team carries out HDP's mission, focusing on deepening EU research
-              collaboration, enhancing external communication, securing new funding, and
-              operations & finance.
+              The team carries out HDP's mission, focusing on deepening EU research collaboration,
+              enhancing external communication, securing new funding, and operations & finance.
             </p>
           </Reveal>
 

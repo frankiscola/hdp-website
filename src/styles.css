@@ -167,6 +167,16 @@
     oklch(0.985 0.004 280 / 0.12) 55%,
     oklch(0.985 0.004 280 / 0) 72%
   );
+  /* Same light wash, but "to bottom" — for PageHero, where the text sits
+     bottom-left instead of top-left like the homepage hero. Mirrors the
+     dark --gradient-veil's own direction/stops so both themes darken/lighten
+     the same region of the photo. */
+  --gradient-veil-light-bottom: linear-gradient(
+    to bottom,
+    oklch(0.985 0.004 280 / 0.1),
+    oklch(0.985 0.004 280 / 0.65) 55%,
+    oklch(0.985 0.004 280 / 0.96) 100%
+  );
   --shadow-glow: 0 24px 80px -24px color-mix(in oklch, var(--primary) 55%, transparent);
   --shadow-elevated: 0 30px 90px -40px oklch(0.19 0.045 280 / 0.18);
 }
@@ -328,6 +338,10 @@
 
 @utility veil-light {
   background-image: var(--gradient-veil-light);
+}
+
+@utility veil-light-bottom {
+  background-image: var(--gradient-veil-light-bottom);
 }
 
 @utility logo-tile {

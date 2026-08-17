@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, FileDown } from "lucide-react";
 import tubeLandscape from "../assets/tube-landscape.jpg";
+import tubeLandscapeLight from "../assets/tube-landscape-light.jpg";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
@@ -70,6 +71,7 @@ function ResultsAndDownloads() {
         title="Results and Downloads."
         intro="Reports, position papers and feasibility studies published by the HDP and its partners, from the programme's first studies in 2020 to today."
         image={tubeLandscape}
+        imageLight={tubeLandscapeLight}
         imageAlt="Hyperloop tube stretching across a landscape"
         priority
       />

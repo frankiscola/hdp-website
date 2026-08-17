@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
 import ecosystemNetwork from "../assets/ecosystem-network.jpg";
+import ecosystemNetworkLight from "../assets/ecosystem-network-light.jpg";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
@@ -87,6 +88,7 @@ function Partners() {
         title="An inclusive ecosystem, built on collaboration."
         intro="The HDP is an inclusive ecosystem where organizations collaborate to accelerate the development of hyperloop."
         image={ecosystemNetwork}
+        imageLight={ecosystemNetworkLight}
         imageAlt="Illuminated network of connected nodes across Europe"
         priority
       />

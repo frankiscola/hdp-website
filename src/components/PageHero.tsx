@@ -6,11 +6,23 @@ type PageHeroProps = {
   title: ReactNode;
   intro?: string;
   image: string;
+  /** Light-theme counterpart of `image`. Optional so pages without one yet
+   *  keep working — they fall back to the dark photo forced into the
+   *  dark-theme palette (the old behavior), rather than breaking. */
+  imageLight?: string;
   imageAlt: string;
   priority?: boolean;
 };
 
-export function PageHero({ eyebrow, title, intro, image, imageAlt, priority }: PageHeroProps) {
+export function PageHero({
+  eyebrow,
+  title,
+  intro,
+  image,
+  imageLight,
+  imageAlt,
+  priority,
+}: PageHeroProps) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
@@ -19,15 +31,39 @@ export function PageHero({ eyebrow, title, intro, image, imageAlt, priority }: P
 
   return (
     <section ref={ref} className="relative flex min-h-[76vh] items-end overflow-hidden">
-      <motion.img
-        src={image}
-        alt={imageAlt}
-        loading={priority ? "eager" : "lazy"}
-        style={reduce ? {} : { y, scale }}
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      <div className="veil absolute inset-0" />
-      <div className="dark relative mx-auto w-full max-w-[1400px] px-6 pb-20 text-foreground lg:px-10 lg:pb-28">
+      <div className={imageLight ? "absolute inset-0 hidden dark:block" : "contents"}>
+        <motion.img
+          src={image}
+          alt={imageAlt}
+          loading={priority ? "eager" : "lazy"}
+          style={reduce ? {} : { y, scale }}
+          className={
+            imageLight
+              ? "h-full w-full object-cover"
+              : "absolute inset-0 h-full w-full object-cover"
+          }
+        />
+        <div className="veil absolute inset-0" />
+      </div>
+      {imageLight ? (
+        <div className="absolute inset-0 block dark:hidden">
+          <motion.img
+            src={imageLight}
+            alt={imageAlt}
+            loading={priority ? "eager" : "lazy"}
+            style={reduce ? {} : { y, scale }}
+            className="h-full w-full object-cover"
+          />
+          <div className="veil-light-bottom absolute inset-0" />
+        </div>
+      ) : null}
+      <div
+        className={
+          imageLight
+            ? "relative mx-auto w-full max-w-[1400px] px-6 pb-20 lg:px-10 lg:pb-28"
+            : "dark relative mx-auto w-full max-w-[1400px] px-6 pb-20 text-foreground lg:px-10 lg:pb-28"
+        }
+      >
         <motion.p
           className="eyebrow"
           initial={{ opacity: 0, y: 16 }}

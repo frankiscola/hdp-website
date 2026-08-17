@@ -3,6 +3,7 @@ import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { SectionHeading } from "../components/ui-kit";
 import tubeLandscape from "../assets/tube-landscape.jpg";
+import tubeLandscapeLight from "../assets/tube-landscape-light.jpg";
 import {
   Accordion,
   AccordionContent,
@@ -229,6 +230,7 @@ function Faq() {
         title="Frequently Asked Questions."
         intro="Everything you want to know about the Hyperloop Development Program and hyperloop technology – from safety and travel experience to costs and environmental impact."
         image={tubeLandscape}
+        imageLight={tubeLandscapeLight}
         imageAlt="Hyperloop tube stretching across a landscape"
         priority
       />
