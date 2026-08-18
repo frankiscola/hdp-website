@@ -43,13 +43,14 @@ export function SiteHeader() {
             alt="Hyperloop Development Program"
             className={cn(
               "h-10 w-auto transition-[filter,transform] duration-500 group-hover:scale-[1.02] md:h-12",
-              // Not condensed: header floats transparently over the permanently-dark
-              // hero photo, so the logo must stay white no matter the site theme.
-              // Condensed: header sits on the theme-aware background, so the logo
-              // switches to its native navy/indigo mark in light mode and stays
-              // white in dark mode for reliable contrast either way.
-              !condensed && "brightness-0 invert",
-              condensed && "dark:brightness-0 dark:invert",
+              // Every hero now has a dark-theme photo AND a light-theme photo
+              // (see PageHero.tsx / the homepage hero), so the logo can just
+              // follow the site theme like everything else: its native navy
+              // mark in light mode, inverted to white in dark mode. No more
+              // "always white while floating over the hero" special case —
+              // that was only ever needed back when the hero had no light
+              // photo to sit on.
+              "dark:brightness-0 dark:invert",
             )}
             width={1500}
             height={512}
