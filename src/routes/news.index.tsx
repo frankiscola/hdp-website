@@ -1,10 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { NewsCard } from "../components/NewsCard";
-import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
+import { SectionHeading } from "../components/ui-kit";
 import { news } from "../data/site";
-import testCenter from "../assets/test-center.jpg";
-import testCenterLight from "../assets/test-center-light.jpg";
 
 export const Route = createFileRoute("/news/")({
   head: () => ({
@@ -32,15 +30,17 @@ function News() {
 
   return (
     <>
-      <PageHero
-        eyebrow="Newsroom"
-        title="Latest from the programme."
-        intro="Milestones, infrastructure updates and policy work from across the European hyperloop ecosystem."
-        image={testCenter}
-        imageLight={testCenterLight}
-        imageAlt="Engineers inspecting hyperloop tube segments inside a test facility"
-        priority
-      />
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-[1400px] px-6 pt-40 pb-20 lg:px-10 lg:pt-52">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Newsroom"
+              title="Latest from the programme."
+              intro="Milestones, infrastructure updates and policy work from across the European hyperloop ecosystem."
+            />
+          </Reveal>
+        </div>
+      </section>
 
       <section>
         <div className="mx-auto max-w-[1400px] px-6 py-20 lg:px-10 lg:py-28">
@@ -49,7 +49,11 @@ function News() {
               <div className="grid overflow-hidden rounded-[2rem] border border-border bg-surface/50 lg:grid-cols-2">
                 {lead.image ? (
                   <div className="aspect-[16/10] w-full overflow-hidden bg-surface lg:aspect-auto">
-                    <img src={lead.image} alt={lead.title} className="h-full w-full object-cover" />
+                    <img
+                      src={lead.image}
+                      alt={lead.title}
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                 ) : null}
                 <div className="p-8 lg:p-14">
