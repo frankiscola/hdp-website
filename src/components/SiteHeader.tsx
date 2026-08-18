@@ -58,12 +58,7 @@ export function SiteHeader() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <nav className="flex items-center gap-1">
-            <div
-              className={cn(
-                "flex items-center gap-1 rounded-full px-2 py-1.5 transition-all duration-500",
-                condensed ? "surface-glass" : "bg-transparent",
-              )}
-            >
+            <div className="surface-glass flex items-center gap-1 rounded-full px-2 py-1.5 transition-all duration-500">
               {navItems.map((item) =>
                 item.children ? (
                   <div key={item.label} className="group/nav relative">
@@ -108,12 +103,7 @@ export function SiteHeader() {
             </div>
           </nav>
 
-          <ThemeToggle
-            className={cn(
-              "flex h-10 w-10 items-center justify-center rounded-full text-muted-foreground transition-colors duration-300 hover:text-foreground",
-              condensed ? "surface-glass" : "hover:bg-foreground/10",
-            )}
-          />
+          <ThemeToggle className="surface-glass flex h-10 w-10 items-center justify-center rounded-full text-muted-foreground transition-colors duration-300 hover:text-foreground" />
         </div>
 
         <button
