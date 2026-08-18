@@ -30,7 +30,10 @@ export function PageHero({
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
 
   return (
-    <section ref={ref} className="relative flex min-h-[76vh] items-end overflow-hidden">
+    <section
+      ref={ref}
+      className="relative flex min-h-[52vh] items-end overflow-hidden lg:min-h-[56vh]"
+    >
       <div className={imageLight ? "absolute inset-0 hidden dark:block" : "contents"}>
         <motion.img
           src={image}
@@ -60,8 +63,8 @@ export function PageHero({
       <div
         className={
           imageLight
-            ? "relative mx-auto w-full max-w-[1400px] px-6 pb-20 lg:px-10 lg:pb-28"
-            : "dark relative mx-auto w-full max-w-[1400px] px-6 pb-20 text-foreground lg:px-10 lg:pb-28"
+            ? "relative mx-auto w-full max-w-[1400px] px-6 pb-14 lg:px-10 lg:pb-20"
+            : "dark relative mx-auto w-full max-w-[1400px] px-6 pb-14 text-foreground lg:px-10 lg:pb-20"
         }
       >
         <motion.p
