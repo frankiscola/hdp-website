@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import testCenter from "../assets/test-center.jpg";
+import testCenterLight from "../assets/test-center-light.jpg";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
@@ -37,6 +38,7 @@ function TestingInfrastructure() {
         title="Where hyperloop is proven at full scale."
         intro="The Hyperloop Testing Infrastructure Cluster brings together leading European test facilities, coordinated by the Hyperloop Development Program."
         image={testCenter}
+        imageLight={testCenterLight}
         imageAlt="Large vacuum tube segments inside a European hyperloop test facility"
         priority
       />
@@ -55,38 +57,38 @@ function TestingInfrastructure() {
             {facilities.map((facility, i) => (
               <Reveal key={facility.name} delay={i * 0.1}>
                 <Magnetic strength={0.06} max={8}>
-                <article className="rounded-[2rem] border border-border bg-surface/50 p-8 transition-all duration-500 hover:border-primary/50 lg:p-12">
-                  <div className="flex flex-wrap items-start justify-between gap-6">
-                    <div>
-                      <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
-                        {facility.location}
-                      </p>
-                      <h3 className="mt-3 text-3xl font-semibold lg:text-4xl">{facility.name}</h3>
-                    </div>
-                    <a
-                      href={facility.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="group inline-flex items-center gap-2 text-sm font-semibold text-primary-glow transition-colors hover:text-foreground"
-                    >
-                      Visit site
-                      <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                    </a>
-                  </div>
-                  <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
-                    {facility.focus}
-                  </p>
-                  <ul className="mt-8 flex flex-wrap gap-3">
-                    {facility.capabilities.map((cap) => (
-                      <li
-                        key={cap}
-                        className="rounded-full border border-border bg-background/60 px-4 py-2 text-xs tracking-wide text-muted-foreground"
+                  <article className="rounded-[2rem] border border-border bg-surface/50 p-8 transition-all duration-500 hover:border-primary/50 lg:p-12">
+                    <div className="flex flex-wrap items-start justify-between gap-6">
+                      <div>
+                        <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
+                          {facility.location}
+                        </p>
+                        <h3 className="mt-3 text-3xl font-semibold lg:text-4xl">{facility.name}</h3>
+                      </div>
+                      <a
+                        href={facility.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group inline-flex items-center gap-2 text-sm font-semibold text-primary-glow transition-colors hover:text-foreground"
                       >
-                        {cap}
-                      </li>
-                    ))}
-                  </ul>
-                </article>
+                        Visit site
+                        <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                      </a>
+                    </div>
+                    <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
+                      {facility.focus}
+                    </p>
+                    <ul className="mt-8 flex flex-wrap gap-3">
+                      {facility.capabilities.map((cap) => (
+                        <li
+                          key={cap}
+                          className="rounded-full border border-border bg-background/60 px-4 py-2 text-xs tracking-wide text-muted-foreground"
+                        >
+                          {cap}
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
                 </Magnetic>
               </Reveal>
             ))}
