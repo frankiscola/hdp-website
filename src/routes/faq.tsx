@@ -3,7 +3,6 @@ import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { SectionHeading } from "../components/ui-kit";
 import tubeLandscape from "../assets/tube-landscape.jpg";
-import tubeLandscapeLight from "../assets/tube-landscape-light.jpg";
 import {
   Accordion,
   AccordionContent,
@@ -154,12 +153,24 @@ const categories: Category[] = [
         a: "Buckling under external pressure is a well-studied engineering problem, and hyperloop tube design follows existing infrastructure standards with adequate safety margins, making such an event highly unlikely.",
       },
       {
+        q: "What happens in the case of a substantial breach in the tube?",
+        a: "The tube is segmented with air seals located every couple of kilometers, so a breach can be contained to a limited section. Sensors along the infrastructure detect the pressure change and notify vehicles instantly, which brake jointly via the intervehicle communication system. As air flows back in, the growing air resistance also helps slow vehicles naturally, and because of the low pressure level this happens gradually rather than as a sudden shock.",
+      },
+      {
         q: "Can the infrastructure withstand thermal expansion or earthquakes?",
         a: "Expansion joints at every tube connection absorb thermal movement and help localize the impact of seismic activity, while foundations and pipe construction are engineered for earthquake resistance. As with Japanese high-speed rail, the system can link into national early-warning networks to bring vehicles to a stop when triggered.",
       },
       {
         q: "Can the magnetic fields harm passengers?",
         a: "No – the fields passengers are exposed to are far weaker than those of an ordinary fridge magnet, since the magnets are oriented toward the steel tracks and away from the cabin.",
+      },
+      {
+        q: "What happens if there's a breach in the vehicle chassis?",
+        a: "Because the vehicle is shielded from external influences, a chassis breach is highly unlikely. In the rare event it occurred, the situation would resemble a depressurization event on an aircraft: cabin pressure gradually equalizes with the tube, oxygen masks deploy, and the vehicle comes to a safe, quick stop while pressure is restored through rapid re-pressurization valves.",
+      },
+      {
+        q: "How is air supplied and filtered on board?",
+        a: "Air is circulated from onboard oxygen supplies and filtered through HEPA filter systems, similar to those used in commercial aviation.",
       },
       {
         q: "How are passengers evacuated in an emergency?",
@@ -230,7 +241,6 @@ function Faq() {
         title="Frequently Asked Questions."
         intro="Everything you want to know about the Hyperloop Development Program and hyperloop technology – from safety and travel experience to costs and environmental impact."
         image={tubeLandscape}
-        imageLight={tubeLandscapeLight}
         imageAlt="Hyperloop tube stretching across a landscape"
         priority
       />
