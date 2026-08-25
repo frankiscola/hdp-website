@@ -119,12 +119,12 @@ function OpenPositions() {
             <div className="mt-10 flex items-center gap-2 text-sm text-muted-foreground">
               <Linkedin className="h-4 w-4" />
               <a
-                href="https://www.linkedin.com/company/european-hyperloop-center/"
+                href="https://www.linkedin.com/company/hyperloop-development-program/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 font-medium text-foreground underline underline-offset-4 hover:text-primary-glow"
               >
-                Follow the European Hyperloop Center on LinkedIn
+                Follow the Hyperloop Development Program on LinkedIn
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </a>
             </div>
