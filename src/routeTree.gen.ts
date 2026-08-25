@@ -17,6 +17,7 @@ import { Route as HyperloopRouteImport } from './routes/hyperloop'
 import { Route as OpenPositionsRouteImport } from './routes/open-positions'
 import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as ResearchRouteImport } from './routes/research'
 import { Route as ResultsAndDownloadsRouteImport } from './routes/results-and-downloads'
 import { Route as TeamAndBoardRouteImport } from './routes/team-and-board'
 import { Route as TestingInfrastructureRouteImport } from './routes/testing-infrastructure'
@@ -64,6 +65,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResearchRoute = ResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResultsAndDownloadsRoute = ResultsAndDownloadsRouteImport.update({
   id: '/results-and-downloads',
   path: '/results-and-downloads',
@@ -104,6 +110,7 @@ export interface FileRoutesByFullPath {
   '/open-positions': typeof OpenPositionsRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
+  '/research': typeof ResearchRoute
   '/results-and-downloads': typeof ResultsAndDownloadsRoute
   '/team-and-board': typeof TeamAndBoardRoute
   '/testing-infrastructure': typeof TestingInfrastructureRoute
@@ -120,6 +127,7 @@ export interface FileRoutesByTo {
   '/open-positions': typeof OpenPositionsRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
+  '/research': typeof ResearchRoute
   '/results-and-downloads': typeof ResultsAndDownloadsRoute
   '/team-and-board': typeof TeamAndBoardRoute
   '/testing-infrastructure': typeof TestingInfrastructureRoute
@@ -137,6 +145,7 @@ export interface FileRoutesById {
   '/open-positions': typeof OpenPositionsRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
+  '/research': typeof ResearchRoute
   '/results-and-downloads': typeof ResultsAndDownloadsRoute
   '/team-and-board': typeof TeamAndBoardRoute
   '/testing-infrastructure': typeof TestingInfrastructureRoute
@@ -155,6 +164,7 @@ export interface FileRouteTypes {
     | '/open-positions'
     | '/partners'
     | '/privacy'
+    | '/research'
     | '/results-and-downloads'
     | '/team-and-board'
     | '/testing-infrastructure'
@@ -171,6 +181,7 @@ export interface FileRouteTypes {
     | '/open-positions'
     | '/partners'
     | '/privacy'
+    | '/research'
     | '/results-and-downloads'
     | '/team-and-board'
     | '/testing-infrastructure'
@@ -187,6 +198,7 @@ export interface FileRouteTypes {
     | '/open-positions'
     | '/partners'
     | '/privacy'
+    | '/research'
     | '/results-and-downloads'
     | '/team-and-board'
     | '/testing-infrastructure'
@@ -204,6 +216,7 @@ export interface RootRouteChildren {
   OpenPositionsRoute: typeof OpenPositionsRoute
   PartnersRoute: typeof PartnersRoute
   PrivacyRoute: typeof PrivacyRoute
+  ResearchRoute: typeof ResearchRoute
   ResultsAndDownloadsRoute: typeof ResultsAndDownloadsRoute
   TeamAndBoardRoute: typeof TeamAndBoardRoute
   TestingInfrastructureRoute: typeof TestingInfrastructureRoute
@@ -270,6 +283,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/research': {
+      id: '/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof ResearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/results-and-downloads': {
       id: '/results-and-downloads'
       path: '/results-and-downloads'
@@ -324,6 +344,7 @@ const rootRouteChildren: RootRouteChildren = {
   OpenPositionsRoute: OpenPositionsRoute,
   PartnersRoute: PartnersRoute,
   PrivacyRoute: PrivacyRoute,
+  ResearchRoute: ResearchRoute,
   ResultsAndDownloadsRoute: ResultsAndDownloadsRoute,
   TeamAndBoardRoute: TeamAndBoardRoute,
   TestingInfrastructureRoute: TestingInfrastructureRoute,

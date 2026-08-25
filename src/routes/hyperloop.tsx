@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import heroVehicle from "../assets/hero-vehicle.jpg";
-import hyperloopTubeDiagram from "../assets/hyperloop-tube-diagram.png";
-import hyperloopVideoThumbnail from "../assets/hyperloop-video-thumbnail.png";
+import heroVehicleLight from "../assets/hero-vehicle-light.jpg";
+import hyperloopTubeDiagram from "../assets/hyperloop-tube-diagram.jpg";
+import hyperloopVideoThumbnail from "../assets/hyperloop-video-thumbnail.jpg";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
@@ -67,10 +68,22 @@ const benefits = [
 ];
 
 const timeline = [
-  { year: "2020–2023", text: "Component research, sub-scale demonstrators and the first European partnerships." },
-  { year: "2024", text: "European Hyperloop Center opens; full-scale testing of vehicles and infrastructure begins." },
-  { year: "2025–2027", text: "Lane switching at speed, certification groundwork and freight-first corridor studies." },
-  { year: "2028+", text: "First commercial corridor development, starting with cargo connections." },
+  {
+    year: "2020–2023",
+    text: "Component research, sub-scale demonstrators and the first European partnerships.",
+  },
+  {
+    year: "2024",
+    text: "European Hyperloop Center opens; full-scale testing of vehicles and infrastructure begins.",
+  },
+  {
+    year: "2025–2027",
+    text: "Lane switching at speed, certification groundwork and freight-first corridor studies.",
+  },
+  {
+    year: "2028+",
+    text: "First commercial corridor development, starting with cargo connections.",
+  },
 ];
 
 function Hyperloop() {
@@ -81,7 +94,8 @@ function Hyperloop() {
         title="High speed, without the energy penalty."
         intro="Hyperloop is being developed as ground-based, high-speed and energy-efficient transportation for carrying large volumes of passengers and freight."
         image={heroVehicle}
-        imageAlt="Hyperloop vehicle inside an illuminated vacuum tube"
+        imageLight={heroVehicleLight}
+        imageAlt="Hyperloop vehicle inside a vacuum tube"
         priority
       />
 
@@ -147,7 +161,9 @@ function Hyperloop() {
                   <div className="h-full rounded-3xl border border-border bg-surface/50 p-8 transition-all duration-500 hover:border-primary/50">
                     <span className="font-display text-sm text-primary-glow">0{i + 1}</span>
                     <h3 className="mt-6 text-xl font-semibold">{item.title}</h3>
-                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                      {item.text}
+                    </p>
                   </div>
                 </Magnetic>
               </Reveal>
@@ -167,12 +183,13 @@ function Hyperloop() {
                 <Magnetic>
                   <div className="h-full rounded-3xl border border-border bg-background/60 p-8 transition-colors duration-500 hover:border-primary/50">
                     <h3 className="text-xl font-semibold">{item.title}</h3>
-                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                      {item.text}
+                    </p>
                   </div>
                 </Magnetic>
               </Reveal>
             ))}
-
           </div>
           <div className="mt-16 grid gap-8 sm:grid-cols-3">
             <StatCounter value={700} suffix=" km/h" label="Target cruise speed range" />

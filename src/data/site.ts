@@ -9,7 +9,7 @@ export const navItems: NavItem[] = [
     label: "Program",
     children: [
       { label: "The HDP", to: "/about-hdp" },
-      { label: "Research", to: "/about-hdp", hash: "research-aspects" },
+      { label: "Research", to: "/research" },
       { label: "The Challenge", to: "/thechallenge-hdp" },
     ],
   },
