@@ -177,7 +177,7 @@ function AboutHdp() {
           </div>
           <Reveal delay={0.15}>
             <div className="mt-12">
-              <CtaButton to="/contact">Work with us</CtaButton>
+              <CtaButton to="/open-positions">Work with us</CtaButton>
             </div>
           </Reveal>
         </div>
