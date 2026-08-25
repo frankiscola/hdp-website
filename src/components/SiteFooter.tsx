@@ -2,7 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { navItems } from "../data/site";
 import { logoHdpUrl } from "../data/logo";
 
-
 export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-surface/40">
@@ -11,17 +10,13 @@ export function SiteFooter() {
           <img
             src={logoHdpUrl}
             alt="Hyperloop Development Program"
-            className="h-12 w-auto md:h-14"
-            style={{ filter: "brightness(0) invert(1)" }}
+            className="h-12 w-auto dark:brightness-0 dark:invert md:h-14"
             width={1500}
             height={512}
             loading="lazy"
           />
 
-
-
           <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-
             A public-private partnership of more than 25 organizations across Europe, developing
             hyperloop as a safe, energy-efficient and commercially viable mode of high-speed
             transportation.
@@ -31,16 +26,18 @@ export function SiteFooter() {
         <div>
           <p className="eyebrow">Navigate</p>
           <ul className="mt-5 space-y-3">
-            {navItems.flatMap((item) => (item.children ? item.children : [item])).map((item) => (
-              <li key={item.to}>
-                <Link
-                  to={item.to}
-                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            {navItems
+              .flatMap((item) => (item.children ? item.children : [item]))
+              .map((item) => (
+                <li key={item.to}>
+                  <Link
+                    to={item.to}
+                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
           </ul>
         </div>
 
