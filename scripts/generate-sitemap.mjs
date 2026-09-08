@@ -72,7 +72,7 @@ function build() {
 
   const entries = [
     ...staticPages.map((p) =>
-      urlEntry({ loc: `${SITE_URL}${p.path}`, priority: p.priority, changefreq: p.changefreq })
+      urlEntry({ loc: `${SITE_URL}${p.path}`, priority: p.priority, changefreq: p.changefreq }),
     ),
     ...news.map((n) =>
       urlEntry({
@@ -80,7 +80,7 @@ function build() {
         priority: "0.5",
         changefreq: "yearly",
         lastmod: n.date,
-      })
+      }),
     ),
   ];
 
