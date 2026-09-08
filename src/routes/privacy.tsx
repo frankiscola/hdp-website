@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absoluteUrl } from "../lib/seo";
 import { Reveal } from "../components/Reveal";
 import { SectionHeading } from "../components/ui-kit";
 
@@ -8,12 +9,13 @@ export const Route = createFileRoute("/privacy")({
       { title: "Privacy policy — Hyperloop Development Program" },
       {
         name: "description",
-        content: "How the Hyperloop Development Program handles data collected through this website.",
+        content:
+          "How the Hyperloop Development Program handles data collected through this website.",
       },
       { property: "og:title", content: "Privacy policy — Hyperloop Development Program" },
-      { property: "og:url", content: "/privacy" },
+      { property: "og:url", content: absoluteUrl("/privacy") },
     ],
-    links: [{ rel: "canonical", href: "/privacy" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/privacy") }],
   }),
   component: Privacy,
 });
@@ -88,7 +90,9 @@ const sections = [
   },
   {
     title: "Contact us",
-    paragraphs: ["Questions or requests about this policy can be sent to info@hyperloopdevelopmentprogram.com."],
+    paragraphs: [
+      "Questions or requests about this policy can be sent to info@hyperloopdevelopmentprogram.com.",
+    ],
   },
 ];
 

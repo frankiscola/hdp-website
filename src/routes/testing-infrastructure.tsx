@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absoluteUrl } from "../lib/seo";
 import { ArrowUpRight } from "lucide-react";
 import testCenter from "../assets/test-center.jpg";
 import testCenterLight from "../assets/test-center-light.jpg";
@@ -23,9 +24,9 @@ export const Route = createFileRoute("/testing-infrastructure")({
         content:
           "Three coordinated European test facilities covering propulsion, suspension, vacuum infrastructure and switching.",
       },
-      { property: "og:url", content: "/testing-infrastructure" },
+      { property: "og:url", content: absoluteUrl("/testing-infrastructure") },
     ],
-    links: [{ rel: "canonical", href: "/testing-infrastructure" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/testing-infrastructure") }],
   }),
   component: TestingInfrastructure,
 });

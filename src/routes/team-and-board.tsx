@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absoluteUrl } from "../lib/seo";
 import { Landmark, ScrollText, Handshake, Building2 } from "lucide-react";
 import tubeLandscape from "../assets/tube-landscape.jpg";
 import tubeLandscapeLight from "../assets/tube-landscape-light.jpg";
@@ -23,9 +24,9 @@ export const Route = createFileRoute("/team-and-board")({
         content:
           "Meet the Executive Board and Supervisory Board steering Europe's coordinating platform for hyperloop development.",
       },
-      { property: "og:url", content: "/team-and-board" },
+      { property: "og:url", content: absoluteUrl("/team-and-board") },
     ],
-    links: [{ rel: "canonical", href: "/team-and-board" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/team-and-board") }],
   }),
   component: TeamAndBoard,
 });

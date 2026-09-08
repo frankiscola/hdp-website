@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absoluteUrl } from "../lib/seo";
 import { BadgeCheck, Cpu, Globe2, Layers, ShieldCheck, TrendingUp, Users } from "lucide-react";
 import ecosystemNetwork from "../assets/ecosystem-network.jpg";
 import ecosystemNetworkLight from "../assets/ecosystem-network-light.jpg";
@@ -21,9 +22,9 @@ export const Route = createFileRoute("/research")({
         property: "og:description",
         content: "Seven key aspects driving hyperloop research and innovation across Europe.",
       },
-      { property: "og:url", content: "/research" },
+      { property: "og:url", content: absoluteUrl("/research") },
     ],
-    links: [{ rel: "canonical", href: "/research" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/research") }],
   }),
   component: Research,
 });

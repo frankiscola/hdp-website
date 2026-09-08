@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absoluteUrl } from "../lib/seo";
 import { NewsCard } from "../components/NewsCard";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
@@ -20,9 +21,9 @@ export const Route = createFileRoute("/news/")({
         property: "og:description",
         content: "Technology milestones, test infrastructure updates and policy work from HDP.",
       },
-      { property: "og:url", content: "/news" },
+      { property: "og:url", content: absoluteUrl("/news") },
     ],
-    links: [{ rel: "canonical", href: "/news" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/news") }],
   }),
   component: News,
 });

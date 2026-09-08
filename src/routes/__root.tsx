@@ -15,6 +15,7 @@ import { noFlashThemeScript, THEME_COLOR } from "../lib/theme";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { CustomCursor } from "../components/CustomCursor";
+import { SITE_URL, DEFAULT_OG_IMAGE } from "../lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -83,7 +84,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { property: "og:site_name", content: "Hyperloop Development Program" },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: DEFAULT_OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: DEFAULT_OG_IMAGE },
       // Matches the browser chrome (mobile status bar / PWA title bar) to the
       // active theme. Defaults to light (the site's default theme on first
       // visit — see theme.ts); noFlashThemeScript corrects this to dark
@@ -122,8 +127,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@context": "https://schema.org",
           "@type": "Organization",
           name: "Hyperloop Development Program",
+          alternateName: "HDP",
+          url: SITE_URL,
+          logo: `${SITE_URL}/apple-touch-icon.png`,
           description:
             "A European public-private partnership of more than 25 organizations developing hyperloop as safe, energy-efficient high-speed transport.",
+          sameAs: ["https://www.linkedin.com/company/hyperloop-development-program/"],
         }),
       },
     ],

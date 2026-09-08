@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absoluteUrl } from "../lib/seo";
 import tubeLandscape from "../assets/tube-landscape.jpg";
 import tubeLandscapeLight from "../assets/tube-landscape-light.jpg";
 import { Magnetic } from "../components/Magnetic";
@@ -22,9 +23,9 @@ export const Route = createFileRoute("/about-hdp")({
         content:
           "Mission, governance and organisation of Europe's coordinating platform for hyperloop development.",
       },
-      { property: "og:url", content: "/about-hdp" },
+      { property: "og:url", content: absoluteUrl("/about-hdp") },
     ],
-    links: [{ rel: "canonical", href: "/about-hdp" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/about-hdp") }],
   }),
   component: AboutHdp,
 });

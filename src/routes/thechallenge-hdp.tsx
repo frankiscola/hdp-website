@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absoluteUrl } from "../lib/seo";
 import { Coins, Gauge, Leaf, MapPinned, Users } from "lucide-react";
 import ecosystemNetwork from "../assets/ecosystem-network.jpg";
 import ecosystemNetworkLight from "../assets/ecosystem-network-light.jpg";
@@ -23,9 +24,9 @@ export const Route = createFileRoute("/thechallenge-hdp")({
         content:
           "The transport and climate challenge hyperloop is built to address, and how HDP's public-private partnership came to be.",
       },
-      { property: "og:url", content: "/thechallenge-hdp" },
+      { property: "og:url", content: absoluteUrl("/thechallenge-hdp") },
     ],
-    links: [{ rel: "canonical", href: "/thechallenge-hdp" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/thechallenge-hdp") }],
   }),
   component: TheChallenge,
 });

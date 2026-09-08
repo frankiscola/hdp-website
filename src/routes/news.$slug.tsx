@@ -3,6 +3,7 @@ import { ArrowLink } from "../components/ui-kit";
 import { Reveal } from "../components/Reveal";
 import { NewsCard } from "../components/NewsCard";
 import { news } from "../data/site";
+import { absoluteUrl, SITE_URL } from "../lib/seo";
 
 export const Route = createFileRoute("/news/$slug")({
   loader: ({ params }) => {
@@ -24,9 +25,11 @@ export const Route = createFileRoute("/news/$slug")({
         { property: "og:title", content: item.title },
         { property: "og:description", content: item.excerpt },
         { property: "og:type", content: "article" },
-        { property: "og:url", content: `/news/${params.slug}` },
+        { property: "og:url", content: absoluteUrl(`/news/${params.slug}`) },
+        { property: "og:image", content: item.image },
+        { name: "twitter:image", content: item.image },
       ],
-      links: [{ rel: "canonical", href: `/news/${params.slug}` }],
+      links: [{ rel: "canonical", href: absoluteUrl(`/news/${params.slug}`) }],
       scripts: [
         {
           type: "application/ld+json",
@@ -36,6 +39,13 @@ export const Route = createFileRoute("/news/$slug")({
             headline: item.title,
             datePublished: item.date,
             description: item.excerpt,
+            image: item.image,
+            url: absoluteUrl(`/news/${params.slug}`),
+            publisher: {
+              "@type": "Organization",
+              name: "Hyperloop Development Program",
+              url: SITE_URL,
+            },
           }),
         },
       ],

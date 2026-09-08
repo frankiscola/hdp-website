@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absoluteUrl } from "../lib/seo";
 import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
 import ecosystemNetwork from "../assets/ecosystem-network.jpg";
@@ -25,9 +26,9 @@ export const Route = createFileRoute("/partners")({
         content:
           "Industry, research, infrastructure and public partners accelerating European hyperloop development.",
       },
-      { property: "og:url", content: "/partners" },
+      { property: "og:url", content: absoluteUrl("/partners") },
     ],
-    links: [{ rel: "canonical", href: "/partners" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/partners") }],
   }),
   component: Partners,
 });

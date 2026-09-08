@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absoluteUrl } from "../lib/seo";
 import { useState } from "react";
 import { motion } from "motion/react";
 import { Mail, MapPin } from "lucide-react";
@@ -23,9 +24,9 @@ export const Route = createFileRoute("/contact")({
         property: "og:description",
         content: "Partnership, test infrastructure, research collaboration and media enquiries.",
       },
-      { property: "og:url", content: "/contact" },
+      { property: "og:url", content: absoluteUrl("/contact") },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/contact") }],
   }),
   component: Contact,
 });

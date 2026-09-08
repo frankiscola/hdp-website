@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { absoluteUrl } from "../lib/seo";
 import { ArrowUpRight } from "lucide-react";
 import heroVehicle from "../assets/hero-vehicle.jpg";
 import heroVehicleLight from "../assets/hero-vehicle-light.jpg";
@@ -26,9 +27,9 @@ export const Route = createFileRoute("/hyperloop")({
         content:
           "Levitation, low-pressure tubes and network switching – the technology behind energy-efficient high-speed transport.",
       },
-      { property: "og:url", content: "/hyperloop" },
+      { property: "og:url", content: absoluteUrl("/hyperloop") },
     ],
-    links: [{ rel: "canonical", href: "/hyperloop" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/hyperloop") }],
   }),
   component: Hyperloop,
 });

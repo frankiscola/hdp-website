@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absoluteUrl } from "../lib/seo";
 import { ArrowUpRight, Download, Linkedin, Mail } from "lucide-react";
 import tubeLandscape from "../assets/tube-landscape.jpg";
 import tubeLandscapeLight from "../assets/tube-landscape-light.jpg";
@@ -21,9 +22,9 @@ export const Route = createFileRoute("/open-positions")({
         property: "og:description",
         content: "The HDP foundation is expanding its team — explore current open positions.",
       },
-      { property: "og:url", content: "/open-positions" },
+      { property: "og:url", content: absoluteUrl("/open-positions") },
     ],
-    links: [{ rel: "canonical", href: "/open-positions" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/open-positions") }],
   }),
   component: OpenPositions,
 });

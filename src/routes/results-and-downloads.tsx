@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absoluteUrl } from "../lib/seo";
 import { ArrowUpRight, FileDown } from "lucide-react";
 import tubeLandscape from "../assets/tube-landscape.jpg";
 import tubeLandscapeLight from "../assets/tube-landscape-light.jpg";
@@ -26,9 +27,9 @@ export const Route = createFileRoute("/results-and-downloads")({
         content:
           "Reports, position papers and feasibility studies published by the Hyperloop Development Program since 2020.",
       },
-      { property: "og:url", content: "/results-and-downloads" },
+      { property: "og:url", content: absoluteUrl("/results-and-downloads") },
     ],
-    links: [{ rel: "canonical", href: "/results-and-downloads" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/results-and-downloads") }],
   }),
   component: ResultsAndDownloads,
 });

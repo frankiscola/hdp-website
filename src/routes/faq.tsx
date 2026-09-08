@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absoluteUrl } from "../lib/seo";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { SectionHeading } from "../components/ui-kit";
@@ -26,9 +27,9 @@ export const Route = createFileRoute("/faq")({
         content:
           "Everything you want to know about the Hyperloop Development Program and hyperloop technology, answered.",
       },
-      { property: "og:url", content: "/faq" },
+      { property: "og:url", content: absoluteUrl("/faq") },
     ],
-    links: [{ rel: "canonical", href: "/faq" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/faq") }],
   }),
   component: Faq,
 });

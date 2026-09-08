@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { absoluteUrl } from "../lib/seo";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import heroVehicle from "../assets/hero-vehicle.jpg";
@@ -32,9 +33,9 @@ export const Route = createFileRoute("/")({
         content:
           "A European public-private partnership developing hyperloop as safe, energy-efficient high-speed transport for people and goods.",
       },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: absoluteUrl("/") },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/") }],
   }),
   component: Home,
 });
