@@ -1,25 +1,35 @@
-# Hyperloop Vision
+# Hyperloop Development Program — website
 
-https://www.hyperloopdevelopmentprogram.com/
-Vorrei rifare completamente questo sito. Vorrei che fosse moderno con un look davvero accattivante, ma sempre professionale, un po' come quello del sito di Apple. Con molte animazioni. Pensi si possa fare?
+Marketing and information website for the Hyperloop Development Program (HDP).
 
-This project was built with [Lovable](https://lovable.dev).
+## Stack
 
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/ca2ab6ed-fac2-4a7e-9510-5fcc817d5d0c).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+- [TanStack Start](https://tanstack.com/start) (React, file-based routing, SSR)
+- [Tailwind CSS v4](https://tailwindcss.com)
+- TypeScript
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Requires Node.js and npm.
 
 ```sh
 git clone <this-repository-url>
 cd <repository-name>
-npm i
+npm install
 npm run dev
 ```
+
+## Scripts
+
+| Command                    | Description                                          |
+| --------------------------- | ----------------------------------------------------- |
+| `npm run dev`               | Start the local development server                    |
+| `npm run build`              | Production build                                       |
+| `npm run preview`            | Preview the production build locally                   |
+| `npm run lint`               | Run ESLint                                              |
+| `npm run format`             | Format the codebase with Prettier                       |
+| `npm run generate:sitemap`   | Regenerate `public/sitemap.xml` from the current routes and news data |
+
+## Deployment
+
+Deployed on [Vercel](https://vercel.com), connected to the `main` branch.

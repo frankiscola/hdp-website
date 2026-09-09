@@ -8,7 +8,7 @@ type PageHeroProps = {
   image: string;
   /** Light-theme counterpart of `image`. Optional so pages without one yet
    *  keep working — they fall back to the dark photo forced into the
-   *  dark-theme palette (the old behavior), rather than breaking. */
+   *  dark-theme palette (the old behaviour), rather than breaking. */
   imageLight?: string;
   imageAlt: string;
   priority?: boolean;

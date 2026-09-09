@@ -4,8 +4,8 @@
 // Run manually after adding/removing a page or news article:
 //   node scripts/generate-sitemap.mjs
 //
-// (Not wired into the build automatically, to keep the Lovable-managed
-// build config untouched — see vite.config.ts.)
+// (Not wired into the build automatically — run it by hand when the route
+// list or news data changes; see vite.config.ts.)
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";

@@ -14,7 +14,7 @@ export const THEME_STORAGE_KEY = "hdp-theme";
  */
 // Kept in sync with the <meta name="theme-color"> value declared in
 // __root.tsx, so the browser chrome (mobile status bar, PWA title bar) never
-// shows a mismatched color while the page is interactive.
+// shows a mismatched colour while the page is interactive.
 export const THEME_COLOR = { light: "#fafaf9", dark: "#0e0e16" } as const;
 
 export const noFlashThemeScript = `
