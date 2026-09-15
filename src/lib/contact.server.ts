@@ -60,10 +60,10 @@ export const sendContactMessage = createServerFn({ method: "POST" })
       // shared sandbox address as the "from". Switch to something like
       // "HDP Website <contact@hyperloopdevelopmentprogram.com>" once the
       // domain is verified in the Resend dashboard.
-      from: "HDP Website <onboarding@resend.dev>",
+      from: "HDP Website",
       to: CONTACT_RECIPIENT,
       replyTo: email,
-      subject: `New enquiry: ${topic} – ${name}`,
+      subject: `New enquiry: ${topic} - ${name}`,
       html,
     });
 
