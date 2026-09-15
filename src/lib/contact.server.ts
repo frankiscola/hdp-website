@@ -31,7 +31,7 @@ export const sendContactMessage = createServerFn({ method: "POST" })
     return data;
   })
   .handler(async ({ data }) => {
-    // Read from an environment variable, never hardcoded — this file ships
+    // Read from an environment variable, never hardcoded – this file ships
     // to a public GitHub repo, and a key committed in source would be
     // scraped and abused within minutes of the push.
     const apiKey = process.env["RESEND_API_KEY"];
@@ -63,7 +63,7 @@ export const sendContactMessage = createServerFn({ method: "POST" })
       from: "HDP Website <onboarding@resend.dev>",
       to: CONTACT_RECIPIENT,
       replyTo: email,
-      subject: `New enquiry: ${topic} — ${name}`,
+      subject: `New enquiry: ${topic} – ${name}`,
       html,
     });
 
