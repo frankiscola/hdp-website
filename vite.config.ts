@@ -63,6 +63,10 @@ export default defineConfig(({ command, mode }) => {
             nitro({
               preset: "vercel",
               routeRules: {
+                // Legacy Squarespace URLs — preserve any external links,
+                // bookmarks and search-engine indexing after the migration.
+                "/questions-hdp": { redirect: { to: "/faq", status: 301 } },
+                "/privacy-policy": { redirect: { to: "/privacy", status: 301 } },
                 // Vite fingerprints these filenames on every build (content
                 // hash in the name), so a permanent, immutable cache is
                 // safe — a changed file always gets a new URL.
