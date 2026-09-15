@@ -100,7 +100,7 @@ function TheChallenge() {
             <SectionHeading
               eyebrow="Why now"
               title="Existing networks are reaching their limits."
-              intro="Passenger and freight volumes keep climbing, but road and rail capacity cannot expand at the same rate — and every new corridor competes with tightening emissions and land-use budgets. Hyperloop ticks the boxes future-proof infrastructure needs: low cost, zero emissions, easy integration, short travel times, and high capacity, all at once."
+              intro="Demand for passenger and freight transport is expected to triple by 2050 as urbanization, economic growth and population growth accelerate — yet road and rail capacity cannot expand at the same rate, and every new corridor competes with tightening emissions and land-use budgets. Hyperloop ticks the boxes future-proof infrastructure needs: low cost, zero emissions, easy integration, short travel times, and high capacity, all at once."
             />
           </Reveal>
           <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
