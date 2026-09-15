@@ -144,26 +144,23 @@ function InnoTrans2026() {
 
       {/* Quick facts */}
       <section className="border-b border-border">
-        <div className="mx-auto grid max-w-[1400px] gap-6 px-6 py-10 sm:grid-cols-3 lg:px-10">
+        <div className="mx-auto grid max-w-[1400px] gap-6 px-6 py-10 sm:grid-cols-2 lg:px-10">
           <div className="flex items-center gap-3">
             <MapPin className="h-5 w-5 shrink-0 text-primary-glow" />
             <div>
-              <p className="text-sm font-semibold">Hall 2.2, Stand 100</p>
-              <p className="text-sm text-muted-foreground">Messe Berlin</p>
+              <p className="text-sm font-semibold">Where to find us</p>
+              <p className="text-sm text-muted-foreground">
+                Hall 2.2, Stand 100 · Messe Berlin
+              </p>
             </div>
           </div>
           <div className="flex items-center gap-3">
             <Mic className="h-5 w-5 shrink-0 text-primary-glow" />
             <div>
               <p className="text-sm font-semibold">Hyperloop Conference</p>
-              <p className="text-sm text-muted-foreground">Fri 25 Sep, 11:30–14:30</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <ArrowUpRight className="h-5 w-5 shrink-0 text-primary-glow" />
-            <div>
-              <p className="text-sm font-semibold">Speakers' Corner</p>
-              <p className="text-sm text-muted-foreground">hub27, beta 6–7</p>
+              <p className="text-sm text-muted-foreground">
+                Fri 25 Sep, 11:30–14:30 · Speakers' Corner, hub27, beta 6–7
+              </p>
             </div>
           </div>
         </div>
@@ -226,16 +223,16 @@ function InnoTrans2026() {
 
               {boothProgramme.map((d) => (
                 <TabsContent key={d.day} value={d.day} className="mt-8">
-                  <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="flex flex-wrap gap-4">
                     {d.slots.map((slot) => (
                       <div
                         key={d.day + slot.time}
-                        className="flex items-center justify-between gap-4 rounded-2xl border border-border bg-background/60 px-6 py-5"
+                        className="flex w-40 flex-col justify-between gap-4 rounded-2xl border border-border bg-background/60 p-5 sm:w-44"
                       >
-                        <span className="text-sm font-medium text-muted-foreground">
+                        <span className="text-xs font-medium text-muted-foreground">
                           {slot.time}
                         </span>
-                        <span className="text-right text-sm font-semibold">{slot.title}</span>
+                        <span className="text-sm font-semibold leading-snug">{slot.title}</span>
                       </div>
                     ))}
                   </div>
