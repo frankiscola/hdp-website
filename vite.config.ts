@@ -8,6 +8,12 @@ import { nitro } from "nitro/vite";
 
 const srcDir = fileURLToPath(new URL("./src", import.meta.url));
 
+// Defaults to Vercel (current production target). Override with
+// NITRO_PRESET=cloudflare-pages as a build-time env var on another
+// platform — e.g. set it in the Cloudflare Pages project settings — to
+// build for that target instead, without touching this file.
+const nitroPreset = process.env.NITRO_PRESET ?? "vercel";
+
 export default defineConfig(({ command, mode }) => {
   const isDevBuild = command === "build" && mode === "development";
 
@@ -57,11 +63,10 @@ export default defineConfig(({ command, mode }) => {
         },
       }),
       // Nitro packages the server output; only needed for production builds.
-      // Preset is explicit — this project deploys to Vercel.
       ...(command === "build"
         ? [
             nitro({
-              preset: "vercel",
+              preset: nitroPreset,
               routeRules: {
                 // Legacy Squarespace URLs — preserve any external links,
                 // bookmarks and search-engine indexing after the migration.
