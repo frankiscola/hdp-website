@@ -181,41 +181,8 @@ function Home() {
         </div>
       </section>
 
-      {/* About HDP */}
-      <section className="relative overflow-hidden">
-        <div className="mx-auto grid max-w-[1400px] items-center gap-16 px-6 py-28 lg:grid-cols-2 lg:px-10 lg:py-36">
-          <Reveal>
-            <SectionHeading
-              eyebrow="About the program"
-              title="One programme, one European ecosystem."
-              intro="The Hyperloop Development Program is a public-private partnership of more than 25 organizations throughout Europe, including industry parties and research institutions, dedicated to developing hyperloop as a safe, energy-efficient and commercially viable mode of high-speed transportation."
-            />
-            <div className="mt-10 grid gap-8 sm:grid-cols-3">
-              <StatCounter value={25} suffix="+" label="Partner organizations" />
-              <StatCounter value={3} label="European test facilities" />
-              <StatCounter value={9} label="Countries involved" />
-            </div>
-            <div className="mt-12">
-              <ArrowLink to="/about-hdp">Learn more about HDP</ArrowLink>
-            </div>
-          </Reveal>
-          <Reveal delay={0.15} className="relative">
-            <div className="glow-ring overflow-hidden rounded-[2rem] border border-border">
-              <img
-                src={tubeLandscape}
-                alt="Elevated hyperloop tube crossing European countryside at blue hour"
-                loading="lazy"
-                width={1920}
-                height={1088}
-                className="h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105"
-              />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* About hyperloop */}
-      <section className="border-y border-border bg-surface/30">
+      <section className="relative overflow-hidden">
         <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
           <Reveal>
             <SectionHeading
@@ -255,6 +222,39 @@ function Home() {
           <Reveal delay={0.2}>
             <div className="mt-14">
               <ArrowLink to="/hyperloop">Explore the technology</ArrowLink>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* About HDP */}
+      <section className="border-y border-border bg-surface/30">
+        <div className="mx-auto grid max-w-[1400px] items-center gap-16 px-6 py-28 lg:grid-cols-2 lg:px-10 lg:py-36">
+          <Reveal>
+            <SectionHeading
+              eyebrow="About the program"
+              title="One programme, one European ecosystem."
+              intro="The Hyperloop Development Program is a public-private partnership of more than 25 organizations throughout Europe, including industry parties and research institutions, dedicated to developing hyperloop as a safe, energy-efficient and commercially viable mode of high-speed transportation."
+            />
+            <div className="mt-10 grid gap-8 sm:grid-cols-3">
+              <StatCounter value={25} suffix="+" label="Partner organizations" />
+              <StatCounter value={3} label="European test facilities" />
+              <StatCounter value={9} label="Countries involved" />
+            </div>
+            <div className="mt-12">
+              <ArrowLink to="/about-hdp">Learn more about HDP</ArrowLink>
+            </div>
+          </Reveal>
+          <Reveal delay={0.15} className="relative">
+            <div className="glow-ring overflow-hidden rounded-[2rem] border border-border">
+              <img
+                src={tubeLandscape}
+                alt="Elevated hyperloop tube crossing European countryside at blue hour"
+                loading="lazy"
+                width={1920}
+                height={1088}
+                className="h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105"
+              />
             </div>
           </Reveal>
         </div>
