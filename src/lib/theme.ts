@@ -7,9 +7,9 @@ export const THEME_STORAGE_KEY = "hdp-theme";
  * class is already on <html> when the page renders — no light/dark flash.
  * Keep this in perfect sync with getPreferredTheme() below.
  *
- * Light is always the default on a first visit — deliberately ignoring the
+ * Dark is always the default on a first visit — deliberately ignoring the
  * OS/browser's prefers-color-scheme, since the site's default identity is
- * the light theme. Dark only applies once the person explicitly picks it
+ * the dark theme. Light only applies once the person explicitly picks it
  * with the toggle (and it's then remembered via localStorage).
  */
 // Kept in sync with the <meta name="theme-color"> value declared in
@@ -21,7 +21,7 @@ export const noFlashThemeScript = `
 (function () {
   try {
     var stored = localStorage.getItem("${THEME_STORAGE_KEY}");
-    var isDark = stored === "dark";
+    var isDark = stored === "dark" || stored === null;
     var root = document.documentElement;
     if (isDark) root.classList.add("dark");
     // Tell the browser which native UI palette (scrollbars, form controls,
@@ -37,14 +37,14 @@ export const noFlashThemeScript = `
 `;
 
 export function getPreferredTheme(): Theme {
-  if (typeof window === "undefined") return "light";
+  if (typeof window === "undefined") return "dark";
   try {
     const stored = localStorage.getItem(THEME_STORAGE_KEY);
     if (stored === "light" || stored === "dark") return stored;
   } catch {
     // localStorage unavailable (private mode, etc.) — fall through to the default.
   }
-  return "light";
+  return "dark";
 }
 
 export function applyTheme(theme: Theme) {
