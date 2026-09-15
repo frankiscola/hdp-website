@@ -109,7 +109,7 @@ function Contact() {
                   transition={{ duration: 0.5 }}
                   className="py-14 text-center"
                 >
-                  <h3 className="text-2xl font-semibold">Thank you — message received.</h3>
+                  <h3 className="text-2xl font-semibold">Thank you - message received.</h3>
                   <p className="mt-4 text-sm text-muted-foreground">
                     We will come back to you shortly.
                   </p>
