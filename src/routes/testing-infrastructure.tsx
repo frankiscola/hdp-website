@@ -25,6 +25,8 @@ export const Route = createFileRoute("/testing-infrastructure")({
           "Three coordinated European test facilities covering propulsion, suspension, vacuum infrastructure and switching.",
       },
       { property: "og:url", content: absoluteUrl("/testing-infrastructure") },
+      { property: "og:image", content: absoluteUrl("/og/test-center.jpg") },
+      { name: "twitter:image", content: absoluteUrl("/og/test-center.jpg") },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/testing-infrastructure") }],
   }),

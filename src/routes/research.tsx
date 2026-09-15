@@ -15,7 +15,7 @@ export const Route = createFileRoute("/research")({
       {
         name: "description",
         content:
-          "The seven key research aspects driving the Hyperloop Development Program: safety, standards, integration, socio-economic costs and benefits, public adoption, ecosystem and technology.",
+          "The seven key research aspects driving HDP: safety, standards, integration, socio-economic impact, public adoption, ecosystem and technology.",
       },
       { property: "og:title", content: "Research – Hyperloop Development Program" },
       {
@@ -23,6 +23,8 @@ export const Route = createFileRoute("/research")({
         content: "Seven key aspects driving hyperloop research and innovation across Europe.",
       },
       { property: "og:url", content: absoluteUrl("/research") },
+      { property: "og:image", content: absoluteUrl("/og/tube-landscape.jpg") },
+      { name: "twitter:image", content: absoluteUrl("/og/tube-landscape.jpg") },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/research") }],
   }),

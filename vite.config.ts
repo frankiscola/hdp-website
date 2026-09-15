@@ -58,7 +58,33 @@ export default defineConfig(({ command, mode }) => {
       }),
       // Nitro packages the server output; only needed for production builds.
       // Preset is explicit — this project deploys to Vercel.
-      ...(command === "build" ? [nitro({ preset: "vercel" })] : []),
+      ...(command === "build"
+        ? [
+            nitro({
+              preset: "vercel",
+              routeRules: {
+                // Vite fingerprints these filenames on every build (content
+                // hash in the name), so a permanent, immutable cache is
+                // safe — a changed file always gets a new URL.
+                "/assets/**": {
+                  headers: { "cache-control": "public, max-age=31536000, immutable" },
+                },
+                // Static files in public/ keep a fixed filename across
+                // deploys, so cache for a day and let the CDN/browser
+                // revalidate rather than marking them immutable.
+                "/og/**": {
+                  headers: { "cache-control": "public, max-age=86400, must-revalidate" },
+                },
+                "/favicon*.png": {
+                  headers: { "cache-control": "public, max-age=86400, must-revalidate" },
+                },
+                "/apple-touch-icon.png": {
+                  headers: { "cache-control": "public, max-age=86400, must-revalidate" },
+                },
+              },
+            }),
+          ]
+        : []),
       viteReact(),
     ],
   };

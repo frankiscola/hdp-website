@@ -28,6 +28,8 @@ export const Route = createFileRoute("/hyperloop")({
           "Levitation, low-pressure tubes and network switching – the technology behind energy-efficient high-speed transport.",
       },
       { property: "og:url", content: absoluteUrl("/hyperloop") },
+      { property: "og:image", content: absoluteUrl("/og/tube-landscape.jpg") },
+      { name: "twitter:image", content: absoluteUrl("/og/tube-landscape.jpg") },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/hyperloop") }],
   }),

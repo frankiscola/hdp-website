@@ -16,7 +16,7 @@ export const Route = createFileRoute("/thechallenge-hdp")({
       {
         name: "description",
         content:
-          "Why Europe needs hyperloop: a widening transport capacity gap, tightening emissions targets, and the origin of the public-private partnership built to close them.",
+          "Why Europe needs hyperloop: a widening transport capacity gap, tightening emissions targets, and the partnership built to close them.",
       },
       { property: "og:title", content: "The Challenge — Hyperloop Development Program" },
       {
@@ -25,6 +25,8 @@ export const Route = createFileRoute("/thechallenge-hdp")({
           "The transport and climate challenge hyperloop is built to address, and how HDP's public-private partnership came to be.",
       },
       { property: "og:url", content: absoluteUrl("/thechallenge-hdp") },
+      { property: "og:image", content: absoluteUrl("/og/ecosystem-network.jpg") },
+      { name: "twitter:image", content: absoluteUrl("/og/ecosystem-network.jpg") },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/thechallenge-hdp") }],
   }),

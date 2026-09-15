@@ -16,7 +16,7 @@ export const Route = createFileRoute("/team-and-board")({
       {
         name: "description",
         content:
-          "The Stichting Hyperloop Development Program is governed by an Executive Board and a Supervisory Board, advised by the Advisory Council and the Program Partner Council.",
+          "Stichting Hyperloop Development Program is governed by an Executive and Supervisory Board, advised by the Advisory Council and Program Partner Council.",
       },
       { property: "og:title", content: "Team and Board – Hyperloop Development Program" },
       {

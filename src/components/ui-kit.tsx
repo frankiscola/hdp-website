@@ -65,18 +65,25 @@ export function SectionHeading({
   title,
   intro,
   align = "left",
+  as = "h2",
 }: {
   eyebrow?: string;
   title: string;
   intro?: string;
   align?: "left" | "center";
+  /** Renders the title as this heading level. Defaults to "h2" — pages
+   *  that don't use PageHero (which owns the page's single h1) should
+   *  pass as="h1" on their top-most SectionHeading so the page still has
+   *  exactly one h1, for SEO and accessibility. */
+  as?: "h1" | "h2";
 }) {
+  const Title = as;
   return (
     <div className={cn("max-w-3xl", align === "center" && "mx-auto text-center")}>
       {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
-      <h2 className="mt-4 text-4xl leading-[1.05] font-semibold sm:text-5xl lg:text-6xl">
+      <Title className="mt-4 text-4xl leading-[1.05] font-semibold sm:text-5xl lg:text-6xl">
         {title}
-      </h2>
+      </Title>
       {intro ? (
         <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{intro}</p>
       ) : null}

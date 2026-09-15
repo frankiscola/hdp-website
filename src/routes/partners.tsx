@@ -27,6 +27,8 @@ export const Route = createFileRoute("/partners")({
           "Industry, research, infrastructure and public partners accelerating European hyperloop development.",
       },
       { property: "og:url", content: absoluteUrl("/partners") },
+      { property: "og:image", content: absoluteUrl("/og/ecosystem-network.jpg") },
+      { name: "twitter:image", content: absoluteUrl("/og/ecosystem-network.jpg") },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/partners") }],
   }),

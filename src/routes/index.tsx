@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "The Hyperloop Development Program unites 25+ European industry parties, research institutions and public bodies to develop hyperloop as safe, energy-efficient high-speed transport.",
+          "HDP unites 25+ European industry parties, research institutions and public bodies to develop hyperloop as safe, energy-efficient high-speed transport.",
       },
       { property: "og:title", content: "Hyperloop Development Program" },
       {
@@ -34,6 +34,8 @@ export const Route = createFileRoute("/")({
           "A European public-private partnership developing hyperloop as safe, energy-efficient high-speed transport for people and goods.",
       },
       { property: "og:url", content: absoluteUrl("/") },
+      { property: "og:image", content: absoluteUrl("/og/hero-vehicle.jpg") },
+      { name: "twitter:image", content: absoluteUrl("/og/hero-vehicle.jpg") },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/") }],
   }),

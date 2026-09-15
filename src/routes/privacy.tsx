@@ -102,6 +102,7 @@ function Privacy() {
       <div className="mx-auto max-w-3xl px-6 pt-40 pb-28 lg:px-10 lg:pt-52 lg:pb-36">
         <Reveal>
           <SectionHeading
+            as="h1"
             eyebrow="Legal"
             title="Privacy policy"
             intro="At the Hyperloop Development Program, accessible from www.hyperloopdevelopmentprogram.com, the privacy of our visitors matters to us. This page explains what information we collect through this website and how we use it. If anything here is unclear, or you'd like more detail, just get in touch."

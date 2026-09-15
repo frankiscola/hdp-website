@@ -15,6 +15,7 @@ import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import { CtaButton, SectionHeading } from "../components/ui-kit";
+import { absoluteUrl, SITE_URL } from "../lib/seo";
 
 export const Route = createFileRoute("/innotrans-2026")({
   head: () => ({
@@ -23,16 +24,50 @@ export const Route = createFileRoute("/innotrans-2026")({
       {
         name: "description",
         content:
-          "Meet HDP at InnoTrans 2026, 22–25 September, Hall 2.2 Stand 100, Messe Berlin. Step inside Europe's first full-scale hyperloop passenger vehicle and join the Hyperloop Conference on 25 September.",
+          "Meet HDP at InnoTrans 2026, Hall 2.2 Stand 100, Messe Berlin. Step inside Europe's first full-scale hyperloop vehicle and join the Hyperloop Conference.",
       },
       { property: "og:title", content: "InnoTrans 2026 – Hyperloop Development Program" },
       {
         property: "og:description",
         content: "Meet HDP at InnoTrans 2026 — booth, programme and the Hyperloop Conference.",
       },
-      { property: "og:url", content: "/innotrans-2026" },
+      { property: "og:url", content: absoluteUrl("/innotrans-2026") },
+      { property: "og:image", content: absoluteUrl("/og/hero-vehicle.jpg") },
+      { name: "twitter:image", content: absoluteUrl("/og/hero-vehicle.jpg") },
     ],
-    links: [{ rel: "canonical", href: "/innotrans-2026" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/innotrans-2026") }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Event",
+          name: "Hyperloop Conference 2026",
+          description:
+            "Building Europe's Hyperloop Future — political remarks, study results, the Hyper4Rail project and a high-level panel on the European hyperloop roadmap.",
+          startDate: "2026-09-25T11:30:00+02:00",
+          endDate: "2026-09-25T14:30:00+02:00",
+          eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+          eventStatus: "https://schema.org/EventScheduled",
+          location: {
+            "@type": "Place",
+            name: "Speakers' Corner, hub27, beta 6–7 — InnoTrans, Messe Berlin",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Berlin",
+              addressCountry: "DE",
+            },
+          },
+          image: absoluteUrl("/og/hero-vehicle.jpg"),
+          organizer: {
+            "@type": "Organization",
+            name: "Hyperloop Development Program",
+            url: SITE_URL,
+          },
+          url: absoluteUrl("/innotrans-2026"),
+        }),
+      },
+    ],
   }),
   component: InnoTrans2026,
 });

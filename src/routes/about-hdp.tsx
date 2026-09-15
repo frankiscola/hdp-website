@@ -24,6 +24,8 @@ export const Route = createFileRoute("/about-hdp")({
           "Mission, governance and organisation of Europe's coordinating platform for hyperloop development.",
       },
       { property: "og:url", content: absoluteUrl("/about-hdp") },
+      { property: "og:image", content: absoluteUrl("/og/ecosystem-network.jpg") },
+      { name: "twitter:image", content: absoluteUrl("/og/ecosystem-network.jpg") },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/about-hdp") }],
   }),
