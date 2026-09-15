@@ -9,7 +9,7 @@ export type ContactFormPayload = {
   message: string;
 };
 
-const CONTACT_RECIPIENT = "matteo.dragoni@hyperloopdevelopmentprogram.com";
+const CONTACT_RECIPIENT = "account@hyperloopdevelopmentprogram.com";
 
 function escapeHtml(value: string) {
   return value
