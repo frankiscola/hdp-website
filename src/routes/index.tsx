@@ -292,7 +292,7 @@ function Home() {
               />
             </Reveal>
             <Reveal delay={0.15}>
-              <div className="overflow-hidden rounded-[2rem] border border-border">
+              <div className="glow-ring overflow-hidden rounded-[2rem] border border-border">
                 <img
                   src={testCenter}
                   alt="Interior of a European hyperloop test facility with large vacuum tube segments"
