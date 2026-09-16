@@ -3,6 +3,7 @@ import { absoluteUrl } from "../lib/seo";
 import { Coins, Gauge, Leaf, MapPinned, Users } from "lucide-react";
 import ecosystemNetwork from "../assets/ecosystem-network.jpg";
 import ecosystemNetworkLight from "../assets/ecosystem-network-light.jpg";
+import cabinInterior from "../assets/hyperloop-cabin-interior.png";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
@@ -76,7 +77,7 @@ const origin = [
   },
   {
     label: "The recognition",
-    text: "The World Economic Forum has named hyperloop among its key markets of tomorrow, and HDP's own Vision Paper sets out a roadmap toward EU-aligned commercialisation.",
+    text: "The World Economic Forum names hyperloop among its 20 key markets of tomorrow, citing its potential to increase wellbeing and empower people, advance human knowledge, and protect the environment — and HDP's own Vision Paper sets out a roadmap toward EU-aligned commercialisation.",
   },
 ];
 
@@ -124,8 +125,36 @@ function TheChallenge() {
         </div>
       </section>
 
-      {/* Network-scale answer */}
+      {/* The cost of standing still */}
       <section className="border-y border-border bg-surface/30">
+        <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
+          <Reveal>
+            <SectionHeading
+              eyebrow="The cost of standing still"
+              title="Doing nothing has a price too."
+              intro="Transport already accounts for a quarter of global CO2 emissions, and without decisive action that share is set to keep climbing. The European Commission puts the transport-infrastructure investment needed across Europe this decade at €1,500 billion — spending whose consequences last a lifetime, which is why short-term congestion relief needs to be weighed carefully against genuinely sustainable, long-term capacity."
+            />
+          </Reveal>
+          <div className="mt-16 grid gap-8 sm:grid-cols-3">
+            <StatCounter value={25} suffix="%" label="of global CO2 emissions come from transport" />
+            <StatCounter
+              value={60}
+              prefix="+"
+              suffix="%"
+              label="projected growth in transport emissions by 2050 without action"
+            />
+            <StatCounter
+              prefix="€"
+              value={1500}
+              suffix="B"
+              label="EU transport-infrastructure investment needed this decade"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Network-scale answer */}
+      <section>
         <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
           <div className="grid items-center gap-16 lg:grid-cols-2">
             <Reveal>
@@ -141,9 +170,21 @@ function TheChallenge() {
               </div>
             </Reveal>
             <Reveal delay={0.15}>
-              <div className="grid gap-8 sm:grid-cols-2">
-                <StatCounter value={20000} suffix="+" label="Passengers per direction, per hour" />
-                <StatCounter value={25} suffix="+" label="Partners building the response" />
+              <div className="space-y-10">
+                <div className="glow-ring overflow-hidden rounded-[2rem] border border-border">
+                  <img
+                    src={cabinInterior}
+                    alt="Passengers seated inside a hyperloop vehicle cabin, boarding through an open pod door"
+                    loading="lazy"
+                    width={750}
+                    height={890}
+                    className="h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105"
+                  />
+                </div>
+                <div className="grid gap-8 sm:grid-cols-2">
+                  <StatCounter value={20000} suffix="+" label="Passengers per direction, per hour" />
+                  <StatCounter value={25} suffix="+" label="Partners building the response" />
+                </div>
               </div>
             </Reveal>
           </div>
@@ -151,7 +192,7 @@ function TheChallenge() {
       </section>
 
       {/* Origin of the programme */}
-      <section>
+      <section className="border-y border-border bg-surface/30">
         <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
           <Reveal>
             <SectionHeading
