@@ -1,10 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { absoluteUrl } from "../lib/seo";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { Quote } from "lucide-react";
 import { useRef } from "react";
 import heroVehicle from "../assets/hero-vehicle.jpg";
 import heroVehicleLight from "../assets/hero-vehicle-light.jpg";
 import tubeLandscape from "../assets/tube-landscape.jpg";
+import tubePartners from "../assets/hyperloop-tube-partners.png";
 import testCenter from "../assets/test-center.jpg";
 import ecosystemNetwork from "../assets/ecosystem-network.jpg";
 import ecosystemNetworkLight from "../assets/ecosystem-network-light.jpg";
@@ -167,16 +169,20 @@ function Home() {
       <section className="border-y border-border bg-surface/30">
         <div className="mx-auto max-w-[1400px] px-6 py-24 lg:px-10 lg:py-32">
           <Reveal>
-            <blockquote className="max-w-4xl font-display text-2xl leading-[1.3] font-medium sm:text-4xl lg:text-5xl">
-              “A global infrastructure project such as hyperloop can only be achieved when public
-              and private parties cooperate in complementary ways.”
-            </blockquote>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <p className="mt-10 text-sm text-muted-foreground">
-              <span className="text-foreground">Jeroen in 't Veld</span> – Chairman of the Hyperloop
-              Development Program
-            </p>
+            <div className="glow-ring relative overflow-hidden rounded-[2rem] border border-primary/30 bg-background/70 p-10 sm:p-14 lg:p-16">
+              <Quote className="h-10 w-10 text-primary-glow/80" strokeWidth={1.5} />
+              <blockquote className="mt-8 max-w-4xl font-display text-2xl leading-[1.3] font-medium sm:text-4xl lg:text-5xl">
+                “A global infrastructure project such as hyperloop can only be achieved when public
+                and private parties cooperate in complementary ways.”
+              </blockquote>
+              <div className="mt-10 flex items-center gap-4">
+                <span className="h-px w-12 bg-primary/60" />
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-semibold text-foreground">Jeroen in 't Veld</span> –
+                  Chairman of the Hyperloop Development Program
+                </p>
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -184,13 +190,27 @@ function Home() {
       {/* About hyperloop */}
       <section className="relative overflow-hidden">
         <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
-          <Reveal>
-            <SectionHeading
-              eyebrow="About hyperloop"
-              title="Safe, energy-efficient, high-speed transport for people and goods."
-              intro="Hyperloop is being developed as ground-based, high-speed and energy-efficient transportation for carrying large volumes of passengers and freight. It has the potential to create more capacity in transportation whilst being more environmentally friendly than existing modes."
-            />
-          </Reveal>
+          <div className="grid items-center gap-16 lg:grid-cols-2">
+            <Reveal>
+              <SectionHeading
+                eyebrow="About hyperloop"
+                title="Safe, energy-efficient, high-speed transport for people and goods."
+                intro="Hyperloop is being developed as ground-based, high-speed and energy-efficient transportation for carrying large volumes of passengers and freight. It has the potential to create more capacity in transportation whilst being more environmentally friendly than existing modes."
+              />
+            </Reveal>
+            <Reveal delay={0.15}>
+              <div className="glow-ring overflow-hidden rounded-[2rem] border border-border">
+                <img
+                  src={tubePartners}
+                  alt="Hyperloop vehicle inside an elevated tube over a green field, branded with partner logos Tata Steel and Posco"
+                  loading="lazy"
+                  width={1000}
+                  height={562}
+                  className="h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105"
+                />
+              </div>
+            </Reveal>
+          </div>
           <div className="mt-16 grid gap-6 md:grid-cols-3">
             {[
               {
