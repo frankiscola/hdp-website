@@ -18,7 +18,7 @@ export const Route = createFileRoute("/partners")({
       {
         name: "description",
         content:
-          "More than 25 industry parties, research institutions, infrastructure operators and public bodies collaborating to accelerate hyperloop development in Europe.",
+          "More than 20 industry parties, research institutions, infrastructure operators and public bodies collaborating to accelerate hyperloop development in Europe.",
       },
       { property: "og:title", content: "The HDP ecosystem" },
       {

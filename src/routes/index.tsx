@@ -30,7 +30,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "HDP unites 25+ European industry parties, research institutions and public bodies to develop hyperloop as safe, energy-efficient high-speed transport.",
+          "HDP unites 20+ European industry parties, research institutions and public bodies to develop hyperloop as safe, energy-efficient high-speed transport.",
       },
       { property: "og:title", content: "Hyperloop Development Program" },
       {
@@ -149,7 +149,7 @@ function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
           >
-            More than 25 organizations across Europe developing hyperloop as a safe,
+            More than 20 organizations across Europe developing hyperloop as a safe,
             energy-efficient and commercially viable mode of high-speed transportation.
           </motion.p>
           <motion.div
@@ -265,10 +265,10 @@ function Home() {
             <SectionHeading
               eyebrow="About the program"
               title="One programme, one European ecosystem."
-              intro="The Hyperloop Development Program is a public-private partnership of more than 25 organizations throughout Europe, including industry parties and research institutions, dedicated to developing hyperloop as a safe, energy-efficient and commercially viable mode of high-speed transportation."
+              intro="The Hyperloop Development Program is a public-private partnership of more than 20 organizations throughout Europe, including industry parties and research institutions, dedicated to developing hyperloop as a safe, energy-efficient and commercially viable mode of high-speed transportation."
             />
             <div className="mt-10 grid gap-8 sm:grid-cols-3">
-              <StatCounter value={25} suffix="+" label="Partner organizations" />
+              <StatCounter value={20} suffix="+" label="Partner organizations" />
               <StatCounter value={3} label="European test facilities" />
               <StatCounter value={9} label="Countries involved" />
             </div>

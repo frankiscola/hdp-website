@@ -105,11 +105,11 @@ function AboutHdp() {
             <SectionHeading
               eyebrow="Mission"
               title="Develop hyperloop as a safe, energy-efficient and viable mode of transport."
-              intro="HDP is a public-private partnership of more than 25 organizations throughout Europe, including industry parties and research institutions. Together they align technology development, test infrastructure and regulation."
+              intro="HDP is a public-private partnership of more than 20 organizations throughout Europe, including industry parties and research institutions. Together they align technology development, test infrastructure and regulation."
             />
           </Reveal>
           <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            <StatCounter value={25} suffix="+" label="Partner organizations" />
+            <StatCounter value={20} suffix="+" label="Partner organizations" />
             <StatCounter value={9} label="Countries" />
             <StatCounter value={3} label="Test facilities" />
             <StatCounter value={1} label="Shared roadmap" />

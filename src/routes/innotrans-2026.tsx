@@ -121,46 +121,67 @@ const boothProgramme: BoothDay[] = [
   },
 ];
 
-const conferenceAgenda = [
+type AgendaItem = {
+  time: string;
+  title: string;
+  note?: string;
+  people: string[];
+};
+
+const conferenceAgenda: AgendaItem[] = [
   {
     time: "11:30 – 11:40",
     title: "Welcome Address",
-    people: "Klaus Rudischhauser — Hyperloop Development Program",
+    people: ["Klaus Rudischhauser — Hyperloop Development Program"],
   },
   {
     time: "11:40 – 11:50",
     title: "Political Remarks",
-    people:
-      "Dorothee Bär — German Federal Minister for Research, Technology and Space (video message) · Markus Blume — Bavarian State Minister for Science and the Arts (video message)",
+    people: [
+      "Dorothee Bär — German Federal Minister for Research, Technology and Space (video message)",
+      "Markus Blume — Bavarian State Minister for Science and the Arts (video message)",
+    ],
   },
   {
     time: "11:50 – 12:10",
     title: "Building the Foundations: Existing Test Facilities and Next Projects",
-    people: "Prof. Dr. Thomas Schüning — University of Applied Sciences Emden Leer",
+    people: ["Prof. Dr. Thomas Schüning — University of Applied Sciences Emden Leer"],
   },
   {
     time: "12:10 – 12:30",
     title:
       "Presentation of the Results of the Hyperloop Study — Current Development Status of the Hyperloop Concept",
-    people:
-      "Waldemar Gaad — DZSF at the Federal Railway Authority (EBA) · Jasne Prilop — Deutsche Rail Operations (DRO)",
+    people: [
+      "Waldemar Gaad — DZSF at the Federal Railway Authority (EBA)",
+      "Jasne Prilop — Deutsche Rail Operations (DRO)",
+    ],
   },
   {
     time: "12:30 – 13:20",
     title: "Hyper4Rail",
-    people:
-      "Dr. Chrysostomos Mylonas (CERTH) — A European Hyperloop Network: The Financial and Socio-Economic Case · Luca Sandel (EuroTube Foundation) — Converging on Europe's Hyperloop: The Harmonised Technical Concept · Q&A",
+    people: [
+      "Dr. Chrysostomos Mylonas (CERTH) — A European Hyperloop Network: The Financial and Socio-Economic Case",
+      "Luca Sandel (EuroTube Foundation) — Converging on Europe's Hyperloop: The Harmonised Technical Concept",
+      "Q&A",
+    ],
   },
   {
     time: "13:20 – 14:10",
     title: "High-Level Panel: From Vision to Roadmap — Delivering a European Hyperloop Network",
-    people:
-      "Including the HDP Vision Paper. Panellists: Gabriele Semino (Neoways) · Iñigo Cruz-Martinez (European Commission, DG MOVE) · Dr. Markus Bauer (thyssenkrupp Transrapid) · Giorgio Travaini (Europe's Rail Joint Undertaking) · Dieter Michell-Auli (DRO) · Q&A",
+    note: "Including the HDP Vision Paper. Panellists:",
+    people: [
+      "Gabriele Semino (Neoways)",
+      "Iñigo Cruz-Martinez (European Commission, DG MOVE)",
+      "Dr. Markus Bauer (thyssenkrupp Transrapid)",
+      "Giorgio Travaini (Europe's Rail Joint Undertaking)",
+      "Dieter Michell-Auli (DRO)",
+      "Q&A",
+    ],
   },
   {
     time: "14:25 – 14:30",
     title: "Closing Remarks",
-    people: "Jochen Wermuth — Wermuth Asset Management",
+    people: ["Jochen Wermuth — Wermuth Asset Management"],
   },
 ];
 
@@ -205,10 +226,22 @@ function InnoTrans2026() {
       <section>
         <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
           <Reveal>
-            <SectionHeading
-              eyebrow="Connecting Europe"
-              title="Faster. Cleaner. Smarter."
-            />
+            <div className="dark overflow-hidden rounded-[2rem] border border-border bg-background p-10 sm:p-14 lg:p-16">
+              <p className="font-display text-2xl font-black tracking-tight text-foreground uppercase sm:text-3xl lg:text-4xl">
+                Connecting Europe
+              </p>
+              <div className="mt-8 sm:mt-10">
+                <p className="font-display text-6xl font-black leading-[0.92] tracking-tight text-primary-glow uppercase sm:text-7xl lg:text-8xl">
+                  Faster.
+                </p>
+                <p className="font-display text-6xl font-black leading-[0.92] tracking-tight text-primary-glow uppercase sm:text-7xl lg:text-8xl">
+                  Cleaner.
+                </p>
+                <p className="font-display text-6xl font-black leading-[0.92] tracking-tight text-primary-glow uppercase sm:text-7xl lg:text-8xl">
+                  Smarter.
+                </p>
+              </div>
+            </div>
           </Reveal>
           <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {highlights.map((item, i) => {
@@ -283,8 +316,8 @@ function InnoTrans2026() {
         <div className="mx-auto max-w-[1000px] px-6 py-28 lg:px-10 lg:py-36">
           <Reveal>
             <SectionHeading
-              eyebrow="Building Europe's Hyperloop Future"
-              title="Hyperloop Conference 2026."
+              eyebrow="Hyperloop Conference 2026"
+              title="Building Europe's Hyperloop Future."
               intro="Friday, 25 September 2026 · 11:30–14:30 · InnoTrans – Speakers' Corner, hub27, beta 6–7, Messe Berlin"
             />
           </Reveal>
@@ -300,9 +333,22 @@ function InnoTrans2026() {
                     <h3 className="text-base font-semibold leading-snug sm:text-lg">
                       {item.title}
                     </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                      {item.people}
-                    </p>
+                    {item.note ? (
+                      <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                        {item.note}
+                      </p>
+                    ) : null}
+                    <ul className="mt-2 space-y-1.5">
+                      {item.people.map((person, idx) => (
+                        <li
+                          key={idx}
+                          className="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground"
+                        >
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-glow" />
+                          <span>{person}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </Reveal>
@@ -318,11 +364,13 @@ function InnoTrans2026() {
             <h2 className="font-display text-2xl font-semibold sm:text-3xl">
               See you at Messe Berlin.
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
-              Interested in a slot at our stand? Slots are limited and assigned on a
-              first-come, first-served basis — let us know which day works for you and we'll
-              get back to you with the details.
-            </p>
+            <div className="mx-auto mt-6 flex items-center justify-center gap-3">
+              <MapPin className="h-5 w-5 shrink-0 text-primary-glow" />
+              <div className="text-left">
+                <p className="text-sm font-semibold">Where to find us</p>
+                <p className="text-sm text-muted-foreground">Hall 2.2, Stand 100 · Messe Berlin</p>
+              </div>
+            </div>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <CtaButton to="/contact">Get in touch</CtaButton>
               <a

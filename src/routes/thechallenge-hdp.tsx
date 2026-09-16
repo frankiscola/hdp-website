@@ -192,7 +192,7 @@ function TheChallenge() {
                 </div>
                 <div className="grid gap-8 sm:grid-cols-2">
                   <StatCounter value={20000} suffix="+" label="Passengers per direction, per hour" />
-                  <StatCounter value={25} suffix="+" label="Partners building the response" />
+                  <StatCounter value={20} suffix="+" label="Partners building the response" />
                 </div>
               </div>
             </Reveal>

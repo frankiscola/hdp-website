@@ -398,7 +398,7 @@ export const news: NewsItem[] = [
     image: "https://images.squarespace-cdn.com/content/v1/64e74196d472e811c33e6a78/1707315923794-IVMFDJEEC1BMXO905F81/IMG_4301.jpeg",
     body: [
       "We are thrilled to announce a groundbreaking partnership between the Hyperloop Development Program (HDP), the Swiss EuroTube Foundation, and the European Hyperloop Center, marking the start of a shared European research infrastructure cluster for hyperloop.",
-      "Together with more than 25 partner organisations, HDP accelerates the development and adoption of hyperloop technology in Europe and beyond, bringing together innovative companies, research institutes and industry leaders from both the Netherlands and Switzerland.",
+      "Together with more than 20 partner organisations, HDP accelerates the development and adoption of hyperloop technology in Europe and beyond, bringing together innovative companies, research institutes and industry leaders from both the Netherlands and Switzerland.",
       "By combining the test capabilities of institutes in Switzerland and the Netherlands, the cluster lays the groundwork for a coordinated, pan-European approach to hyperloop research — pooling knowledge, infrastructure and funding opportunities rather than duplicating effort at each individual site.",
     ],
   },
@@ -411,7 +411,7 @@ export const news: NewsItem[] = [
     image: "https://images.squarespace-cdn.com/content/v1/64e74196d472e811c33e6a78/1700657228640-32PNLXDAZKHH4PN8CY9C/HDP+opportunity2.png",
     body: [
       "The Hyperloop Development Program is looking for a new General Director starting from January 2024, to lead the coordination of Europe's public-private hyperloop ecosystem into its next phase.",
-      "The role calls for a leader able to bridge industry, research institutions and public authorities, building on HDP's position as the coordinating platform for more than 25 partner organisations across Europe.",
+      "The role calls for a leader able to bridge industry, research institutions and public authorities, building on HDP's position as the coordinating platform for more than 20 partner organisations across Europe.",
     ],
   },
   {
@@ -639,7 +639,7 @@ export const news: NewsItem[] = [
     image: "https://images.squarespace-cdn.com/content/v1/64e74196d472e811c33e6a78/25558885-e7cc-48f7-8a98-2c211a622f74/Article+15.png",
     body: [
       "Dutch ministries put millions towards hyperloop development programme. Two Dutch ministries and several companies and research organizations have revealed the establishment and funding of a public-private partnership to develop hyperloop: the Hyperloop Development Program.",
-      "The partnership brings together government backing with industry and research expertise, laying the institutional foundation from which HDP would go on to coordinate more than 25 partner organisations across Europe in the years that followed.",
+      "The partnership brings together government backing with industry and research expertise, laying the institutional foundation from which HDP would go on to coordinate more than 20 partner organisations across Europe in the years that followed.",
     ],
   },
 ];
