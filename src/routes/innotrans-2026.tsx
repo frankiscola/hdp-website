@@ -364,13 +364,9 @@ function InnoTrans2026() {
             <h2 className="font-display text-2xl font-semibold sm:text-3xl">
               See you at Messe Berlin.
             </h2>
-            <div className="mx-auto mt-6 flex items-center justify-center gap-3">
-              <MapPin className="h-5 w-5 shrink-0 text-primary-glow" />
-              <div className="text-left">
-                <p className="text-sm font-semibold">Where to find us</p>
-                <p className="text-sm text-muted-foreground">Hall 2.2, Stand 100 · Messe Berlin</p>
-              </div>
-            </div>
+            <p className="mx-auto mt-4 max-w-md text-base text-muted-foreground">
+              Find us at Hall 2.2, Stand 100 — 22–25 September 2026.
+            </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <CtaButton to="/contact">Get in touch</CtaButton>
               <a

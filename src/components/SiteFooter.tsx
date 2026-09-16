@@ -17,7 +17,7 @@ export function SiteFooter() {
           />
 
           <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-            A public-private partnership of more than 25 organizations across Europe, developing
+            A public-private partnership of more than 20 organizations across Europe, developing
             hyperloop as a safe, energy-efficient and commercially viable mode of high-speed
             transportation.
           </p>
