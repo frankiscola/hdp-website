@@ -8,6 +8,7 @@ import hyperloopTubeDiagramLight from "../assets/hyperloop-tube-diagram-light.jp
 import hyperloopVideoThumbnail from "../assets/hyperloop-video-thumbnail.jpg";
 import landscapeTube from "../assets/hyperloop-landscape-tube.jpg";
 import landscapeTubeLight from "../assets/hyperloop-landscape-tube-light.jpg";
+import vehicleInTube from "../assets/vehicle-in-tube.png";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
@@ -181,6 +182,24 @@ function Hyperloop() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+          <Reveal>
+            <div className="mx-auto max-w-2xl rounded-[2rem] bg-surface/60 p-10 text-center sm:p-14">
+              <img
+                src={vehicleInTube}
+                alt="Cutaway view of a hyperloop vehicle riding inside its illuminated low-pressure tube"
+                loading="lazy"
+                className="mx-auto w-full max-w-md"
+              />
+              <p className="mt-8 text-sm text-muted-foreground">
+                Levitation, propulsion and the low-pressure tube, working together in motion.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
