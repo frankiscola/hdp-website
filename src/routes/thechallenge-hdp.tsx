@@ -3,7 +3,8 @@ import { absoluteUrl } from "../lib/seo";
 import { Coins, Gauge, Leaf, MapPinned, Users } from "lucide-react";
 import ecosystemNetwork from "../assets/ecosystem-network.jpg";
 import ecosystemNetworkLight from "../assets/ecosystem-network-light.jpg";
-import cabinInterior from "../assets/hyperloop-cabin-interior.png";
+import cabinInterior from "../assets/hyperloop-cabin-interior.jpg";
+import cabinInteriorLight from "../assets/hyperloop-cabin-interior-light.png";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
@@ -174,11 +175,19 @@ function TheChallenge() {
                 <div className="glow-ring overflow-hidden rounded-[2rem] border border-border">
                   <img
                     src={cabinInterior}
-                    alt="Passengers seated inside a hyperloop vehicle cabin, boarding through an open pod door"
+                    alt="Passengers seated inside a hyperloop vehicle cabin at night, boarding through an open pod door under a starry sky"
+                    loading="lazy"
+                    width={944}
+                    height={1120}
+                    className="hidden h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105 dark:block"
+                  />
+                  <img
+                    src={cabinInteriorLight}
+                    alt="Passengers seated inside a hyperloop vehicle cabin in daylight, boarding through an open pod door"
                     loading="lazy"
                     width={750}
                     height={890}
-                    className="h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105"
+                    className="block h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105 dark:hidden"
                   />
                 </div>
                 <div className="grid gap-8 sm:grid-cols-2">

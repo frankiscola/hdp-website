@@ -6,8 +6,11 @@ import { useRef } from "react";
 import heroVehicle from "../assets/hero-vehicle.jpg";
 import heroVehicleLight from "../assets/hero-vehicle-light.jpg";
 import tubeLandscape from "../assets/tube-landscape.jpg";
-import tubePartners from "../assets/hyperloop-tube-partners.png";
+import tubeLandscapeLight from "../assets/tube-landscape-light.jpg";
+import tubePartners from "../assets/hyperloop-tube-partners.jpg";
+import tubePartnersLight from "../assets/hyperloop-tube-partners-light.png";
 import testCenter from "../assets/test-center.jpg";
+import testCenterLight from "../assets/test-center-light.jpg";
 import ecosystemNetwork from "../assets/ecosystem-network.jpg";
 import ecosystemNetworkLight from "../assets/ecosystem-network-light.jpg";
 import { Magnetic } from "../components/Magnetic";
@@ -202,11 +205,19 @@ function Home() {
               <div className="glow-ring overflow-hidden rounded-[2rem] border border-border">
                 <img
                   src={tubePartners}
-                  alt="Hyperloop vehicle inside an elevated tube over a green field, branded with partner logos Tata Steel and Posco"
+                  alt="Hyperloop vehicle inside an elevated tube at night under a starry sky, branded with partner logos Tata Steel and Posco"
+                  loading="lazy"
+                  width={1367}
+                  height={768}
+                  className="hidden h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105 dark:block"
+                />
+                <img
+                  src={tubePartnersLight}
+                  alt="Hyperloop vehicle inside an elevated tube over a green field in daylight, branded with partner logos Tata Steel and Posco"
                   loading="lazy"
                   width={1000}
                   height={562}
-                  className="h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105"
+                  className="block h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105 dark:hidden"
                 />
               </div>
             </Reveal>
@@ -273,7 +284,15 @@ function Home() {
                 loading="lazy"
                 width={1920}
                 height={1088}
-                className="h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105"
+                className="hidden h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105 dark:block"
+              />
+              <img
+                src={tubeLandscapeLight}
+                alt="Elevated hyperloop tube crossing European countryside in daylight"
+                loading="lazy"
+                width={1920}
+                height={1088}
+                className="block h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105 dark:hidden"
               />
             </div>
           </Reveal>
@@ -299,7 +318,15 @@ function Home() {
                   loading="lazy"
                   width={1600}
                   height={1008}
-                  className="h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105"
+                  className="hidden h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105 dark:block"
+                />
+                <img
+                  src={testCenterLight}
+                  alt="Interior of a European hyperloop test facility with large vacuum tube segments, daylight rendition"
+                  loading="lazy"
+                  width={1600}
+                  height={1008}
+                  className="block h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105 dark:hidden"
                 />
               </div>
             </Reveal>
