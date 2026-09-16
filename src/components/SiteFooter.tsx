@@ -5,7 +5,7 @@ import { logoHdpUrl } from "../data/logo";
 export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-surface/40">
-      <div className="mx-auto grid max-w-[1400px] gap-12 px-6 py-16 lg:grid-cols-[1.4fr_1fr_1fr] lg:px-10">
+      <div className="mx-auto grid max-w-[1400px] gap-12 px-6 py-16 lg:grid-cols-[1.4fr_1fr_1fr_0.8fr] lg:px-10">
         <div>
           <img
             src={logoHdpUrl}
@@ -76,11 +76,24 @@ export function SiteFooter() {
             </li>
           </ul>
         </div>
+
+        <div>
+          <p className="eyebrow">Legal</p>
+          <ul className="mt-5 space-y-3 text-sm text-muted-foreground">
+            <li>
+              <Link to="/privacy" className="transition-colors hover:text-foreground">
+                Privacy policy
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div className="mx-auto flex max-w-[1400px] flex-col gap-2 border-t border-border px-6 py-8 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between lg:px-10">
         <p>© {new Date().getFullYear()} Hyperloop Development Program Foundation</p>
-        <p>Veendam · Rotterdam · Europe</p>
+        <div className="flex items-center gap-6">
+          <p>Veendam · Rotterdam · Europe</p>
+        </div>
       </div>
     </footer>
   );
