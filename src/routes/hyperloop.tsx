@@ -160,13 +160,23 @@ function Hyperloop() {
 
       <section>
         <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Principles"
-              title="Four systems working as one."
-              intro="Hyperloop is not one invention but the integration of four engineering domains, each validated at full scale in European test infrastructure."
-            />
-          </Reveal>
+          <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+            <Reveal>
+              <SectionHeading
+                eyebrow="Principles"
+                title="Four systems working as one."
+                intro="Hyperloop is not one invention but the integration of four engineering domains, each validated at full scale in European test infrastructure."
+              />
+            </Reveal>
+            <Reveal delay={0.1}>
+              <img
+                src={vehicleInTube}
+                alt="Cutaway view of a hyperloop vehicle riding inside its illuminated low-pressure tube"
+                loading="lazy"
+                className="mx-auto w-full max-w-md drop-shadow-[0_0_70px_rgba(125,127,255,0.3)]"
+              />
+            </Reveal>
+          </div>
           <div className="mt-16 grid gap-6 md:grid-cols-2">
             {principles.map((item, i) => (
               <Reveal key={item.title} delay={i * 0.08}>
@@ -182,24 +192,6 @@ function Hyperloop() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-          <Reveal>
-            <div className="mx-auto max-w-2xl rounded-[2rem] bg-surface/60 p-10 text-center sm:p-14">
-              <img
-                src={vehicleInTube}
-                alt="Cutaway view of a hyperloop vehicle riding inside its illuminated low-pressure tube"
-                loading="lazy"
-                className="mx-auto w-full max-w-md"
-              />
-              <p className="mt-8 text-sm text-muted-foreground">
-                Levitation, propulsion and the low-pressure tube, working together in motion.
-              </p>
-            </div>
-          </Reveal>
         </div>
       </section>
 
