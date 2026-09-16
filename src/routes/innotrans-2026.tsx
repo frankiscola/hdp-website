@@ -226,7 +226,7 @@ function InnoTrans2026() {
       <section>
         <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
           <Reveal>
-            <div className="dark overflow-hidden rounded-[2rem] border border-border bg-background p-10 sm:p-14 lg:p-16">
+            <div className="overflow-hidden rounded-[2rem] dark bg-background p-10 sm:p-14 lg:p-16">
               <p className="font-display text-2xl font-black tracking-tight text-foreground uppercase sm:text-3xl lg:text-4xl">
                 Connecting Europe
               </p>
@@ -313,7 +313,7 @@ function InnoTrans2026() {
 
       {/* Hyperloop Conference full agenda */}
       <section>
-        <div className="mx-auto max-w-[1000px] px-6 py-28 lg:px-10 lg:py-36">
+        <div className="mx-auto max-w-[1200px] px-6 py-28 lg:px-10 lg:py-36">
           <Reveal>
             <SectionHeading
               eyebrow="Hyperloop Conference 2026"
@@ -325,11 +325,11 @@ function InnoTrans2026() {
           <div className="mt-14 space-y-4">
             {conferenceAgenda.map((item, i) => (
               <Reveal key={item.time + item.title} delay={i * 0.05}>
-                <div className="flex flex-col gap-2 rounded-2xl border border-border bg-surface/40 p-6 sm:flex-row sm:gap-8 sm:p-7">
-                  <span className="shrink-0 text-sm font-semibold text-primary-glow sm:w-32">
+                <div className="flex flex-col gap-2 rounded-2xl border border-border bg-surface/40 p-6 sm:flex-row sm:gap-6 sm:p-7">
+                  <span className="shrink-0 text-sm font-semibold text-primary-glow sm:w-24">
                     {item.time}
                   </span>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <h3 className="text-base font-semibold leading-snug sm:text-lg">
                       {item.title}
                     </h3>
@@ -342,7 +342,7 @@ function InnoTrans2026() {
                       {item.people.map((person, idx) => (
                         <li
                           key={idx}
-                          className="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground"
+                          className="flex items-start gap-2 text-sm leading-relaxed text-muted-foreground"
                         >
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-glow" />
                           <span>{person}</span>
