@@ -9,7 +9,7 @@ export type ContactFormPayload = {
   message: string;
 };
 
-const CONTACT_RECIPIENT = "info@hyperloopdevelopmentprogram.com";
+const CONTACT_RECIPIENT = "general@hyperloopdevelopmentprogram.com";
 
 function escapeHtml(value: string) {
   return value
@@ -56,11 +56,11 @@ export const sendContactMessage = createServerFn({ method: "POST" })
     `.trim();
 
     const { error } = await resend.emails.send({
-      // Until a custom domain is verified in Resend, sending must use this
-      // shared sandbox address as the "from". Switch to something like
-      // "HDP Website <contact@hyperloopdevelopmentprogram.com>" once the
-      // domain is verified in the Resend dashboard.
-      from: "HDP Website",
+      // Resend's shared sandbox sender, valid without any domain
+      // verification. Once a custom domain (e.g. hyperloopdevelopmentprogram.com)
+      // is added and verified in the Resend dashboard, switch this to
+      // something like "HDP Website <contact@hyperloopdevelopmentprogram.com>".
+      from: "HDP Website <onboarding@resend.dev>",
       to: CONTACT_RECIPIENT,
       replyTo: email,
       subject: `New enquiry: ${topic} - ${name}`,

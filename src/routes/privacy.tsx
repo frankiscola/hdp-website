@@ -61,7 +61,7 @@ const sections = [
     title: "Your rights under the GDPR",
     paragraphs: [
       "As a data subject under EU law, you have the right to: request a copy of the personal data we hold about you; ask us to correct inaccurate or incomplete data; ask us to erase your data under certain conditions; ask us to restrict how we process your data; object to certain processing; and request that we transfer your data to another organization or to you directly, where technically feasible.",
-      "We respond to such requests within one month. To exercise any of these rights, contact us at info@hyperloopdevelopmentprogram.com.",
+      "We respond to such requests within one month. To exercise any of these rights, contact us at general@hyperloopdevelopmentprogram.com.",
     ],
   },
   {
@@ -91,7 +91,7 @@ const sections = [
   {
     title: "Contact us",
     paragraphs: [
-      "Questions or requests about this policy can be sent to info@hyperloopdevelopmentprogram.com.",
+      "Questions or requests about this policy can be sent to general@hyperloopdevelopmentprogram.com.",
     ],
   },
 ];

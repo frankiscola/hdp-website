@@ -90,7 +90,7 @@ function Contact() {
               <div className="space-y-6 text-sm text-muted-foreground">
                 <p className="flex items-center gap-3">
                   <Mail className="h-4 w-4 text-primary-glow" />
-                  info@hyperloopdevelopmentprogram.com
+                  general@hyperloopdevelopmentprogram.com
                 </p>
                 <p className="flex items-center gap-3">
                   <MapPin className="h-4 w-4 text-primary-glow" />
@@ -179,7 +179,7 @@ function Contact() {
                   {status === "error" && (
                     <p className="text-sm text-destructive" role="alert">
                       {errorMessage ??
-                        "Something went wrong sending your message. Please try again, or email us directly at info@hyperloopdevelopmentprogram.com."}
+                        "Something went wrong sending your message. Please try again, or email us directly at general@hyperloopdevelopmentprogram.com."}
                     </p>
                   )}
 
