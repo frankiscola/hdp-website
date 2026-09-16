@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import heroVehicle from "../assets/hero-vehicle.jpg";
 import heroVehicleLight from "../assets/hero-vehicle-light.jpg";
 import hyperloopTubeDiagram from "../assets/hyperloop-tube-diagram.jpg";
+import hyperloopTubeDiagramLight from "../assets/hyperloop-tube-diagram-light.jpg";
 import hyperloopVideoThumbnail from "../assets/hyperloop-video-thumbnail.jpg";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
@@ -139,8 +140,14 @@ function Hyperloop() {
             <div className="mt-12 overflow-hidden rounded-3xl border border-border bg-background p-4 sm:p-8">
               <img
                 src={hyperloopTubeDiagram}
+                alt="Cutaway diagram of a hyperloop tube at night showing the low-pressure tube, top tracks for lane switching, the linear motor and the levitation magnets"
+                className="mx-auto hidden w-full max-w-4xl dark:block"
+                loading="lazy"
+              />
+              <img
+                src={hyperloopTubeDiagramLight}
                 alt="Cutaway diagram of a hyperloop tube showing the low-pressure tube, top tracks for lane switching, the linear motor and the levitation magnets"
-                className="mx-auto w-full max-w-4xl"
+                className="mx-auto block w-full max-w-4xl dark:hidden"
                 loading="lazy"
               />
             </div>
