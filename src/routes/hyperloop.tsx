@@ -6,6 +6,8 @@ import heroVehicleLight from "../assets/hero-vehicle-light.jpg";
 import hyperloopTubeDiagram from "../assets/hyperloop-tube-diagram.jpg";
 import hyperloopTubeDiagramLight from "../assets/hyperloop-tube-diagram-light.jpg";
 import hyperloopVideoThumbnail from "../assets/hyperloop-video-thumbnail.jpg";
+import landscapeTube from "../assets/hyperloop-landscape-tube.jpg";
+import landscapeTubeLight from "../assets/hyperloop-landscape-tube-light.jpg";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
@@ -184,9 +186,35 @@ function Hyperloop() {
 
       <section className="border-y border-border bg-surface/30">
         <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
-          <Reveal>
-            <SectionHeading eyebrow="Why it matters" title="More capacity, less impact." />
-          </Reveal>
+          <div className="grid items-center gap-16 lg:grid-cols-2">
+            <Reveal>
+              <SectionHeading
+                eyebrow="Why it matters"
+                title="More capacity, less impact."
+                intro="Raised on slender pylons, a hyperloop guideway crosses farmland, wind farms and open countryside while leaving the ground beneath it in use — a fraction of the footprint of a new road or rail line."
+              />
+            </Reveal>
+            <Reveal delay={0.15}>
+              <div className="glow-ring overflow-hidden rounded-[2rem] border border-border">
+                <img
+                  src={landscapeTube}
+                  alt="Elevated hyperloop guideway at night crossing a meadow with wind turbines and a flock of sheep grazing beneath it"
+                  loading="lazy"
+                  width={1920}
+                  height={1163}
+                  className="hidden h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105 dark:block"
+                />
+                <img
+                  src={landscapeTubeLight}
+                  alt="Elevated hyperloop guideway at sunset crossing a meadow with wind turbines and grazing sheep"
+                  loading="lazy"
+                  width={1920}
+                  height={1163}
+                  className="block h-full w-full object-cover transition-transform duration-[1200ms] hover:scale-105 dark:hidden"
+                />
+              </div>
+            </Reveal>
+          </div>
           <div className="mt-16 grid gap-6 md:grid-cols-3">
             {benefits.map((item, i) => (
               <Reveal key={item.title} delay={i * 0.08}>
