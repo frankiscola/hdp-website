@@ -7,55 +7,60 @@ export type DocumentLink = {
 export const downloadDocuments: DocumentLink[] = [
   {
     title: "Hyperloop Vision Paper 2026",
-    href: "https://www.hyperloopdevelopmentprogram.com/s/Hyperloop-Vision-Paper-2026.pdf",
+    href: "/documents/Hyperloop-Vision-Paper-2026.pdf",
     year: "2026",
   }, {
     title: "Hyperloop's Evolving Landscape 2026",
-    href: "https://www.hyperloopdevelopmentprogram.com/s/Hyperloop-Evolving-Landscape-2026.pdf",
+    href: "/documents/Hyperloop-Evolving-Landscape-2026.pdf",
     year: "2026",
   }, {
     title: "Hyperloop in Review report – H2 2025",
-    href: "https://www.hyperloopdevelopmentprogram.com/s/Hyperloop-Development-Report-December-2025.pdf",
+    href: "/documents/Hyperloop-Development-Report-December-2025.pdf",
     year: "2025",
   },
   {
     title: "Hyperloop in Review report – H1 2025",
-    href: "https://www.hyperloopdevelopmentprogram.com/s/Hyperloop-Development-Report-Jul-2025.pdf",
+    href: "/documents/Hyperloop-Development-Report-Jul-2025.pdf",
     year: "2025",
   },
   {
     title: "Hyperloop in Review report – H2 2024",
-    href: "https://www.hyperloopdevelopmentprogram.com/s/Hyperloop-in-Review-report-January-2025-EN.pdf",
+    href: "/documents/Hyperloop-in-Review-report-January-2025-EN.pdf",
     year: "2024",
   },
   {
     title: "HDP Vision Paper",
-    href: "https://hyperloopdevelopmentprogram.com/download-file/hdp-vision-paper-2024",
+    href: "/documents/hdp-vision-paper-2024.pdf",
     year: "2024",
   },
   {
-    title: "HDP two-pager on hyperloop in the Belgian Federal Government Agreement (NL/FR)",
-    href: "https://hyperloopdevelopmentprogram.com/download-file/hyperloop-in-belgian-federal-gov-agreement-2024",
+    title: "HDP two-pager on hyperloop in the Belgian Federal Government Agreement (NL)",
+    href: "/documents/hdp-two-pager-belgian-federal-government-agreement-nl.pdf",
+    year: "2024",
+  },
+  {
+    title: "HDP two-pager on hyperloop in the Belgian Federal Government Agreement (FR)",
+    href: "/documents/hdp-two-pager-belgian-federal-government-agreement-fr.pdf",
     year: "2024",
   },
   {
     title: "Hyperloop in Review report – H1 2024",
-    href: "https://hyperloopdevelopmentprogram.com/download-file/hyperloop-in-review-jul2024",
+    href: "/documents/Hyperloop-in-Review-report-H1-2024.pdf",
     year: "2024",
   },
   {
     title: "HDP position paper on the EU regulatory framework for hyperloop",
-    href: "https://hyperloopdevelopmentprogram.com/download-file/hdp-pp-regulatoryframework",
+    href: "/documents/hdp-position-paper-on-the-eu-regulatory-framework-for-hyperloop.pdf",
     year: "2024",
   },
   {
     title: "HDP position paper on hyperloop in Dutch spatial planning (NL)",
-    href: "https://hyperloopdevelopmentprogram.com/download-file/hdp-pp-spatialplanning-nl",
+    href: "/documents/hdp-position-paper-on-hyperloop-in-dutch-spatial-planning-nl.pdf",
     year: "2024",
   },
   {
     title: "HDP position paper for the European Parliament elections",
-    href: "https://hyperloopdevelopmentprogram.com/download-file/hdp-pp-epelections24",
+    href: "/documents/hdp-position-paper-for-the-european-parliament-elections.pdf",
     year: "2023",
   },
 ];
