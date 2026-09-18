@@ -6,6 +6,14 @@ export type DocumentLink = {
 
 export const downloadDocuments: DocumentLink[] = [
   {
+    title: "Hyperloop Vision Paper 2026",
+    href: "https://www.hyperloopdevelopmentprogram.com/s/Hyperloop-Vision-Paper-2026.pdf",
+    year: "2026",
+  }, {
+    title: "Hyperloop's Evolving Landscape 2026",
+    href: "https://www.hyperloopdevelopmentprogram.com/s/Hyperloop-Evolving-Landscape-2026.pdf",
+    year: "2026",
+  }, {
     title: "Hyperloop in Review report – H2 2025",
     href: "https://www.hyperloopdevelopmentprogram.com/s/Hyperloop-Development-Report-December-2025.pdf",
     year: "2025",
