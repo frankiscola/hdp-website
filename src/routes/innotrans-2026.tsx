@@ -1,13 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  ArrowUpRight,
-  Gauge,
-  Leaf,
-  MapPin,
-  Mic,
-  ShieldCheck,
-  TrendingDown,
-} from "lucide-react";
+import { ArrowUpRight, Gauge, Leaf, MapPin, Mic, ShieldCheck, TrendingDown } from "lucide-react";
 import heroVehicle from "../assets/hero-vehicle.jpg";
 import heroVehicleLight from "../assets/hero-vehicle-light.jpg";
 import { Magnetic } from "../components/Magnetic";
@@ -95,7 +87,7 @@ const highlights = [
   },
 ];
 
-type BoothSlot = { time: string; title: string };
+type BoothSlot = { time: string; title: string; speaker?: string };
 type BoothDay = { day: string; date: string; slots: BoothSlot[] };
 
 // Only the confirmed (highlighted) presentations at the HDP stand — open
@@ -106,17 +98,38 @@ const boothProgramme: BoothDay[] = [
     day: "Wed",
     date: "23 Sep",
     slots: [
-      { time: "13:00 – 14:00", title: "Hyper4Rail Presentation" },
-      { time: "16:00 – 16:30", title: "TUM Hyperloop" },
-      { time: "17:00 – 17:30", title: "TUM Hyperloop" },
+      {
+        time: "11:00 – 11:30",
+        title: "Hyperloop in Türkiye: Activities, Competitions and Vision",
+        speaker: "Dr. Murat Güler — TÜBİTAK Rail Transportation Technologies Institute",
+      },
+      {
+        time: "13:00 – 14:00",
+        title: "Converging on Europe's Hyperloop: The Harmonised Technical Concept",
+        speaker: "Luca Sandel — EuroTube Foundation",
+      },
     ],
   },
   {
     day: "Thu",
     date: "24 Sep",
     slots: [
-      { time: "14:00 – 14:30", title: "TUM Hyperloop" },
-      { time: "16:00 – 16:30", title: "Schweizer Design" },
+      {
+        time: "13:00 – 13:30",
+        title: "A European Hyperloop Network: The Financial and Socio-Economic Case",
+        speaker: "Dr. Chrysostomos Mylonas — Centre for Research and Technology Hellas (CERTH)",
+      },
+      {
+        time: "14:00 – 14:30",
+        title: "Latest Achievements in Hyperloop Full-Scale Testing and Next Steps",
+        speaker:
+          "Dr. Domenik Radeck & Oliver Kleikemper — Technical University of Munich; Gabriele Semino — Neoways Technologies",
+      },
+      {
+        time: "16:00 – 16:30",
+        title: "Vision on Hyperloop – Passenger Accommodation and Comfort",
+        speaker: "Oliver Schweizer — Schweizer Design Consulting GmbH",
+      },
     ],
   },
 ];
@@ -205,9 +218,7 @@ function InnoTrans2026() {
             <MapPin className="h-5 w-5 shrink-0 text-primary-glow" />
             <div>
               <p className="text-sm font-semibold">Where to find us</p>
-              <p className="text-sm text-muted-foreground">
-                Hall 2.2, Stand 100 · Messe Berlin
-              </p>
+              <p className="text-sm text-muted-foreground">Hall 2.2, Stand 100 · Messe Berlin</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -291,16 +302,23 @@ function InnoTrans2026() {
 
               {boothProgramme.map((d) => (
                 <TabsContent key={d.day} value={d.day} className="mt-8">
-                  <div className="flex flex-wrap gap-4">
+                  <div className="grid gap-4 sm:grid-cols-2">
                     {d.slots.map((slot) => (
                       <div
                         key={d.day + slot.time}
-                        className="flex w-40 flex-col justify-between gap-4 rounded-2xl border border-border bg-background/60 p-5 sm:w-44"
+                        className="flex flex-col gap-3 rounded-2xl border border-border bg-background/60 p-6"
                       >
                         <span className="text-xs font-medium text-muted-foreground">
                           {slot.time}
                         </span>
-                        <span className="text-sm font-semibold leading-snug">{slot.title}</span>
+                        <span className="text-sm leading-snug font-semibold sm:text-base">
+                          {slot.title}
+                        </span>
+                        {slot.speaker ? (
+                          <span className="text-sm leading-relaxed text-muted-foreground">
+                            {slot.speaker}
+                          </span>
+                        ) : null}
                       </div>
                     ))}
                   </div>
@@ -370,7 +388,7 @@ function InnoTrans2026() {
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <CtaButton to="/contact">Get in touch</CtaButton>
               <a
-                href="https://www.linkedin.com/company/european-hyperloop-center/"
+                href="https://www.linkedin.com/company/hyperloop-development-program/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 rounded-full border border-border px-6 py-3.5 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
