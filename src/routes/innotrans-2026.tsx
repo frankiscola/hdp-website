@@ -87,7 +87,7 @@ const highlights = [
   },
 ];
 
-type BoothSlot = { time: string; title: string; speaker?: string; location?: string };
+type BoothSlot = { time: string; title: string; speakers?: string[]; location?: string };
 type BoothDay = { day: string; date: string; slots: BoothSlot[] };
 
 // Only the confirmed (highlighted) presentations at the HDP stand — open
@@ -101,12 +101,12 @@ const boothProgramme: BoothDay[] = [
       {
         time: "11:00 – 11:30",
         title: "Hyperloop in Türkiye: Activities, Competitions and Vision",
-        speaker: "Dr. Murat Güler — TÜBİTAK Rail Transportation Technologies Institute",
+        speakers: ["Dr. Murat Güler – TÜBİTAK Rail Transportation Technologies Institute"],
       },
       {
         time: "13:00 – 14:00",
         title: "Converging on Europe's Hyperloop: The Harmonised Technical Concept",
-        speaker: "Luca Sandel — EuroTube Foundation",
+        speakers: ["Luca Sandel – EuroTube Foundation"],
       },
     ],
   },
@@ -117,24 +117,26 @@ const boothProgramme: BoothDay[] = [
       {
         time: "13:00 – 13:30",
         title: "A European Hyperloop Network: The Financial and Socio-Economic Case",
-        speaker: "Dr. Chrysostomos Mylonas — Centre for Research and Technology Hellas (CERTH)",
+        speakers: ["Dr. Chrysostomos Mylonas – Centre for Research and Technology Hellas (CERTH)"],
       },
       {
         time: "14:00 – 14:30",
         title: "Latest Achievements in Hyperloop Full-Scale Testing and Next Steps",
-        speaker:
-          "Dr. Domenik Radeck & Oliver Kleikemper — Technical University of Munich; Gabriele Semino — Neoways Technologies",
+        speakers: [
+          "Dr. Domenik Radeck & Oliver Kleikemper – Technical University of Munich",
+          "Gabriele Semino – Neoways Technologies",
+        ],
       },
       {
         time: "16:00 – 16:30",
         title: "Vision on Hyperloop – Passenger Accommodation and Comfort",
-        speaker: "Oliver Schweizer — Schweizer Design Consulting GmbH",
+        speakers: ["Oliver Schweizer – Schweizer Design Consulting GmbH"],
       },
     ],
   },
   {
     // The flyer prints this column as "Fri 23 Sep", which repeats
-    // Wednesday's date — a typo in the source document. The correct date
+    // Wednesday's date – a typo in the source document. The correct date
     // (confirmed by the Quick facts section and JSON-LD above) is 25 Sep.
     day: "Fri",
     date: "25 Sep",
@@ -159,28 +161,28 @@ const conferenceAgenda: AgendaItem[] = [
   {
     time: "11:30 – 11:40",
     title: "Welcome Address",
-    people: ["Klaus Rudischhauser — Hyperloop Development Program"],
+    people: ["Klaus Rudischhauser – Hyperloop Development Program"],
   },
   {
     time: "11:40 – 11:50",
     title: "Political Remarks",
     people: [
-      "Dorothee Bär — German Federal Minister for Research, Technology and Space (video message)",
-      "Markus Blume — Bavarian State Minister for Science and the Arts (video message)",
+      "Dorothee Bär – German Federal Minister for Research, Technology and Space (video message)",
+      "Markus Blume – Bavarian State Minister for Science and the Arts (video message)",
     ],
   },
   {
     time: "11:50 – 12:10",
     title: "Building the Foundations: Existing Test Facilities and Next Projects",
-    people: ["Prof. Dr. Thomas Schüning — University of Applied Sciences Emden Leer"],
+    people: ["Prof. Dr. Thomas Schüning – University of Applied Sciences Emden Leer"],
   },
   {
     time: "12:10 – 12:30",
     title:
       "Presentation of the Results of the Hyperloop Study — Current Development Status of the Hyperloop Concept",
     people: [
-      "Waldemar Gaad — DZSF at the Federal Railway Authority (EBA)",
-      "Jasne Prilop — Deutsche Rail Operations (DRO)",
+      "Waldemar Gaad – DZSF at the Federal Railway Authority (EBA)",
+      "Jasne Prilop – Deutsche Rail Operations (DRO)",
     ],
   },
   {
@@ -208,7 +210,7 @@ const conferenceAgenda: AgendaItem[] = [
   {
     time: "14:25 – 14:30",
     title: "Closing Remarks",
-    people: ["Jochen Wermuth — Wermuth Asset Management"],
+    people: ["Jochen Wermuth – Wermuth Asset Management"],
   },
 ];
 
@@ -328,10 +330,18 @@ function InnoTrans2026() {
                         <span className="text-sm leading-snug font-semibold sm:text-base">
                           {slot.title}
                         </span>
-                        {slot.speaker ? (
-                          <span className="text-sm leading-relaxed text-muted-foreground">
-                            {slot.speaker}
-                          </span>
+                        {slot.speakers?.length ? (
+                          <ul className="space-y-1.5">
+                            {slot.speakers.map((person) => (
+                              <li
+                                key={person}
+                                className="flex items-start gap-2 text-sm leading-relaxed text-muted-foreground"
+                              >
+                                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-glow" />
+                                <span>{person}</span>
+                              </li>
+                            ))}
+                          </ul>
                         ) : null}
                         {slot.location ? (
                           <span className="flex items-center gap-1.5 text-sm text-primary-glow">
