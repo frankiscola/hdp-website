@@ -87,7 +87,7 @@ const highlights = [
   },
 ];
 
-type BoothSlot = { time: string; title: string; speaker?: string };
+type BoothSlot = { time: string; title: string; speaker?: string; location?: string };
 type BoothDay = { day: string; date: string; slots: BoothSlot[] };
 
 // Only the confirmed (highlighted) presentations at the HDP stand — open
@@ -129,6 +129,20 @@ const boothProgramme: BoothDay[] = [
         time: "16:00 – 16:30",
         title: "Vision on Hyperloop – Passenger Accommodation and Comfort",
         speaker: "Oliver Schweizer — Schweizer Design Consulting GmbH",
+      },
+    ],
+  },
+  {
+    // The flyer prints this column as "Fri 23 Sep", which repeats
+    // Wednesday's date — a typo in the source document. The correct date
+    // (confirmed by the Quick facts section and JSON-LD above) is 25 Sep.
+    day: "Fri",
+    date: "25 Sep",
+    slots: [
+      {
+        time: "11:30 – 14:30",
+        title: "Hyperloop Conference 2026: Building Europe's Hyperloop Future",
+        location: "Speakers' Corner, hub27, beta 6–7",
       },
     ],
   },
@@ -317,6 +331,12 @@ function InnoTrans2026() {
                         {slot.speaker ? (
                           <span className="text-sm leading-relaxed text-muted-foreground">
                             {slot.speaker}
+                          </span>
+                        ) : null}
+                        {slot.location ? (
+                          <span className="flex items-center gap-1.5 text-sm text-primary-glow">
+                            <MapPin className="h-3.5 w-3.5 shrink-0" />
+                            {slot.location}
                           </span>
                         ) : null}
                       </div>
