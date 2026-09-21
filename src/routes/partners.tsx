@@ -185,7 +185,7 @@ function Partners() {
             <div className="mx-auto mt-14 flex max-w-4xl flex-wrap items-center justify-center gap-x-16 gap-y-10">
               {supportingGovernments.map((gov) => (
                 <Magnetic key={gov.name} strength={0.12} max={8}>
-                  {/* Same fixed-white rationale as the homepage tile — these
+                  {/* Same fixed-white rationale as the homepage tile – these
                       crests are dark artwork made for a white backing. */}
                   <div className="flex h-20 items-center justify-center rounded-2xl border border-black/5 bg-white px-6 py-3 shadow-lg shadow-black/20">
                     <img

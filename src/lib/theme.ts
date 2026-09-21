@@ -4,10 +4,10 @@ export const THEME_STORAGE_KEY = "hdp-theme";
 
 /**
  * Runs synchronously in <head>, before first paint, so the correct theme
- * class is already on <html> when the page renders — no light/dark flash.
+ * class is already on <html> when the page renders – no light/dark flash.
  * Keep this in perfect sync with getPreferredTheme() below.
  *
- * Dark is always the default on a first visit — deliberately ignoring the
+ * Dark is always the default on a first visit – deliberately ignoring the
  * OS/browser's prefers-color-scheme, since the site's default identity is
  * the dark theme. Light only applies once the person explicitly picks it
  * with the toggle (and it's then remembered via localStorage).
@@ -25,7 +25,7 @@ export const noFlashThemeScript = `
     var root = document.documentElement;
     if (isDark) root.classList.add("dark");
     // Tell the browser which native UI palette (scrollbars, form controls,
-    // date pickers) to use, before first paint — same reasoning as the class
+    // date pickers) to use, before first paint – same reasoning as the class
     // above: avoids a mismatched flash between page content and browser chrome.
     root.style.colorScheme = isDark ? "dark" : "light";
     if (isDark) {
@@ -42,7 +42,7 @@ export function getPreferredTheme(): Theme {
     const stored = localStorage.getItem(THEME_STORAGE_KEY);
     if (stored === "light" || stored === "dark") return stored;
   } catch {
-    // localStorage unavailable (private mode, etc.) — fall through to the default.
+    // localStorage unavailable (private mode, etc.) – fall through to the default.
   }
   return "dark";
 }
@@ -58,6 +58,6 @@ export function applyTheme(theme: Theme) {
   try {
     localStorage.setItem(THEME_STORAGE_KEY, theme);
   } catch {
-    // Ignore write failures — the toggle still works for this session.
+    // Ignore write failures – the toggle still works for this session.
   }
 }

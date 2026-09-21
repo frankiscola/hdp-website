@@ -59,7 +59,6 @@ export function CtaButton({
   );
 }
 
-
 export function SectionHeading({
   eyebrow,
   title,
@@ -71,7 +70,7 @@ export function SectionHeading({
   title: string;
   intro?: string;
   align?: "left" | "center";
-  /** Renders the title as this heading level. Defaults to "h2" — pages
+  /** Renders the title as this heading level. Defaults to "h2" – pages
    *  that don't use PageHero (which owns the page's single h1) should
    *  pass as="h1" on their top-most SectionHeading so the page still has
    *  exactly one h1, for SEO and accessibility. */
@@ -84,9 +83,7 @@ export function SectionHeading({
       <Title className="mt-4 text-4xl leading-[1.05] font-semibold sm:text-5xl lg:text-6xl">
         {title}
       </Title>
-      {intro ? (
-        <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{intro}</p>
-      ) : null}
+      {intro ? <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{intro}</p> : null}
     </div>
   );
 }

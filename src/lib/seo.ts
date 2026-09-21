@@ -1,6 +1,6 @@
 /**
  * Single source of truth for the site's canonical domain. Used to build
- * absolute canonical URLs, og:url / og:image tags and the sitemap — so a
+ * absolute canonical URLs, og:url / og:image tags and the sitemap – so a
  * future domain change only needs to happen here.
  */
 export const SITE_URL = "https://www.hyperloopdevelopmentprogram.com";

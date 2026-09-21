@@ -6,13 +6,13 @@ import { SectionHeading } from "../components/ui-kit";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy policy — Hyperloop Development Program" },
+      { title: "Privacy policy – Hyperloop Development Program" },
       {
         name: "description",
         content:
           "How the Hyperloop Development Program handles data collected through this website.",
       },
-      { property: "og:title", content: "Privacy policy — Hyperloop Development Program" },
+      { property: "og:title", content: "Privacy policy – Hyperloop Development Program" },
       { property: "og:url", content: absoluteUrl("/privacy") },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/privacy") }],
@@ -29,14 +29,14 @@ const sections = [
     title: "Information we collect",
     paragraphs: [
       "What personal information we ask for, and why, is made clear at the point we ask for it.",
-      "If you contact us directly — for example through the contact form — we may receive information such as your name, email address, phone number, organization, and the content of your message or any attachments.",
+      "If you contact us directly – for example through the contact form – we may receive information such as your name, email address, phone number, organization, and the content of your message or any attachments.",
       "If you register for an account, we may ask for contact details such as your name, company name, address, email address and telephone number.",
     ],
   },
   {
     title: "How we use your information",
     paragraphs: [
-      "We use the information we collect to run and maintain this website; to improve and develop it over time; to understand how visitors use the site; to communicate with you, including for customer service, updates and — where relevant — marketing; to send emails; and to detect and prevent fraud.",
+      "We use the information we collect to run and maintain this website; to improve and develop it over time; to understand how visitors use the site; to communicate with you, including for customer service, updates and – where relevant – marketing; to send emails; and to detect and prevent fraud.",
     ],
   },
   {
@@ -54,7 +54,7 @@ const sections = [
   {
     title: "Advertising and third-party services",
     paragraphs: [
-      "Where third-party advertising partners or services place cookies, scripts or web beacons through this site, those technologies operate under the respective third party's own privacy policy — we don't control or have access to that data, and we'd encourage you to check those policies directly if you want more detail, including how to opt out.",
+      "Where third-party advertising partners or services place cookies, scripts or web beacons through this site, those technologies operate under the respective third party's own privacy policy – we don't control or have access to that data, and we'd encourage you to check those policies directly if you want more detail, including how to opt out.",
     ],
   },
   {

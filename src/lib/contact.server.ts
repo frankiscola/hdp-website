@@ -74,4 +74,3 @@ export const sendContactMessage = createServerFn({ method: "POST" })
 
     return { ok: true as const };
   });
-

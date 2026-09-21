@@ -20,7 +20,7 @@ export const Route = createFileRoute("/open-positions")({
       { property: "og:title", content: "Open Positions – Hyperloop Development Program" },
       {
         property: "og:description",
-        content: "The HDP foundation is expanding its team — explore current open positions.",
+        content: "The HDP foundation is expanding its team – explore current open positions.",
       },
       { property: "og:url", content: absoluteUrl("/open-positions") },
     ],

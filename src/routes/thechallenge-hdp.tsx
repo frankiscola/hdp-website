@@ -14,13 +14,13 @@ import { CtaButton, SectionHeading } from "../components/ui-kit";
 export const Route = createFileRoute("/thechallenge-hdp")({
   head: () => ({
     meta: [
-      { title: "The Challenge — Hyperloop Development Program" },
+      { title: "The Challenge – Hyperloop Development Program" },
       {
         name: "description",
         content:
           "Why Europe needs hyperloop: a widening transport capacity gap, tightening emissions targets, and the partnership built to close them.",
       },
-      { property: "og:title", content: "The Challenge — Hyperloop Development Program" },
+      { property: "og:title", content: "The Challenge – Hyperloop Development Program" },
       {
         property: "og:description",
         content:
@@ -39,7 +39,7 @@ const caseFor = [
   {
     icon: Coins,
     title: "Low cost to build and run",
-    text: "Compared with other high-capacity infrastructure, hyperloop has relatively low implementation and operating costs — a rare combination for a transport mode of this scale.",
+    text: "Compared with other high-capacity infrastructure, hyperloop has relatively low implementation and operating costs – a rare combination for a transport mode of this scale.",
   },
   {
     icon: Leaf,
@@ -59,7 +59,7 @@ const caseFor = [
   {
     icon: Users,
     title: "High transport capacity",
-    text: "Frequent, autonomous vehicles with electromagnetic lane switching let a hyperloop network carry passenger and freight volumes on par with — or beyond — high-speed rail.",
+    text: "Frequent, autonomous vehicles with electromagnetic lane switching let a hyperloop network carry passenger and freight volumes on par with – or beyond – high-speed rail.",
   },
 ];
 
@@ -70,15 +70,15 @@ const origin = [
   },
   {
     label: "The opportunity",
-    text: "In a period of economic uncertainty, investing in knowledge development and innovative technology was seen as a way to turn a societal challenge — future mobility — into economic opportunity.",
+    text: "In a period of economic uncertainty, investing in knowledge development and innovative technology was seen as a way to turn a societal challenge – future mobility – into economic opportunity.",
   },
   {
     label: "The response",
-    text: "That dialogue became a shared willingness to invest jointly and integrally, structured as an open ecosystem rather than a single company's project — the model HDP still runs on today.",
+    text: "That dialogue became a shared willingness to invest jointly and integrally, structured as an open ecosystem rather than a single company's project – the model HDP still runs on today.",
   },
   {
     label: "The recognition",
-    text: "The World Economic Forum names hyperloop among its 20 key markets of tomorrow, citing its potential to increase wellbeing and empower people, advance human knowledge, and protect the environment — and HDP's own Vision Paper sets out a roadmap toward EU-aligned commercialisation.",
+    text: "The World Economic Forum names hyperloop among its 20 key markets of tomorrow, citing its potential to increase wellbeing and empower people, advance human knowledge, and protect the environment – and HDP's own Vision Paper sets out a roadmap toward EU-aligned commercialisation.",
   },
 ];
 
@@ -102,7 +102,7 @@ function TheChallenge() {
             <SectionHeading
               eyebrow="Why now"
               title="Existing networks are reaching their limits."
-              intro="Demand for passenger and freight transport is expected to triple by 2050 as urbanization, economic growth and population growth accelerate — yet road and rail capacity cannot expand at the same rate, and every new corridor competes with tightening emissions and land-use budgets. Hyperloop ticks the boxes future-proof infrastructure needs: low cost, zero emissions, easy integration, short travel times, and high capacity, all at once."
+              intro="Demand for passenger and freight transport is expected to triple by 2050 as urbanization, economic growth and population growth accelerate – yet road and rail capacity cannot expand at the same rate, and every new corridor competes with tightening emissions and land-use budgets. Hyperloop ticks the boxes future-proof infrastructure needs: low cost, zero emissions, easy integration, short travel times, and high capacity, all at once."
             />
           </Reveal>
           <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -133,11 +133,15 @@ function TheChallenge() {
             <SectionHeading
               eyebrow="The cost of standing still"
               title="Doing nothing has a price too."
-              intro="Transport already accounts for a quarter of global CO2 emissions, and without decisive action that share is set to keep climbing. The European Commission puts the transport-infrastructure investment needed across Europe this decade at €1,500 billion — spending whose consequences last a lifetime, which is why short-term congestion relief needs to be weighed carefully against genuinely sustainable, long-term capacity."
+              intro="Transport already accounts for a quarter of global CO2 emissions, and without decisive action that share is set to keep climbing. The European Commission puts the transport-infrastructure investment needed across Europe this decade at €1,500 billion – spending whose consequences last a lifetime, which is why short-term congestion relief needs to be weighed carefully against genuinely sustainable, long-term capacity."
             />
           </Reveal>
           <div className="mt-16 grid gap-8 sm:grid-cols-3">
-            <StatCounter value={25} suffix="%" label="of global CO2 emissions come from transport" />
+            <StatCounter
+              value={25}
+              suffix="%"
+              label="of global CO2 emissions come from transport"
+            />
             <StatCounter
               value={60}
               prefix="+"
@@ -162,7 +166,7 @@ function TheChallenge() {
               <SectionHeading
                 eyebrow="A network-scale answer"
                 title="Built to behave like a highway, not a railway."
-                intro="Autonomous vehicles that merge and exit through electromagnetic lane switching let hyperloop depart at short intervals instead of fixed timetables. The result is capacity comparable to — or higher than — high-speed rail, with shorter waiting times for travellers and freight alike."
+                intro="Autonomous vehicles that merge and exit through electromagnetic lane switching let hyperloop depart at short intervals instead of fixed timetables. The result is capacity comparable to – or higher than – high-speed rail, with shorter waiting times for travellers and freight alike."
               />
               <div className="mt-10">
                 <CtaButton to="/hyperloop" variant="ghost">
@@ -191,7 +195,11 @@ function TheChallenge() {
                   />
                 </div>
                 <div className="grid gap-8 sm:grid-cols-2">
-                  <StatCounter value={20000} suffix="+" label="Passengers per direction, per hour" />
+                  <StatCounter
+                    value={20000}
+                    suffix="+"
+                    label="Passengers per direction, per hour"
+                  />
                   <StatCounter value={20} suffix="+" label="Partners building the response" />
                 </div>
               </div>

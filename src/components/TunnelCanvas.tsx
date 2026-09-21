@@ -31,7 +31,7 @@ export function TunnelCanvas({ className }: { className?: string }) {
     // theme switch is instant with no flash. But that means two full
     // particle simulations would otherwise run forever, one of them for a
     // canvas nobody can see. `offsetParent === null` is a cheap way to
-    // detect "this canvas (or an ancestor) is display:none right now" —
+    // detect "this canvas (or an ancestor) is display:none right now" –
     // skip the simulation entirely while that's true. Combined with an
     // IntersectionObserver for "scrolled out of view", the inactive/
     // off-screen copy does effectively nothing instead of burning a full
@@ -64,7 +64,7 @@ export function TunnelCanvas({ className }: { className?: string }) {
 
     const draw = () => {
       if (canvas.offsetParent === null || !inViewport) {
-        // Hidden (wrong theme) or scrolled away — stay idle, just keep
+        // Hidden (wrong theme) or scrolled away – stay idle, just keep
         // polling cheaply so it resumes instantly when shown again.
         raf = requestAnimationFrame(draw);
         return;

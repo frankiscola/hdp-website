@@ -47,7 +47,7 @@ export function SiteHeader() {
               // (see PageHero.tsx / the homepage hero), so the logo can just
               // follow the site theme like everything else: its native navy
               // mark in light mode, inverted to white in dark mode. No more
-              // "always white while floating over the hero" special case —
+              // "always white while floating over the hero" special case –
               // that was only ever needed back when the hero had no light
               // photo to sit on.
               "dark:brightness-0 dark:invert",

@@ -18,7 +18,6 @@ export function LogoMarquee() {
               loading="lazy"
               className="logo-mono max-h-12 w-auto max-w-full object-contain"
             />
-
           </div>
         ))}
       </div>

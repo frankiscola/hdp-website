@@ -202,7 +202,7 @@ function Hyperloop() {
               <SectionHeading
                 eyebrow="Why it matters"
                 title="More capacity, less impact."
-                intro="Raised on slender pylons, a hyperloop guideway crosses farmland, wind farms and open countryside while leaving the ground beneath it in use — a fraction of the footprint of a new road or rail line."
+                intro="Raised on slender pylons, a hyperloop guideway crosses farmland, wind farms and open countryside while leaving the ground beneath it in use – a fraction of the footprint of a new road or rail line."
               />
             </Reveal>
             <Reveal delay={0.15}>

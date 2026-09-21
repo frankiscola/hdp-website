@@ -91,7 +91,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:image", content: DEFAULT_OG_IMAGE },
       // Matches the browser chrome (mobile status bar / PWA title bar) to the
       // active theme. Defaults to dark (the site's default theme on first
-      // visit — see theme.ts); noFlashThemeScript corrects this to light
+      // visit – see theme.ts); noFlashThemeScript corrects this to light
       // before first paint for returning visitors who picked light, same as
       // the html class.
       { name: "theme-color", content: THEME_COLOR.dark },

@@ -21,7 +21,7 @@ export const Route = createFileRoute("/innotrans-2026")({
       { property: "og:title", content: "InnoTrans 2026 – Hyperloop Development Program" },
       {
         property: "og:description",
-        content: "Meet HDP at InnoTrans 2026 — booth, programme and the Hyperloop Conference.",
+        content: "Meet HDP at InnoTrans 2026 – booth, programme and the Hyperloop Conference.",
       },
       { property: "og:url", content: absoluteUrl("/innotrans-2026") },
       { property: "og:image", content: absoluteUrl("/og/hero-vehicle.jpg") },
@@ -36,14 +36,14 @@ export const Route = createFileRoute("/innotrans-2026")({
           "@type": "Event",
           name: "Hyperloop Conference 2026",
           description:
-            "Building Europe's Hyperloop Future — political remarks, study results, the Hyper4Rail project and a high-level panel on the European hyperloop roadmap.",
+            "Building Europe's Hyperloop Future – political remarks, study results, the Hyper4Rail project and a high-level panel on the European hyperloop roadmap.",
           startDate: "2026-09-25T11:30:00+02:00",
           endDate: "2026-09-25T14:30:00+02:00",
           eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
           eventStatus: "https://schema.org/EventScheduled",
           location: {
             "@type": "Place",
-            name: "Speakers' Corner, hub27, beta 6–7 — InnoTrans, Messe Berlin",
+            name: "Speakers' Corner, hub27, beta 6–7 – InnoTrans, Messe Berlin",
             address: {
               "@type": "PostalAddress",
               addressLocality: "Berlin",
@@ -68,7 +68,7 @@ const highlights = [
   {
     icon: Gauge,
     title: "Faster",
-    text: "750 km/h and beyond — once fully developed, hyperloop has the potential to become the world's fastest land transport system.",
+    text: "750 km/h and beyond – once fully developed, hyperloop has the potential to become the world's fastest land transport system.",
   },
   {
     icon: Leaf,
@@ -90,7 +90,7 @@ const highlights = [
 type BoothSlot = { time: string; title: string; speakers?: string[]; location?: string };
 type BoothDay = { day: string; date: string; slots: BoothSlot[] };
 
-// Only the confirmed (highlighted) presentations at the HDP stand — open
+// Only the confirmed (highlighted) presentations at the HDP stand – open
 // slots and unrelated official visits from the internal planning sheet are
 // intentionally left out.
 const boothProgramme: BoothDay[] = [
@@ -179,7 +179,7 @@ const conferenceAgenda: AgendaItem[] = [
   {
     time: "12:10 – 12:30",
     title:
-      "Presentation of the Results of the Hyperloop Study — Current Development Status of the Hyperloop Concept",
+      "Presentation of the Results of the Hyperloop Study – Current Development Status of the Hyperloop Concept",
     people: [
       "Waldemar Gaad – DZSF at the Federal Railway Authority (EBA)",
       "Jasne Prilop – Deutsche Rail Operations (DRO)",
@@ -189,14 +189,14 @@ const conferenceAgenda: AgendaItem[] = [
     time: "12:30 – 13:20",
     title: "Hyper4Rail",
     people: [
-      "Dr. Chrysostomos Mylonas (CERTH) — A European Hyperloop Network: The Financial and Socio-Economic Case",
-      "Luca Sandel (EuroTube Foundation) — Converging on Europe's Hyperloop: The Harmonised Technical Concept",
+      "Dr. Chrysostomos Mylonas (CERTH) – A European Hyperloop Network: The Financial and Socio-Economic Case",
+      "Luca Sandel (EuroTube Foundation) – Converging on Europe's Hyperloop: The Harmonised Technical Concept",
       "Q&A",
     ],
   },
   {
     time: "13:20 – 14:10",
-    title: "High-Level Panel: From Vision to Roadmap — Delivering a European Hyperloop Network",
+    title: "High-Level Panel: From Vision to Roadmap – Delivering a European Hyperloop Network",
     note: "Including the HDP Vision Paper. Panellists:",
     people: [
       "Gabriele Semino (Neoways)",
@@ -291,7 +291,7 @@ function InnoTrans2026() {
         </div>
       </section>
 
-      {/* Booth programme — confirmed sessions only */}
+      {/* Booth programme – confirmed sessions only */}
       <section className="border-y border-border bg-surface/30">
         <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
           <Reveal>
@@ -413,7 +413,7 @@ function InnoTrans2026() {
               See you at Messe Berlin.
             </h2>
             <p className="mx-auto mt-4 max-w-md text-base text-muted-foreground">
-              Find us at Hall 2.2, Stand 100 — 22–25 September 2026.
+              Find us at Hall 2.2, Stand 100 – 22–25 September 2026.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <CtaButton to="/contact">Get in touch</CtaButton>

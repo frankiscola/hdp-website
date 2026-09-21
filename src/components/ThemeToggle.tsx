@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { applyTheme, getPreferredTheme, type Theme } from "../lib/theme";
 
 export function ThemeToggle({ className }: { className?: string }) {
-  // Start undefined so we render nothing meaningful until mounted — the
+  // Start undefined so we render nothing meaningful until mounted – the
   // no-flash script already set the right class on <html> before hydration,
   // we just need to mirror it into React state.
   const [theme, setTheme] = useState<Theme | null>(null);

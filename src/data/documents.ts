@@ -9,11 +9,13 @@ export const downloadDocuments: DocumentLink[] = [
     title: "Hyperloop Vision Paper 2026",
     href: "/documents/Hyperloop-Vision-Paper-2026.pdf",
     year: "2026",
-  }, {
+  },
+  {
     title: "Hyperloop's Evolving Landscape 2026",
     href: "/documents/Hyperloop-Evolving-Landscape-2026.pdf",
     year: "2026",
-  }, {
+  },
+  {
     title: "Hyperloop in Review report – H2 2025",
     href: "/documents/Hyperloop-Development-Report-December-2025.pdf",
     year: "2025",

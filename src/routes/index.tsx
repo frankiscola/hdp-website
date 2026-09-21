@@ -90,7 +90,7 @@ function Home() {
       <section ref={heroRef} className="relative flex min-h-screen items-center overflow-hidden">
         {/*
          * Each theme gets its own photo rather than one image filtered two
-         * ways — a night-tube render doesn't "lighten" into a convincing day
+         * ways – a night-tube render doesn't "lighten" into a convincing day
          * shot, it just goes grey. hero-vehicle-light.jpg is a separate
          * bright render made for this exact spot, not a filtered version of
          * the dark one. Text below uses the normal theme tokens (no forced
@@ -437,8 +437,8 @@ function Home() {
                 {supportingGovernments.map((gov) => (
                   <Magnetic key={gov.name} strength={0.12} max={8}>
                     {/* These three government crests are dark navy/red artwork
-                        made for a white backing (see the source PNGs) — not
-                        light logos needing a dark chip — so the tile stays
+                        made for a white backing (see the source PNGs) – not
+                        light logos needing a dark chip – so the tile stays
                         white regardless of the site theme. */}
                     <div className="flex h-16 items-center justify-center rounded-xl border border-black/5 bg-white px-5 py-2.5 shadow-lg shadow-black/20">
                       <img

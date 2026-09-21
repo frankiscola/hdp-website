@@ -13,7 +13,7 @@ import ecosystemNetworkLight from "../assets/ecosystem-network-light.jpg";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Hyperloop Development Program" },
+      { title: "Contact – Hyperloop Development Program" },
       {
         name: "description",
         content:
@@ -123,7 +123,7 @@ function Contact() {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Honeypot field — hidden from real visitors, catches simple bots */}
+                  {/* Honeypot field – hidden from real visitors, catches simple bots */}
                   <input
                     type="text"
                     name="_honey"

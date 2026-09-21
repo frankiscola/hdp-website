@@ -48,4 +48,3 @@ export function NewsCard({ item }: { item: NewsItem }) {
     </Magnetic>
   );
 }
-

@@ -39,7 +39,7 @@ export function CustomCursor() {
       ring.y += (target.y - ring.y) * 0.16;
       // Baked into the same transform string as the position (see below)
       // rather than left to a CSS `transition: width/height`, so the hover
-      // grow is a plain scale() — compositor-only, no layout/repaint either.
+      // grow is a plain scale() – compositor-only, no layout/repaint either.
       const dotTarget = hovering ? 1.75 : 1;
       const ringTarget = hovering ? 1.611 : 1;
       dotScale += (dotTarget - dotScale) * 0.22;
