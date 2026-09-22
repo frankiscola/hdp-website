@@ -80,7 +80,7 @@ function HyperloopPortal() {
     <>
       <PageHero
         eyebrow="Hub"
-        title="Hyperloop Portal."
+        title="Hyperloop Research Portal."
         intro="One growing repository for hyperloop knowledge — research from the programme, publications from companies and EU-funded projects, and papers from student teams. Search, filter, and find what you need."
         image={tubeLandscape}
         imageLight={tubeLandscapeLight}

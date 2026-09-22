@@ -19,7 +19,7 @@ export const navItems: NavItem[] = [
   {
     label: "Hub",
     children: [
-      { label: "Hyperloop Portal", to: "/hyperloop-portal" },
+      { label: "Hyperloop research Portal", to: "/hyperloop-portal" },
       { label: "Student Teams & Competitions", to: "/student-teams-and-competitions" },
     ],
   },
@@ -28,7 +28,7 @@ export const navItems: NavItem[] = [
     label: "Resources",
     children: [
       { label: "News", to: "/news" },
-      { label: "Results and Downloads", to: "/results-and-downloads" },
+      { label: "HDP Results and Downloads", to: "/results-and-downloads" },
       { label: "FAQ", to: "/faq" },
     ],
   },
