@@ -20,40 +20,22 @@ export const navItems: NavItem[] = [
   { label: "Hyperloop", to: "/hyperloop" },
   { label: "Testing Infrastructure", to: "/testing-infrastructure" },
   { label: "Partners", to: "/partners" },
-  {
-    label: "Research Portal",
-    children: [
-      { label: "All Research", to: "/hyperloop-portal" },
-      { label: "HDP Research", to: "/hyperloop-portal", search: { category: "HDP Research" } },
-      {
-        label: "Student Team Results",
-        to: "/hyperloop-portal",
-        search: { category: "Student Team Results" },
-      },
-      {
-        label: "External Projects",
-        to: "/hyperloop-portal",
-        search: { category: "External Projects" },
-      },
-    ],
-  },
+  { label: "Research Portal", to: "/hyperloop-portal" },
   { label: "HyperHub Network", to: "/student-teams-and-competitions" },
-  { label: "InnoTrans 2026", to: "/innotrans-2026" },
   {
-    label: "Resources",
-    children: [
-      { label: "News", to: "/news" },
-      { label: "FAQ", to: "/faq" },
-    ],
+    label: "Events",
+    children: [{ label: "InnoTrans 2026", to: "/innotrans-2026" }],
   },
+  { label: "News", to: "/news" },
   {
     label: "About us",
     children: [
       { label: "Team and Board", to: "/team-and-board" },
       { label: "Open Positions", to: "/open-positions" },
+      { label: "FAQ", to: "/faq" },
+      { label: "Contact", to: "/contact" },
     ],
   },
-  { label: "Contact", to: "/contact" },
 ];
 
 export type BoardMember = { name: string; role: string };
