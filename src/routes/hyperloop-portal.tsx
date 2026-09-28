@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { absoluteUrl } from "../lib/seo";
 import { ArrowUpRight, Search, X } from "lucide-react";
 import { useMemo, useState } from "react";
@@ -8,18 +8,18 @@ import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { SectionHeading } from "../components/ui-kit";
 import { cn } from "../lib/utils";
-import { portalDocuments, portalTags, type PortalCategory } from "../data/portal";
+import { portalCategories, portalDocuments, portalTags, type PortalCategory } from "../data/portal";
 
 export const Route = createFileRoute("/hyperloop-portal")({
   head: () => ({
     meta: [
-      { title: "Hyperloop Portal – Hyperloop Development Program" },
+      { title: "Hyperloop Research Portal – Hyperloop Development Program" },
       {
         name: "description",
         content:
           "A searchable repository of hyperloop knowledge: research, company publications, EU-funded project outputs and student team papers, filterable by topic and year.",
       },
-      { property: "og:title", content: "Hyperloop Portal – Hyperloop Development Program" },
+      { property: "og:title", content: "Hyperloop Research Portal – Hyperloop Development Program" },
       {
         property: "og:description",
         content: "The growing repository of hyperloop research, company and student team knowledge.",
@@ -28,20 +28,25 @@ export const Route = createFileRoute("/hyperloop-portal")({
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/hyperloop-portal") }],
   }),
+  validateSearch: (search: Record<string, unknown>): { category?: PortalCategory } => {
+    const value = search["category"];
+    return typeof value === "string" && (portalCategories as readonly string[]).includes(value)
+      ? { category: value as PortalCategory }
+      : {};
+  },
   component: HyperloopPortal,
 });
 
-const categories: (PortalCategory | "All")[] = [
-  "All",
-  "Research",
-  "Companies",
-  "Projects",
-  "Student Teams",
-];
+const categories: (PortalCategory | "All")[] = ["All", ...portalCategories];
 
 function HyperloopPortal() {
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState<PortalCategory | "All">("All");
+  const navigate = useNavigate({ from: "/hyperloop-portal" });
+  const { category: categoryParam } = Route.useSearch();
+  const category: PortalCategory | "All" = categoryParam ?? "All";
+  function setCategory(next: PortalCategory | "All") {
+    navigate({ search: next === "All" ? {} : { category: next }, replace: true });
+  }
   const [activeTags, setActiveTags] = useState<string[]>([]);
   const [year, setYear] = useState<string>("All");
 
@@ -185,7 +190,7 @@ function HyperloopPortal() {
             {filtered.length === 0 ? (
               <div className="mt-8 rounded-3xl border border-border bg-surface/40 p-10 text-center">
                 <p className="text-sm text-muted-foreground">
-                  {category !== "All" && category !== "Research"
+                  {category !== "All" && category !== "HDP Research"
                     ? `The ${category} category is still being populated — check back soon.`
                     : "No documents match these filters. Try clearing some."}
                 </p>

@@ -1,4 +1,5 @@
-export type PortalCategory = "Research" | "Companies" | "Projects" | "Student Teams";
+export const portalCategories = ["HDP Research", "Student Team Results", "External Projects"] as const;
+export type PortalCategory = (typeof portalCategories)[number];
 
 export type PortalDocument = {
   title: string;
@@ -29,7 +30,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "HDP's strategic vision for accelerating hyperloop toward Europe's sustainable transport goals.",
     href: "/documents/Hyperloop-Vision-Paper-2026.pdf",
     year: "2026",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Strategy", "Socio-Economic"],
   },
   {
@@ -37,7 +38,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "An overview of how the hyperloop sector, its technology and its ecosystem have progressed.",
     href: "/documents/Hyperloop-Evolving-Landscape-2026.pdf",
     year: "2026",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Strategy"],
   },
   {
@@ -45,7 +46,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "Half-year overview of milestones across testing infrastructure, technology and policy.",
     href: "/documents/Hyperloop-Development-Report-December-2025.pdf",
     year: "2025",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Programme Reporting"],
   },
   {
@@ -53,7 +54,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "Half-year overview of milestones across testing infrastructure, technology and policy.",
     href: "/documents/Hyperloop-Development-Report-Jul-2025.pdf",
     year: "2025",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Programme Reporting"],
   },
   {
@@ -61,7 +62,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "Half-year overview of milestones across testing infrastructure, technology and policy.",
     href: "/documents/Hyperloop-in-Review-report-January-2025-EN.pdf",
     year: "2024",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Programme Reporting"],
   },
   {
@@ -69,7 +70,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "HDP's vision for hyperloop as a cornerstone of Europe's sustainable transport strategy.",
     href: "/documents/hdp-vision-paper-2024.pdf",
     year: "2024",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Strategy"],
   },
   {
@@ -77,7 +78,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "A short briefing on hyperloop's place in the Belgian federal coalition agreement.",
     href: "/documents/hdp-two-pager-belgian-federal-government-agreement-nl.pdf",
     year: "2024",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Standards & Regulation"],
   },
   {
@@ -85,7 +86,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "A short briefing on hyperloop's place in the Belgian federal coalition agreement.",
     href: "/documents/hdp-two-pager-belgian-federal-government-agreement-fr.pdf",
     year: "2024",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Standards & Regulation"],
   },
   {
@@ -93,7 +94,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "Half-year overview of milestones across testing infrastructure, technology and policy.",
     href: "/documents/Hyperloop-in-Review-report-H1-2024.pdf",
     year: "2024",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Programme Reporting"],
   },
   {
@@ -101,7 +102,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "HDP's recommendations for a dedicated EU regulatory framework covering hyperloop.",
     href: "/documents/hdp-position-paper-on-the-eu-regulatory-framework-for-hyperloop.pdf",
     year: "2024",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Standards & Regulation"],
   },
   {
@@ -109,7 +110,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "How hyperloop infrastructure could be integrated into Dutch spatial planning.",
     href: "/documents/hdp-position-paper-on-hyperloop-in-dutch-spatial-planning-nl.pdf",
     year: "2024",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Infrastructure & Spatial Planning"],
   },
   {
@@ -117,15 +118,31 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "HDP's recommendations to European Parliament candidates ahead of the 2024 elections.",
     href: "/documents/hdp-position-paper-for-the-european-parliament-elections.pdf",
     year: "2023",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Standards & Regulation"],
+  },
+  {
+    title: "HDP Progress report 2024-H2",
+    abstract: "Half-year progress reporting on HDP's programme activities.",
+    href: "/documents/HDP-Reporting-2024-H2.pdf",
+    year: "2024",
+    category: "HDP Research",
+    tags: ["Programme Reporting"],
+  },
+  {
+    title: "HDP Progress report 2024-H1",
+    abstract: "Half-year progress reporting on HDP's programme activities.",
+    href: "/documents/HDP-Reporting-2024-H1.pdf",
+    year: "2024",
+    category: "HDP Research",
+    tags: ["Programme Reporting"],
   },
   {
     title: "HDP Progress report 2023-H2",
     abstract: "Half-year progress reporting on HDP's programme activities.",
     href: "/documents/HDP-Reporting-2023-H2.pdf",
     year: "2023",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Programme Reporting"],
   },
   {
@@ -133,7 +150,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "A long-term look at how hyperloop could shape Dutch spatial planning through 2050.",
     href: "/documents/impact-of-hyperloop-on-dutch-spatial-planning-towards-2050-nl.pdf",
     year: "2023",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Infrastructure & Spatial Planning"],
   },
   {
@@ -141,7 +158,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "An assessment of pathways for hyperloop development within the Netherlands.",
     href: "/documents/perspectives-for-hyperloop-development-in-the-netherlands.pdf",
     year: "2023",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Strategy", "Infrastructure & Spatial Planning"],
   },
   {
@@ -149,7 +166,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "Half-year progress reporting on HDP's programme activities.",
     href: "/documents/HDP-Reporting-2023-H1.pdf",
     year: "2023",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Programme Reporting"],
   },
   {
@@ -157,7 +174,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "Half-year progress reporting on HDP's programme activities.",
     href: "/documents/HDP-Reporting-2022-H2.pdf",
     year: "2022",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Programme Reporting"],
   },
   {
@@ -165,7 +182,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "A vision for a European hyperloop network connecting cities and regions across the continent.",
     href: "/documents/hyperconnected-europe-report.pdf",
     year: "2022",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Infrastructure & Spatial Planning", "Socio-Economic"],
   },
   {
@@ -173,7 +190,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "A reference handbook introducing hyperloop technology and its development pathway to stakeholders.",
     href: "/documents/hyperloop-handbook-for-public-and-private-stakeholders.pdf",
     year: "2022",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Standards & Regulation"],
   },
   {
@@ -181,7 +198,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "Summary of the roadmap toward certification of hyperloop systems, developed with TÜV Rheinland.",
     href: "/documents/hyperloop-certification-roadmap-executive-summary.pdf",
     year: "2022",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Standards & Regulation", "Safety"],
   },
   {
@@ -189,7 +206,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "Half-year progress reporting on HDP's programme activities.",
     href: "/documents/HDP-Reporting-2022-H1.pdf",
     year: "2022",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Programme Reporting"],
   },
   {
@@ -197,7 +214,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "Half-year progress reporting on HDP's programme activities.",
     href: "/documents/HDP-Reporting-2021-H2.pdf",
     year: "2021",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Programme Reporting"],
   },
   {
@@ -205,7 +222,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "A snapshot of hyperloop development activity within the Netherlands.",
     href: "/documents/current-state-of-hyperloop-in-the-netherlands.pdf",
     year: "2021",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Strategy"],
   },
   {
@@ -213,7 +230,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "A pre-feasibility assessment of a hyperloop freight corridor within the Netherlands.",
     href: "/documents/cargo-hyperloop-holland-pre-feasibility-study.pdf",
     year: "2021",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Freight & Cargo", "Socio-Economic"],
   },
   {
@@ -221,7 +238,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "The safety vision underpinning a future hyperloop freight system.",
     href: "/documents/2021-04-02-Safety-Vision.pdf",
     year: "2021",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Safety", "Freight & Cargo"],
   },
   {
@@ -229,7 +246,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "A detailed safety concept for hyperloop freight operations.",
     href: "/documents/SafetyConcept_Deliverable_20210603.pdf",
     year: "2021",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Safety", "Freight & Cargo"],
   },
   {
@@ -237,7 +254,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "How a hyperloop cargo system would operate end to end.",
     href: "/documents/CargoLoop-Operation-Concept-Description-HDP.pdf",
     year: "2021",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Freight & Cargo"],
   },
   {
@@ -245,7 +262,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "Defining the business opportunity for hyperloop passenger transport.",
     href: "/documents/HDP-WG-Pax-27-Business-Opportunity-Definition-HDP.pdf",
     year: "2021",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Passenger Experience", "Socio-Economic"],
   },
   {
@@ -253,7 +270,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "Design guidelines for the interior of a hyperloop passenger vehicle, developed with ADSE.",
     href: "/documents/HDP-WG-Pax-114-ADSE-no-21-RA-012-Hyperloop-Interior-Design-Guidelines-v10.pdf",
     year: "2021",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Passenger Experience"],
   },
   {
@@ -261,7 +278,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "A thesis study on how potential users perceive hyperloop as a mode of transport.",
     href: "/documents/Report-User-Perceptions-of-Hyperloop-Thesis-O-Callahan.pdf",
     year: "2021",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Public Adoption", "Passenger Experience"],
   },
   {
@@ -269,7 +286,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "Planning considerations for the research infrastructure hyperloop development requires.",
     href: "/documents/Future-hyperloop-research-infrastructure.pdf",
     year: "2021",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Infrastructure & Spatial Planning"],
   },
   {
@@ -277,7 +294,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "Half-year progress reporting on HDP's programme activities.",
     href: "/documents/HDP-Reporting-2021-H1.pdf",
     year: "2021",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Programme Reporting"],
   },
   {
@@ -285,7 +302,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "A preliminary assessment of a hyperloop route connecting Kuala Lumpur and Singapore.",
     href: "/documents/Preliminary-Route-Study-1-Kuala-Lumpur-Singapore.pdf",
     year: "2020",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Route Studies", "Socio-Economic"],
   },
   {
@@ -293,7 +310,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "A preliminary assessment of a hyperloop route connecting Delhi and Ahmedabad.",
     href: "/documents/Preliminary-Route-Study-2-Delhi-Ahmedabad.pdf",
     year: "2020",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Route Studies", "Socio-Economic"],
   },
   {
@@ -301,7 +318,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "A preliminary assessment of a hyperloop route connecting Hannover and Bielefeld.",
     href: "/documents/Preliminary-Route-Study-3-Hannover-Bielefeld.pdf",
     year: "2020",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Route Studies", "Socio-Economic"],
   },
   {
@@ -309,7 +326,7 @@ export const portalDocuments: PortalDocument[] = [
     abstract: "A preliminary assessment of a hyperloop route connecting Brisbane and the Gold Coast.",
     href: "/documents/Preliminary-Route-Study-4-Brisbane-Gold-Coast.pdf",
     year: "2020",
-    category: "Research",
+    category: "HDP Research",
     tags: ["Route Studies", "Socio-Economic"],
   },
 ];

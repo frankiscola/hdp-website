@@ -78,9 +78,11 @@ export function SiteHeader() {
                       <div className="surface-glass min-w-[220px] rounded-2xl border border-border p-2 shadow-xl">
                         {item.children.map((child) => (
                           <Link
-                            key={child.to + (child.hash ?? "")}
+                            key={child.to + (child.hash ?? "") + JSON.stringify(child.search ?? {})}
                             to={child.to}
                             {...(child.hash ? { hash: child.hash } : {})}
+                            {...(child.search ? { search: child.search } : {})}
+                            activeOptions={{ includeSearch: true }}
                             className="block rounded-xl px-4 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary/70 hover:text-foreground"
                             activeProps={{ className: "text-foreground bg-secondary/70" }}
                           >
@@ -162,9 +164,10 @@ export function SiteHeader() {
                         <div className="flex flex-col gap-1 pb-4 pl-4">
                           {item.children.map((child) => (
                             <Link
-                              key={child.to + (child.hash ?? "")}
+                              key={child.to + (child.hash ?? "") + JSON.stringify(child.search ?? {})}
                               to={child.to}
                               {...(child.hash ? { hash: child.hash } : {})}
+                              {...(child.search ? { search: child.search } : {})}
                               onClick={() => setOpen(false)}
                               className="py-2 text-lg text-muted-foreground transition-colors hover:text-foreground"
                             >

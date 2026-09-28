@@ -13,6 +13,10 @@ export const Route = createFileRoute("/results-and-downloads")({
   head: () => ({
     meta: [
       { title: "Results and Downloads – Hyperloop Development Program" },
+      // Hidden page: not linked from the navbar (its documents live in the
+      // Research Portal now). Kept so old links keep working and so it can be
+      // re-enabled later. noindex keeps it out of search results.
+      { name: "robots", content: "noindex, nofollow" },
       {
         name: "description",
         content:

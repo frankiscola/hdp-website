@@ -14,11 +14,14 @@ import { Route as AboutHdpRouteImport } from './routes/about-hdp'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as HyperloopRouteImport } from './routes/hyperloop'
+import { Route as HyperloopPortalRouteImport } from './routes/hyperloop-portal'
+import { Route as Innotrans2026RouteImport } from './routes/innotrans-2026'
 import { Route as OpenPositionsRouteImport } from './routes/open-positions'
 import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as ResultsAndDownloadsRouteImport } from './routes/results-and-downloads'
+import { Route as StudentTeamsAndCompetitionsRouteImport } from './routes/student-teams-and-competitions'
 import { Route as TeamAndBoardRouteImport } from './routes/team-and-board'
 import { Route as TestingInfrastructureRouteImport } from './routes/testing-infrastructure'
 import { Route as ThechallengeHdpRouteImport } from './routes/thechallenge-hdp'
@@ -50,6 +53,16 @@ const HyperloopRoute = HyperloopRouteImport.update({
   path: '/hyperloop',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HyperloopPortalRoute = HyperloopPortalRouteImport.update({
+  id: '/hyperloop-portal',
+  path: '/hyperloop-portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Innotrans2026Route = Innotrans2026RouteImport.update({
+  id: '/innotrans-2026',
+  path: '/innotrans-2026',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OpenPositionsRoute = OpenPositionsRouteImport.update({
   id: '/open-positions',
   path: '/open-positions',
@@ -75,6 +88,12 @@ const ResultsAndDownloadsRoute = ResultsAndDownloadsRouteImport.update({
   path: '/results-and-downloads',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StudentTeamsAndCompetitionsRoute =
+  StudentTeamsAndCompetitionsRouteImport.update({
+    id: '/student-teams-and-competitions',
+    path: '/student-teams-and-competitions',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const TeamAndBoardRoute = TeamAndBoardRouteImport.update({
   id: '/team-and-board',
   path: '/team-and-board',
@@ -107,11 +126,14 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/hyperloop': typeof HyperloopRoute
+  '/hyperloop-portal': typeof HyperloopPortalRoute
+  '/innotrans-2026': typeof Innotrans2026Route
   '/open-positions': typeof OpenPositionsRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
   '/research': typeof ResearchRoute
   '/results-and-downloads': typeof ResultsAndDownloadsRoute
+  '/student-teams-and-competitions': typeof StudentTeamsAndCompetitionsRoute
   '/team-and-board': typeof TeamAndBoardRoute
   '/testing-infrastructure': typeof TestingInfrastructureRoute
   '/thechallenge-hdp': typeof ThechallengeHdpRoute
@@ -124,11 +146,14 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/hyperloop': typeof HyperloopRoute
+  '/hyperloop-portal': typeof HyperloopPortalRoute
+  '/innotrans-2026': typeof Innotrans2026Route
   '/open-positions': typeof OpenPositionsRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
   '/research': typeof ResearchRoute
   '/results-and-downloads': typeof ResultsAndDownloadsRoute
+  '/student-teams-and-competitions': typeof StudentTeamsAndCompetitionsRoute
   '/team-and-board': typeof TeamAndBoardRoute
   '/testing-infrastructure': typeof TestingInfrastructureRoute
   '/thechallenge-hdp': typeof ThechallengeHdpRoute
@@ -142,11 +167,14 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/hyperloop': typeof HyperloopRoute
+  '/hyperloop-portal': typeof HyperloopPortalRoute
+  '/innotrans-2026': typeof Innotrans2026Route
   '/open-positions': typeof OpenPositionsRoute
   '/partners': typeof PartnersRoute
   '/privacy': typeof PrivacyRoute
   '/research': typeof ResearchRoute
   '/results-and-downloads': typeof ResultsAndDownloadsRoute
+  '/student-teams-and-competitions': typeof StudentTeamsAndCompetitionsRoute
   '/team-and-board': typeof TeamAndBoardRoute
   '/testing-infrastructure': typeof TestingInfrastructureRoute
   '/thechallenge-hdp': typeof ThechallengeHdpRoute
@@ -161,11 +189,14 @@ export interface FileRouteTypes {
     | '/contact'
     | '/faq'
     | '/hyperloop'
+    | '/hyperloop-portal'
+    | '/innotrans-2026'
     | '/open-positions'
     | '/partners'
     | '/privacy'
     | '/research'
     | '/results-and-downloads'
+    | '/student-teams-and-competitions'
     | '/team-and-board'
     | '/testing-infrastructure'
     | '/thechallenge-hdp'
@@ -178,11 +209,14 @@ export interface FileRouteTypes {
     | '/contact'
     | '/faq'
     | '/hyperloop'
+    | '/hyperloop-portal'
+    | '/innotrans-2026'
     | '/open-positions'
     | '/partners'
     | '/privacy'
     | '/research'
     | '/results-and-downloads'
+    | '/student-teams-and-competitions'
     | '/team-and-board'
     | '/testing-infrastructure'
     | '/thechallenge-hdp'
@@ -195,11 +229,14 @@ export interface FileRouteTypes {
     | '/contact'
     | '/faq'
     | '/hyperloop'
+    | '/hyperloop-portal'
+    | '/innotrans-2026'
     | '/open-positions'
     | '/partners'
     | '/privacy'
     | '/research'
     | '/results-and-downloads'
+    | '/student-teams-and-competitions'
     | '/team-and-board'
     | '/testing-infrastructure'
     | '/thechallenge-hdp'
@@ -213,11 +250,14 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
   HyperloopRoute: typeof HyperloopRoute
+  HyperloopPortalRoute: typeof HyperloopPortalRoute
+  Innotrans2026Route: typeof Innotrans2026Route
   OpenPositionsRoute: typeof OpenPositionsRoute
   PartnersRoute: typeof PartnersRoute
   PrivacyRoute: typeof PrivacyRoute
   ResearchRoute: typeof ResearchRoute
   ResultsAndDownloadsRoute: typeof ResultsAndDownloadsRoute
+  StudentTeamsAndCompetitionsRoute: typeof StudentTeamsAndCompetitionsRoute
   TeamAndBoardRoute: typeof TeamAndBoardRoute
   TestingInfrastructureRoute: typeof TestingInfrastructureRoute
   ThechallengeHdpRoute: typeof ThechallengeHdpRoute
@@ -262,6 +302,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HyperloopRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/hyperloop-portal': {
+      id: '/hyperloop-portal'
+      path: '/hyperloop-portal'
+      fullPath: '/hyperloop-portal'
+      preLoaderRoute: typeof HyperloopPortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/innotrans-2026': {
+      id: '/innotrans-2026'
+      path: '/innotrans-2026'
+      fullPath: '/innotrans-2026'
+      preLoaderRoute: typeof Innotrans2026RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/open-positions': {
       id: '/open-positions'
       path: '/open-positions'
@@ -295,6 +349,13 @@ declare module '@tanstack/react-router' {
       path: '/results-and-downloads'
       fullPath: '/results-and-downloads'
       preLoaderRoute: typeof ResultsAndDownloadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student-teams-and-competitions': {
+      id: '/student-teams-and-competitions'
+      path: '/student-teams-and-competitions'
+      fullPath: '/student-teams-and-competitions'
+      preLoaderRoute: typeof StudentTeamsAndCompetitionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/team-and-board': {
@@ -341,11 +402,14 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
   HyperloopRoute: HyperloopRoute,
+  HyperloopPortalRoute: HyperloopPortalRoute,
+  Innotrans2026Route: Innotrans2026Route,
   OpenPositionsRoute: OpenPositionsRoute,
   PartnersRoute: PartnersRoute,
   PrivacyRoute: PrivacyRoute,
   ResearchRoute: ResearchRoute,
   ResultsAndDownloadsRoute: ResultsAndDownloadsRoute,
+  StudentTeamsAndCompetitionsRoute: StudentTeamsAndCompetitionsRoute,
   TeamAndBoardRoute: TeamAndBoardRoute,
   TestingInfrastructureRoute: TestingInfrastructureRoute,
   ThechallengeHdpRoute: ThechallengeHdpRoute,

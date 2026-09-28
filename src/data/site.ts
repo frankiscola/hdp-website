@@ -2,7 +2,11 @@ import { logos } from "./logos";
 
 export type NavItem =
   | { label: string; to: string; hash?: string; children?: undefined }
-  | { label: string; to?: undefined; children: { label: string; to: string; hash?: string }[] };
+  | {
+      label: string;
+      to?: undefined;
+      children: { label: string; to: string; hash?: string; search?: Record<string, string> }[];
+    };
 
 export const navItems: NavItem[] = [
   {
@@ -17,18 +21,28 @@ export const navItems: NavItem[] = [
   { label: "Testing Infrastructure", to: "/testing-infrastructure" },
   { label: "Partners", to: "/partners" },
   {
-    label: "Hub",
+    label: "Research Portal",
     children: [
-      { label: "Hyperloop research Portal", to: "/hyperloop-portal" },
-      { label: "Student Teams & Competitions", to: "/student-teams-and-competitions" },
+      { label: "All Research", to: "/hyperloop-portal" },
+      { label: "HDP Research", to: "/hyperloop-portal", search: { category: "HDP Research" } },
+      {
+        label: "Student Team Results",
+        to: "/hyperloop-portal",
+        search: { category: "Student Team Results" },
+      },
+      {
+        label: "External Projects",
+        to: "/hyperloop-portal",
+        search: { category: "External Projects" },
+      },
     ],
   },
+  { label: "HyperHub Network", to: "/student-teams-and-competitions" },
   { label: "InnoTrans 2026", to: "/innotrans-2026" },
   {
     label: "Resources",
     children: [
       { label: "News", to: "/news" },
-      { label: "HDP Results and Downloads", to: "/results-and-downloads" },
       { label: "FAQ", to: "/faq" },
     ],
   },
