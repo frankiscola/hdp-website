@@ -1,7 +1,25 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Gauge, Leaf, MapPin, Mic, ShieldCheck, TrendingDown } from "lucide-react";
+import {
+  ArrowUpRight,
+  ChevronDown,
+  Gauge,
+  Leaf,
+  MapPin,
+  Mic,
+  ShieldCheck,
+  TrendingDown,
+} from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { useState, type KeyboardEvent, type ReactNode } from "react";
 import heroVehicle from "../assets/hero-vehicle.jpg";
 import heroVehicleLight from "../assets/hero-vehicle-light.jpg";
+import mylonasPhoto from "../assets/speakers/chrysostomos-mylonas.jpg";
+import radeckPhoto from "../assets/speakers/domenik-radeck.jpg";
+import seminoPhoto from "../assets/speakers/gabriele-semino.jpg";
+import sandelPhoto from "../assets/speakers/luca-sandel.jpg";
+import gulerPhoto from "../assets/speakers/murat-guler.jpg";
+import kleikemperPhoto from "../assets/speakers/oliver-kleikemper.jpg";
+import schweizerPhoto from "../assets/speakers/oliver-schweizer.jpg";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
@@ -87,7 +105,39 @@ const highlights = [
   },
 ];
 
-type BoothSlot = { time: string; title: string; speakers?: string[]; location?: string };
+type Speaker = { name: string; org: string; photo?: string };
+
+const speakers = {
+  guler: {
+    name: "Dr. Murat Güler",
+    org: "TÜBİTAK Rail Transportation Technologies Institute",
+    photo: gulerPhoto,
+  },
+  sandel: { name: "Luca Sandel", org: "EuroTube Foundation", photo: sandelPhoto },
+  mylonas: {
+    name: "Dr. Chrysostomos Mylonas",
+    org: "Centre for Research and Technology Hellas (CERTH)",
+    photo: mylonasPhoto,
+  },
+  radeck: {
+    name: "Dr. Domenik Radeck",
+    org: "Technical University of Munich",
+    photo: radeckPhoto,
+  },
+  kleikemper: {
+    name: "Oliver Kleikemper",
+    org: "Technical University of Munich",
+    photo: kleikemperPhoto,
+  },
+  semino: { name: "Gabriele Semino", org: "Neoways Technologies", photo: seminoPhoto },
+  schweizer: {
+    name: "Oliver Schweizer",
+    org: "Schweizer Design Consulting GmbH",
+    photo: schweizerPhoto,
+  },
+} satisfies Record<string, Speaker>;
+
+type BoothSlot = { time: string; title: string; speakers?: Speaker[]; location?: string };
 type BoothDay = { day: string; date: string; slots: BoothSlot[] };
 
 // Only the confirmed (highlighted) presentations at the HDP stand – open
@@ -101,12 +151,12 @@ const boothProgramme: BoothDay[] = [
       {
         time: "11:00 – 11:30",
         title: "Hyperloop in Türkiye: Activities, Competitions and Vision",
-        speakers: ["Dr. Murat Güler – TÜBİTAK Rail Transportation Technologies Institute"],
+        speakers: [speakers.guler],
       },
       {
         time: "13:00 – 14:00",
         title: "Converging on Europe's Hyperloop: The Harmonised Technical Concept",
-        speakers: ["Luca Sandel – EuroTube Foundation"],
+        speakers: [speakers.sandel],
       },
     ],
   },
@@ -117,20 +167,17 @@ const boothProgramme: BoothDay[] = [
       {
         time: "13:00 – 13:30",
         title: "A European Hyperloop Network: The Financial and Socio-Economic Case",
-        speakers: ["Dr. Chrysostomos Mylonas – Centre for Research and Technology Hellas (CERTH)"],
+        speakers: [speakers.mylonas],
       },
       {
         time: "14:00 – 14:30",
         title: "Latest Achievements in Hyperloop Full-Scale Testing and Next Steps",
-        speakers: [
-          "Dr. Domenik Radeck & Oliver Kleikemper – Technical University of Munich",
-          "Gabriele Semino – Neoways Technologies",
-        ],
+        speakers: [speakers.radeck, speakers.kleikemper, speakers.semino],
       },
       {
         time: "16:00 – 16:30",
         title: "Vision on Hyperloop – Passenger Accommodation and Comfort",
-        speakers: ["Oliver Schweizer – Schweizer Design Consulting GmbH"],
+        speakers: [speakers.schweizer],
       },
     ],
   },
@@ -155,6 +202,7 @@ type AgendaItem = {
   title: string;
   note?: string;
   people: string[];
+  speakers?: Speaker[];
 };
 
 const conferenceAgenda: AgendaItem[] = [
@@ -193,6 +241,7 @@ const conferenceAgenda: AgendaItem[] = [
       "Luca Sandel (EuroTube Foundation) – Converging on Europe's Hyperloop: The Harmonised Technical Concept",
       "Q&A",
     ],
+    speakers: [speakers.mylonas, speakers.sandel],
   },
   {
     time: "13:20 – 14:10",
@@ -206,6 +255,7 @@ const conferenceAgenda: AgendaItem[] = [
       "Dieter Michell-Auli (DRO)",
       "Q&A",
     ],
+    speakers: [speakers.semino],
   },
   {
     time: "14:25 – 14:30",
@@ -213,6 +263,116 @@ const conferenceAgenda: AgendaItem[] = [
     people: ["Jochen Wermuth – Wermuth Asset Management"],
   },
 ];
+
+function SpeakerGallery({ people }: { people: Speaker[] }) {
+  return (
+    <div className="flex flex-wrap gap-5 pt-6">
+      {people
+        .filter((p) => p.photo)
+        .map((p) => (
+          <figure key={p.name} className="w-[calc(50%-0.625rem)] sm:w-64 lg:w-72">
+            <img
+              src={p.photo}
+              alt={p.name}
+              loading="lazy"
+              className="aspect-[4/5] w-full rounded-2xl object-cover"
+            />
+            <figcaption className="mt-3">
+              <p className="text-sm font-semibold sm:text-base">{p.name}</p>
+              <p className="text-xs leading-snug text-muted-foreground sm:text-sm">{p.org}</p>
+            </figcaption>
+          </figure>
+        ))}
+    </div>
+  );
+}
+
+// Card that expands on click to reveal large speaker portraits.
+function ExpandableCard({
+  people = [],
+  className = "",
+  expandedClassName = "",
+  innerClassName = "",
+  children,
+}: {
+  people?: Speaker[] | undefined;
+  className?: string;
+  expandedClassName?: string;
+  innerClassName?: string;
+  children: ReactNode;
+}) {
+  const [open, setOpen] = useState(false);
+  const withPhoto = people.filter((p) => p.photo);
+  const expandable = withPhoto.length > 0;
+
+  const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setOpen((o) => !o);
+    }
+  };
+
+  return (
+    <motion.div
+      layout
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      role={expandable ? "button" : undefined}
+      tabIndex={expandable ? 0 : undefined}
+      aria-expanded={expandable ? open : undefined}
+      onClick={expandable ? () => setOpen((o) => !o) : undefined}
+      onKeyDown={expandable ? onKeyDown : undefined}
+      className={`${className} ${open ? expandedClassName : ""} ${
+        expandable
+          ? "cursor-pointer transition-colors hover:border-primary/50 focus-visible:outline-2 focus-visible:outline-primary"
+          : ""
+      }`}
+    >
+      <div className={innerClassName}>{children}</div>
+
+      {expandable ? (
+        <div className="mt-4 flex items-center gap-3">
+          <div className="flex -space-x-2">
+            {withPhoto.map((p) => (
+              <img
+                key={p.name}
+                src={p.photo}
+                alt=""
+                className="h-9 w-9 rounded-full border-2 border-background object-cover object-top"
+              />
+            ))}
+          </div>
+          <span className="text-xs font-medium text-primary-glow">
+            {open
+              ? "Hide speakers"
+              : withPhoto.length > 1
+                ? "Meet the speakers"
+                : "Meet the speaker"}
+          </span>
+          <ChevronDown
+            className={`h-4 w-4 text-primary-glow transition-transform duration-300 ${
+              open ? "rotate-180" : ""
+            }`}
+          />
+        </div>
+      ) : null}
+
+      <AnimatePresence initial={false}>
+        {open && expandable ? (
+          <motion.div
+            key="gallery"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden"
+          >
+            <SpeakerGallery people={withPhoto} />
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
 
 function InnoTrans2026() {
   return (
@@ -320,9 +480,12 @@ function InnoTrans2026() {
                 <TabsContent key={d.day} value={d.day} className="mt-8">
                   <div className="grid gap-4 sm:grid-cols-2">
                     {d.slots.map((slot) => (
-                      <div
+                      <ExpandableCard
                         key={d.day + slot.time}
-                        className="flex flex-col gap-3 rounded-2xl border border-border bg-background/60 p-6"
+                        people={slot.speakers}
+                        className="rounded-2xl border border-border bg-background/60 p-6"
+                        expandedClassName="sm:col-span-2"
+                        innerClassName="flex flex-col gap-3"
                       >
                         <span className="text-xs font-medium text-muted-foreground">
                           {slot.time}
@@ -334,11 +497,13 @@ function InnoTrans2026() {
                           <ul className="space-y-1.5">
                             {slot.speakers.map((person) => (
                               <li
-                                key={person}
+                                key={person.name}
                                 className="flex items-start gap-2 text-sm leading-relaxed text-muted-foreground"
                               >
                                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-glow" />
-                                <span>{person}</span>
+                                <span>
+                                  {person.name} – {person.org}
+                                </span>
                               </li>
                             ))}
                           </ul>
@@ -349,7 +514,7 @@ function InnoTrans2026() {
                             {slot.location}
                           </span>
                         ) : null}
-                      </div>
+                      </ExpandableCard>
                     ))}
                   </div>
                 </TabsContent>
@@ -373,7 +538,11 @@ function InnoTrans2026() {
           <div className="mt-14 space-y-4">
             {conferenceAgenda.map((item, i) => (
               <Reveal key={item.time + item.title} delay={i * 0.05}>
-                <div className="flex flex-col gap-2 rounded-2xl border border-border bg-surface/40 p-6 sm:flex-row sm:gap-6 sm:p-7">
+                <ExpandableCard
+                  people={item.speakers}
+                  className="rounded-2xl border border-border bg-surface/40 p-6 sm:p-7"
+                  innerClassName="flex flex-col gap-2 sm:flex-row sm:gap-6"
+                >
                   <span className="shrink-0 text-sm font-semibold text-primary-glow sm:w-24">
                     {item.time}
                   </span>
@@ -398,7 +567,7 @@ function InnoTrans2026() {
                       ))}
                     </ul>
                   </div>
-                </div>
+                </ExpandableCard>
               </Reveal>
             ))}
           </div>
