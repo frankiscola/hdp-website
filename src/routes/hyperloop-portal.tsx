@@ -214,6 +214,11 @@ function HyperloopPortal() {
                       <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
                         {doc.abstract}
                       </p>
+                      {doc.source && (
+                        <p className="mt-2 text-xs text-muted-foreground/70 italic">
+                          Source: {doc.source}
+                        </p>
+                      )}
                     </div>
                     <div className="mt-5 flex flex-wrap items-center gap-2">
                       {doc.tags.map((tag) => (
