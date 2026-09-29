@@ -32,10 +32,12 @@ export function ArrowLink({
 
 export function CtaButton({
   to,
+  search,
   children,
   variant = "solid",
 }: {
   to: string;
+  search?: Record<string, string>;
   children: ReactNode;
   variant?: "solid" | "ghost";
 }) {
@@ -46,6 +48,7 @@ export function CtaButton({
       <Link
         ref={magneticRef}
         to={to}
+        {...(search ? { search } : {})}
         className={cn(
           "inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-semibold transition-[background-color,color,box-shadow] duration-300 will-change-transform",
           variant === "solid"

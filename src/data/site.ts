@@ -21,7 +21,7 @@ export const navItems: NavItem[] = [
   { label: "Testing Infrastructure", to: "/testing-infrastructure" },
   { label: "Partners", to: "/partners" },
   { label: "Research Portal", to: "/hyperloop-portal" },
-  { label: "HyperHub Network", to: "/student-teams-and-competitions" },
+  { label: "HyperHub Network", to: "/hyperhub" },
   {
     label: "Events",
     children: [{ label: "InnoTrans 2026", to: "/innotrans-2026" }],

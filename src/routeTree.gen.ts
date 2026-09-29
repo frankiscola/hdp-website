@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutHdpRouteImport } from './routes/about-hdp'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as HyperhubRouteImport } from './routes/hyperhub'
 import { Route as HyperloopRouteImport } from './routes/hyperloop'
 import { Route as HyperloopPortalRouteImport } from './routes/hyperloop-portal'
 import { Route as Innotrans2026RouteImport } from './routes/innotrans-2026'
@@ -46,6 +47,11 @@ const ContactRoute = ContactRouteImport.update({
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HyperhubRoute = HyperhubRouteImport.update({
+  id: '/hyperhub',
+  path: '/hyperhub',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HyperloopRoute = HyperloopRouteImport.update({
@@ -125,6 +131,7 @@ export interface FileRoutesByFullPath {
   '/about-hdp': typeof AboutHdpRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
+  '/hyperhub': typeof HyperhubRoute
   '/hyperloop': typeof HyperloopRoute
   '/hyperloop-portal': typeof HyperloopPortalRoute
   '/innotrans-2026': typeof Innotrans2026Route
@@ -145,6 +152,7 @@ export interface FileRoutesByTo {
   '/about-hdp': typeof AboutHdpRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
+  '/hyperhub': typeof HyperhubRoute
   '/hyperloop': typeof HyperloopRoute
   '/hyperloop-portal': typeof HyperloopPortalRoute
   '/innotrans-2026': typeof Innotrans2026Route
@@ -166,6 +174,7 @@ export interface FileRoutesById {
   '/about-hdp': typeof AboutHdpRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
+  '/hyperhub': typeof HyperhubRoute
   '/hyperloop': typeof HyperloopRoute
   '/hyperloop-portal': typeof HyperloopPortalRoute
   '/innotrans-2026': typeof Innotrans2026Route
@@ -188,6 +197,7 @@ export interface FileRouteTypes {
     | '/about-hdp'
     | '/contact'
     | '/faq'
+    | '/hyperhub'
     | '/hyperloop'
     | '/hyperloop-portal'
     | '/innotrans-2026'
@@ -208,6 +218,7 @@ export interface FileRouteTypes {
     | '/about-hdp'
     | '/contact'
     | '/faq'
+    | '/hyperhub'
     | '/hyperloop'
     | '/hyperloop-portal'
     | '/innotrans-2026'
@@ -228,6 +239,7 @@ export interface FileRouteTypes {
     | '/about-hdp'
     | '/contact'
     | '/faq'
+    | '/hyperhub'
     | '/hyperloop'
     | '/hyperloop-portal'
     | '/innotrans-2026'
@@ -249,6 +261,7 @@ export interface RootRouteChildren {
   AboutHdpRoute: typeof AboutHdpRoute
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
+  HyperhubRoute: typeof HyperhubRoute
   HyperloopRoute: typeof HyperloopRoute
   HyperloopPortalRoute: typeof HyperloopPortalRoute
   Innotrans2026Route: typeof Innotrans2026Route
@@ -293,6 +306,13 @@ declare module '@tanstack/react-router' {
       path: '/faq'
       fullPath: '/faq'
       preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hyperhub': {
+      id: '/hyperhub'
+      path: '/hyperhub'
+      fullPath: '/hyperhub'
+      preLoaderRoute: typeof HyperhubRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/hyperloop': {
@@ -401,6 +421,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutHdpRoute: AboutHdpRoute,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
+  HyperhubRoute: HyperhubRoute,
   HyperloopRoute: HyperloopRoute,
   HyperloopPortalRoute: HyperloopPortalRoute,
   Innotrans2026Route: Innotrans2026Route,

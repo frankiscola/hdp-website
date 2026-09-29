@@ -28,14 +28,41 @@ export const Route = createFileRoute("/contact")({
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/contact") }],
   }),
+  validateSearch: (
+    search: Record<string, unknown>,
+  ): { topic?: string; team?: string; addTeam?: string } => ({
+    ...(typeof search["topic"] === "string" ? { topic: search["topic"] } : {}),
+    ...(typeof search["team"] === "string" && search["team"] ? { team: search["team"] } : {}),
+    ...(search["addTeam"] ? { addTeam: "1" } : {}),
+  }),
   component: Contact,
 });
 
-const topics = ["Partnership", "Test infrastructure", "Research", "Press"];
+const topics = [
+  "Partnership",
+  "Test infrastructure",
+  "Research",
+  "Sponsorship & talent",
+  "Press",
+];
+
+// Message pre-filled when arriving from the HyperHub Network page.
+function initialMessage(team?: string, addTeam?: string): string {
+  if (addTeam) {
+    return "Hi, we'd like to add our team to the HyperHub Network.\n\nTeam name:\nUniversity:\nCountry:\nWebsite:\n";
+  }
+  if (team) {
+    return `Hi, we're interested in sponsoring or connecting with ${team}.\n\n`;
+  }
+  return "";
+}
 
 function Contact() {
   const [sent, setSent] = useState(false);
-  const [topic, setTopic] = useState(topics[0]);
+  const search = Route.useSearch();
+  const [topic, setTopic] = useState(
+    search.topic && topics.includes(search.topic) ? search.topic : topics[0],
+  );
   const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -172,6 +199,7 @@ function Contact() {
                       name="message"
                       required
                       rows={5}
+                      defaultValue={initialMessage(search.team, search.addTeam)}
                       className="mt-3 w-full rounded-2xl border border-input bg-background/60 px-4 py-3 text-sm outline-none transition-colors focus:border-primary"
                     />
                   </div>
