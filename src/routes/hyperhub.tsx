@@ -8,6 +8,7 @@ import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { CtaButton, SectionHeading } from "../components/ui-kit";
+import { CompanyPortal } from "../components/CompanyPortal";
 import { fetchTeams, type Team } from "../data/teams";
 import { cn } from "../lib/utils";
 
@@ -293,6 +294,7 @@ function HyperHub() {
         </div>
       </section>
 
+      <CompanyPortal />
     </>
   );
 }

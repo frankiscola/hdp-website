@@ -30,10 +30,14 @@ export const Route = createFileRoute("/contact")({
   }),
   validateSearch: (
     search: Record<string, unknown>,
-  ): { topic?: string; team?: string; addTeam?: string } => ({
+  ): { topic?: string; team?: string; addTeam?: string; company?: string; interest?: string } => ({
     ...(typeof search["topic"] === "string" ? { topic: search["topic"] } : {}),
     ...(typeof search["team"] === "string" && search["team"] ? { team: search["team"] } : {}),
     ...(search["addTeam"] ? { addTeam: "1" } : {}),
+    ...(typeof search["company"] === "string" && search["company"]
+      ? { company: search["company"] }
+      : {}),
+    ...(typeof search["interest"] === "string" ? { interest: search["interest"] } : {}),
   }),
   component: Contact,
 });
@@ -47,9 +51,15 @@ const topics = [
 ];
 
 // Message pre-filled when arriving from the HyperHub Network page.
-function initialMessage(team?: string, addTeam?: string): string {
+function initialMessage(team?: string, addTeam?: string, company?: string, interest?: string): string {
   if (addTeam) {
     return "Hi, we'd like to add our team to the HyperHub Network.\n\nTeam name:\nUniversity:\nCountry:\nWebsite:\n";
+  }
+  if (company && interest === "careers") {
+    return `Hi, we're interested in the graduate programme / career opportunities offered by ${company} through the HyperHub Network.\n\n`;
+  }
+  if (company) {
+    return `Hi, we're interested in the sponsorship offered by ${company} through the HyperHub Network.\n\n`;
   }
   if (team) {
     return `Hi, we're interested in sponsoring or connecting with ${team}.\n\n`;
@@ -199,7 +209,12 @@ function Contact() {
                       name="message"
                       required
                       rows={5}
-                      defaultValue={initialMessage(search.team, search.addTeam)}
+                      defaultValue={initialMessage(
+                        search.team,
+                        search.addTeam,
+                        search.company,
+                        search.interest,
+                      )}
                       className="mt-3 w-full rounded-2xl border border-input bg-background/60 px-4 py-3 text-sm outline-none transition-colors focus:border-primary"
                     />
                   </div>
