@@ -45,7 +45,11 @@ function HyperloopPortal() {
   const { category: categoryParam } = Route.useSearch();
   const category: PortalCategory | "All" = categoryParam ?? "All";
   function setCategory(next: PortalCategory | "All") {
-    navigate({ search: next === "All" ? {} : { category: next }, replace: true });
+    navigate({
+      search: next === "All" ? {} : { category: next },
+      replace: true,
+      resetScroll: false,
+    });
   }
   const [activeTags, setActiveTags] = useState<string[]>([]);
   const [year, setYear] = useState<string>("All");
