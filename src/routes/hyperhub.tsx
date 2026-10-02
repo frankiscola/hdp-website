@@ -53,8 +53,11 @@ function TeamCard({ team }: { team: Team }) {
     <Magnetic>
       <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-background/60 p-7 transition-all duration-500 hover:border-primary/50">
         {/* Faint watermark of the team's own logo, sat large in the corner.
-            Purely decorative: the small badge above stays the readable mark. */}
-        {team.logoUrl && (
+            Purely decorative: the small badge above stays the readable mark.
+            Skipped for logos with no real transparency (logoWatermark is
+            false), where this would show as an ugly solid block instead of a
+            soft silhouette. */}
+        {team.logoUrl && team.logoWatermark && (
           <img
             src={team.logoUrl}
             alt=""
@@ -70,7 +73,12 @@ function TeamCard({ team }: { team: Team }) {
               src={team.logoUrl}
               alt={`${team.name} logo`}
               loading="lazy"
-              className="h-14 w-14 rounded-xl bg-white object-contain p-1.5"
+              className={cn(
+                "h-14 w-14 rounded-xl object-contain p-1.5",
+                // Logos that are white/light on a transparent background
+                // need a dark tile behind them to stay visible.
+                team.logoBg === "dark" ? "bg-slate-900" : "bg-white",
+              )}
             />
           ) : (
             <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-secondary text-sm font-semibold text-muted-foreground">
