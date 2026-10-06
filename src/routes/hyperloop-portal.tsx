@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { absoluteUrl } from "../lib/seo";
-import { ArrowUpRight, Search, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Search, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import tubeLandscape from "../assets/tube-landscape.jpg";
 import tubeLandscapeLight from "../assets/tube-landscape-light.jpg";
@@ -145,17 +145,20 @@ function HyperloopPortal() {
           {/* Tag chips + year select */}
           <Reveal delay={0.12}>
             <div className="mt-6 flex flex-wrap items-center gap-3">
-              <select
-                value={year}
-                onChange={(e) => setYear(e.target.value)}
-                className="rounded-full border border-border bg-surface/40 px-4 py-2 text-sm text-muted-foreground focus:border-primary/50 focus:outline-none"
-              >
-                {years.map((y) => (
-                  <option key={y} value={y}>
-                    {y === "All" ? "All years" : y}
-                  </option>
-                ))}
-              </select>
+              <div className="relative">
+                <select
+                  value={year}
+                  onChange={(e) => setYear(e.target.value)}
+                  className="appearance-none rounded-full border border-border bg-surface/40 py-2 pr-9 pl-4 text-sm text-muted-foreground focus:border-primary/50 focus:outline-none"
+                >
+                  {years.map((y) => (
+                    <option key={y} value={y}>
+                      {y === "All" ? "All years" : y}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="pointer-events-none absolute top-1/2 right-3.5 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
+              </div>
               <span className="h-5 w-px bg-border" />
               {portalTags.map((tag) => (
                 <button

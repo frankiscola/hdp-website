@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { absoluteUrl } from "../lib/seo";
-import { ExternalLink, Instagram, Linkedin, Search, X, Youtube } from "lucide-react";
+import { ChevronDown, ExternalLink, Instagram, Linkedin, Search, X, Youtube } from "lucide-react";
 import { useMemo, useState } from "react";
 import hyperloopLandscapeTube from "../assets/hyperloop-landscape-tube.jpg";
 import hyperloopLandscapeTubeLight from "../assets/hyperloop-landscape-tube-light.jpg";
@@ -229,18 +229,21 @@ function HyperHub() {
                   className="w-full rounded-full border border-border bg-surface/50 py-3 pr-4 pl-11 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none"
                 />
               </div>
-              <select
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                aria-label="Filter by country"
-                className="rounded-full border border-border bg-surface/50 px-4 py-3 text-sm text-foreground focus:border-primary/50 focus:outline-none"
-              >
-                {countries.map((c) => (
-                  <option key={c} value={c}>
-                    {c === "All" ? "All countries" : c}
-                  </option>
-                ))}
-              </select>
+              <div className="relative">
+                <select
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                  aria-label="Filter by country"
+                  className="appearance-none rounded-full border border-border bg-surface/50 py-3 pr-10 pl-4 text-sm text-foreground focus:border-primary/50 focus:outline-none"
+                >
+                  {countries.map((c) => (
+                    <option key={c} value={c}>
+                      {c === "All" ? "All countries" : c}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="pointer-events-none absolute top-1/2 right-4 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              </div>
               <button
                 type="button"
                 onClick={() => setSponsorsOnly((v) => !v)}
