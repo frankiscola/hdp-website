@@ -219,7 +219,7 @@ function HyperHub() {
 
           <Reveal delay={0.05}>
             <div className="mt-12 flex flex-col gap-4 lg:flex-row lg:items-center">
-              <div className="relative flex-1">
+              <div className="relative flex-1 lg:max-w-xs">
                 <Search className="pointer-events-none absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                 <input
                   type="search"
@@ -257,6 +257,12 @@ function HyperHub() {
               >
                 Seeking sponsors
               </button>
+              <a
+                href="#companies"
+                className="rounded-full border border-border bg-surface/40 px-4 py-3 text-sm font-medium text-muted-foreground transition-colors duration-300 hover:text-foreground"
+              >
+                Careers
+              </a>
               {hasFilters && (
                 <button
                   type="button"

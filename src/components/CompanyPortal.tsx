@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Briefcase, Handshake, Loader2 } from "lucide-react";
+import { Briefcase, GraduationCap, Handshake, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
   fetchCompanies,
@@ -48,13 +48,13 @@ export function CompanyPortal() {
   }, []);
 
   return (
-    <section className="border-t border-border bg-surface/30">
+    <section id="companies" className="border-t border-border bg-surface/30 scroll-mt-24">
       <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
         <Reveal>
           <SectionHeading
             eyebrow="For companies"
-            title="Sponsors & employers."
-            intro="A directory for HDP partner companies only — sponsorship opportunities and graduate programmes for student teams, and a place to offer both. Sign up and we'll review your request."
+            title="Companies behind hyperloop."
+            intro="A directory for HDP partner companies only — sponsorship opportunities, graduate careers and master's/PhD thesis projects for student teams, and a place to offer all three. Sign up and we'll review your request."
           />
         </Reveal>
 
@@ -66,7 +66,7 @@ export function CompanyPortal() {
           {view === "pending" && (
             <StatusMessage
               title="Your request is under review."
-              text={`Thanks${profile?.companyName ? `, ${profile.companyName}` : ""} — an HDP team member will approve your account shortly. You'll see the sponsor & careers directory here once approved.`}
+              text={`Thanks${profile?.companyName ? `, ${profile.companyName}` : ""} — an HDP team member will approve your account shortly. You'll see the sponsor, careers & thesis directory here once approved.`}
             />
           )}
           {view === "rejected" && (
@@ -327,6 +327,18 @@ function CompanyDirectory({
                   </div>
                 )}
 
+                {c.thesisInfo && (
+                  <div className="mt-3 rounded-2xl border border-border/60 p-4">
+                    <p className="flex items-center gap-2 text-xs font-semibold text-primary-glow uppercase">
+                      <GraduationCap className="h-3.5 w-3.5" />
+                      Thesis & research projects
+                    </p>
+                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                      {c.thesisInfo}
+                    </p>
+                  </div>
+                )}
+
                 <div className="mt-auto flex flex-wrap gap-4 pt-6">
                   {c.sponsorshipOffer && (
                     <Link
@@ -344,6 +356,15 @@ function CompanyDirectory({
                       className="text-sm font-semibold text-foreground underline-offset-4 hover:text-primary-glow hover:underline"
                     >
                       Ask about careers
+                    </Link>
+                  )}
+                  {c.thesisInfo && (
+                    <Link
+                      to="/contact"
+                      search={{ topic: "Sponsorship & talent", company: c.name, interest: "thesis" }}
+                      className="text-sm font-semibold text-foreground underline-offset-4 hover:text-primary-glow hover:underline"
+                    >
+                      Ask about thesis projects
                     </Link>
                   )}
                 </div>

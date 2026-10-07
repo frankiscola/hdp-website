@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutHdpRouteImport } from './routes/about-hdp'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as HyperhubRouteImport } from './routes/hyperhub'
@@ -37,6 +38,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutHdpRoute = AboutHdpRouteImport.update({
   id: '/about-hdp',
   path: '/about-hdp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -129,6 +135,7 @@ const NewsSlugRoute = NewsSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-hdp': typeof AboutHdpRoute
+  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/hyperhub': typeof HyperhubRoute
@@ -150,6 +157,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-hdp': typeof AboutHdpRoute
+  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/hyperhub': typeof HyperhubRoute
@@ -172,6 +180,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about-hdp': typeof AboutHdpRoute
+  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/hyperhub': typeof HyperhubRoute
@@ -195,6 +204,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about-hdp'
+    | '/admin'
     | '/contact'
     | '/faq'
     | '/hyperhub'
@@ -216,6 +226,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about-hdp'
+    | '/admin'
     | '/contact'
     | '/faq'
     | '/hyperhub'
@@ -237,6 +248,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about-hdp'
+    | '/admin'
     | '/contact'
     | '/faq'
     | '/hyperhub'
@@ -259,6 +271,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutHdpRoute: typeof AboutHdpRoute
+  AdminRoute: typeof AdminRoute
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
   HyperhubRoute: typeof HyperhubRoute
@@ -292,6 +305,13 @@ declare module '@tanstack/react-router' {
       path: '/about-hdp'
       fullPath: '/about-hdp'
       preLoaderRoute: typeof AboutHdpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -419,6 +439,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutHdpRoute: AboutHdpRoute,
+  AdminRoute: AdminRoute,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
   HyperhubRoute: HyperhubRoute,

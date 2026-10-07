@@ -58,6 +58,9 @@ function initialMessage(team?: string, addTeam?: string, company?: string, inter
   if (company && interest === "careers") {
     return `Hi, we're interested in the graduate programme / career opportunities offered by ${company} through the HyperHub Network.\n\n`;
   }
+  if (company && interest === "thesis") {
+    return `Hi, we're interested in the master's/PhD thesis or research project opportunities offered by ${company} through the HyperHub Network.\n\n`;
+  }
   if (company) {
     return `Hi, we're interested in the sponsorship offered by ${company} through the HyperHub Network.\n\n`;
   }
