@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { motion, useReducedMotion } from "motion/react";
 import { Briefcase, GraduationCap, Handshake, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
@@ -25,26 +26,44 @@ export type CompanyInterest = "sponsorship" | "careers" | "thesis";
  * Row Level Security in Supabase is what really enforces the gate; this
  * only decides what to render.
  */
+type AccessSnapshot = {
+  view: ViewState;
+  companies: Company[];
+  profile: CompanyProfile | null;
+};
+
+// Last known access state, shared between filter switches. Switching between
+// Sponsors / Careers / Thesis remounts the panel; starting from this snapshot
+// (and revalidating in the background) avoids a spinner flash on every click.
+let accessCache: AccessSnapshot | null = null;
+
 function useCompanyAccess() {
-  const [view, setView] = useState<ViewState>("loading");
-  const [companies, setCompanies] = useState<Company[]>([]);
-  const [profile, setProfile] = useState<CompanyProfile | null>(null);
+  const [view, setView] = useState<ViewState>(accessCache?.view ?? "loading");
+  const [companies, setCompanies] = useState<Company[]>(accessCache?.companies ?? []);
+  const [profile, setProfile] = useState<CompanyProfile | null>(accessCache?.profile ?? null);
+
+  function commit(next: AccessSnapshot) {
+    accessCache = next;
+    setProfile(next.profile);
+    setCompanies(next.companies);
+    setView(next.view);
+  }
 
   async function refresh() {
     const p = await fetchMyProfile();
-    setProfile(p);
     if (!p) {
-      setCompanies([]);
-      setView("signed-out");
+      commit({ view: "signed-out", companies: [], profile: null });
       return;
     }
     if (p.status === "approved") {
-      setCompanies(await fetchCompanies());
-      setView("approved");
+      commit({ view: "approved", companies: await fetchCompanies(), profile: p });
       return;
     }
-    setCompanies([]);
-    setView(p.status === "rejected" ? "rejected" : "pending");
+    commit({
+      view: p.status === "rejected" ? "rejected" : "pending",
+      companies: [],
+      profile: p,
+    });
   }
 
   useEffect(() => {
@@ -85,7 +104,7 @@ export function CompanyInterestPanel({ interest }: { interest: CompanyInterest }
   const { view, companies, profile, refresh } = useCompanyAccess();
 
   if (view === "loading") {
-    return <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />;
+    return <CompanyGridSkeleton />;
   }
   if (view === "signed-out") {
     return (
@@ -166,6 +185,33 @@ export function CompanyPortal() {
         </div>
       </div>
     </section>
+  );
+}
+
+function CompanyGridSkeleton() {
+  return (
+    <div aria-busy="true" aria-label="Loading companies">
+      <div className="h-4 w-56 animate-pulse rounded-full bg-secondary/70" />
+      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {[0, 1, 2].map((i) => (
+          <div
+            key={i}
+            className="rounded-3xl border border-border bg-background/60 p-7"
+            style={{ animationDelay: `${i * 120}ms` }}
+          >
+            <div className="flex items-center gap-4">
+              <div className="h-12 w-12 animate-pulse rounded-xl bg-secondary/70" />
+              <div className="h-5 w-32 animate-pulse rounded-full bg-secondary/70" />
+            </div>
+            <div className="mt-5 space-y-2.5">
+              <div className="h-3 w-full animate-pulse rounded-full bg-secondary/60" />
+              <div className="h-3 w-5/6 animate-pulse rounded-full bg-secondary/60" />
+            </div>
+            <div className="mt-5 h-20 animate-pulse rounded-2xl bg-secondary/40" />
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -348,6 +394,7 @@ function CompanyDirectory({
   const showSponsorship = !interest || interest === "sponsorship";
   const showCareers = !interest || interest === "careers";
   const showThesis = !interest || interest === "thesis";
+  const reduce = useReducedMotion();
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -370,110 +417,121 @@ function CompanyDirectory({
         </p>
       ) : (
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {companies.map((c) => (
-            <Magnetic key={c.id}>
-              <div className="flex h-full flex-col rounded-3xl border border-border bg-background/60 p-7">
-                <div className="flex items-start gap-4">
-                  {c.logoUrl ? (
-                    <img
-                      src={c.logoUrl}
-                      alt={`${c.name} logo`}
-                      loading="lazy"
-                      className="h-12 w-12 rounded-xl bg-white object-contain p-1.5"
-                    />
-                  ) : (
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary text-sm font-semibold text-muted-foreground">
-                      {c.name.slice(0, 2).toUpperCase()}
+          {companies.map((c, i) => (
+            <motion.div
+              key={c.id}
+              initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                duration: 0.55,
+                delay: Math.min(i, 8) * 0.07,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              <Magnetic>
+                <div className="flex h-full flex-col rounded-3xl border border-border bg-background/60 p-7">
+                  <div className="flex items-start gap-4">
+                    {c.logoUrl ? (
+                      <img
+                        src={c.logoUrl}
+                        alt={`${c.name} logo`}
+                        loading="lazy"
+                        className="h-12 w-12 rounded-xl bg-white object-contain p-1.5"
+                      />
+                    ) : (
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary text-sm font-semibold text-muted-foreground">
+                        {c.name.slice(0, 2).toUpperCase()}
+                      </div>
+                    )}
+                    <h3 className="mt-1 text-lg leading-snug font-semibold">{c.name}</h3>
+                  </div>
+
+                  {c.description && (
+                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                      {c.description}
+                    </p>
+                  )}
+
+                  {showSponsorship && c.offersSponsorship && c.sponsorshipOffer && (
+                    <div className="mt-4 rounded-2xl border border-border/60 p-4">
+                      <p className="flex items-center gap-2 text-xs font-semibold text-primary-glow uppercase">
+                        <Handshake className="h-3.5 w-3.5" />
+                        Sponsorship
+                      </p>
+                      <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                        {c.sponsorshipOffer}
+                      </p>
                     </div>
                   )}
-                  <h3 className="mt-1 text-lg leading-snug font-semibold">{c.name}</h3>
+
+                  {showCareers && c.offersCareers && c.hiringInfo && (
+                    <div className="mt-3 rounded-2xl border border-border/60 p-4">
+                      <p className="flex items-center gap-2 text-xs font-semibold text-primary-glow uppercase">
+                        <Briefcase className="h-3.5 w-3.5" />
+                        Careers & graduate programmes
+                      </p>
+                      <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                        {c.hiringInfo}
+                      </p>
+                    </div>
+                  )}
+
+                  {showThesis && c.offersThesis && c.thesisInfo && (
+                    <div className="mt-3 rounded-2xl border border-border/60 p-4">
+                      <p className="flex items-center gap-2 text-xs font-semibold text-primary-glow uppercase">
+                        <GraduationCap className="h-3.5 w-3.5" />
+                        Thesis & research projects
+                      </p>
+                      <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                        {c.thesisInfo}
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="mt-auto flex flex-wrap gap-4 pt-6">
+                    {showSponsorship && c.offersSponsorship && (
+                      <Link
+                        to="/contact"
+                        search={{
+                          topic: "Sponsorship & talent",
+                          company: c.name,
+                          interest: "sponsorship",
+                        }}
+                        className="text-sm font-semibold text-foreground underline-offset-4 hover:text-primary-glow hover:underline"
+                      >
+                        Ask about sponsorship
+                      </Link>
+                    )}
+                    {showCareers && c.offersCareers && (
+                      <Link
+                        to="/contact"
+                        search={{
+                          topic: "Sponsorship & talent",
+                          company: c.name,
+                          interest: "careers",
+                        }}
+                        className="text-sm font-semibold text-foreground underline-offset-4 hover:text-primary-glow hover:underline"
+                      >
+                        Ask about careers
+                      </Link>
+                    )}
+                    {showThesis && c.offersThesis && (
+                      <Link
+                        to="/contact"
+                        search={{
+                          topic: "Sponsorship & talent",
+                          company: c.name,
+                          interest: "thesis",
+                        }}
+                        className="text-sm font-semibold text-foreground underline-offset-4 hover:text-primary-glow hover:underline"
+                      >
+                        Ask about thesis projects
+                      </Link>
+                    )}
+                  </div>
                 </div>
-
-                {c.description && (
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                    {c.description}
-                  </p>
-                )}
-
-                {showSponsorship && c.offersSponsorship && c.sponsorshipOffer && (
-                  <div className="mt-4 rounded-2xl border border-border/60 p-4">
-                    <p className="flex items-center gap-2 text-xs font-semibold text-primary-glow uppercase">
-                      <Handshake className="h-3.5 w-3.5" />
-                      Sponsorship
-                    </p>
-                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                      {c.sponsorshipOffer}
-                    </p>
-                  </div>
-                )}
-
-                {showCareers && c.offersCareers && c.hiringInfo && (
-                  <div className="mt-3 rounded-2xl border border-border/60 p-4">
-                    <p className="flex items-center gap-2 text-xs font-semibold text-primary-glow uppercase">
-                      <Briefcase className="h-3.5 w-3.5" />
-                      Careers & graduate programmes
-                    </p>
-                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                      {c.hiringInfo}
-                    </p>
-                  </div>
-                )}
-
-                {showThesis && c.offersThesis && c.thesisInfo && (
-                  <div className="mt-3 rounded-2xl border border-border/60 p-4">
-                    <p className="flex items-center gap-2 text-xs font-semibold text-primary-glow uppercase">
-                      <GraduationCap className="h-3.5 w-3.5" />
-                      Thesis & research projects
-                    </p>
-                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                      {c.thesisInfo}
-                    </p>
-                  </div>
-                )}
-
-                <div className="mt-auto flex flex-wrap gap-4 pt-6">
-                  {showSponsorship && c.offersSponsorship && (
-                    <Link
-                      to="/contact"
-                      search={{
-                        topic: "Sponsorship & talent",
-                        company: c.name,
-                        interest: "sponsorship",
-                      }}
-                      className="text-sm font-semibold text-foreground underline-offset-4 hover:text-primary-glow hover:underline"
-                    >
-                      Ask about sponsorship
-                    </Link>
-                  )}
-                  {showCareers && c.offersCareers && (
-                    <Link
-                      to="/contact"
-                      search={{
-                        topic: "Sponsorship & talent",
-                        company: c.name,
-                        interest: "careers",
-                      }}
-                      className="text-sm font-semibold text-foreground underline-offset-4 hover:text-primary-glow hover:underline"
-                    >
-                      Ask about careers
-                    </Link>
-                  )}
-                  {showThesis && c.offersThesis && (
-                    <Link
-                      to="/contact"
-                      search={{
-                        topic: "Sponsorship & talent",
-                        company: c.name,
-                        interest: "thesis",
-                      }}
-                      className="text-sm font-semibold text-foreground underline-offset-4 hover:text-primary-glow hover:underline"
-                    >
-                      Ask about thesis projects
-                    </Link>
-                  )}
-                </div>
-              </div>
-            </Magnetic>
+              </Magnetic>
+            </motion.div>
           ))}
         </div>
       )}

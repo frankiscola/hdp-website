@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { absoluteUrl } from "../lib/seo";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ChevronDown, ExternalLink, Instagram, Linkedin, Search, X, Youtube } from "lucide-react";
 import { useMemo, useState } from "react";
 import hyperloopLandscapeTube from "../assets/hyperloop-landscape-tube.jpg";
@@ -192,6 +193,7 @@ function HyperHub() {
   // null = the normal student-team directory. Otherwise a members-only
   // company list (sponsors / careers / academic thesis) replaces the teams.
   const [companyView, setCompanyView] = useState<CompanyInterest | null>(null);
+  const reduce = useReducedMotion();
 
   const countries = useMemo(
     () => ["All", ...Array.from(new Set(teams.map((t) => t.country))).sort()],
@@ -274,13 +276,20 @@ function HyperHub() {
                   onClick={() => setCompanyView((v) => (v === id ? null : id))}
                   aria-pressed={companyView === id}
                   className={cn(
-                    "rounded-full border px-4 py-3 text-sm font-medium transition-colors duration-300",
+                    "relative rounded-full border px-4 py-3 text-sm font-medium transition-colors duration-300",
                     companyView === id
-                      ? "border-primary bg-primary text-primary-foreground"
+                      ? "border-primary text-primary-foreground"
                       : "border-border bg-surface/40 text-muted-foreground hover:text-foreground",
                   )}
                 >
-                  {label}
+                  {companyView === id && (
+                    <motion.span
+                      layoutId="hyperhub-filter-pill"
+                      className="absolute inset-0 rounded-full bg-primary"
+                      transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                    />
+                  )}
+                  <span className="relative z-10">{label}</span>
                 </button>
               ))}
               {hasFilters && (
@@ -302,31 +311,41 @@ function HyperHub() {
             </div>
           </Reveal>
 
-          {companyView ? (
-            <div className="mt-10">
-              <CompanyInterestPanel key={companyView} interest={companyView} />
-            </div>
-          ) : (
-            <>
-              <p className="mt-8 text-sm text-muted-foreground">
-                {filtered.length} {filtered.length === 1 ? "team" : "teams"}
-              </p>
-
-              {filtered.length === 0 ? (
-                <p className="mt-10 rounded-3xl border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
-                  No teams match these filters. Try clearing some.
-                </p>
-              ) : (
-                <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                  {filtered.map((team, i) => (
-                    <Reveal key={team.id} delay={Math.min(i, 7) * 0.04}>
-                      <TeamCard team={team} />
-                    </Reveal>
-                  ))}
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={companyView ?? "teams"}
+              initial={reduce ? { opacity: 0 } : { opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduce ? { opacity: 0 } : { opacity: 0, y: -10 }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {companyView ? (
+                <div className="mt-10">
+                  <CompanyInterestPanel interest={companyView} />
                 </div>
+              ) : (
+                <>
+                  <p className="mt-8 text-sm text-muted-foreground">
+                    {filtered.length} {filtered.length === 1 ? "team" : "teams"}
+                  </p>
+
+                  {filtered.length === 0 ? (
+                    <p className="mt-10 rounded-3xl border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
+                      No teams match these filters. Try clearing some.
+                    </p>
+                  ) : (
+                    <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                      {filtered.map((team, i) => (
+                        <Reveal key={team.id} delay={Math.min(i, 7) * 0.04}>
+                          <TeamCard team={team} />
+                        </Reveal>
+                      ))}
+                    </div>
+                  )}
+                </>
               )}
-            </>
-          )}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </section>
 
