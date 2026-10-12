@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { absoluteUrl } from "../lib/seo";
 import { useState } from "react";
 import { motion } from "motion/react";
@@ -39,30 +39,25 @@ export const Route = createFileRoute("/contact")({
       : {}),
     ...(typeof search["interest"] === "string" ? { interest: search["interest"] } : {}),
   }),
+  // Old "Add your team" links pointed here: the form now lives on the portal.
+  beforeLoad: ({ search }) => {
+    if (search.addTeam) throw redirect({ to: "/hyperhub", hash: "add-your-team", statusCode: 301 });
+  },
   component: Contact,
 });
 
-const topics = [
-  "Partnership",
-  "Test infrastructure",
-  "Research",
-  "Sponsorship & talent",
-  "Press",
-];
+const topics = ["Partnership", "Test infrastructure", "Research", "Sponsorship & talent", "Press"];
 
-// Message pre-filled when arriving from the HyperHub Network page.
-function initialMessage(team?: string, addTeam?: string, company?: string, interest?: string): string {
-  if (addTeam) {
-    return "Hi, we'd like to add our team to the HyperHub Network.\n\nTeam name:\nUniversity:\nCountry:\nWebsite:\n";
-  }
+// Message pre-filled when arriving from the HyperHub Portal page.
+function initialMessage(team?: string, company?: string, interest?: string): string {
   if (company && interest === "careers") {
-    return `Hi, we're interested in the graduate programme / career opportunities offered by ${company} through the HyperHub Network.\n\n`;
+    return `Hi, we're interested in the graduate programme / career opportunities offered by ${company} through the HyperHub Portal.\n\n`;
   }
   if (company && interest === "thesis") {
-    return `Hi, we're interested in the master's/PhD thesis or research project opportunities offered by ${company} through the HyperHub Network.\n\n`;
+    return `Hi, we're interested in the master's/PhD thesis or research project opportunities offered by ${company} through the HyperHub Portal.\n\n`;
   }
   if (company) {
-    return `Hi, we're interested in the sponsorship offered by ${company} through the HyperHub Network.\n\n`;
+    return `Hi, we're interested in the sponsorship offered by ${company} through the HyperHub Portal.\n\n`;
   }
   if (team) {
     return `Hi, we're interested in sponsoring or connecting with ${team}.\n\n`;
@@ -212,12 +207,7 @@ function Contact() {
                       name="message"
                       required
                       rows={5}
-                      defaultValue={initialMessage(
-                        search.team,
-                        search.addTeam,
-                        search.company,
-                        search.interest,
-                      )}
+                      defaultValue={initialMessage(search.team, search.company, search.interest)}
                       className="mt-3 w-full rounded-2xl border border-input bg-background/60 px-4 py-3 text-sm outline-none transition-colors focus:border-primary"
                     />
                   </div>

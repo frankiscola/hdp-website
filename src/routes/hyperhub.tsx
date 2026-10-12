@@ -7,7 +7,8 @@ import hyperloopLandscapeTubeLight from "../assets/hyperloop-landscape-tube-ligh
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
-import { CtaButton, SectionHeading } from "../components/ui-kit";
+import { SectionHeading } from "../components/ui-kit";
+import { AddTeamForm } from "../components/AddTeamForm";
 import { CompanyInterestPanel, type CompanyInterest } from "../components/CompanyPortal";
 import { fetchTeams, type Team } from "../data/teams";
 import { cn } from "../lib/utils";
@@ -15,13 +16,13 @@ import { cn } from "../lib/utils";
 export const Route = createFileRoute("/hyperhub")({
   head: () => ({
     meta: [
-      { title: "HyperHub Network – Hyperloop Development Program" },
+      { title: "HyperHub Portal – Hyperloop Development Program" },
       {
         name: "description",
         content:
-          "The HyperHub Network connects hyperloop student teams with sponsors, partners and future employers. Explore the teams and how to get involved.",
+          "The HyperHub Portal connects hyperloop student teams with sponsors, partners and future employers. Explore the teams and how to get involved.",
       },
-      { property: "og:title", content: "HyperHub Network – Hyperloop Development Program" },
+      { property: "og:title", content: "HyperHub Portal – Hyperloop Development Program" },
       {
         property: "og:description",
         content:
@@ -74,7 +75,25 @@ function TeamCard({ team }: { team: Team }) {
         )}
 
         <div className="relative flex items-start justify-between gap-4">
-          {team.logoUrl ? (
+          {team.logoLightUrl && team.logoDarkUrl ? (
+            // The team supplied one logo per theme: show the matching one
+            // straight on the card, no badge tile needed.
+            <>
+              <img
+                src={team.logoLightUrl}
+                alt={`${team.name} logo`}
+                loading="lazy"
+                className="h-14 w-auto max-w-[8rem] object-contain object-left dark:hidden"
+              />
+              <img
+                src={team.logoDarkUrl}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                className="hidden h-14 w-auto max-w-[8rem] object-contain object-left dark:block"
+              />
+            </>
+          ) : team.logoUrl ? (
             <img
               src={team.logoUrl}
               alt={`${team.name} logo`}
@@ -201,7 +220,7 @@ function HyperHub() {
   return (
     <>
       <PageHero
-        eyebrow="HyperHub Network"
+        eyebrow="HyperHub Portal"
         title="Where hyperloop students, teams and companies meet."
         intro="Discover the student teams building hyperloop across Europe and beyond, and connect with them as a sponsor, partner or future employer."
         image={hyperloopLandscapeTube}
@@ -304,17 +323,39 @@ function HyperHub() {
           )}
 
           <Reveal delay={0.1}>
-            <div className="mt-14 flex flex-wrap gap-4">
-              <CtaButton to="/contact" search={{ topic: "Sponsorship & talent" }}>
-                Sponsor or hire
-              </CtaButton>
-              <CtaButton
-                to="/contact"
-                search={{ topic: "Sponsorship & talent", addTeam: "1" }}
-                variant="ghost"
+            <div className="mt-14">
+              <a
+                href="#add-your-team"
+                className="surface-glass inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-semibold text-foreground transition-colors duration-300 hover:bg-secondary"
               >
                 Add your team
-              </CtaButton>
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Add your team */}
+      <section id="add-your-team" className="scroll-mt-24 border-t border-border">
+        <div className="mx-auto grid max-w-[1400px] gap-12 px-6 py-28 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20 lg:px-10 lg:py-36">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Join the portal"
+              title="Add your team."
+              intro="Is your student team building hyperloop? Tell us about it and upload your logos. Once the HDP team has reviewed your application, your profile goes live in the directory above."
+            />
+            <ul className="mt-8 space-y-3 text-sm text-muted-foreground">
+              <li>Takes about five minutes.</li>
+              <li>
+                Have your two logo versions ready: dark-on-light and light-on-dark, both
+                transparent.
+              </li>
+              <li>Your reference contact stays private and is never published.</li>
+            </ul>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="rounded-[2rem] border border-border bg-surface/50 p-8 lg:p-12">
+              <AddTeamForm countries={countries.filter((c) => c !== "All")} />
             </div>
           </Reveal>
         </div>

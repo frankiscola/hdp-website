@@ -7,6 +7,10 @@ export type Team = {
   country: string;
   city?: string;
   logoUrl?: string;
+  /** Logo for light backgrounds (dark-coloured mark), shown on the light theme. */
+  logoLightUrl?: string;
+  /** Logo for dark backgrounds (white/light mark), shown on the dark theme. */
+  logoDarkUrl?: string;
   /** Badge background the logo needs to stay visible: "dark" for a white/light
    * mark on a transparent background, "light" (default) otherwise. */
   logoBg: "light" | "dark";
@@ -32,6 +36,8 @@ type TeamRow = {
   country: string;
   city: string | null;
   logo_url: string | null;
+  logo_light_url: string | null;
+  logo_dark_url: string | null;
   logo_bg: "light" | "dark";
   logo_watermark: boolean;
   website: string | null;
@@ -100,6 +106,8 @@ function fromRow(row: TeamRow): Team {
     logoWatermark: row.logo_watermark,
     ...(row.city ? { city: row.city } : {}),
     ...(row.logo_url ? { logoUrl: row.logo_url } : {}),
+    ...(row.logo_light_url ? { logoLightUrl: row.logo_light_url } : {}),
+    ...(row.logo_dark_url ? { logoDarkUrl: row.logo_dark_url } : {}),
     ...(row.website ? { website: row.website } : {}),
     ...(row.instagram_url ? { instagram: row.instagram_url } : {}),
     ...(row.linkedin_url ? { linkedin: row.linkedin_url } : {}),
@@ -116,7 +124,7 @@ export async function fetchTeams(): Promise<Team[]> {
     const { data, error } = await supabase
       .from("teams")
       .select(
-        "id,name,university,country,city,logo_url,logo_bg,logo_watermark,website,instagram_url,linkedin_url,youtube_url,description,focus_areas,highlights,founded_year,seeking_sponsors",
+        "id,name,university,country,city,logo_url,logo_light_url,logo_dark_url,logo_bg,logo_watermark,website,instagram_url,linkedin_url,youtube_url,description,focus_areas,highlights,founded_year,seeking_sponsors",
       )
       .eq("is_published", true)
       .order("sort_order", { ascending: true })

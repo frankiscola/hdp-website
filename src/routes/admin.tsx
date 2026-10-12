@@ -17,6 +17,8 @@ import {
   type CompanyProfile,
   type ReviewEntry,
 } from "../data/companies";
+import { TeamApplicationsAdmin } from "../components/TeamApplicationsAdmin";
+import { fetchTeamApplications } from "../data/team-applications";
 import { supabase } from "../lib/supabase";
 import { cn } from "../lib/utils";
 
@@ -28,7 +30,10 @@ import { cn } from "../lib/utils";
 // every query behind it comes back empty regardless of what the page does.
 export const Route = createFileRoute("/admin")({
   head: () => ({
-    meta: [{ title: "Admin – Hyperloop Development Program" }, { name: "robots", content: "noindex" }],
+    meta: [
+      { title: "Admin – Hyperloop Development Program" },
+      { name: "robots", content: "noindex" },
+    ],
   }),
   component: AdminPage,
 });
@@ -63,7 +68,8 @@ function AdminPage() {
     <div className="mx-auto max-w-5xl px-6 py-24 lg:px-10 lg:py-32">
       <h1 className="text-3xl font-semibold">HDP admin</h1>
       <p className="mt-2 text-sm text-muted-foreground">
-        Review HyperHub company sign-ups and manage the sponsors, careers & thesis directory.
+        Review HyperHub team applications and company sign-ups, and manage the sponsors, careers &
+        thesis directory.
       </p>
 
       <div className="mt-10">
@@ -99,8 +105,8 @@ function AdminSignIn({ onDone }: { onDone: () => void }) {
     <div className="max-w-sm rounded-3xl border border-border bg-background/60 p-8">
       <h2 className="text-lg font-semibold">Admin sign in</h2>
       <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-        For HDP team members only. Admin accounts are created in the Supabase dashboard, not
-        through this page.
+        For HDP team members only. Admin accounts are created in the Supabase dashboard, not through
+        this page.
       </p>
       <form onSubmit={handleSubmit} className="mt-6 space-y-4">
         <div>
@@ -160,7 +166,7 @@ function NotAdmin() {
   );
 }
 
-type Tab = "pending" | "companies" | "history";
+type Tab = "pending" | "teams" | "companies" | "history";
 
 function AdminDashboard() {
   const [tab, setTab] = useState<Tab>("pending");
@@ -168,6 +174,7 @@ function AdminDashboard() {
   const [companies, setCompanies] = useState<Company[]>([]);
   const [history, setHistory] = useState<ReviewEntry[]>([]);
   const [loading, setLoading] = useState(true);
+  const [pendingTeams, setPendingTeams] = useState(0);
 
   async function loadAll() {
     setLoading(true);
@@ -184,6 +191,9 @@ function AdminDashboard() {
 
   useEffect(() => {
     loadAll();
+    fetchTeamApplications().then((a) =>
+      setPendingTeams(a.filter((x) => x.status === "pending").length),
+    );
   }, []);
 
   const pendingCount = profiles.filter((p) => p.status === "pending").length;
@@ -199,6 +209,9 @@ function AdminDashboard() {
         <div className="flex flex-wrap gap-2">
           <TabButton active={tab === "pending"} onClick={() => setTab("pending")}>
             Pending{pendingCount > 0 ? ` (${pendingCount})` : ""}
+          </TabButton>
+          <TabButton active={tab === "teams"} onClick={() => setTab("teams")}>
+            Team applications{pendingTeams > 0 ? ` (${pendingTeams})` : ""}
           </TabButton>
           <TabButton active={tab === "companies"} onClick={() => setTab("companies")}>
             Companies
@@ -221,6 +234,7 @@ function AdminDashboard() {
         {!loading && tab === "pending" && (
           <PendingList profiles={profiles} onReview={handleReview} />
         )}
+        {tab === "teams" && <TeamApplicationsAdmin onCountChange={setPendingTeams} />}
         {!loading && tab === "companies" && (
           <CompaniesAdmin companies={companies} onChange={loadAll} />
         )}
@@ -370,13 +384,7 @@ const emptyForm: CompanyInput = {
   isPublished: true,
 };
 
-function CompaniesAdmin({
-  companies,
-  onChange,
-}: {
-  companies: Company[];
-  onChange: () => void;
-}) {
+function CompaniesAdmin({ companies, onChange }: { companies: Company[]; onChange: () => void }) {
   const [editing, setEditing] = useState<Company | "new" | null>(null);
 
   return (
