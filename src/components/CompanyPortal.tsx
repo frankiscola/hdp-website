@@ -116,10 +116,10 @@ export function CompanyInterestPanel({ interest }: { interest: CompanyInterest }
 
   const list = companies.filter((c) =>
     interest === "sponsorship"
-      ? Boolean(c.sponsorshipOffer)
+      ? c.offersSponsorship
       : interest === "careers"
-        ? Boolean(c.hiringInfo)
-        : Boolean(c.thesisInfo),
+        ? c.offersCareers
+        : c.offersThesis,
   );
 
   return (
@@ -395,7 +395,7 @@ function CompanyDirectory({
                   </p>
                 )}
 
-                {showSponsorship && c.sponsorshipOffer && (
+                {showSponsorship && c.offersSponsorship && c.sponsorshipOffer && (
                   <div className="mt-4 rounded-2xl border border-border/60 p-4">
                     <p className="flex items-center gap-2 text-xs font-semibold text-primary-glow uppercase">
                       <Handshake className="h-3.5 w-3.5" />
@@ -407,7 +407,7 @@ function CompanyDirectory({
                   </div>
                 )}
 
-                {showCareers && c.hiringInfo && (
+                {showCareers && c.offersCareers && c.hiringInfo && (
                   <div className="mt-3 rounded-2xl border border-border/60 p-4">
                     <p className="flex items-center gap-2 text-xs font-semibold text-primary-glow uppercase">
                       <Briefcase className="h-3.5 w-3.5" />
@@ -419,7 +419,7 @@ function CompanyDirectory({
                   </div>
                 )}
 
-                {showThesis && c.thesisInfo && (
+                {showThesis && c.offersThesis && c.thesisInfo && (
                   <div className="mt-3 rounded-2xl border border-border/60 p-4">
                     <p className="flex items-center gap-2 text-xs font-semibold text-primary-glow uppercase">
                       <GraduationCap className="h-3.5 w-3.5" />
@@ -432,7 +432,7 @@ function CompanyDirectory({
                 )}
 
                 <div className="mt-auto flex flex-wrap gap-4 pt-6">
-                  {showSponsorship && c.sponsorshipOffer && (
+                  {showSponsorship && c.offersSponsorship && (
                     <Link
                       to="/contact"
                       search={{
@@ -445,7 +445,7 @@ function CompanyDirectory({
                       Ask about sponsorship
                     </Link>
                   )}
-                  {showCareers && c.hiringInfo && (
+                  {showCareers && c.offersCareers && (
                     <Link
                       to="/contact"
                       search={{
@@ -458,7 +458,7 @@ function CompanyDirectory({
                       Ask about careers
                     </Link>
                   )}
-                  {showThesis && c.thesisInfo && (
+                  {showThesis && c.offersThesis && (
                     <Link
                       to="/contact"
                       search={{

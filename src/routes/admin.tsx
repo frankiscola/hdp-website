@@ -381,8 +381,20 @@ const emptyForm: CompanyInput = {
   sponsorshipOffer: "",
   hiringInfo: "",
   thesisInfo: "",
+  offersSponsorship: false,
+  offersCareers: false,
+  offersThesis: false,
   isPublished: true,
 };
+
+const PARTICIPATION: {
+  key: "offersSponsorship" | "offersCareers" | "offersThesis";
+  label: string;
+}[] = [
+  { key: "offersSponsorship", label: "Sponsor" },
+  { key: "offersCareers", label: "Career" },
+  { key: "offersThesis", label: "Thesis" },
+];
 
 function CompaniesAdmin({ companies, onChange }: { companies: Company[]; onChange: () => void }) {
   const [editing, setEditing] = useState<Company | "new" | null>(null);
@@ -423,6 +435,10 @@ function CompaniesAdmin({ companies, onChange }: { companies: Company[]; onChang
               <p className="font-semibold">{c.name}</p>
               <p className="text-xs text-muted-foreground">
                 {c.isPublished ? "Published" : "Unpublished (hidden from directory)"}
+                {" · "}
+                {PARTICIPATION.filter(({ key }) => c[key])
+                  .map(({ label }) => label)
+                  .join(", ") || "No category selected"}
               </p>
             </div>
             <div className="flex gap-2">
@@ -472,6 +488,9 @@ function CompanyForm({
           sponsorshipOffer: initial.sponsorshipOffer ?? "",
           hiringInfo: initial.hiringInfo ?? "",
           thesisInfo: initial.thesisInfo ?? "",
+          offersSponsorship: initial.offersSponsorship,
+          offersCareers: initial.offersCareers,
+          offersThesis: initial.offersThesis,
           isPublished: initial.isPublished ?? true,
         }
       : emptyForm,
@@ -526,9 +545,41 @@ function CompanyForm({
       {field("logoUrl", "Logo URL")}
       {field("website", "Website")}
       {field("description", "Description", true)}
-      {field("sponsorshipOffer", "Sponsorship offer", true)}
-      {field("hiringInfo", "Careers & graduate programmes", true)}
-      {field("thesisInfo", "Thesis & research projects", true)}
+      <fieldset className="space-y-3 rounded-2xl border border-border/60 p-4">
+        <legend className="px-2 text-xs tracking-[0.16em] text-muted-foreground uppercase">
+          Participates as
+        </legend>
+        <div className="flex flex-wrap gap-2">
+          {PARTICIPATION.map(({ key, label }) => {
+            const active = form[key];
+            return (
+              <label
+                key={key}
+                className={cn(
+                  "inline-flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2 text-xs font-semibold transition-colors",
+                  active
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "border-border text-muted-foreground hover:text-foreground",
+                )}
+              >
+                <input
+                  type="checkbox"
+                  className="sr-only"
+                  checked={active}
+                  onChange={(e) => setForm((f) => ({ ...f, [key]: e.target.checked }))}
+                />
+                {label}
+              </label>
+            );
+          })}
+        </div>
+        <p className="text-xs text-muted-foreground">
+          The company only appears in the HyperHub sections ticked here.
+        </p>
+      </fieldset>
+      {form.offersSponsorship && field("sponsorshipOffer", "Sponsorship offer", true)}
+      {form.offersCareers && field("hiringInfo", "Careers & graduate programmes", true)}
+      {form.offersThesis && field("thesisInfo", "Thesis & research projects", true)}
       <label className="flex items-center gap-2 text-sm">
         <input
           type="checkbox"

@@ -22,6 +22,10 @@ export type Company = {
   hiringInfo?: string;
   /** Master's/PhD thesis and research-project opportunities offered to students. */
   thesisInfo?: string;
+  /** Which directories this company takes part in, chosen by an HDP admin. */
+  offersSponsorship: boolean;
+  offersCareers: boolean;
+  offersThesis: boolean;
   isPublished?: boolean;
 };
 
@@ -54,8 +58,14 @@ type CompanyRow = {
   sponsorship_offer: string | null;
   hiring_info: string | null;
   thesis_info: string | null;
+  offers_sponsorship: boolean;
+  offers_careers: boolean;
+  offers_thesis: boolean;
   is_published: boolean;
 };
+
+const COMPANY_COLUMNS =
+  "id,name,logo_url,website,description,sponsorship_offer,hiring_info,thesis_info,offers_sponsorship,offers_careers,offers_thesis,is_published";
 
 function fromProfileRow(row: ProfileRow): CompanyProfile {
   return {
@@ -74,6 +84,9 @@ function fromCompanyRow(row: CompanyRow): Company {
     id: row.id,
     name: row.name,
     isPublished: row.is_published,
+    offersSponsorship: row.offers_sponsorship,
+    offersCareers: row.offers_careers,
+    offersThesis: row.offers_thesis,
     ...(row.logo_url ? { logoUrl: row.logo_url } : {}),
     ...(row.website ? { website: row.website } : {}),
     ...(row.description ? { description: row.description } : {}),
@@ -108,7 +121,7 @@ export async function fetchCompanies(): Promise<Company[]> {
   if (!supabase) return [];
   const { data, error } = await supabase
     .from("companies")
-    .select("id,name,logo_url,website,description,sponsorship_offer,hiring_info,thesis_info,is_published")
+    .select(COMPANY_COLUMNS)
     .eq("is_published", true)
     .order("name", { ascending: true });
   if (error || !data) return [];
@@ -196,7 +209,7 @@ export async function fetchAllCompanies(): Promise<Company[]> {
   if (!supabase) return [];
   const { data, error } = await supabase
     .from("companies")
-    .select("id,name,logo_url,website,description,sponsorship_offer,hiring_info,thesis_info,is_published")
+    .select(COMPANY_COLUMNS)
     .order("name", { ascending: true });
   if (error || !data) return [];
   return (data as CompanyRow[]).map(fromCompanyRow);
@@ -210,6 +223,9 @@ export type CompanyInput = {
   sponsorshipOffer?: string;
   hiringInfo?: string;
   thesisInfo?: string;
+  offersSponsorship: boolean;
+  offersCareers: boolean;
+  offersThesis: boolean;
   isPublished: boolean;
 };
 
@@ -224,6 +240,9 @@ export async function createCompany(input: CompanyInput): Promise<{ error: strin
     sponsorship_offer: input.sponsorshipOffer || null,
     hiring_info: input.hiringInfo || null,
     thesis_info: input.thesisInfo || null,
+    offers_sponsorship: input.offersSponsorship,
+    offers_careers: input.offersCareers,
+    offers_thesis: input.offersThesis,
     is_published: input.isPublished,
   });
   return { error: error?.message ?? null };
@@ -245,6 +264,9 @@ export async function updateCompany(
       sponsorship_offer: input.sponsorshipOffer || null,
       hiring_info: input.hiringInfo || null,
       thesis_info: input.thesisInfo || null,
+      offers_sponsorship: input.offersSponsorship,
+      offers_careers: input.offersCareers,
+      offers_thesis: input.offersThesis,
       is_published: input.isPublished,
     })
     .eq("id", id);
