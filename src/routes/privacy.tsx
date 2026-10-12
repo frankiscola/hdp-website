@@ -29,7 +29,7 @@ const sections = [
     title: "Information we collect",
     paragraphs: [
       "What personal information we ask for, and why, is made clear at the point we ask for it.",
-      "If you contact us directly – for example through the contact form – we may receive information such as your name, email address, phone number, organization, and the content of your message or any attachments.",
+      "If you contact us directly – for example through the contact form – we may receive information such as your name, email address, phone number, organisation, and the content of your message or any attachments.",
       "If you register for an account, we may ask for contact details such as your name, company name, address, email address and telephone number.",
     ],
   },
@@ -60,7 +60,7 @@ const sections = [
   {
     title: "Your rights under the GDPR",
     paragraphs: [
-      "As a data subject under EU law, you have the right to: request a copy of the personal data we hold about you; ask us to correct inaccurate or incomplete data; ask us to erase your data under certain conditions; ask us to restrict how we process your data; object to certain processing; and request that we transfer your data to another organization or to you directly, where technically feasible.",
+      "As a data subject under EU law, you have the right to: request a copy of the personal data we hold about you; ask us to correct inaccurate or incomplete data; ask us to erase your data under certain conditions; ask us to restrict how we process your data; object to certain processing; and request that we transfer your data to another organisation or to you directly, where technically feasible.",
       "We respond to such requests within one month. To exercise any of these rights, contact us at general@hyperloopdevelopmentprogram.com.",
     ],
   },

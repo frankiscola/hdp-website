@@ -209,8 +209,8 @@ export const news: NewsItem[] = [
     body: [
       "During the UITP Global Public Transport Summit 2025, the Hyperloop Development Program (HDP) and its European partners expressed their full support for the City of Hamburg's ambition to develop a Hyperloop reference track.",
       "In a constructive exchange with representatives of the city government, the parties aligned on a shared vision to position the hyperloop track as a flagship project within Hamburg's innovation strategy. The track is also envisioned as a key component of the city's bid to host the Olympic Games.",
-      "The City of Hamburg recognizes the Hyperloop Development Program as a strategic partner in mobilizing private finance for the construction and operation of the proposed infrastructure. The development may initially focus on a first-phase extension towards Kiel, strengthening regional connectivity and showcasing hyperloop's potential as a future mode of sustainable high-speed transport.",
-      "This dialogue marks a significant step toward realizing a European hyperloop network, and HDP looks forward to continuing its collaboration with the City of Hamburg in the coming years, including a return to the city for the UITP Summit 2027.",
+      "The City of Hamburg recognises the Hyperloop Development Program as a strategic partner in mobilising private finance for the construction and operation of the proposed infrastructure. The development may initially focus on a first-phase extension towards Kiel, strengthening regional connectivity and showcasing hyperloop's potential as a future mode of sustainable high-speed transport.",
+      "This dialogue marks a significant step towards realising a European hyperloop network, and HDP looks forward to continuing its collaboration with the City of Hamburg in the coming years, including a return to the city for the UITP Summit 2027.",
     ],
   },
   {
@@ -245,7 +245,7 @@ export const news: NewsItem[] = [
       "A consortium of 27 organisations across 13 countries – including hyperloop developers, rail operators, infrastructure managers, engineering companies and research institutions – unites expertise from multiple sectors in a research collaboration under Flagship Area 7, focused on innovation in new approaches for guided transport modes.",
       "As hyperloop technology is still in its early stages and there is a lack of standardisation across developers, Hyper4Rail offers the opportunity to build consensus on industrialisation, safety, regulatory and technical frameworks through a structured, all-stakeholder approach. The project will focus on hyperloop design definitions at Technology Readiness Level (TRL) 2, followed by validation of key subsystems at TRL 4.",
       "“We are excited to coordinate the project with such a wide array of organisations from the rail sector, and other industries in this first-ever industry-wide consortium,” said Sascha Lamme, Program Director of the Hyperloop Development Program. “By harmonising our efforts, we are building a unified framework for the future implementation of hyperloop technology.”",
-      "Once Hyper4Rail is completed, attention will shift toward large-scale demonstrators, further collaboration within the industry, and pilot implementations, with the goal of hyperloop technology being industrialised and deployed at scale by the 2030s.",
+      "Once Hyper4Rail is completed, attention will shift towards large-scale demonstrators, further collaboration within the industry, and pilot implementations, with the goal of hyperloop technology being industrialised and deployed at scale by the 2030s.",
     ],
   },
   {
@@ -258,10 +258,10 @@ export const news: NewsItem[] = [
     image:
       "https://images.squarespace-cdn.com/content/v1/64e74196d472e811c33e6a78/1728463209930-NGN8TDA1HM6PACRQCGTG/European+Hyperloop+Testing+Infrastructure+Cluster+background.png",
     body: [
-      "Following the initiative by the European Hyperloop Center and EuroTube at the start of 2024, the Institute of Hyperloop Technology has now joined the European Hyperloop Testing Infrastructure Cluster. The collaboration of organizations in Germany, the Netherlands and Switzerland is coordinated by the Hyperloop Development Program, with the objective to significantly accelerate progress toward the realization of sustainable high-speed transportation systems across Europe.",
+      "Following the initiative by the European Hyperloop Center and EuroTube at the start of 2024, the Institute of Hyperloop Technology has now joined the European Hyperloop Testing Infrastructure Cluster. The collaboration of organisations in Germany, the Netherlands and Switzerland is coordinated by the Hyperloop Development Program, with the objective to significantly accelerate progress towards the realisation of sustainable high-speed transportation systems across Europe.",
       "In a Letter of Intent signed by HDP, the European Hyperloop Center, EuroTube, and the Institute of Hyperloop Technology – part of the University of Applied Sciences Emden/Leer – a clear commitment has been made to support the further establishment of a testing cluster to advance research and development in hyperloop technology.",
       "The European Hyperloop Center focuses on testing electromagnetic suspension systems, vehicle-based propulsion technologies, switching systems and the viability of steel tubes for hyperloop transport. EuroTube's DemoTube facility will allow testing of the first hyperloop valve and the concept of sealed, post-tensioned concrete tubes. The Institute of Hyperloop Technology's goTube facility is a steel-based pipe with quick evacuation capabilities, providing infrastructure for testing propulsion systems and different vehicle concepts.",
-      "The collaboration within the cluster enables all partners to pool their expertise and resources, resulting in greater efficiency and innovation. The ultimate aim is to create an equivalent of a 'European Space Agency' for hyperloop, with decentralized test sites across Europe, opening doors for increased funding and investment opportunities.",
+      "The collaboration within the cluster enables all partners to pool their expertise and resources, resulting in greater efficiency and innovation. The ultimate aim is to create an equivalent of a 'European Space Agency' for hyperloop, with decentralised test sites across Europe, opening doors for increased funding and investment opportunities.",
     ],
   },
   {
@@ -286,11 +286,11 @@ export const news: NewsItem[] = [
     date: "24 July 2024",
     category: "Organisation",
     excerpt:
-      "Over 35 participants from HDP partner organizations gathered in Dübendorf, Switzerland, for discussion, knowledge exchange and strategic planning during European Hyperloop Week.",
+      "Over 35 participants from HDP partner organisations gathered in Dübendorf, Switzerland, for discussion, knowledge exchange and strategic planning during European Hyperloop Week.",
     image:
       "https://images.squarespace-cdn.com/content/v1/64e74196d472e811c33e6a78/1721830975841-OBHE91JZFKINDAJAGCJM/HDP%2BPartners%2BDay%2B2024%2B04.jpg",
     body: [
-      "On July 18th, EuroTube hosted the annual HDP Partners Day in Dübendorf, Switzerland. The meeting was kicked off by Jeroen in 't Veld, chairman of the Hyperloop Development Program, highlighting the significance of the meeting coinciding with European Hyperloop Week. Over 35 participants from HDP partner organizations and other committed stakeholders gathered to foster collaboration.",
+      "On July 18th, EuroTube hosted the annual HDP Partners Day in Dübendorf, Switzerland. The meeting was kicked off by Jeroen in 't Veld, chairman of the Hyperloop Development Program, highlighting the significance of the meeting coinciding with European Hyperloop Week. Over 35 participants from HDP partner organisations and other committed stakeholders gathered to foster collaboration.",
       "Klaus Rudischhauser, Director General of HDP, emphasized the importance of cooperation among partners and the role of HDP as intermediary with the public sector, and addressed the TEN-T regulation in which hyperloop has recently been identified as a new railway technology. Sascha Lamme, Program Director, welcomed new HDP Partners Busch and Erciyas, and highlighted the completion of the European Hyperloop Center (EHC).",
       "A key focus of the discussions was the development of a HDP Storyline – a common narrative to convey the benefits and potential of hyperloop technology – covering safety, technology adoption, public accessibility and the need for a business-oriented approach.",
       "As the meeting concluded, a sense of optimism dominated: towards the end of the year new testing facilities were set to come into being with the DemoTube in Switzerland and the goTube in Germany, with more insights shared in the Hyperloop in Review report.",
@@ -314,7 +314,7 @@ export const news: NewsItem[] = [
   },
   {
     slug: "ten-t-regulation-recognizes-hyperloop",
-    title: "EU recognizes hyperloop in its transport network policy",
+    title: "EU recognises hyperloop in its transport network policy",
     date: "14 June 2024",
     category: "Policy",
     excerpt:
@@ -357,7 +357,7 @@ export const news: NewsItem[] = [
       "The Institute of Hyperloop Technology (IHT), located in Emden, Germany, is bringing a new hyperloop demonstrator to reality: GoTube. This research infrastructure, to be inaugurated in 2024, is aimed at performing tests for low-pressure tube transport, with the demonstrator targeting solutions for cost-efficient freight transport.",
       "The tube will have a length of 26 metres. Anchored by foundations extending 16 metres deep, the structure is designed to prevent any settling despite its substantial mass. Three robust concrete pillars have already been erected to support the tube.",
       "HDP partners Hochschule Emden/Leer and Nevomo are collaborating on the GoTube demonstrator, with Nevomo's magnetic propulsion technology and power electronics enhancing GoTube's capability. The progress of GoTube was officially celebrated in autumn 2024 with a ceremonial inauguration event, marking the beginning of a series of tests as part of innovation within freight transport.",
-      "The IHT specializes in the research and development of high-speed transport solutions within low-pressure environments, aiming to substantially enhance the efficiency and sustainability of transport and freight logistics.",
+      "The IHT specialises in the research and development of high-speed transport solutions within low-pressure environments, aiming to substantially enhance the efficiency and sustainability of transport and freight logistics.",
     ],
   },
   {
@@ -567,7 +567,7 @@ export const news: NewsItem[] = [
   {
     slug: "german-dutch-cross-border-collaboration",
     title:
-      "German and Dutch institutions formalize intent to promote hyperloop research and development in first cross-border collaboration",
+      "German and Dutch institutions formalise intent to promote hyperloop research and development in first cross-border collaboration",
     date: "11 July 2022",
     category: "Partnership",
     excerpt:
@@ -575,7 +575,7 @@ export const news: NewsItem[] = [
     image:
       "https://images.squarespace-cdn.com/content/v1/64e74196d472e811c33e6a78/7efb5ca9-b9b0-4c37-8c47-6a16cd5515e2/Article+3.png",
     body: [
-      "German and Dutch institutions have formalized their intent to promote hyperloop research and development in the programme's first cross-border collaboration, laying the groundwork for shared testing infrastructure and knowledge exchange between the two countries.",
+      "German and Dutch institutions have formalised their intent to promote hyperloop research and development in the programme's first cross-border collaboration, laying the groundwork for shared testing infrastructure and knowledge exchange between the two countries.",
       "The agreement reflects the ambition set out in the 'Hyperconnected Europe' vision paper, published by the Hyperloop Development Program, which outlines a future European hyperloop system that connects cities and regions across national borders through a 25,000-kilometre network.",
     ],
   },
@@ -623,7 +623,7 @@ export const news: NewsItem[] = [
   },
   {
     slug: "hdp-welcomes-denys-unstudio-mercon",
-    title: "The HDP welcomes three partners DENYS, UNStudio, and Mercon to the program",
+    title: "The HDP welcomes three partners DENYS, UNStudio, and Mercon to the programme",
     date: "2 March 2022",
     category: "Partnership",
     excerpt:
@@ -675,7 +675,7 @@ export const news: NewsItem[] = [
     image:
       "https://images.squarespace-cdn.com/content/v1/64e74196d472e811c33e6a78/5809ff98-740a-4a0a-bec5-9663d585e739/Article+11.png",
     body: [
-      "TÜV Rheinland, specialist in international product certification, recently created a 'Certification Roadmap' for the Hyperloop Development Program. In Groningen, a test and knowledge centre for the hyperloop will be realized, and certification is a key step on the path towards commercial deployment.",
+      "TÜV Rheinland, specialist in international product certification, recently created a 'Certification Roadmap' for the Hyperloop Development Program. In Groningen, a test and knowledge centre for the hyperloop will be realised, and certification is a key step on the path towards commercial deployment.",
       "The roadmap sets out the process and milestones required to bring hyperloop technology and infrastructure up to the safety and quality standards needed for certification, providing HDP partners with a clear framework to work towards.",
     ],
   },
@@ -729,11 +729,11 @@ export const news: NewsItem[] = [
     date: "22 December 2020",
     category: "Organisation",
     excerpt:
-      "Two Dutch ministries and several companies and research organizations reveal the establishment and funding of a public-private partnership to develop hyperloop: the Hyperloop Development Program.",
+      "Two Dutch ministries and several companies and research organisations reveal the establishment and funding of a public-private partnership to develop hyperloop: the Hyperloop Development Program.",
     image:
       "https://images.squarespace-cdn.com/content/v1/64e74196d472e811c33e6a78/25558885-e7cc-48f7-8a98-2c211a622f74/Article+15.png",
     body: [
-      "Dutch ministries put millions towards hyperloop development programme. Two Dutch ministries and several companies and research organizations have revealed the establishment and funding of a public-private partnership to develop hyperloop: the Hyperloop Development Program.",
+      "Dutch ministries put millions towards hyperloop development programme. Two Dutch ministries and several companies and research organisations have revealed the establishment and funding of a public-private partnership to develop hyperloop: the Hyperloop Development Program.",
       "The partnership brings together government backing with industry and research expertise, laying the institutional foundation from which HDP would go on to coordinate more than 20 partner organisations across Europe in the years that followed.",
     ],
   },

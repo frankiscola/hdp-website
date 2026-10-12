@@ -279,7 +279,7 @@ function Hyperloop() {
             <SectionHeading
               eyebrow="Explore"
               title="Hyperloop Research Infrastructure map."
-              intro="An interactive map of the organizations, facilities and research aspects that make up the hyperloop ecosystem."
+              intro="An interactive map of the organisations, facilities and research aspects that make up the hyperloop ecosystem."
             />
           </Reveal>
           <Reveal delay={0.1}>

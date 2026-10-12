@@ -78,7 +78,7 @@ const origin = [
   },
   {
     label: "The recognition",
-    text: "The World Economic Forum names hyperloop among its 20 key markets of tomorrow, citing its potential to increase wellbeing and empower people, advance human knowledge, and protect the environment – and HDP's own Vision Paper sets out a roadmap toward EU-aligned commercialisation.",
+    text: "The World Economic Forum names hyperloop among its 20 key markets of tomorrow, citing its potential to increase wellbeing and empower people, advance human knowledge, and protect the environment – and HDP's own Vision Paper sets out a roadmap towards EU-aligned commercialisation.",
   },
 ];
 
@@ -102,7 +102,7 @@ function TheChallenge() {
             <SectionHeading
               eyebrow="Why now"
               title="Existing networks are reaching their limits."
-              intro="Demand for passenger and freight transport is expected to triple by 2050 as urbanization, economic growth and population growth accelerate – yet road and rail capacity cannot expand at the same rate, and every new corridor competes with tightening emissions and land-use budgets. Hyperloop ticks the boxes future-proof infrastructure needs: low cost, zero emissions, easy integration, short travel times, and high capacity, all at once."
+              intro="Demand for passenger and freight transport is expected to triple by 2050 as urbanisation, economic growth and population growth accelerate – yet road and rail capacity cannot expand at the same rate, and every new corridor competes with tightening emissions and land-use budgets. Hyperloop ticks the boxes future-proof infrastructure needs: low cost, zero emissions, easy integration, short travel times, and high capacity, all at once."
             />
           </Reveal>
           <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

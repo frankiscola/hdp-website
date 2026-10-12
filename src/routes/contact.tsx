@@ -169,7 +169,7 @@ function Contact() {
                   />
                   <div className="grid gap-6 sm:grid-cols-2">
                     <Field label="Name" name="name" />
-                    <Field label="Organization" name="organization" required={false} />
+                    <Field label="Organisation" name="organization" required={false} />
                   </div>
                   <Field label="Email" name="email" type="email" />
 

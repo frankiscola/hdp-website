@@ -43,7 +43,7 @@ const tiers = [
     tier: "Core" as const,
     title: "Core Members",
     intro:
-      "Organizations that actively develop hyperloop technology, operate test infrastructure or fund the programme's roadmap.",
+      "Organisations that actively develop hyperloop technology, operate test infrastructure or fund the programme's roadmap.",
   },
   {
     tier: "Associate" as const,
@@ -89,7 +89,7 @@ function Partners() {
       <PageHero
         eyebrow="The ecosystem"
         title="An inclusive ecosystem, built on collaboration."
-        intro="The HDP is an inclusive ecosystem where organizations collaborate to accelerate the development of hyperloop."
+        intro="The HDP is an inclusive ecosystem where organisations collaborate to accelerate the development of hyperloop."
         image={ecosystemNetwork}
         imageLight={ecosystemNetworkLight}
         imageAlt="Illuminated network of connected nodes across Europe"
@@ -142,7 +142,7 @@ function Partners() {
                       </p>
                     </div>
                     <span className="eyebrow">
-                      {items.length} {items.length === 1 ? "organization" : "organizations"}
+                      {items.length} {items.length === 1 ? "organisation" : "organisations"}
                     </span>
                   </div>
                 </Reveal>
@@ -209,7 +209,7 @@ function Partners() {
               Join the ecosystem.
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
-              Membership is open to organizations that contribute technology, infrastructure,
+              Membership is open to organisations that contribute technology, infrastructure,
               research or public support to hyperloop development in Europe.
             </p>
             <div className="mt-10 flex justify-center">

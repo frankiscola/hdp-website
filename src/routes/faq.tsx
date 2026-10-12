@@ -43,19 +43,19 @@ const categories: Category[] = [
     items: [
       {
         q: "What is the Hyperloop Development Program?",
-        a: "HDP is a proposed public-private partnership between the Dutch Ministries of Economic Affairs & Climate and Infrastructure & Water Management, the Dutch Province of Groningen, and a group of industry and research organizations, working to develop hyperloop into a safe, sustainable and commercially viable mode of high-speed transport.",
+        a: "HDP is a proposed public-private partnership between the Dutch Ministries of Economic Affairs & Climate and Infrastructure & Water Management, the Dutch Province of Groningen, and a group of industry and research organisations, working to develop hyperloop into a safe, sustainable and commercially viable mode of high-speed transport.",
       },
       {
-        q: "What concrete results will the program deliver?",
+        q: "What concrete results will the programme deliver?",
         a: "The program aims to gather everything needed to make a well-founded decision on a first hyperloop route for cargo and a passenger test facility. These answers come from studies and full-scale tests carried out at the European Hyperloop Center in Groningen.",
       },
       {
-        q: "How did this program come about?",
+        q: "How did this programme come about?",
         a: "It grew out of conversations between early hyperloop industry partners and the Dutch ministries on how to approach hyperloop development holistically. Building hyperloop is about far more than the vehicle technology – safety, standards, integration, public adoption, socio-economic impact and the wider ecosystem all need dedicated attention from an early stage, which is why many different public and private parties are involved.",
       },
       {
         q: "Can new parties still join the ecosystem?",
-        a: "Yes. HDP is an open ecosystem – any organization that can contribute value and is willing to invest is welcome to join and participate on equal footing with existing partners.",
+        a: "Yes. HDP is an open ecosystem – any organisation that can contribute value and is willing to invest is welcome to join and participate on equal footing with existing partners.",
       },
       {
         q: "How does HDP relate to the European Hyperloop Center?",
@@ -79,12 +79,12 @@ const categories: Category[] = [
         a: "A hyperloop vehicle is roughly the size of a train compartment and can carry up to around 60 passengers.",
       },
       {
-        q: "What are the advantages of traveling through a tube?",
+        q: "What are the advantages of travelling through a tube?",
         a: "The near-vacuum inside the tube removes almost all air resistance, so vehicles reach and hold high speeds using little energy. The enclosed environment also shields the system from weather, which is responsible for a large share of disruptions on conventional rail, improving both reliability and safety.",
       },
       {
         q: "Where will the first hyperloop route be built?",
-        a: "A first route is meant as the seed of a larger network – hyperloop already makes sense from distances as short as 50 km, but its real strength is longer routes and network effects, for example linking Amsterdam and Eindhoven and later extending toward Germany's Ruhr area.",
+        a: "A first route is meant as the seed of a larger network – hyperloop already makes sense from distances as short as 50 km, but its real strength is longer routes and network effects, for example linking Amsterdam and Eindhoven and later extending towards Germany's Ruhr area.",
       },
       {
         q: "When will hyperloop travel be possible?",
@@ -113,11 +113,11 @@ const categories: Category[] = [
       },
       {
         q: "How low is the pressure inside the tube?",
-        a: "Current studies target around 1 millibar – about 0.1% of atmospheric pressure. That's the balance point between minimizing drag and keeping the energy cost of the vacuum pumps low.",
+        a: "Current studies target around 1 millibar – about 0.1% of atmospheric pressure. That's the balance point between minimising drag and keeping the energy cost of the vacuum pumps low.",
       },
       {
         q: "Can hyperloop vehicles take turns at high speed?",
-        a: "Yes – for example, a 400 km/h turn can have a radius of around 2.5 km, since the vehicle can bank steeply as it levitates toward the upper track.",
+        a: "Yes – for example, a 400 km/h turn can have a radius of around 2.5 km, since the vehicle can bank steeply as it levitates towards the upper track.",
       },
       {
         q: "How does a vehicle accelerate?",
@@ -125,14 +125,14 @@ const categories: Category[] = [
       },
       {
         q: "How does the levitation system work?",
-        a: "Magnets on top of the vehicle levitate it toward electrical-steel tracks, while onboard lasers continuously measure and correct the gap over a thousand times per second – giving a smoother ride than trains or turbulence-prone flights.",
+        a: "Magnets on top of the vehicle levitate it towards electrical-steel tracks, while onboard lasers continuously measure and correct the gap over a thousand times per second – giving a smoother ride than trains or turbulence-prone flights.",
       },
     ],
   },
   {
     name: "Safety & Travel Experience",
     intro:
-      "Hyperloop is being developed collaboratively with safety as the top priority, involving specialized companies alongside governments, research institutions and standardization bodies.",
+      "Hyperloop is being developed collaboratively with safety as the top priority, involving specialised companies alongside governments, research institutions and standardisation bodies.",
     items: [
       {
         q: "What is it like to travel without windows?",
@@ -148,7 +148,7 @@ const categories: Category[] = [
       },
       {
         q: "What happens if there's a leak or breach in the tube?",
-        a: "Small leaks are compensated automatically by the vacuum pumps – a well-understood challenge given Europe's extensive experience with pressurized oil and gas pipeline networks. In the rare case of a substantial breach, the affected tube segment is sealed off, vehicles brake jointly, and the resulting air resistance helps slow them gradually.",
+        a: "Small leaks are compensated automatically by the vacuum pumps – a well-understood challenge given Europe's extensive experience with pressurised oil and gas pipeline networks. In the rare case of a substantial breach, the affected tube segment is sealed off, vehicles brake jointly, and the resulting air resistance helps slow them gradually.",
       },
       {
         q: "Could the low pressure cause the tube to implode?",
@@ -160,15 +160,15 @@ const categories: Category[] = [
       },
       {
         q: "Can the infrastructure withstand thermal expansion or earthquakes?",
-        a: "Expansion joints at every tube connection absorb thermal movement and help localize the impact of seismic activity, while foundations and pipe construction are engineered for earthquake resistance. As with Japanese high-speed rail, the system can link into national early-warning networks to bring vehicles to a stop when triggered.",
+        a: "Expansion joints at every tube connection absorb thermal movement and help localise the impact of seismic activity, while foundations and pipe construction are engineered for earthquake resistance. As with Japanese high-speed rail, the system can link into national early-warning networks to bring vehicles to a stop when triggered.",
       },
       {
         q: "Can the magnetic fields harm passengers?",
-        a: "No – the fields passengers are exposed to are far weaker than those of an ordinary fridge magnet, since the magnets are oriented toward the steel tracks and away from the cabin.",
+        a: "No – the fields passengers are exposed to are far weaker than those of an ordinary fridge magnet, since the magnets are oriented towards the steel tracks and away from the cabin.",
       },
       {
         q: "What happens if there's a breach in the vehicle chassis?",
-        a: "Because the vehicle is shielded from external influences, a chassis breach is highly unlikely. In the rare event it occurred, the situation would resemble a depressurization event on an aircraft: cabin pressure gradually equalizes with the tube, oxygen masks deploy, and the vehicle comes to a safe, quick stop while pressure is restored through rapid re-pressurization valves.",
+        a: "Because the vehicle is shielded from external influences, a chassis breach is highly unlikely. In the rare event it occurred, the situation would resemble a depressurisation event on an aircraft: cabin pressure gradually equalises with the tube, oxygen masks deploy, and the vehicle comes to a safe, quick stop while pressure is restored through rapid re-pressurisation valves.",
       },
       {
         q: "How is air supplied and filtered on board?",
@@ -176,7 +176,7 @@ const categories: Category[] = [
       },
       {
         q: "How are passengers evacuated in an emergency?",
-        a: "Affected vehicles stop together, the tube segment is sealed and repressurized, and passengers exit through emergency exits spaced roughly every 500 meters, similar to conventional tunnel infrastructure.",
+        a: "Affected vehicles stop together, the tube segment is sealed and repressurised, and passengers exit through emergency exits spaced roughly every 500 metres, similar to conventional tunnel infrastructure.",
       },
       {
         q: "What happens if there's a power failure?",

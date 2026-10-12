@@ -151,7 +151,7 @@ function AdminSignIn({ onDone }: { onDone: () => void }) {
 function NotAdmin() {
   return (
     <div className="max-w-sm rounded-3xl border border-border bg-background/60 p-8">
-      <h2 className="text-lg font-semibold">Not authorized</h2>
+      <h2 className="text-lg font-semibold">Not authorised</h2>
       <p className="mt-2 text-sm text-muted-foreground">
         This account isn't set up as an HDP admin.
       </p>
@@ -322,7 +322,7 @@ function PendingList({
                     {p.contactName} · {p.contactEmail}
                   </p>
                   <p className="text-xs text-muted-foreground/70">
-                    Requested {new Date(p.requestedAt).toLocaleString()}
+                    Requested {new Date(p.requestedAt).toLocaleString("en-GB")}
                   </p>
                 </div>
                 <div className="flex gap-2">
@@ -581,7 +581,7 @@ function HistoryList({ entries }: { entries: ReviewEntry[] }) {
             </span>
           </span>
           <span className="text-xs text-muted-foreground/70">
-            {new Date(e.reviewedAt).toLocaleString()}
+            {new Date(e.reviewedAt).toLocaleString("en-GB")}
           </span>
         </div>
       ))}

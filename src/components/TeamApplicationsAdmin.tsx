@@ -78,7 +78,7 @@ function ApplicationCard({ app, onChanged }: { app: TeamApplication; onChanged: 
             {app.university} · {[app.city, app.country].filter(Boolean).join(", ")}
           </p>
           <p className="mt-1 text-xs text-muted-foreground">
-            Submitted {new Date(app.createdAt).toLocaleString()}
+            Submitted {new Date(app.createdAt).toLocaleString("en-GB")}
           </p>
         </div>
         <span

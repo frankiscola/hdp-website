@@ -48,7 +48,7 @@ export const sendContactMessage = createServerFn({ method: "POST" })
         <h2 style="margin-bottom: 16px;">New contact form submission</h2>
         <p><strong>Name:</strong> ${escapeHtml(name)}</p>
         <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-        ${organization ? `<p><strong>Organization:</strong> ${escapeHtml(organization)}</p>` : ""}
+        ${organization ? `<p><strong>Organisation:</strong> ${escapeHtml(organization)}</p>` : ""}
         <p><strong>Topic:</strong> ${escapeHtml(topic)}</p>
         <p><strong>Message:</strong></p>
         <p style="white-space: pre-wrap;">${escapeHtml(message)}</p>

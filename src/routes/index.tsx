@@ -149,7 +149,7 @@ function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
           >
-            More than 20 organizations across Europe developing hyperloop as a safe,
+            More than 20 organisations across Europe developing hyperloop as a safe,
             energy-efficient and commercially viable mode of high-speed transportation.
           </motion.p>
           <motion.div
@@ -158,7 +158,7 @@ function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.42 }}
           >
-            <CtaButton to="/about-hdp">Discover the program</CtaButton>
+            <CtaButton to="/about-hdp">Discover the programme</CtaButton>
             <CtaButton to="/hyperloop" variant="ghost">
               How hyperloop works
             </CtaButton>
@@ -263,12 +263,12 @@ function Home() {
         <div className="mx-auto grid max-w-[1400px] items-center gap-16 px-6 py-28 lg:grid-cols-2 lg:px-10 lg:py-36">
           <Reveal>
             <SectionHeading
-              eyebrow="About the program"
+              eyebrow="About the programme"
               title="One programme, one European ecosystem."
-              intro="The Hyperloop Development Program is a public-private partnership of more than 20 organizations throughout Europe, including industry parties and research institutions, dedicated to developing hyperloop as a safe, energy-efficient and commercially viable mode of high-speed transportation."
+              intro="The Hyperloop Development Program is a public-private partnership of more than 20 organisations throughout Europe, including industry parties and research institutions, dedicated to developing hyperloop as a safe, energy-efficient and commercially viable mode of high-speed transportation."
             />
             <div className="mt-10 grid gap-8 sm:grid-cols-3">
-              <StatCounter value={20} suffix="+" label="Partner organizations" />
+              <StatCounter value={20} suffix="+" label="Partner organisations" />
               <StatCounter value={3} label="European test facilities" />
               <StatCounter value={9} label="Countries involved" />
             </div>
@@ -382,7 +382,7 @@ function Home() {
             <SectionHeading
               eyebrow="The ecosystem"
               title="An inclusive ecosystem, accelerating together."
-              intro="The HDP is an inclusive ecosystem where organizations collaborate to accelerate the development of hyperloop – industry, research, infrastructure operators and public bodies working from one shared roadmap."
+              intro="The HDP is an inclusive ecosystem where organisations collaborate to accelerate the development of hyperloop – industry, research, infrastructure operators and public bodies working from one shared roadmap."
               align="center"
             />
           </Reveal>
@@ -492,7 +492,7 @@ function Home() {
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
               Whether you build technology, fund infrastructure or set policy, there is a place for
-              your organization in the programme.
+              your organisation in the programme.
             </p>
             <div className="mt-10 flex justify-center">
               <CtaButton to="/contact">Get in touch</CtaButton>

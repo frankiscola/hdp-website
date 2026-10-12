@@ -60,13 +60,13 @@ const workGroups = [
   },
   {
     name: "WG European Hyperloop Center",
-    type: "Realization",
+    type: "Realisation",
     text: "To demonstrate in the European Hyperloop Center Groningen that the technology works as intended and can be operated safely.",
   },
   {
     name: "WG Future Prospects",
     type: "Marketability",
-    text: "To identify the future prospects and opportunities for industry and stakeholders clustered around the center of excellence of hyperloop.",
+    text: "To identify the future prospects and opportunities for industry and stakeholders clustered around the centre of excellence of hyperloop.",
   },
 ];
 
@@ -105,11 +105,11 @@ function AboutHdp() {
             <SectionHeading
               eyebrow="Mission"
               title="Develop hyperloop as a safe, energy-efficient and viable mode of transport."
-              intro="HDP is a public-private partnership of more than 20 organizations throughout Europe, including industry parties and research institutions. Together they align technology development, test infrastructure and regulation."
+              intro="HDP is a public-private partnership of more than 20 organisations throughout Europe, including industry parties and research institutions. Together they align technology development, test infrastructure and regulation."
             />
           </Reveal>
           <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            <StatCounter value={20} suffix="+" label="Partner organizations" />
+            <StatCounter value={20} suffix="+" label="Partner organisations" />
             <StatCounter value={9} label="Countries" />
             <StatCounter value={3} label="Test facilities" />
             <StatCounter value={1} label="Shared roadmap" />
@@ -136,7 +136,7 @@ function AboutHdp() {
             <SectionHeading
               eyebrow="How we work"
               title="Four Work Groups, one shared roadmap."
-              intro="HDP's goals are addressed by four Work Groups, each focused on activities such as R&D projects, feasibility studies and the realization of the European Hyperloop Center in the Dutch Province of Groningen."
+              intro="HDP's goals are addressed by four Work Groups, each focused on activities such as R&D projects, feasibility studies and the realisation of the European Hyperloop Center in the Dutch Province of Groningen."
             />
           </Reveal>
           <div className="mt-16 grid gap-6 md:grid-cols-2">

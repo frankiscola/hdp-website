@@ -132,7 +132,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           url: SITE_URL,
           logo: `${SITE_URL}/apple-touch-icon.png`,
           description:
-            "A European public-private partnership of more than 20 organizations developing hyperloop as safe, energy-efficient high-speed transport.",
+            "A European public-private partnership of more than 20 organisations developing hyperloop as safe, energy-efficient high-speed transport.",
           sameAs: ["https://www.linkedin.com/company/hyperloop-development-program/"],
         }),
       },
@@ -146,7 +146,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en-GB" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>

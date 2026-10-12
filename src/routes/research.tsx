@@ -65,7 +65,7 @@ const researchAspects = [
   {
     icon: Cpu,
     title: "Technology",
-    text: "A test facility and learning center is required to test all the facets for safe operation of hyperloop and to provide answers to open questions.",
+    text: "A test facility and learning centre is required to test all the facets for safe operation of hyperloop and to provide answers to open questions.",
   },
 ];
 
@@ -88,7 +88,7 @@ function Research() {
             <SectionHeading
               eyebrow="Research aspects"
               title="What the programme is working to answer."
-              intro="Each aspect is carried by one or more Work Groups, and feeds directly into the roadmap toward the European Hyperloop Center."
+              intro="Each aspect is carried by one or more Work Groups, and feeds directly into the roadmap towards the European Hyperloop Center."
               align="left"
             />
           </Reveal>
