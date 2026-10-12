@@ -293,6 +293,12 @@ function HyperHub() {
                   Clear
                 </button>
               )}
+              <a
+                href="#add-your-team"
+                className="rounded-full border border-primary-glow bg-primary-glow/10 px-5 py-3 text-center text-sm font-semibold text-foreground ring-1 ring-primary-glow/50 transition-colors duration-300 hover:bg-primary-glow/20 lg:ml-auto"
+              >
+                Add your team
+              </a>
             </div>
           </Reveal>
 
@@ -321,17 +327,6 @@ function HyperHub() {
               )}
             </>
           )}
-
-          <Reveal delay={0.1}>
-            <div className="mt-14">
-              <a
-                href="#add-your-team"
-                className="surface-glass inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-semibold text-foreground transition-colors duration-300 hover:bg-secondary"
-              >
-                Add your team
-              </a>
-            </div>
-          </Reveal>
         </div>
       </section>
 
