@@ -8,7 +8,7 @@ import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { CtaButton, SectionHeading } from "../components/ui-kit";
-import { CompanyPortal } from "../components/CompanyPortal";
+import { CompanyInterestPanel, type CompanyInterest } from "../components/CompanyPortal";
 import { fetchTeams, type Team } from "../data/teams";
 import { cn } from "../lib/utils";
 
@@ -34,6 +34,12 @@ export const Route = createFileRoute("/hyperhub")({
   loader: () => fetchTeams(),
   component: HyperHub,
 });
+
+const COMPANY_VIEWS: { id: CompanyInterest; label: string }[] = [
+  { id: "sponsorship", label: "Seeking sponsors" },
+  { id: "careers", label: "Careers" },
+  { id: "thesis", label: "Academic thesis" },
+];
 
 function TeamCard({ team }: { team: Team }) {
   const initials = team.name
@@ -164,7 +170,9 @@ function HyperHub() {
   const teams = Route.useLoaderData();
   const [query, setQuery] = useState("");
   const [country, setCountry] = useState("All");
-  const [sponsorsOnly, setSponsorsOnly] = useState(false);
+  // null = the normal student-team directory. Otherwise a members-only
+  // company list (sponsors / careers / academic thesis) replaces the teams.
+  const [companyView, setCompanyView] = useState<CompanyInterest | null>(null);
 
   const countries = useMemo(
     () => ["All", ...Array.from(new Set(teams.map((t) => t.country))).sort()],
@@ -175,23 +183,19 @@ function HyperHub() {
     const q = query.trim().toLowerCase();
     return teams.filter((t) => {
       if (country !== "All" && t.country !== country) return false;
-      if (sponsorsOnly && !t.seekingSponsors) return false;
-      if (
-        q &&
-        !`${t.name} ${t.university} ${t.city ?? ""}`.toLowerCase().includes(q)
-      ) {
+      if (q && !`${t.name} ${t.university} ${t.city ?? ""}`.toLowerCase().includes(q)) {
         return false;
       }
       return true;
     });
-  }, [teams, query, country, sponsorsOnly]);
+  }, [teams, query, country]);
 
-  const hasFilters = query || country !== "All" || sponsorsOnly;
+  const hasFilters = query || country !== "All" || companyView !== null;
 
   function clearFilters() {
     setQuery("");
     setCountry("All");
-    setSponsorsOnly(false);
+    setCompanyView(null);
   }
 
   return (
@@ -213,7 +217,7 @@ function HyperHub() {
             <SectionHeading
               eyebrow="Student teams"
               title="The people behind the pods."
-              intro="Search the teams by name, university or country. Teams marked as seeking sponsors are open to hearing from companies."
+              intro="Search the teams by name, university or country. Partner companies can use the buttons to see who is open to sponsorship, careers and academic thesis requests."
             />
           </Reveal>
 
@@ -244,25 +248,22 @@ function HyperHub() {
                 </select>
                 <ChevronDown className="pointer-events-none absolute top-1/2 right-4 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               </div>
-              <button
-                type="button"
-                onClick={() => setSponsorsOnly((v) => !v)}
-                aria-pressed={sponsorsOnly}
-                className={cn(
-                  "rounded-full border px-4 py-3 text-sm font-medium transition-colors duration-300",
-                  sponsorsOnly
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : "border-border bg-surface/40 text-muted-foreground hover:text-foreground",
-                )}
-              >
-                Seeking sponsors
-              </button>
-              <a
-                href="#companies"
-                className="rounded-full border border-border bg-surface/40 px-4 py-3 text-sm font-medium text-muted-foreground transition-colors duration-300 hover:text-foreground"
-              >
-                Careers
-              </a>
+              {COMPANY_VIEWS.map(({ id, label }) => (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => setCompanyView((v) => (v === id ? null : id))}
+                  aria-pressed={companyView === id}
+                  className={cn(
+                    "rounded-full border px-4 py-3 text-sm font-medium transition-colors duration-300",
+                    companyView === id
+                      ? "border-primary bg-primary text-primary-foreground"
+                      : "border-border bg-surface/40 text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  {label}
+                </button>
+              ))}
               {hasFilters && (
                 <button
                   type="button"
@@ -276,22 +277,30 @@ function HyperHub() {
             </div>
           </Reveal>
 
-          <p className="mt-8 text-sm text-muted-foreground">
-            {filtered.length} {filtered.length === 1 ? "team" : "teams"}
-          </p>
-
-          {filtered.length === 0 ? (
-            <p className="mt-10 rounded-3xl border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
-              No teams match these filters. Try clearing some.
-            </p>
-          ) : (
-            <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {filtered.map((team, i) => (
-                <Reveal key={team.id} delay={Math.min(i, 7) * 0.04}>
-                  <TeamCard team={team} />
-                </Reveal>
-              ))}
+          {companyView ? (
+            <div className="mt-10">
+              <CompanyInterestPanel key={companyView} interest={companyView} />
             </div>
+          ) : (
+            <>
+              <p className="mt-8 text-sm text-muted-foreground">
+                {filtered.length} {filtered.length === 1 ? "team" : "teams"}
+              </p>
+
+              {filtered.length === 0 ? (
+                <p className="mt-10 rounded-3xl border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
+                  No teams match these filters. Try clearing some.
+                </p>
+              ) : (
+                <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                  {filtered.map((team, i) => (
+                    <Reveal key={team.id} delay={Math.min(i, 7) * 0.04}>
+                      <TeamCard team={team} />
+                    </Reveal>
+                  ))}
+                </div>
+              )}
+            </>
           )}
 
           <Reveal delay={0.1}>
@@ -310,8 +319,6 @@ function HyperHub() {
           </Reveal>
         </div>
       </section>
-
-      <CompanyPortal />
     </>
   );
 }

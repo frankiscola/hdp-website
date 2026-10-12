@@ -17,7 +17,15 @@ import { SectionHeading } from "./ui-kit";
 
 type ViewState = "loading" | "signed-out" | "pending" | "rejected" | "approved";
 
-export function CompanyPortal() {
+export type CompanyInterest = "sponsorship" | "careers" | "thesis";
+
+/**
+ * Shared access state for the gated company directory: who is signed in,
+ * whether they are approved, and (only when approved) the companies list.
+ * Row Level Security in Supabase is what really enforces the gate; this
+ * only decides what to render.
+ */
+function useCompanyAccess() {
   const [view, setView] = useState<ViewState>("loading");
   const [companies, setCompanies] = useState<Company[]>([]);
   const [profile, setProfile] = useState<CompanyProfile | null>(null);
@@ -26,6 +34,7 @@ export function CompanyPortal() {
     const p = await fetchMyProfile();
     setProfile(p);
     if (!p) {
+      setCompanies([]);
       setView("signed-out");
       return;
     }
@@ -34,6 +43,7 @@ export function CompanyPortal() {
       setView("approved");
       return;
     }
+    setCompanies([]);
     setView(p.status === "rejected" ? "rejected" : "pending");
   }
 
@@ -47,6 +57,85 @@ export function CompanyPortal() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  return { view, companies, profile, refresh };
+}
+
+const INTEREST_COPY: Record<CompanyInterest, { empty: string; count: (n: number) => string }> = {
+  sponsorship: {
+    empty: "No companies are open to sponsorship requests yet — check back soon.",
+    count: (n) => `${n} ${n === 1 ? "company" : "companies"} open to sponsoring student teams`,
+  },
+  careers: {
+    empty: "No companies are taking career or graduate-programme requests yet — check back soon.",
+    count: (n) =>
+      `${n} ${n === 1 ? "company" : "companies"} open to career & graduate-programme requests`,
+  },
+  thesis: {
+    empty: "No companies are offering academic thesis projects yet — check back soon.",
+    count: (n) => `${n} ${n === 1 ? "company" : "companies"} offering academic thesis projects`,
+  },
+};
+
+/**
+ * Members-only list for one interest (sponsors / careers / academic thesis).
+ * Signed-out and not-yet-approved visitors only ever see the sign-in / status
+ * message, never the companies.
+ */
+export function CompanyInterestPanel({ interest }: { interest: CompanyInterest }) {
+  const { view, companies, profile, refresh } = useCompanyAccess();
+
+  if (view === "loading") {
+    return <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />;
+  }
+  if (view === "signed-out") {
+    return (
+      <div>
+        <p className="mb-6 max-w-xl text-sm leading-relaxed text-muted-foreground">
+          This list is for approved HDP partner companies only. Sign in or request access to see it.
+        </p>
+        <SignInUp onDone={refresh} />
+      </div>
+    );
+  }
+  if (view === "pending") {
+    return (
+      <StatusMessage
+        title="Your request is under review."
+        text={`Thanks${profile?.companyName ? `, ${profile.companyName}` : ""} — an HDP team member will approve your account shortly. You'll see this list here once approved.`}
+      />
+    );
+  }
+  if (view === "rejected") {
+    return (
+      <StatusMessage
+        title="This account wasn't approved."
+        text="If you think this is a mistake, get in touch and we'll take another look."
+      />
+    );
+  }
+
+  const list = companies.filter((c) =>
+    interest === "sponsorship"
+      ? Boolean(c.sponsorshipOffer)
+      : interest === "careers"
+        ? Boolean(c.hiringInfo)
+        : Boolean(c.thesisInfo),
+  );
+
+  return (
+    <CompanyDirectory
+      companies={list}
+      onSignOut={refresh}
+      interest={interest}
+      countLabel={INTEREST_COPY[interest].count(list.length)}
+      emptyLabel={INTEREST_COPY[interest].empty}
+    />
+  );
+}
+
+export function CompanyPortal() {
+  const { view, companies, profile, refresh } = useCompanyAccess();
+
   return (
     <section id="companies" className="border-t border-border bg-surface/30 scroll-mt-24">
       <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
@@ -59,9 +148,7 @@ export function CompanyPortal() {
         </Reveal>
 
         <div className="mt-12">
-          {view === "loading" && (
-            <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
-          )}
+          {view === "loading" && <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />}
           {view === "signed-out" && <SignInUp onDone={refresh} />}
           {view === "pending" && (
             <StatusMessage
@@ -180,13 +267,7 @@ function SignInUp({ onDone }: { onDone: () => void }) {
             />
           </>
         )}
-        <LabeledInput
-          label="Email"
-          type="email"
-          value={email}
-          onChange={setEmail}
-          required
-        />
+        <LabeledInput label="Email" type="email" value={email} onChange={setEmail} required />
         <LabeledInput
           label="Password"
           type="password"
@@ -215,8 +296,8 @@ function SignInUp({ onDone }: { onDone: () => void }) {
           </button>
         </Magnetic>
         <p className="text-xs leading-relaxed text-muted-foreground">
-          Access is limited to companies partnering with HDP. After signing up, an HDP team
-          member reviews and approves your account before you can see the directory.
+          Access is limited to companies partnering with HDP. After signing up, an HDP team member
+          reviews and approves your account before you can see the directory.
         </p>
       </form>
     </div>
@@ -253,15 +334,26 @@ function LabeledInput({
 function CompanyDirectory({
   companies,
   onSignOut,
+  interest,
+  countLabel,
+  emptyLabel,
 }: {
   companies: Company[];
   onSignOut: () => void;
+  /** When set, only that block (and its contact link) is shown on each card. */
+  interest?: CompanyInterest;
+  countLabel?: string;
+  emptyLabel?: string;
 }) {
+  const showSponsorship = !interest || interest === "sponsorship";
+  const showCareers = !interest || interest === "careers";
+  const showThesis = !interest || interest === "thesis";
   return (
     <div>
       <div className="flex items-center justify-between">
         <p className="text-sm text-muted-foreground">
-          {companies.length} {companies.length === 1 ? "company" : "companies"} in the directory
+          {countLabel ??
+            `${companies.length} ${companies.length === 1 ? "company" : "companies"} in the directory`}
         </p>
         <button
           type="button"
@@ -274,7 +366,7 @@ function CompanyDirectory({
 
       {companies.length === 0 ? (
         <p className="mt-8 rounded-3xl border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
-          No companies listed yet — check back soon.
+          {emptyLabel ?? "No companies listed yet — check back soon."}
         </p>
       ) : (
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -303,7 +395,7 @@ function CompanyDirectory({
                   </p>
                 )}
 
-                {c.sponsorshipOffer && (
+                {showSponsorship && c.sponsorshipOffer && (
                   <div className="mt-4 rounded-2xl border border-border/60 p-4">
                     <p className="flex items-center gap-2 text-xs font-semibold text-primary-glow uppercase">
                       <Handshake className="h-3.5 w-3.5" />
@@ -315,7 +407,7 @@ function CompanyDirectory({
                   </div>
                 )}
 
-                {c.hiringInfo && (
+                {showCareers && c.hiringInfo && (
                   <div className="mt-3 rounded-2xl border border-border/60 p-4">
                     <p className="flex items-center gap-2 text-xs font-semibold text-primary-glow uppercase">
                       <Briefcase className="h-3.5 w-3.5" />
@@ -327,7 +419,7 @@ function CompanyDirectory({
                   </div>
                 )}
 
-                {c.thesisInfo && (
+                {showThesis && c.thesisInfo && (
                   <div className="mt-3 rounded-2xl border border-border/60 p-4">
                     <p className="flex items-center gap-2 text-xs font-semibold text-primary-glow uppercase">
                       <GraduationCap className="h-3.5 w-3.5" />
@@ -340,28 +432,40 @@ function CompanyDirectory({
                 )}
 
                 <div className="mt-auto flex flex-wrap gap-4 pt-6">
-                  {c.sponsorshipOffer && (
+                  {showSponsorship && c.sponsorshipOffer && (
                     <Link
                       to="/contact"
-                      search={{ topic: "Sponsorship & talent", company: c.name, interest: "sponsorship" }}
+                      search={{
+                        topic: "Sponsorship & talent",
+                        company: c.name,
+                        interest: "sponsorship",
+                      }}
                       className="text-sm font-semibold text-foreground underline-offset-4 hover:text-primary-glow hover:underline"
                     >
                       Ask about sponsorship
                     </Link>
                   )}
-                  {c.hiringInfo && (
+                  {showCareers && c.hiringInfo && (
                     <Link
                       to="/contact"
-                      search={{ topic: "Sponsorship & talent", company: c.name, interest: "careers" }}
+                      search={{
+                        topic: "Sponsorship & talent",
+                        company: c.name,
+                        interest: "careers",
+                      }}
                       className="text-sm font-semibold text-foreground underline-offset-4 hover:text-primary-glow hover:underline"
                     >
                       Ask about careers
                     </Link>
                   )}
-                  {c.thesisInfo && (
+                  {showThesis && c.thesisInfo && (
                     <Link
                       to="/contact"
-                      search={{ topic: "Sponsorship & talent", company: c.name, interest: "thesis" }}
+                      search={{
+                        topic: "Sponsorship & talent",
+                        company: c.name,
+                        interest: "thesis",
+                      }}
                       className="text-sm font-semibold text-foreground underline-offset-4 hover:text-primary-glow hover:underline"
                     >
                       Ask about thesis projects
