@@ -230,22 +230,28 @@ export type CompanyInput = {
 };
 
 /** Create a new company directory listing — admin only. */
-export async function createCompany(input: CompanyInput): Promise<{ error: string | null }> {
-  if (!supabase) return { error: "Not configured." };
-  const { error } = await supabase.from("companies").insert({
-    name: input.name,
-    logo_url: input.logoUrl || null,
-    website: input.website || null,
-    description: input.description || null,
-    sponsorship_offer: input.sponsorshipOffer || null,
-    hiring_info: input.hiringInfo || null,
-    thesis_info: input.thesisInfo || null,
-    offers_sponsorship: input.offersSponsorship,
-    offers_careers: input.offersCareers,
-    offers_thesis: input.offersThesis,
-    is_published: input.isPublished,
-  });
-  return { error: error?.message ?? null };
+export async function createCompany(
+  input: CompanyInput,
+): Promise<{ error: string | null; id: string | null }> {
+  if (!supabase) return { error: "Not configured.", id: null };
+  const { data, error } = await supabase
+    .from("companies")
+    .insert({
+      name: input.name,
+      logo_url: input.logoUrl || null,
+      website: input.website || null,
+      description: input.description || null,
+      sponsorship_offer: input.sponsorshipOffer || null,
+      hiring_info: input.hiringInfo || null,
+      thesis_info: input.thesisInfo || null,
+      offers_sponsorship: input.offersSponsorship,
+      offers_careers: input.offersCareers,
+      offers_thesis: input.offersThesis,
+      is_published: input.isPublished,
+    })
+    .select("id")
+    .single();
+  return { error: error?.message ?? null, id: (data as { id: string } | null)?.id ?? null };
 }
 
 /** Edit an existing company directory listing — admin only. */
@@ -270,6 +276,55 @@ export async function updateCompany(
       is_published: input.isPublished,
     })
     .eq("id", id);
+  return { error: error?.message ?? null };
+}
+
+/**
+ * Where each kind of enquiry is delivered. Admin only: RLS on company_contacts
+ * hides these addresses from everyone else, and they are never sent to the
+ * public directory. If the table doesn't exist yet this simply returns {}.
+ */
+export type CompanyContacts = { sponsorship: string; careers: string; thesis: string };
+
+export const emptyContacts: CompanyContacts = { sponsorship: "", careers: "", thesis: "" };
+
+export async function fetchCompanyContacts(): Promise<Record<string, CompanyContacts>> {
+  if (!supabase) return {};
+  const { data, error } = await supabase
+    .from("company_contacts")
+    .select("company_id,sponsorship_email,careers_email,thesis_email");
+  if (error || !data) return {};
+  const out: Record<string, CompanyContacts> = {};
+  for (const row of data as {
+    company_id: string;
+    sponsorship_email: string | null;
+    careers_email: string | null;
+    thesis_email: string | null;
+  }[]) {
+    out[row.company_id] = {
+      sponsorship: row.sponsorship_email ?? "",
+      careers: row.careers_email ?? "",
+      thesis: row.thesis_email ?? "",
+    };
+  }
+  return out;
+}
+
+export async function saveCompanyContacts(
+  companyId: string,
+  contacts: CompanyContacts,
+): Promise<{ error: string | null }> {
+  if (!supabase) return { error: "Not configured." };
+  const { error } = await supabase.from("company_contacts").upsert(
+    {
+      company_id: companyId,
+      sponsorship_email: contacts.sponsorship.trim() || null,
+      careers_email: contacts.careers.trim() || null,
+      thesis_email: contacts.thesis.trim() || null,
+      updated_at: new Date().toISOString(),
+    },
+    { onConflict: "company_id" },
+  );
   return { error: error?.message ?? null };
 }
 

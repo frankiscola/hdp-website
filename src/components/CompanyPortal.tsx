@@ -1,4 +1,3 @@
-import { Link } from "@tanstack/react-router";
 import { motion, useReducedMotion } from "motion/react";
 import { Briefcase, GraduationCap, Handshake, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -12,6 +11,7 @@ import {
   type CompanyProfile,
 } from "../data/companies";
 import { supabase } from "../lib/supabase";
+import { AskCompanyDialog } from "./AskCompanyDialog";
 import { Magnetic } from "./Magnetic";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./ui-kit";
@@ -395,8 +395,14 @@ function CompanyDirectory({
   const showCareers = !interest || interest === "careers";
   const showThesis = !interest || interest === "thesis";
   const reduce = useReducedMotion();
+  const [ask, setAsk] = useState<{ company: Company; interest: CompanyInterest } | null>(null);
   return (
     <div>
+      <AskCompanyDialog
+        company={ask?.company ?? null}
+        interest={ask?.interest ?? null}
+        onClose={() => setAsk(null)}
+      />
       <div className="flex items-center justify-between">
         <p className="text-sm text-muted-foreground">
           {countLabel ??
@@ -490,43 +496,31 @@ function CompanyDirectory({
 
                   <div className="mt-auto flex flex-wrap gap-4 pt-6">
                     {showSponsorship && c.offersSponsorship && (
-                      <Link
-                        to="/contact"
-                        search={{
-                          topic: "Sponsorship & talent",
-                          company: c.name,
-                          interest: "sponsorship",
-                        }}
+                      <button
+                        type="button"
+                        onClick={() => setAsk({ company: c, interest: "sponsorship" })}
                         className="text-sm font-semibold text-foreground underline-offset-4 hover:text-primary-glow hover:underline"
                       >
                         Ask about sponsorship
-                      </Link>
+                      </button>
                     )}
                     {showCareers && c.offersCareers && (
-                      <Link
-                        to="/contact"
-                        search={{
-                          topic: "Sponsorship & talent",
-                          company: c.name,
-                          interest: "careers",
-                        }}
+                      <button
+                        type="button"
+                        onClick={() => setAsk({ company: c, interest: "careers" })}
                         className="text-sm font-semibold text-foreground underline-offset-4 hover:text-primary-glow hover:underline"
                       >
                         Ask about careers
-                      </Link>
+                      </button>
                     )}
                     {showThesis && c.offersThesis && (
-                      <Link
-                        to="/contact"
-                        search={{
-                          topic: "Sponsorship & talent",
-                          company: c.name,
-                          interest: "thesis",
-                        }}
+                      <button
+                        type="button"
+                        onClick={() => setAsk({ company: c, interest: "thesis" })}
                         className="text-sm font-semibold text-foreground underline-offset-4 hover:text-primary-glow hover:underline"
                       >
                         Ask about thesis projects
-                      </Link>
+                      </button>
                     )}
                   </div>
                 </div>

@@ -7,12 +7,16 @@ import {
   deleteCompany,
   fetchAllCompanies,
   fetchAllProfiles,
+  fetchCompanyContacts,
   fetchReviewHistory,
   reviewProfile,
+  saveCompanyContacts,
   signInCompany,
   signOutCompany,
   updateCompany,
+  emptyContacts,
   type Company,
+  type CompanyContacts,
   type CompanyInput,
   type CompanyProfile,
   type ReviewEntry,
@@ -172,19 +176,22 @@ function AdminDashboard() {
   const [tab, setTab] = useState<Tab>("pending");
   const [profiles, setProfiles] = useState<CompanyProfile[]>([]);
   const [companies, setCompanies] = useState<Company[]>([]);
+  const [contacts, setContacts] = useState<Record<string, CompanyContacts>>({});
   const [history, setHistory] = useState<ReviewEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [pendingTeams, setPendingTeams] = useState(0);
 
   async function loadAll() {
     setLoading(true);
-    const [p, c, h] = await Promise.all([
+    const [p, c, h, ct] = await Promise.all([
       fetchAllProfiles(),
       fetchAllCompanies(),
       fetchReviewHistory(),
+      fetchCompanyContacts(),
     ]);
     setProfiles(p);
     setCompanies(c);
+    setContacts(ct);
     setHistory(h);
     setLoading(false);
   }
@@ -236,7 +243,7 @@ function AdminDashboard() {
         )}
         {tab === "teams" && <TeamApplicationsAdmin onCountChange={setPendingTeams} />}
         {!loading && tab === "companies" && (
-          <CompaniesAdmin companies={companies} onChange={loadAll} />
+          <CompaniesAdmin companies={companies} contacts={contacts} onChange={loadAll} />
         )}
         {!loading && tab === "history" && <HistoryList entries={history} />}
       </div>
@@ -396,7 +403,28 @@ const PARTICIPATION: {
   { key: "offersThesis", label: "Thesis" },
 ];
 
-function CompaniesAdmin({ companies, onChange }: { companies: Company[]; onChange: () => void }) {
+const CONTACT_KEY = {
+  offersSponsorship: "sponsorship",
+  offersCareers: "careers",
+  offersThesis: "thesis",
+} as const;
+
+/** Categories a company takes part in that have no dedicated contact email yet. */
+function missingContacts(c: Company, ct: CompanyContacts | undefined): string[] {
+  return PARTICIPATION.filter(({ key }) => c[key] && !(ct?.[CONTACT_KEY[key]] ?? "").trim()).map(
+    ({ label }) => label,
+  );
+}
+
+function CompaniesAdmin({
+  companies,
+  contacts,
+  onChange,
+}: {
+  companies: Company[];
+  contacts: Record<string, CompanyContacts>;
+  onChange: () => void;
+}) {
   const [editing, setEditing] = useState<Company | "new" | null>(null);
 
   return (
@@ -417,6 +445,9 @@ function CompaniesAdmin({ companies, onChange }: { companies: Company[]; onChang
       {editing && (
         <CompanyForm
           initial={editing === "new" ? null : editing}
+          initialContacts={
+            editing === "new" ? emptyContacts : (contacts[editing.id] ?? emptyContacts)
+          }
           onCancel={() => setEditing(null)}
           onSaved={() => {
             setEditing(null);
@@ -440,6 +471,12 @@ function CompaniesAdmin({ companies, onChange }: { companies: Company[]; onChang
                   .map(({ label }) => label)
                   .join(", ") || "No category selected"}
               </p>
+              {missingContacts(c, contacts[c.id]).length > 0 && (
+                <p className="mt-1 text-xs text-amber-500">
+                  No contact email for: {missingContacts(c, contacts[c.id]).join(", ")} — messages
+                  go to the general HDP address.
+                </p>
+              )}
             </div>
             <div className="flex gap-2">
               <button
@@ -471,10 +508,12 @@ function CompaniesAdmin({ companies, onChange }: { companies: Company[]; onChang
 
 function CompanyForm({
   initial,
+  initialContacts,
   onCancel,
   onSaved,
 }: {
   initial: Company | null;
+  initialContacts: CompanyContacts;
   onCancel: () => void;
   onSaved: () => void;
 }) {
@@ -495,6 +534,7 @@ function CompanyForm({
         }
       : emptyForm,
   );
+  const [contacts, setContacts] = useState<CompanyContacts>(initialContacts);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -502,12 +542,27 @@ function CompanyForm({
     e.preventDefault();
     setSubmitting(true);
     setError(null);
-    const result = initial ? await updateCompany(initial.id, form) : await createCompany(form);
-    setSubmitting(false);
+    const result = initial
+      ? { ...(await updateCompany(initial.id, form)), id: initial.id as string | null }
+      : await createCompany(form);
     if (result.error) {
+      setSubmitting(false);
       setError(result.error);
       return;
     }
+    // Only touch company_contacts when there is something to store (or to
+    // clear), so saving still works if that table hasn't been created yet.
+    const hadContacts = Object.values(initialContacts).some((v) => v.trim());
+    const hasContacts = Object.values(contacts).some((v) => v.trim());
+    if (result.id && (hadContacts || hasContacts)) {
+      const saved = await saveCompanyContacts(result.id, contacts);
+      if (saved.error) {
+        setSubmitting(false);
+        setError(`Company saved, but the contact emails weren't: ${saved.error}`);
+        return;
+      }
+    }
+    setSubmitting(false);
     onSaved();
   }
 
@@ -531,6 +586,23 @@ function CompanyForm({
             className="mt-2 w-full rounded-2xl border border-input bg-background/60 px-4 py-3 text-sm outline-none focus:border-primary"
           />
         )}
+      </div>
+    );
+  }
+
+  function contactField(key: keyof CompanyContacts, label: string) {
+    return (
+      <div>
+        <label className="text-xs tracking-[0.16em] text-muted-foreground uppercase">{label}</label>
+        <input
+          type="email"
+          inputMode="email"
+          autoComplete="off"
+          placeholder="name@company.com"
+          value={contacts[key]}
+          onChange={(e) => setContacts((c) => ({ ...c, [key]: e.target.value }))}
+          className="mt-2 w-full rounded-2xl border border-input bg-background/60 px-4 py-3 text-sm outline-none focus:border-primary"
+        />
       </div>
     );
   }
@@ -577,9 +649,27 @@ function CompanyForm({
           The company only appears in the HyperHub sections ticked here.
         </p>
       </fieldset>
-      {form.offersSponsorship && field("sponsorshipOffer", "Sponsorship offer", true)}
-      {form.offersCareers && field("hiringInfo", "Careers & graduate programmes", true)}
-      {form.offersThesis && field("thesisInfo", "Thesis & research projects", true)}
+      {form.offersSponsorship && (
+        <>
+          {field("sponsorshipOffer", "Sponsorship offer", true)}
+          {contactField(
+            "sponsorship",
+            "Sponsorship contact email (receives “Ask about sponsorship”)",
+          )}
+        </>
+      )}
+      {form.offersCareers && (
+        <>
+          {field("hiringInfo", "Careers & graduate programmes", true)}
+          {contactField("careers", "Careers contact email (receives “Ask about careers”)")}
+        </>
+      )}
+      {form.offersThesis && (
+        <>
+          {field("thesisInfo", "Thesis & research projects", true)}
+          {contactField("thesis", "Thesis contact email (receives “Ask about thesis projects”)")}
+        </>
+      )}
       <label className="flex items-center gap-2 text-sm">
         <input
           type="checkbox"
