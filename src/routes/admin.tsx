@@ -654,20 +654,23 @@ function CompanyForm({
           {field("sponsorshipOffer", "Sponsorship offer", true)}
           {contactField(
             "sponsorship",
-            "Sponsorship contact email (receives “Ask about sponsorship”)",
+            "Sponsorship contact email (receives “Contact about sponsorship”)",
           )}
         </>
       )}
       {form.offersCareers && (
         <>
           {field("hiringInfo", "Careers & graduate programmes", true)}
-          {contactField("careers", "Careers contact email (receives “Ask about careers”)")}
+          {contactField("careers", "Careers contact email (receives “Contact about careers”)")}
         </>
       )}
       {form.offersThesis && (
         <>
           {field("thesisInfo", "Thesis & research projects", true)}
-          {contactField("thesis", "Thesis contact email (receives “Ask about thesis projects”)")}
+          {contactField(
+            "thesis",
+            "Thesis contact email (receives “Contact about thesis projects”)",
+          )}
         </>
       )}
       <label className="flex items-center gap-2 text-sm">

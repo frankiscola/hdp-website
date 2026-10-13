@@ -52,7 +52,7 @@ const fieldClass =
 const labelClass = "text-xs tracking-[0.16em] text-muted-foreground uppercase";
 
 /**
- * "Ask about …" popup. A centred dialog on desktop and a bottom sheet on
+ * "Contact about …" popup. A centred dialog on desktop and a bottom sheet on
  * mobile; both share the same form. The message is emailed by the server
  * straight to the contact configured for that company and enquiry type — the
  * address is never exposed to the browser.

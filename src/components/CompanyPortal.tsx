@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "motion/react";
-import { Briefcase, GraduationCap, Handshake, Loader2 } from "lucide-react";
+import { Briefcase, GraduationCap, Handshake, Loader2, Mail } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
   fetchCompanies,
@@ -187,6 +187,9 @@ export function CompanyPortal() {
     </section>
   );
 }
+
+const contactButtonClass =
+  "inline-flex items-center gap-2 rounded-full border border-primary-glow/50 px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-300 hover:border-primary-glow hover:bg-primary-glow/10";
 
 function CompanyGridSkeleton() {
   return (
@@ -499,27 +502,30 @@ function CompanyDirectory({
                       <button
                         type="button"
                         onClick={() => setAsk({ company: c, interest: "sponsorship" })}
-                        className="text-sm font-semibold text-foreground underline-offset-4 hover:text-primary-glow hover:underline"
+                        className={contactButtonClass}
                       >
-                        Ask about sponsorship
+                        <Mail className="h-4 w-4 shrink-0" aria-hidden />
+                        Contact about sponsorship
                       </button>
                     )}
                     {showCareers && c.offersCareers && (
                       <button
                         type="button"
                         onClick={() => setAsk({ company: c, interest: "careers" })}
-                        className="text-sm font-semibold text-foreground underline-offset-4 hover:text-primary-glow hover:underline"
+                        className={contactButtonClass}
                       >
-                        Ask about careers
+                        <Mail className="h-4 w-4 shrink-0" aria-hidden />
+                        Contact about careers
                       </button>
                     )}
                     {showThesis && c.offersThesis && (
                       <button
                         type="button"
                         onClick={() => setAsk({ company: c, interest: "thesis" })}
-                        className="text-sm font-semibold text-foreground underline-offset-4 hover:text-primary-glow hover:underline"
+                        className={contactButtonClass}
                       >
-                        Ask about thesis projects
+                        <Mail className="h-4 w-4 shrink-0" aria-hidden />
+                        Contact about thesis projects
                       </button>
                     )}
                   </div>
