@@ -19,10 +19,14 @@ export const Route = createFileRoute("/hyperloop-portal")({
         content:
           "A searchable repository of hyperloop knowledge: research, company publications, EU-funded project outputs and student team papers, filterable by topic and year.",
       },
-      { property: "og:title", content: "Hyperloop Research Portal – Hyperloop Development Program" },
+      {
+        property: "og:title",
+        content: "Hyperloop Research Portal – Hyperloop Development Program",
+      },
       {
         property: "og:description",
-        content: "The growing repository of hyperloop research, company and student team knowledge.",
+        content:
+          "The growing repository of hyperloop research, company and student team knowledge.",
       },
       { property: "og:url", content: absoluteUrl("/hyperloop-portal") },
     ],

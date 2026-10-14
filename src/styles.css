@@ -435,13 +435,21 @@
   color: var(--color-primary-glow);
 }
 
-/* Custom cursor */
-.cursor-none-root,
+/* Custom cursor
+ *
+ * The native cursor is hidden on the page background only. Links, buttons
+ * and other controls keep the browser's pointer, so people can still tell
+ * what is clickable; the dot and ring (see CustomCursor.tsx) simply grow
+ * around it on hover. */
+.cursor-none-root {
+  cursor: none;
+}
+
 .cursor-none-root a,
 .cursor-none-root button,
 .cursor-none-root label,
 .cursor-none-root [role="button"] {
-  cursor: none;
+  cursor: pointer;
 }
 
 .cursor-dot {
@@ -496,4 +504,41 @@
   html {
     scroll-behavior: auto;
   }
+}
+
+/* Keyboard focus
+ *
+ * One visible, on-brand focus ring for every focusable element that doesn't
+ * define its own. It lives in the base layer, so Tailwind utilities such as
+ * `focus-visible:ring-*` on the shadcn components still take precedence. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-primary-glow);
+    outline-offset: 3px;
+  }
+
+  /* <main> is focus-able only so the skip link can move focus into it. */
+  main:focus {
+    outline: none;
+  }
+}
+
+/* Skip link: hidden until it receives keyboard focus. */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 10000;
+  padding: 0.6rem 1rem;
+  border-radius: 9999px;
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transform: translateY(-200%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }

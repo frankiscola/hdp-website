@@ -8,21 +8,30 @@ const CYCLE_MS = 4500;
 
 export function LiveNewsBar({ items }: { items: NewsItem[] }) {
   const [index, setIndex] = useState(0);
+  // Auto-rotation pauses while the bar is hovered or holds keyboard focus, so
+  // a headline never changes under someone who is trying to read or click it.
+  const [paused, setPaused] = useState(false);
   const reduce = useReducedMotion();
 
   useEffect(() => {
-    if (reduce || items.length <= 1) return;
+    if (reduce || paused || items.length <= 1) return;
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % items.length);
     }, CYCLE_MS);
     return () => clearInterval(id);
-  }, [reduce, items.length]);
+  }, [reduce, paused, items.length]);
 
   if (items.length === 0) return null;
   const active = items[index];
 
   return (
-    <div className="surface-glass absolute inset-x-4 bottom-6 z-10 mx-auto flex max-w-3xl items-center gap-3 rounded-full py-2 pr-5 pl-2 sm:inset-x-0 sm:bottom-10 sm:gap-4">
+    <div
+      className="surface-glass absolute inset-x-4 bottom-6 z-10 mx-auto flex max-w-3xl items-center gap-3 rounded-full py-2 pr-5 pl-2 sm:inset-x-0 sm:bottom-10 sm:gap-4"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+    >
       <Link
         to="/news/$slug"
         params={{ slug: active.slug }}

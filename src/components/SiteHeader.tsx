@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { navItems } from "../data/site";
 import { logoHdpUrl } from "../data/logo";
 import { ThemeToggle } from "./ThemeToggle";
@@ -18,6 +18,16 @@ export function SiteHeader() {
   useMotionValueEvent(scrollY, "change", (latest) => {
     setCondensed(latest > 24);
   });
+
+  // Escape closes the full-screen mobile menu.
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open]);
 
   return (
     <header
@@ -58,13 +68,14 @@ export function SiteHeader() {
         </Link>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <nav className="flex items-center gap-1">
+          <nav aria-label="Main" className="flex items-center gap-1">
             <div className="surface-glass flex items-center gap-1 rounded-full px-2 py-1.5 transition-all duration-500">
               {navItems.map((item) =>
                 item.children ? (
                   <div key={item.label} className="group/nav relative">
                     <button
                       type="button"
+                      aria-haspopup="true"
                       className={cn(
                         "flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
                         item.children.some((c) => c.to === pathname) &&
@@ -72,9 +83,11 @@ export function SiteHeader() {
                       )}
                     >
                       {item.label}
-                      <ChevronDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover/nav:rotate-180" />
+                      <ChevronDown className="h-3.5 w-3.5 transition-transform duration-300 group-focus-within/nav:rotate-180 group-hover/nav:rotate-180" />
                     </button>
-                    <div className="invisible absolute top-full left-0 pt-2 opacity-0 transition-all duration-200 group-hover/nav:visible group-hover/nav:opacity-100">
+                    {/* Opens on hover AND on keyboard focus (focus-within), so the
+                        sub-links are reachable by tabbing, not only by mouse. */}
+                    <div className="invisible absolute top-full left-0 pt-2 opacity-0 transition-all duration-200 group-focus-within/nav:visible group-focus-within/nav:opacity-100 group-hover/nav:visible group-hover/nav:opacity-100">
                       <div className="surface-glass min-w-[220px] rounded-2xl border border-border p-2 shadow-xl">
                         {item.children.map((child) => (
                           <Link
@@ -164,7 +177,9 @@ export function SiteHeader() {
                         <div className="flex flex-col gap-1 pb-4 pl-4">
                           {item.children.map((child) => (
                             <Link
-                              key={child.to + (child.hash ?? "") + JSON.stringify(child.search ?? {})}
+                              key={
+                                child.to + (child.hash ?? "") + JSON.stringify(child.search ?? {})
+                              }
                               to={child.to}
                               {...(child.hash ? { hash: child.hash } : {})}
                               {...(child.search ? { search: child.search } : {})}

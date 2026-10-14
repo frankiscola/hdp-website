@@ -103,6 +103,11 @@ function Home() {
             alt="Hyperloop vehicle inside a vacuum tube lit by indigo light strips"
             width={1920}
             height={1088}
+            // Lazy + high priority: the copy hidden by the active theme
+            // (display: none) is never downloaded, the visible one loads
+            // straight away as the page's main image.
+            loading="lazy"
+            fetchPriority="high"
             style={reduce ? {} : { y: imageY, scale: imageScale }}
             className="h-full w-full object-cover"
           />
@@ -115,6 +120,8 @@ function Home() {
             alt="Hyperloop vehicle inside a bright, daylit vacuum tube"
             width={1920}
             height={1088}
+            loading="lazy"
+            fetchPriority="high"
             style={reduce ? {} : { y: imageY, scale: imageScale }}
             className="h-full w-full object-cover"
           />
