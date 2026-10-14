@@ -3,6 +3,7 @@ import { absoluteUrl } from "../lib/seo";
 import { ArrowUpRight } from "lucide-react";
 import testCenter from "../assets/test-center.jpg";
 import testCenterLight from "../assets/test-center-light.jpg";
+import { FacilityExplorer } from "../components/FacilityExplorer";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
@@ -98,6 +99,8 @@ function TestingInfrastructure() {
           </div>
         </div>
       </section>
+
+      <FacilityExplorer />
 
       <section className="border-t border-border bg-surface/40">
         <div className="mx-auto max-w-[1400px] px-6 py-28 text-center lg:px-10 lg:py-36">

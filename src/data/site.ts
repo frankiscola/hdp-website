@@ -153,11 +153,12 @@ export const facilities: Facility[] = [
     name: "European Hyperloop Center",
     location: "Veendam, Netherlands",
     href: "https://hyperloopcenter.eu/",
-    focus: "Full-scale testing of vehicles, lane switching and vacuum infrastructure.",
+    focus:
+      "A 420 m steel test track for electromagnetic suspension, vehicle propulsion, lane switching and vacuum infrastructure.",
     capabilities: [
-      "420 m test tube",
+      "420 m steel test tube",
       "Lane switch",
-      "Vehicle certification",
+      "EMS levitation and propulsion",
       "Open to all developers",
     ],
   },
@@ -165,12 +166,12 @@ export const facilities: Facility[] = [
     name: "EuroTube DemoTube",
     location: "Switzerland",
     href: "https://eurotube.org/",
-    focus: "High-speed research on propulsion, levitation and tube dynamics.",
+    focus: "Concrete tube concepts, sealing and large-diameter vacuum valve testing.",
     capabilities: [
-      "Linear propulsion",
-      "High-speed runs",
-      "Tube structural research",
-      "Academic access",
+      "Post-tensioned concrete tube",
+      "Sealing membrane",
+      "Vacuum valve testing",
+      "Research and industry access",
     ],
   },
   {
