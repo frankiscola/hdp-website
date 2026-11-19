@@ -1,5 +1,10 @@
 import { EUROPE_MAP, type MapView } from "../data/europe-map";
-import { facilityCoordinates, facilitySpecs, type FacilityId } from "../data/facility-specs";
+import {
+  facilityCoordinates,
+  facilitySpecs,
+  tumDemonstrator,
+  type FacilityId,
+} from "../data/facility-specs";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./ui-kit";
 
@@ -40,6 +45,30 @@ function Marker({ view, id, r }: { view: MapView; id: FacilityId; r: number }) {
       <title>{`${spec?.name ?? id} – ${c.city}, ${c.country}`}</title>
       <circle cx={x} cy={y} r={r * 2.6} className={`${halo} group-focus-visible:stroke-primary`} />
       <circle cx={x} cy={y} r={r} className="fill-primary" />
+    </a>
+  );
+}
+
+function TumMarker({ view, r }: { view: MapView; r: number }) {
+  const { x, y } = project(view, tumDemonstrator.lat, tumDemonstrator.lng);
+  const text = `${tumDemonstrator.name} – ${tumDemonstrator.city}, ${tumDemonstrator.country} (vehicle demonstrator, opens TUM site)`;
+  return (
+    <a
+      href={tumDemonstrator.href}
+      target="_blank"
+      rel="noreferrer"
+      className="group outline-none"
+      aria-label={text}
+    >
+      <title>{text}</title>
+      <circle cx={x} cy={y} r={r * 2.6} className={`${halo} group-focus-visible:stroke-primary`} />
+      <circle
+        cx={x}
+        cy={y}
+        r={r}
+        className="fill-background stroke-primary"
+        strokeWidth={r * 0.45}
+      />
     </a>
   );
 }
@@ -111,6 +140,8 @@ export function FacilityMap() {
   const emden = project(overview, facilityCoordinates.gotube.lat, facilityCoordinates.gotube.lng);
   const pairX = (veendam.x + emden.x) / 2;
   const pairY = (veendam.y + emden.y) / 2;
+  const tumOverview = project(overview, tumDemonstrator.lat, tumDemonstrator.lng);
+  const tumDetail = project(detail, tumDemonstrator.lat, tumDemonstrator.lng);
   const zurich = project(
     overview,
     facilityCoordinates.demotube.lat,
@@ -126,8 +157,8 @@ export function FacilityMap() {
         <Reveal>
           <SectionHeading
             eyebrow="Locations"
-            title="Three sites in three countries."
-            intro="The cluster stretches across the Netherlands, Germany and Switzerland. Select a site on the map to jump to its details."
+            title="Test sites across three countries."
+            intro="The three test facilities are in the Netherlands, Germany and Switzerland. The TUM Hyperloop Demonstrator near Munich is shown separately, as a vehicle demonstrator. Select a site on the map for more."
           />
         </Reveal>
 
@@ -164,7 +195,15 @@ export function FacilityMap() {
                   <Marker key={id} view={overview} id={id} r={5} />
                 ))}
                 <Label x={pairX} y={pairY + 4} side="left" title="Veendam · Emden" size={16} />
-                <Label x={zurich.x} y={zurich.y + 5} side="right" title="Dübendorf" size={16} />
+                <Label x={zurich.x} y={zurich.y + 5} side="left" title="Dübendorf" size={16} />
+                <TumMarker view={overview} r={5} />
+                <Label
+                  x={tumOverview.x}
+                  y={tumOverview.y + 5}
+                  side="right"
+                  title="Ottobrunn"
+                  size={16}
+                />
               </svg>
             </figure>
 
@@ -196,6 +235,15 @@ export function FacilityMap() {
                 {IDS.map((id) => (
                   <Marker key={id} view={detail} id={id} r={7} />
                 ))}
+                <TumMarker view={detail} r={7} />
+                <Label
+                  x={tumDetail.x}
+                  y={tumDetail.y + 6}
+                  side="left"
+                  title={tumDemonstrator.shortName}
+                  sub={tumDemonstrator.cityShort}
+                  size={17}
+                />
                 {IDS.map((id) => {
                   const c = facilityCoordinates[id];
                   const p = project(detail, c.lat, c.lng);
@@ -217,7 +265,24 @@ export function FacilityMap() {
           </div>
         </Reveal>
 
-        <ul className="mt-8 grid gap-4 sm:grid-cols-3">
+        <ul
+          aria-label="Map legend"
+          className="mt-6 flex flex-wrap gap-x-8 gap-y-2 text-sm text-muted-foreground"
+        >
+          <li className="flex items-center gap-2">
+            <span className="inline-block h-3 w-3 rounded-full bg-primary" aria-hidden="true" />
+            Test infrastructure
+          </li>
+          <li className="flex items-center gap-2">
+            <span
+              className="inline-block h-3 w-3 rounded-full border-2 border-primary bg-background"
+              aria-hidden="true"
+            />
+            Vehicle demonstrator
+          </li>
+        </ul>
+
+        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {IDS.map((id) => {
             const c = facilityCoordinates[id];
             const spec = facilitySpecs.find((f) => f.id === id);
@@ -235,12 +300,26 @@ export function FacilityMap() {
               </li>
             );
           })}
+          <li>
+            <a
+              href={tumDemonstrator.href}
+              target="_blank"
+              rel="noreferrer"
+              className="block h-full rounded-2xl border border-dashed border-border bg-surface/30 p-5 transition-colors hover:border-primary/50"
+            >
+              <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
+                {tumDemonstrator.city}, {tumDemonstrator.country}
+              </p>
+              <p className="mt-2 font-semibold">{tumDemonstrator.name}</p>
+              <p className="mt-1 text-sm text-muted-foreground">Vehicle demonstrator</p>
+            </a>
+          </li>
         </ul>
 
         <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
           Veendam and Emden are about {near} km apart in a straight line, on either side of the
-          Dutch–German border. Dübendorf lies about {far} km to the south. Locations are shown at
-          city level. Map data: Natural Earth.
+          Dutch–German border. Dübendorf lies about {far} km to the south, and the TUM demonstrator
+          is near Munich. Locations are shown at city level. Map data: Natural Earth.
         </p>
       </div>
     </section>

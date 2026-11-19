@@ -385,3 +385,23 @@ export const facilityCoordinates: Record<
   demotube: { lat: 47.4, lng: 8.62, city: "Dübendorf", country: "Switzerland", countryCode: "CH" },
   gotube: { lat: 53.3678, lng: 7.2064, city: "Emden", country: "Germany", countryCode: "DE" },
 };
+
+/**
+ * TUM Hyperloop Demonstrator. Kept OUT of `facilitySpecs`, the comparison, the capability
+ * matrix and the facility counters on purpose: the inventory classifies it as a vehicle
+ * demonstrator, not a test infrastructure (inventory gaps #12 and #21, still to be confirmed
+ * with TUM). Only its location is publishable (inventory: Publishable = "Yes"); its tube
+ * length, diameter, pressure and access policy are still "To ask", so none are shown.
+ */
+export const tumDemonstrator = {
+  name: "TUM Hyperloop Demonstrator",
+  shortName: "TUM",
+  href: "https://tumhyperloop.de/demonstrator/",
+  // TUM campus Ottobrunn/Taufkirchen near Munich, city level.
+  lat: 48.06,
+  lng: 11.65,
+  city: "Ottobrunn/Taufkirchen",
+  cityShort: "Ottobrunn",
+  country: "Germany",
+  countryCode: "DE",
+} as const;
