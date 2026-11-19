@@ -81,7 +81,7 @@ const timeline = [
   },
   {
     year: "2024",
-    text: "European Hyperloop Center opens; full-scale testing of vehicles and infrastructure begins.",
+    text: "European Hyperloop Center opens; testing of vehicles and infrastructure begins.",
   },
   {
     year: "2025–2027",

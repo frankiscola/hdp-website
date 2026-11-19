@@ -39,7 +39,7 @@ function TestingInfrastructure() {
     <>
       <PageHero
         eyebrow="EU testing infrastructure"
-        title="Where hyperloop is proven at full scale."
+        title="Where hyperloop technology is tested in Europe."
         intro="The Hyperloop Testing Infrastructure Cluster brings together leading European test facilities, coordinated by the Hyperloop Development Program."
         image={testCenter}
         imageLight={testCenterLight}

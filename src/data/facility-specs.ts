@@ -78,7 +78,7 @@ export const facilitySpecs: FacilitySpec[] = [
       laneSwitch: "Yes, open to external developers",
       demonstratedSpeed: "100 km/h on the straight, 75 km/h in the curve",
       vehicleMass: "Up to about 3,000 kg",
-      access: "Open to everyone; free or paid depending on the collaboration",
+      access: "Open to everyone, on conditions agreed with the operator",
       availability: "Available",
     },
     notes: [
@@ -227,7 +227,7 @@ export const capabilities: Capability[] = [
     cells: {
       ehc: {
         level: "available",
-        note: "Open to everyone, free or paid depending on the collaboration.",
+        note: "Open to everyone, on conditions agreed with the operator.",
       },
       demotube: { level: "available", note: "Open to research groups and companies." },
       gotube: { level: "unknown" },
