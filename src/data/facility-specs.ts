@@ -368,3 +368,20 @@ export function facilityHighlights(id: FacilityId): { label: string; value: stri
     return value ? [{ label: short[k] ?? specLabels[k], value }] : [];
   });
 }
+
+/* ------------------------------------------------------------------ */
+/* Map coordinates (city level, degrees)                              */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Approximate location of each site, used by the map and the structured data.
+ * City level only: the exact sites are not published. Check before changing.
+ */
+export const facilityCoordinates: Record<
+  FacilityId,
+  { lat: number; lng: number; city: string; country: string; countryCode: string }
+> = {
+  ehc: { lat: 53.1066, lng: 6.8767, city: "Veendam", country: "Netherlands", countryCode: "NL" },
+  demotube: { lat: 47.4, lng: 8.62, city: "Dübendorf", country: "Switzerland", countryCode: "CH" },
+  gotube: { lat: 53.3678, lng: 7.2064, city: "Emden", country: "Germany", countryCode: "DE" },
+};

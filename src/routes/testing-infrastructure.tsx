@@ -4,12 +4,18 @@ import { ArrowUpRight } from "lucide-react";
 import testCenter from "../assets/test-center.jpg";
 import testCenterLight from "../assets/test-center-light.jpg";
 import { FacilityExplorer } from "../components/FacilityExplorer";
+import { FacilityMap } from "../components/FacilityMap";
 import { Magnetic } from "../components/Magnetic";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { CtaButton, SectionHeading } from "../components/ui-kit";
 import { facilities } from "../data/site";
-import { FACILITY_DATA_UPDATED, facilityHighlights, facilitySpecs } from "../data/facility-specs";
+import {
+  FACILITY_DATA_UPDATED,
+  facilityCoordinates,
+  facilityHighlights,
+  facilitySpecs,
+} from "../data/facility-specs";
 
 export const Route = createFileRoute("/testing-infrastructure")({
   head: () => ({
@@ -40,18 +46,21 @@ export const Route = createFileRoute("/testing-infrastructure")({
           name: "European hyperloop testing infrastructure cluster",
           itemListElement: [
             {
+              id: "ehc" as const,
               name: "European Hyperloop Center",
               city: "Veendam",
               country: "NL",
               url: "https://hyperloopcenter.eu/",
             },
             {
+              id: "demotube" as const,
               name: "EuroTube DemoTube",
               city: "Dübendorf",
               country: "CH",
               url: "https://eurotube.org/demotube/",
             },
             {
+              id: "gotube" as const,
               name: "goTube – Institute of Hyperloop Technology",
               city: "Emden",
               country: "DE",
@@ -64,6 +73,11 @@ export const Route = createFileRoute("/testing-infrastructure")({
               "@type": "Place",
               name: f.name,
               url: f.url,
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: facilityCoordinates[f.id].lat,
+                longitude: facilityCoordinates[f.id].lng,
+              },
               address: {
                 "@type": "PostalAddress",
                 addressLocality: f.city,
@@ -94,6 +108,7 @@ function TestingInfrastructure() {
       <nav aria-label="On this page" className="border-b border-border">
         <ul className="mx-auto flex max-w-[1400px] flex-wrap gap-x-8 gap-y-2 px-6 py-4 text-sm lg:px-10">
           {[
+            ["#map", "Map"],
             ["#facilities", "The facilities"],
             ["#compare", "Compare"],
             ["#capabilities", "What can be tested where"],
@@ -112,7 +127,9 @@ function TestingInfrastructure() {
         </ul>
       </nav>
 
-      <section id="facilities" className="scroll-mt-24">
+      <FacilityMap />
+
+      <section id="facilities" className="scroll-mt-24 border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
           <Reveal>
             <SectionHeading
@@ -126,7 +143,10 @@ function TestingInfrastructure() {
             {facilities.map((facility, i) => (
               <Reveal key={facility.name} delay={i * 0.1}>
                 <Magnetic strength={0.06} max={8}>
-                  <article className="rounded-[2rem] border border-border bg-surface/50 p-8 transition-all duration-500 hover:border-primary/50 lg:p-12">
+                  <article
+                    id={`site-${facility.id}`}
+                    className="scroll-mt-28 rounded-[2rem] border border-border bg-surface/50 p-8 transition-all duration-500 hover:border-primary/50 lg:p-12"
+                  >
                     <div className="flex flex-wrap items-start justify-between gap-6">
                       <div>
                         <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
