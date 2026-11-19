@@ -1,4 +1,4 @@
-import { Check, CircleDashed, CircleDot, Lightbulb } from "lucide-react";
+import { Check, CircleDashed, CircleDot, Lightbulb, Minus } from "lucide-react";
 import { useMemo, useState } from "react";
 import {
   FACILITY_DATA_UPDATED,
@@ -21,12 +21,14 @@ function LevelIcon({ level, className }: { level: Level; className?: string }) {
   const base = cn("h-4 w-4", className);
   if (level === "available") return <Check className={base} aria-hidden="true" />;
   if (level === "possible") return <CircleDot className={base} aria-hidden="true" />;
+  if (level === "none") return <Minus className={base} aria-hidden="true" />;
   return <CircleDashed className={base} aria-hidden="true" />;
 }
 
 const levelStyles: Record<Level, string> = {
   available: "border-primary/60 bg-primary/15 text-primary-glow",
   possible: "border-primary/40 bg-transparent text-primary-glow",
+  none: "border-border bg-transparent text-muted-foreground",
   unknown: "border-dashed border-border bg-transparent text-muted-foreground",
 };
 

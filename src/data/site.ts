@@ -175,12 +175,13 @@ export const facilities: Facility[] = [
     name: "EuroTube DemoTube",
     location: "Dübendorf, Switzerland",
     href: "https://eurotube.org/",
-    focus: "Concrete tube concepts, sealing and large-diameter vacuum valve testing.",
+    focus:
+      "A 120 m concrete vacuum tube with a steel airlock, for testing concrete tube concepts, sealing, large vacuum valves and third-party components.",
     capabilities: [
       "Post-tensioned concrete tube",
-      "Sealing membrane",
-      "Vacuum valve testing",
-      "Research and industry access",
+      "DN2200 vacuum valve",
+      "Top and bottom rail anchors",
+      "Vacuum chambers for components",
     ],
   },
   {

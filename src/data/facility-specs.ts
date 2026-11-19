@@ -121,26 +121,40 @@ export const facilitySpecs: FacilitySpec[] = [
     shortName: "DemoTube",
     approval: "awaiting",
     href: "https://eurotube.org/demotube/",
+    // Source: EuroTube written reply to HDP questions (Nov 2026). Dimensions are as-built.
+    // EuroTube will update its user guide after the validation tests in Hyper4Rail.
     specs: {
       location: "Dübendorf, Switzerland Innovation Park Zurich",
-      tubeLength: "≈120 m",
+      tubeLength: "120 m concrete tube + 10 m airlock",
       tubeDiameter: "2.2 m",
-      tubeMaterial: "Sealed, post-tensioned concrete with a membrane",
-      pressure: null,
+      tubeMaterial: "Steel airlock, then post-tensioned concrete with an inner polymer layer",
+      pressure: "1 mbar to 1 atm",
       pumpDown: null,
       leakRate: null,
-      levitation: null,
-      propulsion: null,
-      laneSwitch: null,
+      levitation: "Top and bottom rail anchor points for any levitation or guidance system",
+      propulsion:
+        "Modular test bench for motors and levitation systems; launcher under construction",
+      laneSwitch: "Not yet",
       demonstratedSpeed: null,
-      designSpeed: null,
+      designSpeed: "Launcher under construction: 2 t vehicle to 150 km/h in 20 m",
       vehicleMass: null,
-      instrumentation: null,
-      access: "Research groups and companies",
-      availability: null,
+      instrumentation: "Pressure, temperature and humidity; feedthroughs for custom sensors",
+      access: "Research groups and companies; dedicated contract for each campaign",
+      availability: "Airlock, valve and vacuum chambers now; full concrete tube from end of 2027",
+    },
+    // Not rendered. Pump-down time is covered by an NDA with another company, so it is not
+    // published. 0.1 mbar has been reached in tests, but EuroTube recommends 1 mbar to 1 atm
+    // as the reference range. Prices, quotes and contact e-mails are not published (state-aid
+    // wording and single entry point via HDP, inventory gaps #19 / #23).
+    pending: {
+      pumpDown:
+        "A few minutes at most for the airlock and the first concrete tube (NDA: do not publish)",
     },
     notes: [
       "Allows testing of a large-diameter hyperloop vacuum valve (DN2200), validated at TRL 6.",
+      "Third-party valves and components can be integrated. Smaller components fit vacuum chambers of about 17 dm³ and 100 dm³, or custom chambers.",
+      "The concrete tube is modular, so third parties can test sealing, joints and interchangeable sections, provided the existing structure is not damaged.",
+      "The concrete tube is built in stages and grows until its completion at the end of 2027.",
     ],
   },
   {
@@ -186,7 +200,7 @@ export const facilitySpecs: FacilitySpec[] = [
 /* "What can be tested where"                                         */
 /* ------------------------------------------------------------------ */
 
-export type Level = "available" | "possible" | "unknown";
+export type Level = "available" | "possible" | "none" | "unknown";
 
 export type CapabilityCell = { level: Level; note?: string };
 
@@ -202,7 +216,10 @@ export const capabilities: Capability[] = [
     label: "Electromagnetic suspension (EMS)",
     cells: {
       ehc: { level: "available", note: "EMS levitation and guidance on the 420 m steel track." },
-      demotube: { level: "unknown" },
+      demotube: {
+        level: "possible",
+        note: "Top and bottom rail anchor points allow third-party levitation and guidance systems to be installed.",
+      },
       gotube: { level: "unknown" },
     },
   },
@@ -211,7 +228,10 @@ export const capabilities: Capability[] = [
     label: "Propulsion systems",
     cells: {
       ehc: { level: "available", note: "Linear synchronous reluctance propulsion." },
-      demotube: { level: "unknown" },
+      demotube: {
+        level: "available",
+        note: "Modular test bench for motors and levitation systems. A launcher for a 2 t vehicle (150 km/h in 20 m) is under construction.",
+      },
       gotube: {
         level: "available",
         note: "Infrastructure for testing propulsion systems and different vehicle concepts.",
@@ -226,7 +246,7 @@ export const capabilities: Capability[] = [
         level: "available",
         note: "A dedicated curve that external developers can use. Speed depends on the vehicle.",
       },
-      demotube: { level: "unknown" },
+      demotube: { level: "none", note: "No lane switch yet." },
       gotube: { level: "unknown" },
     },
   },
@@ -252,7 +272,7 @@ export const capabilities: Capability[] = [
       },
       demotube: {
         level: "available",
-        note: "Sealed, post-tensioned concrete tube with a membrane.",
+        note: "Modular post-tensioned concrete tube with an inner polymer layer. Third parties can test sealing, joints and interchangeable sections.",
       },
       gotube: { level: "unknown" },
     },
@@ -264,7 +284,19 @@ export const capabilities: Capability[] = [
       ehc: { level: "unknown" },
       demotube: {
         level: "available",
-        note: "Allows testing of a large-diameter hyperloop vacuum valve (DN2200), validated at TRL 6.",
+        note: "Allows testing of a large-diameter hyperloop vacuum valve (DN2200), validated at TRL 6. Other valves and components can be integrated.",
+      },
+      gotube: { level: "unknown" },
+    },
+  },
+  {
+    id: "components",
+    label: "Small components in vacuum chambers",
+    cells: {
+      ehc: { level: "unknown" },
+      demotube: {
+        level: "available",
+        note: "Vacuum chambers of about 17 dm³ and 100 dm³, or custom chambers.",
       },
       gotube: { level: "unknown" },
     },
@@ -277,7 +309,10 @@ export const capabilities: Capability[] = [
         level: "available",
         note: "Open to everyone; conditions agreed with the operator.",
       },
-      demotube: { level: "available", note: "Open to research groups and companies." },
+      demotube: {
+        level: "available",
+        note: "Open to research groups and companies, under a dedicated contract for each campaign.",
+      },
       gotube: { level: "unknown" },
     },
   },
@@ -286,6 +321,7 @@ export const capabilities: Capability[] = [
 export const levelLabels: Record<Level, string> = {
   available: "Available",
   possible: "Possible with modifications",
+  none: "Not available yet",
   unknown: "To be confirmed",
 };
 
