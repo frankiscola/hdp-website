@@ -63,7 +63,7 @@ export function FacilityExplorer() {
   return (
     <>
       {/* ---------------------------------------------------------- Compare */}
-      <section className="border-t border-border">
+      <section id="compare" className="scroll-mt-24 border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
           <Reveal>
             <SectionHeading
@@ -108,7 +108,7 @@ export function FacilityExplorer() {
                 <tr className="border-b border-border">
                   <th
                     scope="col"
-                    className="w-48 px-6 py-5 text-xs tracking-[0.2em] text-muted-foreground uppercase"
+                    className="sticky left-0 z-10 w-48 bg-surface px-6 py-5 text-xs tracking-[0.2em] text-muted-foreground uppercase"
                   >
                     Parameter
                   </th>
@@ -127,7 +127,7 @@ export function FacilityExplorer() {
                   <tr key={key} className="border-b border-border/70 last:border-b-0">
                     <th
                       scope="row"
-                      className="px-6 py-4 align-top font-medium text-muted-foreground"
+                      className="sticky left-0 z-10 bg-surface px-6 py-4 align-top font-medium text-muted-foreground"
                     >
                       {specLabels[key]}
                     </th>
@@ -146,7 +146,10 @@ export function FacilityExplorer() {
                   </tr>
                 ))}
                 <tr>
-                  <th scope="row" className="px-6 py-4 align-top font-medium text-muted-foreground">
+                  <th
+                    scope="row"
+                    className="sticky left-0 z-10 bg-surface px-6 py-4 align-top font-medium text-muted-foreground"
+                  >
                     Good to know
                   </th>
                   {shown.map((f) => (
@@ -169,11 +172,16 @@ export function FacilityExplorer() {
           <p className="mt-4 text-xs text-muted-foreground">
             Pressures in mbar (100 Pa = 1 mbar). Last updated {FACILITY_DATA_UPDATED}.
           </p>
+          <p className="mt-2 max-w-3xl text-xs leading-relaxed text-muted-foreground">
+            “To be confirmed” means the operator has not yet approved a value for publication.
+            Design values are shown separately from demonstrated values and are never presented as
+            achieved performance.
+          </p>
         </div>
       </section>
 
       {/* ----------------------------------------------------------- Matrix */}
-      <section className="border-t border-border bg-surface/40">
+      <section id="capabilities" className="scroll-mt-24 border-t border-border bg-surface/40">
         <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
           <Reveal>
             <SectionHeading
@@ -279,7 +287,7 @@ export function FacilityExplorer() {
       </section>
 
       {/* ----------------------------------------------------------- Topics */}
-      <section className="border-t border-border">
+      <section id="agenda" className="scroll-mt-24 border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
           <Reveal>
             <SectionHeading

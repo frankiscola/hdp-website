@@ -8,10 +8,18 @@
  *   shows a small badge on it. Flip to "approved" once the operator has approved.
  * - Pressure is always in mbar (100 Pa = 1 mbar).
  * - Design values are never presented as demonstrated values.
- * - Provenance of every figure is kept in HDP_Facility_Inventory.xlsx (Inventory sheet).
+ * - Provenance of every figure is kept in Research_Facilities_Inventory.xlsx (Inventory sheet).
+ * - Only figures the inventory marks Publishable = "Yes" are new on the page. Values
+ *   that are confirmed or public but still "To ask" live in `pending` below: they are
+ *   NOT rendered. When the operator approves, move the value into `specs`.
+ * - No prices, no paid-access examples, no personal contact details (state-aid wording,
+ *   inventory gap #19 / #23).
  */
 
 export type FacilityId = "ehc" | "demotube" | "gotube";
+
+/** One URL for IHT everywhere on the site (it is the one listed in the inventory's Sources sheet). */
+export const IHT_URL = "https://iht.hs-emden-leer.de/";
 
 export type Approval = "approved" | "awaiting";
 
@@ -21,11 +29,15 @@ export const SPEC_KEYS = [
   "tubeDiameter",
   "tubeMaterial",
   "pressure",
+  "pumpDown",
+  "leakRate",
   "levitation",
   "propulsion",
   "laneSwitch",
   "demonstratedSpeed",
+  "designSpeed",
   "vehicleMass",
+  "instrumentation",
   "access",
   "availability",
 ] as const;
@@ -38,11 +50,15 @@ export const specLabels: Record<SpecKey, string> = {
   tubeDiameter: "Tube diameter",
   tubeMaterial: "Tube material",
   pressure: "Operating pressure",
+  pumpDown: "Pump-down time (current pump)",
+  leakRate: "Facility leak rate at 1 mbar",
   levitation: "Levitation and guidance",
   propulsion: "Propulsion",
   laneSwitch: "Lane switch",
   demonstratedSpeed: "Demonstrated speed",
+  designSpeed: "Design speed (not demonstrated)",
   vehicleMass: "Vehicle mass (indicative)",
+  instrumentation: "Measurements",
   access: "Access",
   availability: "Availability 2026–2029",
 };
@@ -54,11 +70,17 @@ export type FacilitySpec = {
   approval: Approval;
   href: string;
   specs: Record<SpecKey, string | null>;
+  /**
+   * Values known to HDP but not yet cleared for publication by the operator
+   * (inventory Publishable = \"To ask\"). Never rendered; kept here so that approval
+   * is a one-line move into `specs`.
+   */
+  pending?: Partial<Record<SpecKey, string>>;
   /** Short, approved remarks shown in the "Good to know" row. */
   notes: string[];
 };
 
-export const FACILITY_DATA_UPDATED = "October 2026";
+export const FACILITY_DATA_UPDATED = "November 2026";
 
 export const facilitySpecs: FacilitySpec[] = [
   {
@@ -73,19 +95,24 @@ export const facilitySpecs: FacilitySpec[] = [
       tubeDiameter: "2.5 m",
       tubeMaterial: "Steel",
       pressure: "≈1 mbar (100 Pa)",
+      pumpDown: "About 16 hours",
+      leakRate: "11.52 Pa·m³/s",
       levitation: "Electromagnetic suspension (EMS) with guidance",
       propulsion: "Linear synchronous reluctance motor",
       laneSwitch: "Yes, open to external developers",
       demonstratedSpeed: "100 km/h on the straight, 75 km/h in the curve",
+      designSpeed: "300 km/h on one leg, 700 km/h on the other",
       vehicleMass: "Up to about 3,000 kg",
-      access: "Open to everyone, on conditions agreed with the operator",
+      instrumentation: "Temperatures, pressures and expansion-joint movement",
+      access: "Open to everyone; conditions agreed with the operator",
       availability: "Available",
     },
     notes: [
       "Demonstrated speeds are limited by the vehicle's battery power, not by the infrastructure.",
-      "The infrastructure was designed for up to 300 and 700 km/h on its two legs (design values, not yet demonstrated).",
-      "Pump-down to 1 mbar takes about 16 hours with the current pump.",
+      "The design speeds are infrastructure design values and have not been demonstrated.",
       "External vehicles are accepted after a compliance check that protects the infrastructure.",
+      "The safety procedure depends on the campaign and is extensive for vehicle tests.",
+      "An extension of the track is possible; none is planned at present.",
     ],
   },
   {
@@ -95,40 +122,61 @@ export const facilitySpecs: FacilitySpec[] = [
     approval: "awaiting",
     href: "https://eurotube.org/demotube/",
     specs: {
-      location: "Dübendorf, Switzerland",
+      location: "Dübendorf, Switzerland Innovation Park Zurich",
       tubeLength: "≈120 m",
       tubeDiameter: "2.2 m",
       tubeMaterial: "Sealed, post-tensioned concrete with a membrane",
       pressure: null,
+      pumpDown: null,
+      leakRate: null,
       levitation: null,
       propulsion: null,
       laneSwitch: null,
       demonstratedSpeed: null,
+      designSpeed: null,
       vehicleMass: null,
+      instrumentation: null,
       access: "Research groups and companies",
       availability: null,
     },
-    notes: ["Allows testing of a large-diameter hyperloop vacuum valve (DN2200)."],
+    notes: [
+      "Allows testing of a large-diameter hyperloop vacuum valve (DN2200), validated at TRL 6.",
+    ],
   },
   {
     id: "gotube",
     name: "goTube – Institute of Hyperloop Technology",
     shortName: "goTube",
     approval: "awaiting",
-    href: "https://iht.hs-emden-leer.de/",
+    href: IHT_URL,
     specs: {
       location: "Emden, Germany",
       tubeLength: "27 m",
       tubeDiameter: null,
       tubeMaterial: "Steel",
       pressure: "1 bar down to 1 mbar",
+      pumpDown: null,
+      leakRate: null,
       levitation: null,
       propulsion: "Infrastructure for testing propulsion systems and vehicle concepts",
       laneSwitch: null,
       demonstratedSpeed: null,
+      designSpeed: null,
       vehicleMass: null,
+      instrumentation: null,
       access: null,
       availability: null,
+    },
+    // From the IHT documents (Nov 2026 draft, Mar 2026 slides, 2025 data sheets).
+    // Inventory Publishable = "To ask": IHT requires approval of a final fact sheet
+    // before anything goes on the website, and the slides are internal – confidential.
+    // Do NOT render until IHT signs off; do not mention Nevomo (inventory gap #28).
+    pending: {
+      tubeDiameter: "1.626 m outer diameter",
+      pumpDown: "About 1 hour to 1 mbar; about 10 minutes to 10 mbar",
+      levitation: "Wheel/rail guidance, 1,000 mm track gauge",
+      propulsion: "Linear motor, 24 m long",
+      instrumentation: "Pressure, temperature, humidity, strain, position and video",
     },
     notes: ["Steel tube with quick evacuation capability."],
   },
@@ -216,7 +264,7 @@ export const capabilities: Capability[] = [
       ehc: { level: "unknown" },
       demotube: {
         level: "available",
-        note: "Allows testing of a large-diameter hyperloop vacuum valve (DN2200).",
+        note: "Allows testing of a large-diameter hyperloop vacuum valve (DN2200), validated at TRL 6.",
       },
       gotube: { level: "unknown" },
     },
@@ -227,7 +275,7 @@ export const capabilities: Capability[] = [
     cells: {
       ehc: {
         level: "available",
-        note: "Open to everyone, on conditions agreed with the operator.",
+        note: "Open to everyone; conditions agreed with the operator.",
       },
       demotube: { level: "available", note: "Open to research groups and companies." },
       gotube: { level: "unknown" },
@@ -264,3 +312,23 @@ export const openResearchTopics: ResearchTopic[] = [
     proposedBy: "European Hyperloop Center",
   },
 ];
+
+/* ------------------------------------------------------------------ */
+/* Key figures for the facility cards                                 */
+/* ------------------------------------------------------------------ */
+
+/** Up to three headline figures per facility, taken from the approved `specs` only. */
+export function facilityHighlights(id: FacilityId): { label: string; value: string }[] {
+  const fac = facilitySpecs.find((f) => f.id === id);
+  if (!fac) return [];
+  const keys: SpecKey[] = ["tubeLength", "tubeDiameter", "pressure"];
+  const short: Partial<Record<SpecKey, string>> = {
+    tubeLength: "Tube length",
+    tubeDiameter: "Diameter",
+    pressure: "Pressure",
+  };
+  return keys.flatMap((k) => {
+    const value = fac.specs[k];
+    return value ? [{ label: short[k] ?? specLabels[k], value }] : [];
+  });
+}

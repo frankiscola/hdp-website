@@ -1,3 +1,4 @@
+import { IHT_URL, type FacilityId } from "./facility-specs";
 import { logos } from "./logos";
 
 export type NavItem =
@@ -20,8 +21,13 @@ export const navItems: NavItem[] = [
   { label: "Hyperloop", to: "/hyperloop" },
   { label: "Testing Infrastructure", to: "/testing-infrastructure" },
   { label: "Partners", to: "/partners" },
-  { label: "Research Portal", to: "/hyperloop-portal" },
-  { label: "HyperHub Portal", to: "/hyperhub" },
+  {
+    label: "Portals",
+    children: [
+      { label: "Research Portal", to: "/hyperloop-portal" },
+      { label: "HyperHub Portal", to: "/hyperhub" },
+    ],
+  },
   {
     label: "Events",
     children: [{ label: "InnoTrans 2026", to: "/innotrans-2026" }],
@@ -141,6 +147,7 @@ export const supportingGovernments: SupportingGovernment[] = [
 ];
 
 export type Facility = {
+  id: FacilityId;
   name: string;
   location: string;
   href: string;
@@ -150,6 +157,7 @@ export type Facility = {
 
 export const facilities: Facility[] = [
   {
+    id: "ehc",
     name: "European Hyperloop Center",
     location: "Veendam, Netherlands",
     href: "https://hyperloopcenter.eu/",
@@ -163,8 +171,9 @@ export const facilities: Facility[] = [
     ],
   },
   {
+    id: "demotube",
     name: "EuroTube DemoTube",
-    location: "Switzerland",
+    location: "Dübendorf, Switzerland",
     href: "https://eurotube.org/",
     focus: "Concrete tube concepts, sealing and large-diameter vacuum valve testing.",
     capabilities: [
@@ -175,15 +184,17 @@ export const facilities: Facility[] = [
     ],
   },
   {
+    id: "gotube",
     name: "goTube – Institute of Hyperloop Technology",
     location: "Emden, Germany",
-    href: "https://iht-emden.de/",
-    focus: "Vacuum systems, suspension and component qualification.",
+    href: IHT_URL,
+    focus:
+      "A 27 m steel vacuum tube with quick evacuation, providing infrastructure for testing propulsion systems and vehicle concepts.",
     capabilities: [
-      "Vacuum engineering",
-      "Suspension rigs",
-      "Component testing",
-      "Applied research",
+      "27 m steel tube",
+      "1 bar down to 1 mbar",
+      "Quick evacuation",
+      "Propulsion and vehicle-concept testing",
     ],
   },
 ];
