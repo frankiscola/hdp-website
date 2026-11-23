@@ -396,7 +396,9 @@ export const facilityCoordinates: Record<
 export const tumDemonstrator = {
   name: "TUM Hyperloop Demonstrator",
   shortName: "TUM",
-  href: "https://tumhyperloop.de/demonstrator/",
+  // Official TUM page (Dept. of Aerospace and Geodesy). Do NOT use tumhyperloop.de: it now
+  // redirects to next-prototypes.de, an unrelated student association.
+  href: "https://www.asg.ed.tum.de/hyp/",
   // TUM campus Ottobrunn/Taufkirchen near Munich, city level.
   lat: 48.06,
   lng: 11.65,
